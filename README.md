@@ -1,2 +1,2 @@
-# Project-WSI
+# Bernady Land Slawu
 Tugas Workshop Sistem Informasi 
