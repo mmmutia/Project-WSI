@@ -279,6 +279,7 @@ button {
 
 .nav-item {
     position: relative;
+    
 }
 
 .navbar-nav.mr-auto ul {
@@ -294,7 +295,7 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
+    background-image: url(../images/bg-bernady.jpg);
     height: auto;
     padding-bottom: 50px;
     background-size: 100%;
