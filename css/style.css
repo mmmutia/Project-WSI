@@ -456,7 +456,7 @@ button {
 .about_section{
     width: 100%;
     float: left;
-    background-color: #ffb607;
+    background-color: #131b38;
     height: auto;
     padding-bottom: 90px;
 }
@@ -554,7 +554,7 @@ a:hover {
     width: 42%;
     opacity: 0;
     transition: .3s ease;
-    background-color: #fabc26;
+    background-color: #96a6d3;
     margin: 0 auto;
     border-radius: 100px;
     top: 55px;
@@ -713,7 +713,7 @@ a:hover {
     top: 0;
     width: 92%;
     height: 90%;
-    background-color: rgb(255,182,7,.6);
+    background-color: rgba(137, 147, 211, 0.6);
     z-index: 11;
     display: none;
 }
