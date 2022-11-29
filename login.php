@@ -1,29 +1,46 @@
-<?php
-//koneksi database
-$host="localhost";
-$user="root";
-$pass="";
-$database="login";
-mysql_connect($host,$user,$pass);
-mysql_select_db($database);
+<?php  
+require('koneksi.php');
 
-$username=$_POST["username"];
-$password=$_POST["password"];
+session_start();
 
-$query=mysql_query("SELECT*FROM login WHERE username='".$username."' AND password='".$password."'");
-$result=mysql_fetch_assoc($query);
-$jumlah_result=mysql_num_rows($query);
-if ($jumlah_result==0) {
- # code...
- header("Location:index.php?error=login");
+if (isset($_POST['submit'])) {
+    $email = $_POST['txt_email'];
+    $pass = $_POST['txt_pass'];
+    
+    if (!empty(trim($email)) && !empty(trim($pass))) {
+        $query      = "SELECT * FROM user_detail WHERE user_email = '$email'";
+        $result     = mysqli_query($koneksi, $query);
+        $num        = mysqli_num_rows($result);
 
-}elseif ($result["username"]==$username && $result["password"]==$password) {
- # code...
- //proses menyimpan session login
- session_start();
- $_SESSION["username"]=$result["username"];
- $_SESSION["login"]= $result["username"].date('Y-m-d H:i:s');
- header("Location:home.php");
+        while ($row = mysqli_fetch_array($result)) {
+            $id = $row['id'];
+            $userVal = $row['user_email'];
+            $passVal = $row['user_password'];
+            $userName = $row['user_fullname'];
+            $level = $row['level'];
+
+        }
+
+        if ($num != 0) {
+            if ($userVal==$email && $passVal==$pass) {
+                $_SESSION['id'] = $id;
+                $_SESSION['name'] = $userName;
+                $_SESSION['level'] = $level;
+                header('Location: home.php');
+            }else{
+                $error = 'user atau password salah!!';
+                echo "<script>alert('$error')</script>";
+                header('Location: login.php');
+            }
+        }else{
+            $error = 'user tidak ditemukan!!';
+            echo "<script>alert('$error')</script>";
+            header('Location: login.php');
+        }
+    }else{
+        $error = 'Data tidak boleh kosong!!';
+        echo "<script>alert('$error')</script>";
+    }
 }
 ?>
 
