@@ -46,7 +46,7 @@ body {
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
-     background-color: #131b38;
+     background-color: #edeff3;
 }
 
 a {
@@ -189,6 +189,14 @@ img {
      box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
 
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 40%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
 .navbar-form input {
      border: none !important;
 }
@@ -223,13 +231,14 @@ button {
      padding: 0px;
 }
 
-/* .header_section{
+.header_section{
     width: 100%;
     float: left;
-    background-image: url(../images/logo-bernady.png);
+    /* background-image: url(../images/logo-bernady.png); */
     height: auto;
     background-size: 100%;
-} */
+}
+
 .bg-light {
     background-color: transparent !important;
 }
@@ -299,8 +308,9 @@ button {
     background-image: url(../images/bg-bernady.jpg);
     height: auto;
     padding-bottom: 50px;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 .icon_1{
     width: 100%;
