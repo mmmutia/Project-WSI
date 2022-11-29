@@ -1031,6 +1031,13 @@ textarea#comment::placeholder {
     color: #fdbe28;
 }
 
+.tombol_contact_us{
+    position: fixed;right : 10px;bottom: 44px;
+}
+.tombol-contact_us img{
+    height: 44px;width: auto;
+}
+
 
 
 
