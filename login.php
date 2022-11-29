@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['id'] = $id;
                 $_SESSION['name'] = $userName;
                 $_SESSION['level'] = $level;
-                header('Location: home.php');
+                header('Location: home.html');
             }else{
                 $error = 'user atau password salah!!';
                 echo "<script>alert('$error')</script>";
