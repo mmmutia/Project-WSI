@@ -1032,10 +1032,10 @@ textarea#comment::placeholder {
 }
 
 .tombol_contact_us{
-    position: fixed;right : 10px;bottom: 44px;
+    position: fixed;right : 10px;bottom: 50px;
 }
 .tombol-contact_us img{
-    height: 44px;width: auto;
+    height: 77px;width: auto;
 }
 
 
