@@ -4058,6 +4058,11 @@ textarea.form-control-lg {
   text-decoration: none;
   white-space: nowrap;
 }
+.logo {
+  width: 10%;
+  float: right;
+}
+  
 .navbar-nav {
   display: flex;
   flex-direction: column;
@@ -11392,7 +11397,7 @@ hr.divider-light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../images/bg-bernady.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
