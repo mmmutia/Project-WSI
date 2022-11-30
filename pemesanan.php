@@ -51,8 +51,7 @@
                                         <div class="form-group">
                                             <input name="txt_namacluster" type="text" class="form-control"  placeholder="Nama cluster *" value="" />
                                         </div>
-                                    </div>
-                                    
+                                        
                                         <div class="form-group">
                                             <input name="txt_tglpemesanan" type="date" class="form-control" placeholder="Tgl pemesanan *" value="" />
                                         </div>
