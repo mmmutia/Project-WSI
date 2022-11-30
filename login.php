@@ -72,6 +72,7 @@ if (isset($_POST['submit'])) {
 				</div>
 				<div class="hr"></div>
 			</div>
+            
 			<div class="for-pwd-htm">
 				<div class="group">
 					<label for="user" class="label">Username or Email</label>
