@@ -91,32 +91,33 @@ if (isset($_POST['submit'])) {
 <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
-		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
+		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
         <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <div class="form-group">
-                            <label for="user" class="label">Email</label>
-                                <input input type="email" class="form-control form-control-user"
+        <form class="user" action="login.php" method="post">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." name="txt_email">
-                            </div>
-                            <div class="form-group">
-                            <label for="pass" class="label">Password</label>
-                                <input type="text" name="txt_pass" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="password" placeholder="Password" name="txt_pass">
+                                        </div>
+                                        <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="show_password" name="show_password">
                                                 <label class="custom-control-label" for="show_password">Show Password</label>
                                             </div>
                                         </div>
-                                    <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                            <div id="register-link" class="text-right">
-                                <a href="register.php" class="text-info">Register here</a>
-                            </div>
-                        </form>
-                    </div>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="register.php">Create an Account!</a>
+                                    </div>
+                        
+        </div>
 			
 			<div class="for-pwd-htm">
             <div class="form-group">
