@@ -1,33 +1,3 @@
-<?php
-require ("koneksi.php");
-if ( isset($_POST['pemesanan_rumah'])) {
-    $nama_pemesan = $_POST['txt_namapemesan'];
-    $tempat_tgl_lahir = $_POST['txt_ttl'];
-    $alamat = $_POST['txt_alamat'];
-    $no_telp_pemesan = $_POST['txt_notelppemesan'];
-    $nama_cluster = $_POST['txt_namacluster'];
-    $tgl_pemesanan = $_POST['txt_tglpemesanan'];
-    $fotocopy_ktp = $_POST['txt_fotocopyktp'];
-
-    $query = "INSERT INTO pemesanan_rumah VALUES (null, '$nama_pemesan', '$tempat_tgl_lahir', '$alamat', '$no_telp_pemesanan', '$nama_cluster', '$tgl_pemesanan', '$fotocopy_ktp', 2)";
-    $result = mysqli_query($koneksi, $query);
-    header('Location: login.php');
-}
-?>
-<?php
-require("koneksi.php");
-
-session_start();
-
-if (!isset($_SESSION['id'])) {
-    $_SESSION['msg'] = 'anda harus login untuk mengakses halaman ini';
-    header('Location: login.php');
-}
-$sesID = $_SESSION['id'];
-$sesName = $_SESSION['name'];
-$sesLvl = $_SESSION['level'];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +8,10 @@ $sesLvl = $_SESSION['level'];
   <title>Pemesanan - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <link href="img/logo-bernady.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
