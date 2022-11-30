@@ -8,6 +8,8 @@ if( isset($_POST['register']) ){
     $query = "INSERT INTO user_detail VALUES ('', '$userMail', '$userPass', '$userName', 2)";
     $result = mysqli_query($koneksi, $query);
     header('Location: login.php');
+    if($saved) header("Location: login.php");
+   
 }
 ?>
 
@@ -26,6 +28,7 @@ if( isset($_POST['register']) ){
 		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
+            <form class="user" action="register.php" method="POST">
 				<div class="group">
 					<label for="user" class="label">Fullname</label>
 					<input id="user" type="text" class="input">
@@ -41,6 +44,10 @@ if( isset($_POST['register']) ){
 				<div class="group">
 					<input type="submit" class="button" value="Submit">
 				</div>
+                <hr>
+                            <div class="text-center">
+                                <a class="small" href="login.php">Already have an account? Login!</a>
+                            </div>
 				<div class="hr"></div>
 			</div>
 			<div class="for-pwd-htm">
