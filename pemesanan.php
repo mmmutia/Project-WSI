@@ -14,6 +14,19 @@ if ( isset($_POST['pemesanan_rumah'])) {
     header('Location: login.php');
 }
 ?>
+<?php
+require("koneksi.php");
+
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    $_SESSION['msg'] = 'anda harus login untuk mengakses halaman ini';
+    header('Location: login.php');
+}
+$sesID = $_SESSION['id'];
+$sesName = $_SESSION['name'];
+$sesLvl = $_SESSION['level'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
