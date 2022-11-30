@@ -87,36 +87,39 @@ if (isset($_POST['submit'])) {
 <link href="css/login.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
 
-<body>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="txt_email" id="username" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="txt_pass" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
-                            <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Register</label>
+		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+                <div class="group">
+					<label for="user" class="label">Email</label>
+					<input id="user" type="text" class="input" name="txt_email">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password" name="txt_pass">
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Submit" name="submit">
+				</div>
+				<div class="hr"></div>
+			</div>
+			<div class="for-pwd-htm">
+				<div class="group">
+					<label for="user" class="label">Username or Email</label>
+					<input id="user" type="text" class="input">
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Reset Password">
+				</div>
+				<div class="hr"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
