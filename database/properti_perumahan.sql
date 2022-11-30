@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2022 at 05:53 AM
+-- Generation Time: Nov 30, 2022 at 03:23 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -85,7 +85,6 @@ CREATE TABLE `pemesanan_rumah` (
   `alamat` varchar(100) NOT NULL,
   `no_telp_pemesan` varchar(15) NOT NULL,
   `nama_cluster` varchar(50) NOT NULL,
-  `no_perumahan` varchar(50) NOT NULL,
   `tgl_pemesanan` date NOT NULL,
   `nup` varchar(50) NOT NULL,
   `bukti_pemesanan` varchar(100) NOT NULL,
@@ -154,6 +153,13 @@ CREATE TABLE `user_detail` (
   `user_fullname` varchar(100) NOT NULL,
   `level` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_detail`
+--
+
+INSERT INTO `user_detail` (`id_user`, `user_email`, `user_password`, `user_fullname`, `level`) VALUES
+(1, 'budi@gmail.com', 'budi123', 'Budi', 2);
 
 --
 -- Indexes for dumped tables
@@ -267,6 +273,12 @@ ALTER TABLE `rumah`
 --
 ALTER TABLE `spesifikasi_teknis`
   MODIFY `id_spesifikasi` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_detail`
+--
+ALTER TABLE `user_detail`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
