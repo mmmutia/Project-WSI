@@ -87,38 +87,61 @@ if (isset($_POST['submit'])) {
 <link href="css/login.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
 
-  <div class="login-wrap">
+<body>
+<div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
 		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
 		<div class="login-form">
-			<div class="sign-in-htm">
-                <div class="group">
-					<label for="user" class="label">Email</label>
-					<input id="user" type="text" class="input" name="txt_email">
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password" name="txt_pass">
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Submit" name="submit">
-				</div>
-				<div class="hr"></div>
-			</div>
+        <div id="login-box" class="col-md-12">
+        <div class="text-center">
+                        <form id="login-form" class="form" action="" method="post">
+                            <div class="form-group">
+                            <label for="user" class="label">Email</label>
+                                <input input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="txt_email">
+                            </div>
+                            <div class="form-group">
+                            <label for="pass" class="label">Password</label>
+                                <input type="password" class="form-control form-control-user"
+                                                id="password" placeholder="Password" name="txt_pass">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="register.php" class="text-info">Register here</a>
+                            </div>
+                        </form>
+                    </div>
+			
 			<div class="for-pwd-htm">
+            <div class="form-group">
+                    <label for="user" class="label">Email</label>
+                        <input type="email" name="txt_email" id="username" class="form-control">
+                    </div>
 				<div class="group">
-					<label for="user" class="label">Username or Email</label>
-					<input id="user" type="text" class="input">
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Reset Password">
+                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
 				</div>
 				<div class="hr"></div>
 			</div>
 		</div>
 	</div>
 </div>
+
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 
 
     <!-- Bootstrap core JavaScript-->
