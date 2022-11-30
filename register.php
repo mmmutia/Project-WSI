@@ -15,6 +15,10 @@ if( isset($_POST['register']) ){
 
 <!<!DOCTYPE html>
 <html lang="en">
+    <title>Register-Bernady Land Slawu</title>
+
+    <link href="img/logo-bernady.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
