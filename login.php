@@ -46,6 +46,10 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+    <title>Login-Bernady Land Slawu</title>
+
+    <link href="img/logo-bernady.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <head>
 
