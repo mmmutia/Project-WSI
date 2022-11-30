@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Halaman Login</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+   
+    <body>
+        <div class="container">
+          <h1>Login</h1>
+            <form>
+                <label>Username</label><br>
+                <input type="text"><br>
+                <label>Password</label><br>
+                <input type="password"><br>
+                <button>Log in</button>
+            </form>
+        </div>     
+    </body>
+=======
 <?php  
 require('koneksi.php');
 
@@ -206,4 +227,5 @@ if (isset($_POST['submit'])) {
     </script>
 </body>
 
+>>>>>>> fb6fc20bbaaf1ed1fadb465353a6c8629b5f0ce3
 </html>
