@@ -97,7 +97,9 @@ if (isset($_POST['submit'])) {
                         <form id="login-form" class="form" action="" method="post">
                             <div class="form-group">
                             <label for="user" class="label">Email</label>
-                                <input type="email" name="txt_email" id="username" class="form-control">
+                                <input input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="txt_email">
                             </div>
                             <div class="form-group">
                             <label for="pass" class="label">Password</label>
