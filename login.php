@@ -94,14 +94,18 @@ if (isset($_POST['submit'])) {
 		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
 		<div class="login-form">
         <div id="login-box" class="col-md-12">
+        <div class="text-center">
                         <form id="login-form" class="form" action="" method="post">
                             <div class="form-group">
                             <label for="user" class="label">Email</label>
-                                <input type="email" name="txt_email" id="username" class="form-control">
+                                <input input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="txt_email">
                             </div>
                             <div class="form-group">
                             <label for="pass" class="label">Password</label>
-                                <input type="text" name="txt_pass" id="password" class="form-control">
+                                <input type="password" class="form-control form-control-user"
+                                                id="password" placeholder="Password" name="txt_pass">
                             </div>
                             <div class="form-group">
                                 <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
