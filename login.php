@@ -106,9 +106,12 @@ if (isset($_POST['submit'])) {
                                 <input type="text" name="txt_pass" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="show_password" name="show_password">
+                                                <label class="custom-control-label" for="show_password">Show Password</label>
+                                            </div>
+                                        </div>
+                                    <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
                             <div id="register-link" class="text-right">
                                 <a href="register.php" class="text-info">Register here</a>
                             </div>
