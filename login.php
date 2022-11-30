@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['id'] = $id;
                 $_SESSION['name'] = $userName;
                 $_SESSION['level'] = $level;
-                header('Location: index.php');
+                header('Location: index.html');
             }else{
                 $error = 'user atau password salah!!';
                 echo "<script>alert('$error')</script>";
@@ -56,19 +56,19 @@ if (isset($_POST['submit'])) {
   <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
+		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Register</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
-				<div class="group">
+				<div class="group" action="login.php" method="POST">
 					<label for="user" class="label">Username or Email</label>
-					<input id="user" type="text" class="input">
+					<input id="ExampleInputEmail" type="email" class="input" name="txt_email">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<input id="ExampleInputPasword" type="password" class="input" data-type="password" name="txt_pass">
 				</div>
 				<div class="group">
-					<input type="submit" class="button" value="Sign In">
+					<button name="submit" type="submit" class="btn btn-primary btn-user btn-block">Sign In</button>
 				</div>
 				<div class="hr"></div>
 			</div>
