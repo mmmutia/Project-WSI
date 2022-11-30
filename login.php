@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Halaman Login</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-   
-    <body>
-        <div class="container">
-          <h1>Login</h1>
-            <form>
-                <label>Username</label><br>
-                <input type="text"><br>
-                <label>Password</label><br>
-                <input type="password"><br>
-                <button>Log in</button>
-            </form>
-        </div>     
-    </body>
-=======
+
 <?php  
 require('koneksi.php');
 
@@ -87,7 +67,45 @@ if (isset($_POST['submit'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    
+    <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="vendor/aos/aos.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Moderna - v4.10.1
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center ">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <a href="index.html"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+      </div>
+
     <script>
         $(document).ready(function(){       
             $('.form-checkbox').click(function(){
@@ -191,6 +209,4 @@ if (isset($_POST['submit'])) {
         }); 
     </script>
 </body>
-
->>>>>>> fb6fc20bbaaf1ed1fadb465353a6c8629b5f0ce3
 </html>
