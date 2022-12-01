@@ -125,32 +125,32 @@ if($userName = $_SESSION['name']){
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="portfolio.html">Properti Baru</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="">Properti Baru</a></h4>
+              <p class="description">Berada di pusat area residential Jember, yang akan menjadi pusat bisnis terbaru Kota Jember. Memenuhi berbagai kebutuhan anda dimulai dari furniture, seperti menggunakan Smart Lock.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box icon-box-cyan">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="portfolio.html">Pesan Rumah</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4 class="title"><a href="portfolio.html">Cluster Perumahan</a></h4>
+              <p class="description">Berbagai macam Cluster yang sangat diimpikian diantaranya, Boluevard Magnolia, Camelia, Ege Gardenia, New Edge Gardenia, Pinewood, Plumeria, QBIX, Ruko, SOHO.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box icon-box-green">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="portfolio.html">Cluster Perumahan</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <h4 class="title"><a href="">Pesan Rumah</a></h4>
+              <p class="description">Segera miliki hunian nyaman dan bernilai investasi tinggi diberbagai Cluster unggulan dan  didukung dengan sistem keamanan 24 jam.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box icon-box-blue">
               <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="services.html">Fasilitas</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <h4 class="title"><a href="">Fasilitas</a></h4>
+              <p class="description">Bernady Land Slawu menghadirkan Mall, Hotel, SPBU, Bernady Camp, Cendani Park, Still Autocare dan lainnya.</p>
             </div>
           </div>
 
