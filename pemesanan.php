@@ -1,3 +1,17 @@
+<?php
+require('koneksi.php');
+if( isset($_POST['pesan']) ){
+    $userName = $_POST['txt_nama'];
+    
+
+    $query = "INSERT INTO pemesanan_rumah VALUES ('', '$userMail', '$userPass', '$userName', 2)";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: login.php');
+    if($saved) header("Location: login.php");
+   
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,35 +50,66 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Formulir Pemesanan Rumah</h3>
                                 <div class="row register-form">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                     <form class="user" action="pemesanan.php" method="POST">
                                         <div class="form-group">
-                                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama *" value="" />
+                                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *" value="" />
                                         </div>
                                         <div class="form-group">
-                                            <input name="txt_ttl" type="date" class="form-control" placeholder="TTL *" value="" />
+                                            <input name="txt_tempat" type="text" class="form-control" placeholder="Tempat Lahir *" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="txt_tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir *" value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
                                         </div>
-                                       
                                         <div class="form-group">
-                                            <input name="txt_namacluster" type="text" class="form-control"  placeholder="Nama cluster *" value="" />
+                                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon *" value="" />
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <!-- <input name="txt_namacluster" type="text" class="form-control"  placeholder="Nama cluster *" value="" /> -->
+                                            <select class="form-control" name="txt_namacluster">
+                                                <option>-- Nama Cluster --</option>
+                                                <option>Boulevard Magnolia</option>
+                                                <option>Camelia</option>
+                                                <option>Edge Gardenia</option>
+                                                <option>New Edge Gardenia</option>
+                                                <option>Pinewood</option>
+                                                <option>Plumeria</option>
+                                                <option>QBIX</option>
+                                                <option>Ruko</option>
+                                                <option>SOHO</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <input name="NPerumahan" type="number" class="form-control"  placeholder="Nomor Perumahan *" value="" /> -->
+                                            <select class="form-control" name="Nperumahan">
+                                                <option>-- Nomor Perumahan --</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <input name="txt_tglpemesanan" type="date" class="form-control" placeholder="Tgl pemesanan *" value="" />
                                         </div>
+
                                         <div class="form-group">
                                             <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" />
                                             <input type="submit" name="upload" value="Upload">
                                         </div>
-                                        <input type="submit" class="btnRegister"  value="Pesan"/>
+                                        <div class="form-group">
+                                            <input type="submit" class="btnRegister"  value="Pesan"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
-
+                        </div>
+                    </div>
+                </div>
             </div>
-            </body>
-            </html>
+</body>
+</html>
