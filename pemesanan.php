@@ -1,5 +1,6 @@
 <?php
 require('koneksi.php');
+require ('koneksi.php');
 if( isset($_POST['pesan']) ){
     $userName = $_POST['txt_nama'];
     
