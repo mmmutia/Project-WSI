@@ -1,14 +1,26 @@
+
 <?php
-require('koneksi.php');
 require ('koneksi.php');
 if( isset($_POST['pesan']) ){
-    $userName = $_POST['txt_nama'];
+    $Namapemesan = $_POST['txt_nama'];
+    $tempatlahir = $_POST['txt_tempat'];
+    $tglLahir = $_POST['txt_tglLahir'];
+    $alamat = $_POST['txt_alamat'];
+    $Notelp = $_POST['NomorTelp'];
+    $NamaCluster = $_POST['txt_namacluster'];
+    $Noperumahan = $_POST['Noperumahan'];
+    $tglpemesanan = $_POST['txt_tglpemesanan'];
+    $ktp = $_POST['txt_fotocopyktp'];
+
     
 
-    $query = "INSERT INTO pemesanan_rumah VALUES ('', '$userMail', '$userPass', '$userName', 2)";
+    $query = "INSERT INTO pemesanan_rumah(txt_nama,txt_tempat,txt_tglLahhir,txt_alamat,NomorTelp,txt_namacluster,Noperumahan,txt_tglpemesanan,txt_fotocopyktp) VALUES ('$Namapemesan','$tempatlahir','$tglLahir','$alamat','$Notelp','$NamaCluster','$Noperumahan','$tglpemesanan','$ktp')";
+
     $result = mysqli_query($koneksi, $query);
-    header('Location: login.php');
-    if($saved) header("Location: login.php");
+    
+    if($result){
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='pemesanan.php'</script>";
+    }
    
 }
 ?>
@@ -54,13 +66,13 @@ if( isset($_POST['pesan']) ){
                                     <div class="col-md-12">
                                     <form class="user" action="pemesanan.php" method="POST">
                                         <div class="form-group">
-                                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *" value="" />
+                                            <input name="txt_nama" type="text" class="form-control" placeholder="Nama Lengkap *" value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="txt_tempat" type="text" class="form-control" placeholder="Tempat Lahir *" value="" />
                                         </div>
                                         <div class="form-group">
-                                            <input name="txt_tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir *" value="" />
+                                            <input name="txt_tglLahir" type="date" class="form-control" placeholder="Tanggal Lahir *" value="" />
                                         </div>
                                         <div class="form-group">
                                             <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
@@ -85,7 +97,7 @@ if( isset($_POST['pesan']) ){
                                         </div>
                                         <div class="form-group">
                                             <!-- <input name="NPerumahan" type="number" class="form-control"  placeholder="Nomor Perumahan *" value="" /> -->
-                                            <select class="form-control" name="Nperumahan">
+                                            <select class="form-control" name="Noperumahan">
                                                 <option>-- Nomor Perumahan --</option>
                                                 <option>1</option>
                                                 <option>2</option>
@@ -103,7 +115,8 @@ if( isset($_POST['pesan']) ){
                                             <input type="submit" name="upload" value="Upload">
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" class="btnRegister"  value="Pesan"/>
+                                            <input type="submit" class="btnRegister"
+                                            name="pesan"  value=""/>
                                         </div>
                                     </div>
                                 </div>
