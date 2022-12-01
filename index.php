@@ -75,7 +75,7 @@ $userName = $_SESSION['name'];
             echo "
             <div class='dropdown'><a href='#'> $userName </a>
               <ul>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout></a></li>
+                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
               </ul>
             </div>
             ";
