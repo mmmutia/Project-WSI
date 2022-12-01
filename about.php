@@ -58,14 +58,15 @@ $userName = $_SESSION['name'];
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index.html">Home</a></li>
-          <li><a class="active" href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
-          <?php
+      
+                  <ul>
+                  <li><a class="" href="index.php">Home</a></li>
+                  <li><a href="about.php">About</a></li>
+                  <li><a class="active" href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Team</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
+                  <?php
 
 if($userName = $_SESSION['name']){
   
