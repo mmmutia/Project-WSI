@@ -1,3 +1,12 @@
+<?php  
+require('koneksi.php');
+session_start();
+error_reporting(0);
+
+$userName = $_SESSION['name'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,23 +102,15 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/qbix.jpeg" alt="">
+                  <img src="img/boluevard magnolia.jpeg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/qbix1.jpeg" alt="">
+                  <img src="img/portfolio/portfolio-2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/qbix2.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/qbix3.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/qbix4.jpeg" alt="">
+                  <img src="img/portfolio/portfolio-3.jpg" alt="">
                 </div>
 
               </div>
@@ -176,7 +177,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <<div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services.html">Properti Baru</a></li>
@@ -185,7 +186,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="services.html">Fasilitas</a></li>
             </ul>
           </div>
-          
+
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>

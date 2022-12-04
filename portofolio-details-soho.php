@@ -1,3 +1,12 @@
+<?php  
+require('koneksi.php');
+session_start();
+error_reporting(0);
+
+$userName = $_SESSION['name'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,36 +102,17 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/pinewood.jpeg" alt="">
+                  <img src="img/soho.jpeg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/pinewood1.jpg" alt="">
+                  <img src="img/portfolio/portfolio-2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/pinewood2.jpg" alt="">
+                  <img src="img/portfolio/portfolio-3.jpg" alt="">
                 </div>
 
-                <div class="swiper-slide">
-                    <img src="img/pinewood3.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/pinewood4.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/Pinewood 5.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/Pinewood 6.jpeg" alt="">
-                  </div>
-
-                  <div class="swiper-slide">
-                    <img src="img/Pinewood 7.jpeg" alt="">
-                  </div>
               </div>
               <div class="swiper-pagination"></div>
             </div>

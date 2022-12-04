@@ -1,3 +1,12 @@
+<?php  
+require('koneksi.php');
+session_start();
+error_reporting(0);
+
+$userName = $_SESSION['name'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,7 +102,7 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/soho.jpeg" alt="">
+                  <img src="img/boluevard magnolia.jpeg" alt="">
                 </div>
 
                 <div class="swiper-slide">
@@ -168,7 +177,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
+          <<div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services.html">Properti Baru</a></li>
