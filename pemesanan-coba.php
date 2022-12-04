@@ -26,10 +26,6 @@ if( isset($_POST['pesan']) ){
 
 <!<!DOCTYPE html>
 <html lang="en">
-    <title>Register-Bernady Land Slawu</title>
-
-    <link href="img/logo-bernady.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -42,15 +38,9 @@ if( isset($_POST['pesan']) ){
 
 <body>
    
-<div class="container register">
-                <div class="row">
-                    <div class="col-md-3 register-left">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome</h3>
-                        <p>You are 30 seconds away from earning your own money!</p>
-                        <input type="submit" name="" value="Login"/><br/>
-                    </div>
-                    <div class="col-md-9 register-right">
+<div class="container register-wrap">
+                
+                    <div class="col-md-9 register-center">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Formulir Pemesanan Rumah</h3>
@@ -117,6 +107,14 @@ if( isset($_POST['pesan']) ){
                     </div>
                 </div>
             </div>
+               <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
 </body>
 
 </html>
