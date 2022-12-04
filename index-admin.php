@@ -109,7 +109,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -123,7 +123,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -140,7 +140,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">The Heart of Jember</h2>
           <p class="animate__animated animate__fadeInUp">Terletak ditengah-tengah wilayah kota yang berbentuk menyerupai hati. Menghadirkan lingkungan yang bersih nan asri, Bernady Land Slawu dibangun dengan infrastruktur bawah tanah dan didukung water treatment plant untuk memenuhi kebutuhan air bersih penghuni.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
@@ -149,7 +149,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">City Outside Tranquility Inside</h2>
           <p class="animate__animated animate__fadeInUp">Mengusung konsep kawasan hijau yang bebas dari polusi, lebih sehat dan lebih asri serta alami memberikan aura positif dan semangat.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
