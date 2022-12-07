@@ -1,55 +1,79 @@
-<?php
+<?php  
+require('koneksi.php');
 
-// panggil koneksi db
-require "koneksi.php";
+session_start();
+if (isset($_SESSION["name"]) != ''){
+    header("location: team.php");
+    header("location: services.php");
+    header("location: portfolio.php");
+    header("location: index.php");
+    header("location: contact.php");
+    header("location: about.php");
+}
+
 if (isset($_POST['submit'])) {
-    // $pass = password_hash($password, PASSWORD_DEFAULT);
-$username = $_POST['txt_email'];
-$password = $_POST['txt_pass'];
-// $id_status = $_POST['id_status'];
+    $email = $_POST['txt_email'];
+    $pass = $_POST['txt_pass'];
+    
+    if (!empty(trim($email)) && !empty(trim($pass))) {
+        $query      = "SELECT * FROM user_detail WHERE user_email = '$email'";
+        $result     = mysqli_query($koneksi, $query);
+        $num        = mysqli_num_rows($result);
 
-// cek username, terdaftar atau tidak
-// $tampilkan = "SELECT * FROM user_detail WHERE user_email = '$username' and password = '$password'";
+        while ($row = mysqli_fetch_array($result)) {
+            $id = $row['id'];
+            $userVal = $row['user_email'];
+            $passVal = $row['user_password'];
+            $userName = $row['user_fullname'];
+            $level = $row['level'];
 
-// $cek_user = mysqli_query($koneksi, $tampilkan);
-$query = "SELECT * FROM user_detail";
-$query_select = mysqli_query($koneksi, $query);
-$result = mysqli_fetch_array($query_select);
-// $num = mysqli_num_rows($query);
+        }
 
-$user_valid = mysqli_fetch_array($result) or die('Query error :'.mysqli_error($result));
-
-// uji jika email terdaftar
-if ($user_valid) {
-  //  jika username terdaftar
-  // cek password sesuai atau tidak
-  if ($password == $user_valid['user_password'] && $id_status = $user_valid['level']) {
-
-    // jika password sesuai buat session
-
-    session_start();
-    $_SESSION['id_user'] = $user_valid['id_user'];
-    // $_SESSION['identitas'] = $user_valid;
-    //  uji level user
-    if ($id_status == 1) {
-      header('location: index-admin.php');
-    } elseif ($id_status == 2) {
-      header('location: index-admin.php');
-    } elseif ($id_status == 3) {
-      header('location: index.php');
-    } elseif ($id_status == 4) {
-      header('location: index.php');
+        if ($num > 0){
+            if ($level <= 2) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index-admin.php');
+                }else{
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            }else if ($level == 3) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index-admin.php');
+                }else{
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            }else if ($level == 4) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index.php');
+                }else {
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            } else {
+                $error = 'Level anda tidak terdaftar!!';
+                echo "<script>alert('$error')</script>";
+                header('Location: login.php');
+            }
+        }else{
+            $error = 'Data tidak boleh kosong!!';
+            echo "<script>alert('$error')</script>";
+        }
     }
-  } else {
-    echo "<script>alert('Maaf, login gagal, password anda tidak sesuai!'); document.location='login.php'</script>";
-  }
-} else {
-  echo "<script>alert('Maaf, login gagal, username anda tidak terdaftar'); document.location='login.php'</script>";
 }
-}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +134,7 @@ if ($user_valid) {
 		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
         <div id="login-box" class="col-md-12">
-        <form class="user" action=" " method="post">
+        <form class="user" action="login.php" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
