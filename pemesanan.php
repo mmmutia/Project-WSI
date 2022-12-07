@@ -54,105 +54,168 @@ if( isset($_POST['pesan']) ){
 
 <!DOCTYPE html>
 <html lang="en">
+<title>Pemesanan - Bernady Land Slawu</title>
+
+<link href="img/logo-bernady.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pemesanan - Bernady Land Slawu</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <link href="img/logo-bernady.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <title>Pemesanan - Bernady</title>
 
+    <link href="img/logo-bernady.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <script>
+        $(document).ready(function () {
+            $('.form-checkbox').click(function () {
+                if ($(this).is(':checked')) {
+                    $('.form-password').attr('type', 'text');
+                } else {
+                    $('.form-password').attr('type', 'password');
+                }
+            });
+        });
+    </script>
+
+</head>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="css/style.css" rel="stylesheet">
+<link href="css/login.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
 
-</head>
-
 <body>
-   
-<div class="container-fluid register">
-                <div class="row">
-                    <div class="col-md-3 register-left">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome</h3>
-                        <p>You are 30 seconds away from earning your own money!</p>
-                        <input type="submit" name="" value="Login"/><br/>
-                    </div>
-                    <div class="col-md-9 register-right">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Formulir Pemesanan Rumah</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-12">
-                                        <form class="user" action="pemesanan.php" method="POST" enctype="multipart/form-data">
-                                            <div class="form-group">
-                                                <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *" value="" />
-                                            </div>
-                                            <!-- <div class="row">
-                                                <div class="col-6 form-group">
-                                                    <input name="txt_tempat" type="text" class="form-control" placeholder="Tempat Lahir *" value="" />
-                                                </div>
-                                                <div class="col-6 form-group">
-                                                    <input name="txt_tglLahir" type="date" class="form-control" placeholder="Tanggal Lahir *" value="" />
-                                                </div>
-                                            </div> -->
-                                            
-                                            <div class="form-group">
-                                                <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <!-- <input name="txt_namacluster" type="text" class="form-control"  placeholder="Nama cluster *" value="" /> -->
-                                                <select class="form-control" name="txt_idcluster">
-                                                    <option>-- Cluster --</option>
-                                                    <option>1. Boulevard Magnolia</option>
-                                                    <option>2. Camelia</option>
-                                                    <option>3. Edge Gardenia</option>
-                                                    <option>4. New Edge Gardenia</option>
-                                                    <option>5. Pinewood</option>
-                                                    <option>6. Plumeria</option>
-                                                    <option>7. QBIX</option>
-                                                    <option>8. Ruko</option>
-                                                    <option>9. SOHO</option>
-                                                </select>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8 form-group">
-                                                    <!-- <input name="NPerumahan" type="number" class="form-control"  placeholder="Nomor Perumahan *" value="" /> -->
-                                                    <select class="form-control" name="txt_metodepembayaran">
-                                                        <option>-- Metode Pembayaran --</option>
-                                                        <option>InHouse</option>
-                                                        <option>KPR</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-4 form-group">
-                                                    <input name="txt_tglpemesanan" type="date" class="form-control" placeholder="Tgl pemesanan *" value="" />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <!-- <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" /> -->
-                                                <input type="file" name="txt_fotocopyktp" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" class="btnRegister" name="pesan"  value="PESAN"/>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                class="tab"> Pesan Rumah </label>
+            <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+            <div class="login-form">
+                <div id="login-box" class="col-md-12">
+                    <form class="user" action="pemesanan.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *"
+                                value="" />
+                        </div>
+                        <div class="form-group">
+                            <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon *"
+                                value="" />
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="txt_idcluster">
+                                <option>-- Cluster --</option>
+                                <option>1. Boulevard Magnolia</option>
+                                <option>2. Camelia</option>
+                                <option>3. Edge Gardenia</option>
+                                <option>4. New Edge Gardenia</option>
+                                <option>5. Pinewood</option>
+                                <option>6. Plumeria</option>
+                                <option>7. QBIX</option>
+                                <option>8. Ruko</option>
+                                <option>9. SOHO</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 form-group">
+                                <!-- <input name="NPerumahan" type="number" class="form-control"  placeholder="Nomor Perumahan *" value="" /> -->
+                                <select class="form-control" name="txt_metodepembayaran">
+                                    <option>-- Metode Pembayaran --</option>
+                                    <option>InHouse</option>
+                                    <option>KPR</option>
+                                </select>
+                            </div>
+                            <div class="col-4 form-group">
+                                <input name="txt_tglpemesanan" type="date" class="form-control"
+                                    placeholder="Tgl pemesanan *" value="" />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <!-- <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" /> -->
+                            <input type="file" name="txt_fotocopyktp" class="form-control">
+                        </div>
+                        <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
+                        <a role="button" href="pemesanan-magnolia.php" class="btn btn-danger btn-user btn-block">Batal</a>
+                    </form>
+                </div>
+                <div class="for-pwd-htm">
+                    <div class="form-group">
+                        <label for="user" class="label">Email</label>
+                        <input type="email" name="txt_email" id="username" class="form-control">
                     </div>
+                    <div class="group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                    </div>
+                    <div class="hr"></div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#show_password').on('click', function () {
+            var passwordField = $('#password');
+            var passwordFieldType = passwordField.attr('type');
+            if (passwordField.val() != '') {
+                if (passwordFieldType == 'password') {
+                    passwordField.attr('type', 'text');
+                    $(this).text('Hide Password');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $(this).text('Show Password');
+                }
+            } else {
+                alert("Please Enter Password");
+            }
+        });
+    });
+</script>
+</body>
+
 </html>
