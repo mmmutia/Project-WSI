@@ -38,8 +38,7 @@ if( isset($_POST['pesan']) ){
 
 <body>
    
-<div class="container register-wrap">
-                
+<div class="container-fluid">
                     <div class="col-md-9 register-center">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -94,7 +93,6 @@ if( isset($_POST['pesan']) ){
 
                                         <div class="form-group">
                                             <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" />
-                                            <input type="submit" name="upload" value="Upload">
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" class="btnRegister"
