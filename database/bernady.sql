@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2022 at 10:11 AM
+-- Generation Time: Dec 09, 2022 at 03:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -30,10 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `banner` (
   `id_banner` int(5) NOT NULL,
   `judul` varchar(100) NOT NULL,
-  `id_cluster` int(11) NOT NULL,
-  `url` varchar(100) NOT NULL,
+  `deskripsi` varchar(100) NOT NULL,
+  `gambar` varchar(256) NOT NULL,
   `tgl_posting` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id_banner`, `judul`, `deskripsi`, `gambar`, `tgl_posting`) VALUES
+(1, 'Pinewood Terra', 'ini deskripsi pinewood terra', '754-1200x600-4-cara-menghias-kue-ulang-tahun-mudah-dan-murah-190919p.jpg', '2022-12-04'),
+(4, 'Magnolia', 'ini deskripsi magnolia', '39-2018_city_park_boardwalk_summer_hintringer.jpg', '2022-12-02');
 
 -- --------------------------------------------------------
 
@@ -44,9 +52,34 @@ CREATE TABLE `banner` (
 CREATE TABLE `cluster` (
   `id_cluster` int(11) NOT NULL,
   `nama_cluster` varchar(100) NOT NULL,
+  `blok` varchar(100) NOT NULL,
   `harga` varchar(100) NOT NULL,
   `harga_dp` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cluster`
+--
+
+INSERT INTO `cluster` (`id_cluster`, `nama_cluster`, `blok`, `harga`, `harga_dp`) VALUES
+(1, 'Boulevard Magnolia', 'A-BM', 'Rp 400.000.000', 'Rp 40.000.000'),
+(2, 'Camelia Type A', 'B-CA', 'Rp 500.000.000', 'Rp 50.000.000'),
+(3, 'Camelia Type B', 'B-CB', 'Rp 500.000.000', 'Rp 50.000.000'),
+(4, 'Camelia Type C', 'B-CC', 'Rp 500.000.000', 'Rp 50.000.000'),
+(5, 'Edge Gardenia', 'C-EG', 'Rp 600.000.000', 'Rp 60.000.000'),
+(6, 'New Edge Gardenia', 'D-NEG', 'Rp 700.000.000', 'Rp 70.000.000'),
+(7, 'Pinewood Prime', 'E-PP', 'Rp 1.000.000.000', 'Rp 100.000.000'),
+(8, 'Pinewood Millenial', 'E-PMI', 'Rp 200.000.000', 'Rp 20.000.000'),
+(9, 'Pinewood Terra', 'E-PT', 'Rp 800.000.000', 'Rp 80.000.000'),
+(10, 'Pinewood Magna', 'E-PMA', 'Rp 800.000.000', 'Rp 80.000.000'),
+(11, 'Pinewood Varsa', 'E-PV', 'Rp 800.000.000', 'Rp 80.000.000'),
+(12, 'Plumeria Type A', 'F-PA', 'Rp 700.000.000', 'Rp 70.000.000'),
+(13, 'Plumeria Type B', 'F-PB', 'Rp 700.000.000', 'Rp 70.000.000'),
+(14, 'Plumeria Type C', 'F-PC', 'Rp 700.000.000', 'Rp 70.000.000'),
+(15, 'Plumeria Type D', 'F-PD', 'Rp 700.000.000', 'Rp 70.000.000'),
+(16, 'QBIX', 'G-QB', 'Rp 800.000.000', 'Rp 80.000.000'),
+(17, 'SOHO', 'H-SH', 'Rp 800.000.000', 'Rp 80.000.000'),
+(18, 'Ruko Avenue 3', 'I-RK', 'Rp 1.000.000.000', 'Rp 100.000.000');
 
 -- --------------------------------------------------------
 
@@ -138,8 +171,17 @@ CREATE TABLE `pemesanan_rumah` (
   `tgl_pemesanan` date NOT NULL,
   `nup` varchar(50) NOT NULL,
   `fotocopy_ktp` varchar(100) NOT NULL,
-  `jenis_pembayaran` varchar(100) NOT NULL
+  `jenis_pembayaran` varchar(100) NOT NULL,
+  `jumlah_dp` varchar(100) NOT NULL,
+  `detail_blok` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pemesanan_rumah`
+--
+
+INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `no_telp_pemesan`, `id_cluster`, `tgl_pemesanan`, `nup`, `fotocopy_ktp`, `jenis_pembayaran`, `jumlah_dp`, `detail_blok`) VALUES
+(1, 'Mutia Budi Utami', 'JL. TAMANSURUH', '082359338615', 1, '2022-12-09', '', '242868975_3144954972453045_3878055506550562439_n.jpg', 'InHouse', '', '');
 
 -- --------------------------------------------------------
 
@@ -185,18 +227,20 @@ CREATE TABLE `user_detail` (
   `user_email` varchar(50) NOT NULL,
   `user_password` varchar(50) NOT NULL,
   `user_fullname` varchar(100) NOT NULL,
-  `level` tinyint(2) NOT NULL
+  `level` tinyint(2) NOT NULL,
+  `cluster_simpan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_detail`
 --
 
-INSERT INTO `user_detail` (`id_user`, `user_email`, `user_password`, `user_fullname`, `level`) VALUES
-(2, 'adminkonten@gmail.com', 'adminkonten', 'Admin Konten', 1),
-(3, 'adminkeuangan@gmail.com', 'adminkeuangan', 'Admin Keuangan', 2),
-(4, 'pemilik@gmail.com', 'pemilik', 'Pemilik', 3),
-(5, 'muti@gmail.com', 'muti123', 'Muti', 4);
+INSERT INTO `user_detail` (`id_user`, `user_email`, `user_password`, `user_fullname`, `level`, `cluster_simpan`) VALUES
+(2, 'adminkonten@gmail.com', 'adminkonten', 'Admin Konten', 1, ''),
+(3, 'adminkeuangan@gmail.com', 'adminkeuangan', 'Admin Keuangan', 2, ''),
+(4, 'pemilik@gmail.com', 'pemilik', 'Pemilik', 3, ''),
+(5, 'muti@gmail.com', 'muti123', 'Muti', 4, ''),
+(6, 'budi@gmail.com', 'budi123', 'Budi', 4, '');
 
 -- --------------------------------------------------------
 
@@ -220,8 +264,7 @@ CREATE TABLE `video` (
 -- Indexes for table `banner`
 --
 ALTER TABLE `banner`
-  ADD PRIMARY KEY (`id_banner`),
-  ADD UNIQUE KEY `id_cluster` (`id_cluster`);
+  ADD PRIMARY KEY (`id_banner`);
 
 --
 -- Indexes for table `cluster`
@@ -306,7 +349,7 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id_banner` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_banner` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `fasilitas`
@@ -342,7 +385,7 @@ ALTER TABLE `pembayaran_inhouse`
 -- AUTO_INCREMENT for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `serah_terima`
@@ -360,7 +403,7 @@ ALTER TABLE `spesifikasi_teknis`
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `video`
