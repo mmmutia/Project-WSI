@@ -1,9 +1,24 @@
-<?php  
-require('koneksi.php');
+<?php
+require ('koneksi.php');
 session_start();
 error_reporting(0);
-
 $userName = $_SESSION['name'];
+if( isset($_POST['message']) ){
+    $namamessage = $_POST['namamessage'];
+    $emailmessage = $_POST['emailmessage'];
+    $subjectmessage = $_POST['subjectmessage'];
+    $isimessage = $_POST['isimessage'];
+    
+
+    $query = "INSERT INTO message_kontak(nama,email,subject_kontak,message_koontak) VALUES ('$namamessage','$emailmessage','$subjectmessage','$isimessage')";
+
+    $result = mysqli_query($koneksi, $query);
+    
+    if($result){
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='contact.php'</script>";
+    }
+   
+}
 
 ?>
 
@@ -142,9 +157,9 @@ $userName = $_SESSION['name'];
               </div>
               <div class="col-md-6">
                 <div class="info-box">
-                  <i class="bx bx-phone-call"></i>
+                  <a href="https://wa.me/+6281231230899"><i class="bx bx-phone-call"></a></i>
                   <h3>Call Us</h3>
-                  <p>+6281 234 960 399</p>
+                  <p><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a></p>
                 </div>
               </div>
             </div>
@@ -240,7 +255,7 @@ $userName = $_SESSION['name'];
               Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
               68126<br>
               Indonesia <br><br>
-              <strong>Phone:</strong> +62 812 3123 0899<br>
+              <strong>Phone:</strong><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a><br>
               <strong>Email:</strong> bernadylandslawu@gmail.com<br>
             </p>
 
