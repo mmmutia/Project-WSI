@@ -34,6 +34,8 @@ $userName = $_SESSION['name'];
   <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
+
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
@@ -73,8 +75,11 @@ $userName = $_SESSION['name'];
           if($userName = $_SESSION['name']){
             
             echo "
-            <div class='dropdown'><a href='#'> $userName </a>
+            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
               <ul>
+                <li> <a href='profile-user.php'>Profil</a></li>
+                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                <li> <a href=''>Cluster Yang Tersimpan</a></li>
                 <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
               </ul>
             </div>
@@ -381,6 +386,7 @@ if($userName = $_SESSION['name']){
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="vendor/waypoints/noframework.waypoints.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
+  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>

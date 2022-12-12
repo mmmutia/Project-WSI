@@ -1,6 +1,7 @@
 <?php
 require ('koneksi.php');
 if( isset($_POST['pesan']) ){
+    $Id_user = $_POST['txt_id_user'];
     $Namapemesan = $_POST['txt_nama'];
     $tempatlahir = $_POST['txt_tempat'];
     $tglLahir = $_POST['txt_tglLahir'];
@@ -13,7 +14,7 @@ if( isset($_POST['pesan']) ){
 
     
 
-    $query = "INSERT INTO pemesanan_rumah(txt_nama,txt_tempat,txt_tglLahhir,txt_alamat,NomorTelp,txt_namacluster,Noperumahan,txt_tglpemesanan,txt_fotocopyktp) VALUES ('$Namapemesan','$tempatlahir','$tglLahir','$alamat','$Notelp','$NamaCluster','$Noperumahan','$tglpemesanan','$ktp')";
+    $query = "INSERT INTO pemesanan_rumah(txt_nama,txt_tempat,txt_tglLahhir,txt_alamat,NomorTelp,txt_namacluster,Noperumahan,txt_tglpemesanan,txt_fotocopyktp,txt_id_user) VALUES ('$Namapemesan','$tempatlahir','$tglLahir','$alamat','$Notelp','$NamaCluster','$Noperumahan','$tglpemesanan','$ktp','$Id_user')";
 
     $result = mysqli_query($koneksi, $query);
     
