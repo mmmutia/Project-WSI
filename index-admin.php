@@ -222,14 +222,14 @@ if($userName = $_SESSION['name']){
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="">Finger Print</a></h4>
+              <p class="description">Perumahan Bernady Land memiliki fitur tercanggih, pintu dilengkapi dangan sidik jari pemilik rumah yang menjadikan rumah semakin aman.</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <h4 class="title"><a href="">Profit</a></h4>
+              <p class="description">Keuntungan jika memilih Bernady Land sangat banyak, anda dapat dengan mudah untuk pergi ke Mall, SPBU atau ingin pergi untuk menikmati alam. Karena semua itu sudah tersedia disini.</p>
             </div>
 
           </div>
