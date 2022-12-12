@@ -178,7 +178,7 @@ if($userName = $_SESSION['name']){
 
         <div class="section-title">
           <h2>Our Skills</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Kawasan rumah exclusive di tengah kota Jember, dengan bangunan berkualitas dari developer yang terpecaya. Kawasan yang memiliki sirkulasi udara lebih sejuk disertai lokasi yang nyaman.</p>
         </div>
 
         <div class="skills-content">
@@ -217,8 +217,8 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="section-title">
-          <h2>Tetstimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Bernady Land Slawu</h2>
+          <p>Perumahan Bernady Land Slawau Jember adalah hunian mewah dengan view pegunungan, design nuansa Bali dan lokasi strategis dekat dengan pusat kota. Dengan akses jalan yang ekstra lebar, hunian ini merupakan investasi properti terbaik di kota Jember, karena Bernady Land Slawu di kembangkan menjadi kawasan kota mandiri di Jember.</p>
         </div>
 
         <div class="testimonials-carousel swiper">
