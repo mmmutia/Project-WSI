@@ -182,7 +182,7 @@ $userName = $_SESSION['name'];
                 <h3>Camelia Type A</h3>
                 <div>
                   <a href="img/gambar6.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-cameliaA.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -194,7 +194,7 @@ $userName = $_SESSION['name'];
                 <h3>Camelia Type B</h3>
                 <div>
                   <a href="img/gambar17.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-cameliaB.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@ $userName = $_SESSION['name'];
                 <h3>Pinewood Prime</h3>
                 <div>
                   <a href="img/gambar7.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewoodprime.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -257,7 +257,7 @@ $userName = $_SESSION['name'];
                 <h3>Pinewood Millenial</h3>
                 <div>
                   <a href="img/gambar10.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewoodMillenial.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -269,7 +269,7 @@ $userName = $_SESSION['name'];
                 <h3>Pinewood Terra</h3>
                 <div>
                   <a href="img/gambar13.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewoodTerra.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@ $userName = $_SESSION['name'];
                 <h3>Pinewood Magna</h3>
                 <div>
                   <a href="img/gambar11.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewoodMagna.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -293,7 +293,7 @@ $userName = $_SESSION['name'];
                 <h3>Pinewood Varsa</h3>
                 <div>
                   <a href="img/gambar12.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewoodVarsa.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -306,7 +306,7 @@ $userName = $_SESSION['name'];
                 <h3>Plumeria Type A</h3>
                 <div>
                   <a href="img/gambar5.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeriaA.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -318,7 +318,7 @@ $userName = $_SESSION['name'];
                 <h3>Plumeria Type B</h3>
                 <div>
                   <a href="img/gambar14.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeriaB.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -330,7 +330,7 @@ $userName = $_SESSION['name'];
                 <h3>Plumeria Type C</h3>
                 <div>
                   <a href="img/gambar15.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeriaC.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -342,7 +342,7 @@ $userName = $_SESSION['name'];
                 <h3>Plumeria Type D</h3>
                 <div>
                   <a href="img/gambar16.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeriaD.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>

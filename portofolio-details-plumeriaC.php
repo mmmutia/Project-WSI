@@ -102,19 +102,7 @@ $userName = $_SESSION['name'];
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/plumeria.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/Plumeria 2.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
                   <img src="img/Plumeria 3.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="img/Plumeria 4.jpeg" alt="">
                 </div>
 
               </div>

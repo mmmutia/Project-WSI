@@ -60,7 +60,7 @@ $userName = $_SESSION['name'];
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
+          <li><a href="about.phpl">About</a></li>
           <li><a href="services.php">Layanan</a></li>
           <li><a class="active" href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
@@ -102,15 +102,7 @@ $userName = $_SESSION['name'];
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/boluevard magnolia.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-3.jpg" alt="">
+                  <img src="img/camelia.jpeg" alt="">
                 </div>
 
               </div>
@@ -120,11 +112,12 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Denah Boulevard Magnolia 60/105 </h3>
+            <h3>Denah Camelia Type A</h3>
               <ul>
-                <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>1 Kamar Mandi</strong></li>
+                <li><strong>3 Kamar Tidur</strong></li>
+                <li><strong>2 Kamar Mandi</strong></li>
                 <li><strong>Ruang Tamu</strong></li>
+                <li><strong>Dapur</strong></li>
                 <li><strong>Carport</strong></li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
