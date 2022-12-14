@@ -77,7 +77,7 @@ $userName = $_SESSION['name'];
             echo "
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
               <ul>
-                <li> <a href='profil-user.php'>Profil</a></li>
+                <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
                 <li> <a href=''>Cluster Yang Tersimpan</a></li>
                 <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
