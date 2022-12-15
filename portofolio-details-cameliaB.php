@@ -116,10 +116,10 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Denah Camelia Type A</h3>
+            <h3>Camelia 60/96</h3>
               <ul>
                 <li><strong>3 Kamar Tidur</strong></li>
-                <li><strong>2 Kamar Mandi</strong></li>
+                <li><strong>1 Kamar Mandi</strong></li>
                 <li><strong>Ruang Tamu</strong></li>
                 <li><strong>Dapur</strong></li>
                 <li><strong>Carport</strong></li>

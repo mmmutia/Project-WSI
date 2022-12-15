@@ -120,7 +120,7 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Denah Edge Gardenia</h3>
+            <h3>Edge Gardenia</h3>
               <ul>
                 <li><strong>3 Kamar Tidur</strong></li>
                 <li><strong>2 Kamar Mandi</strong></li>
