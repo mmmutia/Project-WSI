@@ -3,7 +3,7 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-if( isset($_POST['message']) ){
+if( isset($_POST['pesan']) ){
     $namamessage = $_POST['namamessage'];
     $emailmessage = $_POST['emailmessage'];
     $subjectmessage = $_POST['subjectmessage'];
@@ -187,7 +187,7 @@ if( isset($_POST['message']) ){
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center" name="pesan"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
