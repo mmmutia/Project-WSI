@@ -67,7 +67,7 @@ $userName = $_SESSION['name'];
           <li><a href="services.php">Layanan</a></li>
           <li><a href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
+          <li><a href="senderemail/contact.php">Contact Us</a></li>
           <!-- <li><a href="login.php">Login</a></li> -->
 
           <?php
