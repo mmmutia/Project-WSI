@@ -120,12 +120,16 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Ruko Avenue 3 Type 100</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>Luas Bangunan 100m2 (2 lantai)/ Luas Tanah 60m2</strong></li>
-                <li><strong>2 Kamar Mandi</strong></li>
-                <li><strong>Open Space / Halaman Belakang</strong></li>
-                <li><strong>Area Parkir Bersama (Kapasitas 20 mobil)</strong><li>
+                <li> Luas Bangunan ini 100m2 (2lantai) / Luas Tanah 60m2 <br> 2 Kamar Mandi <br> Open Space / Halaman Belakang <br> Area Parkir Bersama (Kapasitas 20 Mobil)</li>
+                <li><strong>Pondasi Batu Kali dan Beton Bertulang/Footplat</strong></li>
+                <li><strong>Lantai Granite HT 60</strong></li>
+                <li><strong>Kusen dan Daun Jendela Alumunium Blackcoat</strong></li>
+                <li><strong>Rangka Atap Baja Ringan / Penutup Atap Galvalum Pasir</strong></li>
+                <li><strong>Lantai dan Dinding Kamar Mandi Keramik</strong></li>
+                <li><strong>Sanitar American STD/Setara</strong></li>
+                <li><strong>Listring 2200 Watt</strong></li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan

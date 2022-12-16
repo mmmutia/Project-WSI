@@ -112,13 +112,20 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Camelia 47/96</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>1 Kamar Mandi</strong></li>
-                <li><strong>Ruang Tamu</strong></li>
-                <li><strong>Dapur</strong></li>
-                <li><strong>Carport</strong></li>
+                <li><strong>Struktur Bangunan</strong>: Beton bertulang</li>
+                <li><strong>Pondasi</strong>: Pondasi menerus batu kali</li>
+                <li><strong>Dinding</strong>: Pasangan bata di plester Finish cat + Finishing Setara Woodplank coating</li>
+                <li><strong>Finishing Lantai</strong>: Teras - Keramik 40x40 motif, Utama - Keramik 40/40 polos</li>
+                <li><strong>Finishing Toilet</strong>: Keramik dinding 20/25 Mulia (setara), Keramik lantai 20/20 Mulia (setara)</li>
+                <li><strong>Atap</strong>: Rangka galvalum, Penutup genteng flat beton dicat</li>
+                <li><strong>Plafon</strong>: Rangka hallow, Penutup gypsumboard dicat</li>
+                <li><strong>Finishing Kusen</strong>: Kusen alumiunium adonized</li>
+                <li><strong>Daun Pintu Jendela</strong>: Pintu Utama - Solid cat, Pintu Kamar - Double multiplek, Pintu KM/WC - PVC</li>
+                <li><strong>Sanitar</strong>: Ex.American Standart ata setara</li>
+                <li><strong>Listrik</strong>: PLN 2200 Watt</li>
+                <li><strong>Air</strong>: PDAM</li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan

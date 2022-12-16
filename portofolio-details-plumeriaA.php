@@ -112,13 +112,18 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Plumeria FASADE Type 70 VER B</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>3 Kamar Tidur</strong></li>
-                <li><strong>1 Kamar Mandi</strong></li>
-                <li><strong>Ruang Tamu</strong></li>
-                <li><strong>Dapur</strong></li>
-                <li><strong>Carport</strong></li>
+                <li><strong>Pondasi</strong>: Pondasi menerus batu kali</li>
+                <li><strong>Dinding</strong>: Pasangan bata di plester Finish cat + Finishing Setara Woodplank coating</li>
+                <li><strong>Finishing Lantai</strong>: GRANIT 60x60</li>
+                <li><strong>Atap</strong>: Rangka galvalum, Penutup genteng flat beton dicat</li>
+                <li><strong>Plafon</strong>: Rangka hallow, Penutup gypsumboard dicat</li>
+                <li><strong>Finishing Kusen</strong>: Kusen alumiunium brown 4 Derajat</li>
+                <li><strong>Daun Pintu Jendela</strong>: Pintu Utama - Panel finishing cat duco, Pintu Kamar - Panel finish cat, Pintu KM/WC - PVC</li>
+                <li><strong>Sanitar</strong>: Kloset duduk Ex.American Standart, Shower, Lantai KM keramik 20/20</li>
+                <li><strong>Listrik</strong>: PLN 2200 Watt</li>
+                <li><strong>Air</strong>: PDAM</li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan

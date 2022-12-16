@@ -112,13 +112,18 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Plumeria 36/72</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>1 Kamar Mandi</strong></li>
-                <li><strong>Ruang Tamu</strong></li>
-                <li><strong>Dapur</strong></li>
-                <li><strong>Carport</strong></li>
+                <li><strong>Pondasi</strong>: Pondasi menerus batu kali</li>
+                <li><strong>Dinding</strong>: Pasangan bata di plester dan diaci</li>
+                <li><strong>Penutup Lantai</strong>: Ruang Utama - Keramik 40/40 polos, Kamar Mandi - Keramik 25/25, Keramik 25/50 (dindiing)</li>
+                <li><strong>Atap</strong>: Rangka galvalum, Penutup genteng flat beton dicat</li>
+                <li><strong>Plafon</strong>: Rangka hallow, Penutup gypsumboard dicat</li>
+                <li><strong>Finishing Kusen</strong>: Kusen alumiunium brown</li>
+                <li><strong>Daun Pintu</strong>: Multiplek pabrikasi, PVC (Kamar Mandi)</li>
+                <li><strong>Sanitar</strong>: Kloset duduk Ex.American Standart, Shower, Lantai KM keramik 20/20</li>
+                <li><strong>Listrik</strong>: PLN 1300 Watt</li>
+                <li><strong>Air</strong>: PDAM</li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan

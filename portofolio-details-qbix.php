@@ -128,13 +128,21 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>QBiix 50/65</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>2 Kamar Mandi (atas & bawah)</strong></li>
-                <li><strong>Ruang Tamu</strong></li>
-                <li><strong>Dapur</strong></li>
-                <li><strong>Carport 1 mobil</strong></li>
+                <li><strong>Struktur Bangunan</strong>: Beton bertulang</li>
+                <li><strong>Pondasi</strong>: Footplat, Pondasi menerus batu kali (diperkuat)</li>
+                <li><strong>Dinding</strong>: Pasangan dinding bata Finish cat + Finishing cat tembok, setara Woodplank coating</li>
+                <li><strong>Finishing Lantai</strong>: GRANIT HT 60x60</li>
+                <li><strong>Atap</strong>: Metalsheet Non Corrosive, Ecoclips</li>
+                <li><strong>Plafon</strong>: Rangka hallow, Penutup gypsumboard</li>
+                <li><strong>Finishing Kusen</strong>: alumiunium evap coating</li>
+                <li><strong>Daun Pintu Jendela</strong>: Utama - Kaca (Sliding door), Kamar - Teakwood, PVC (Kamar Mandi)</li>
+                <li><strong>Sanitar</strong>: Kloset duduk Ex.American Standart, Shower, Lantai KM keramik 20/25, Dinding 20X25</li>
+                <li><strong>Listrik</strong>: PLN 2200 Watt</li>
+                <li><strong>Air</strong>: PDAM</li>
+                <li>**Roaster</li>
+                <li>**Paving blok + Rumput + beton(Plester aci) - Carport</li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan
