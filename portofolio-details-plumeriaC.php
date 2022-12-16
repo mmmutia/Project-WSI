@@ -102,15 +102,7 @@ $userName = $_SESSION['name'];
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/soho.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-3.jpg" alt="">
+                  <img src="img/Plumeria 3.jpeg" alt="">
                 </div>
 
               </div>
@@ -120,12 +112,12 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Soho 138/105</h3>
+            <h3>Plumeria 36/72</h3>
               <ul>
                 <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>3 Kamar Mandi</strong></li>
+                <li><strong>1 Kamar Mandi</strong></li>
                 <li><strong>Ruang Tamu</strong></li>
-                <li><strong>3 Lantai</strong><li>
+                <li><strong>Dapur</strong></li>
                 <li><strong>Carport</strong></li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
@@ -206,13 +198,13 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>About Bernady Land Slawu</h3>
-            <p>The Heart of Jember</p>
-            <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
-            <div class="social-links mt-3">
-              <a href="https://wa.me/6281231230899" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-              <a href="https://m.facebook.com/people/Bernady-Land-Slawu/100067127194394/" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://instagram.com/bernadylandslawu?igshid=YTY2NzY3YTc=" class="instagram"><i class="bx bxl-instagram"></i></a>
-            </div>
+                  <p>The Heart of Jember</p>
+                  <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
+                  <div class="social-links mt-3">
+                    <a href="https://wa.me/6281231230899" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+                    <a href="https://m.facebook.com/people/Bernady-Land-Slawu/100067127194394/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://instagram.com/bernadylandslawu?igshid=YTY2NzY3YTc=" class="instagram"><i class="bx bxl-instagram"></i></a>
+                  </div>
           </div>
 
         </div>

@@ -54,17 +54,17 @@ $userName = $_SESSION['name'];
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.html"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a class="active" href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
+          <li><a class="" href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a class="active" href="portfolio.html">Cluster</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li><a href="login.php">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -82,8 +82,8 @@ $userName = $_SESSION['name'];
         <div class="d-flex justify-content-between align-items-center">
           <h2>Cluster Details</h2>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="portfolio.php">Cluster</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Cluster</a></li>
             <li>Cluster Details</li>
           </ol>
         </div>
@@ -102,16 +102,8 @@ $userName = $_SESSION['name'];
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/soho.jpeg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-3.jpg" alt="">
-                </div>
+                    <img src="img/Pinewood 6.jpeg" alt="">
+                  </div>
 
               </div>
               <div class="swiper-pagination"></div>
@@ -120,12 +112,13 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-            <h3>Soho 138/105</h3>
+              <h3>Pinewood Terra</h3>
               <ul>
+                <li><strong>Bangunan 1 Lantai</strong></li>
                 <li><strong>2 Kamar Tidur</strong></li>
-                <li><strong>3 Kamar Mandi</strong></li>
+                <li><strong>1 Kamar Mandi</strong></li>
                 <li><strong>Ruang Tamu</strong></li>
-                <li><strong>3 Lantai</strong><li>
+                <li><strong>Dapur</strong></li>
                 <li><strong>Carport</strong></li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
@@ -185,10 +178,10 @@ $userName = $_SESSION['name'];
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.html">Properti Baru</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.html">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.html">Fasilitas</a></li>
             </ul>
           </div>
 

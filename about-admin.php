@@ -218,13 +218,14 @@ if($userName = $_SESSION['name']){
 
         <div class="section-title">
           <h2>Bernady Land Slawu</h2>
-
           <p>Menjadikan kawasan Bernady Land Slawu sebagai pusat dimana hati sebagai tempat paling nyaman berada - Bernady Land Slawu</p>
         </div>
+
         <div class="section-title">
           <p>Perumahan Bernady Land Jember Hunian mewah dengan view pegunungan, design nuansa Bali, dan lokasi strategis dekat dengan pusat kota. Dengan akses jalan yang ekstra lebar, hunian ini merupakan investasi properti terbaik di kota Jember. Karena Bernady Land Slawu di kembangkan menjadi kawasan kota mandiri di Jember.</p>
           </div>
 
+      </div>
     </section><!-- End Ttstimonials Section -->
 
   </main><!-- End #main -->

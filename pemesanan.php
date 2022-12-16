@@ -1,6 +1,12 @@
 <?php
 require ('koneksi.php');
+session_start();
+error_reporting(0);
+$userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
 if( isset($_POST['pesan']) ){
+    $Id_user = $_POST['txt_id_user'];
     $Namapemesan = $_POST['txt_namapemesan'];
     // $tempatlahir = $_POST['txt_tempat'];
     // $tglLahir = $_POST['txt_tglLahir'];
@@ -41,7 +47,7 @@ if( isset($_POST['pesan']) ){
     }
     
 
-    $query = "INSERT INTO pemesanan_rumah(nama_pemesan,alamat,no_telp_pemesan,id_cluster,tgl_pemesanan,fotocopy_ktp,jenis_pembayaran) VALUES ('$Namapemesan','$alamat','$Notelp','$IdCluster','$tglpesan','$ktp','$jenispembayaran')";
+    $query = "INSERT INTO pemesanan_rumah(nama_pemesan,alamat,no_telp_pemesan,id_cluster,tgl_pemesanan,fotocopy_ktp,jenis_pembayaran,id_user) VALUES ('$Namapemesan','$alamat','$Notelp','$IdCluster','$tglpesan','$ktp','$jenispembayaran','$Id_user')";
 
     $result = mysqli_query($koneksi, $query);
     
@@ -112,9 +118,13 @@ if( isset($_POST['pesan']) ){
             <div class="login-form">
                 <div id="login-box" class="col-md-12">
                     <form class="user" action="pemesanan.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group" hidden>
+                            <input name="txt_id_user" type="text" class="form-control" placeholder="Nama Lengkap *"
+                                value="<?php echo $data['id_user'];?>" />
+                        </div>
                         <div class="form-group">
                             <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *"
-                                value="" />
+                                value="<?php echo $data['user_fullname'];?>" />
                         </div>
                         <div class="form-group">
                             <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />

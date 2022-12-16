@@ -86,8 +86,11 @@ if( isset($_POST['pesan']) ){
             
             echo "
 
-            <div class='dropdown'><a href='#'> $userName </a>
+            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
+              <li> <a href='profile-user.php'>Profil</a></li>
+              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+              <li> <a href=''>Cluster Yang Tersimpan</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>

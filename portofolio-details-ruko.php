@@ -120,13 +120,17 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Project information</h3>
+            <h3>Ruko Avenue 3 Type 100</h3>
               <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                <li><strong>Luas Bangunan 100m2 (2 lantai)/ Luas Tanah 60m2</strong></li>
+                <li><strong>2 Kamar Mandi</strong></li>
+                <li><strong>Open Space / Halaman Belakang</strong></li>
+                <li><strong>Area Parkir Bersama (Kapasitas 20 mobil)</strong><li>
               </ul>
+              <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan
+                
+              </button></a>
             </div>
             <div class="portfolio-description">
               <h2>This is an example of portfolio detail</h2>
