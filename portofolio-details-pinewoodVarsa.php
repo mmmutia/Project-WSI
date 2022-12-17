@@ -112,14 +112,14 @@ $userName = $_SESSION['name'];
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Pinewood Varsa</h3>
+            <h3>Spesifikasi Bangunan</h3>
               <ul>
-                <li><strong>Bangunan 2 Lantai</strong></li>
-                <li><strong>3 Kamar Tidur</strong></li>
-                <li><strong>2 Kamar Mandi</strong></li>
-                <li><strong>Ruang Tamu</strong></li>
-                <li><strong>Dapur</strong></li>
-                <li><strong>Carport With Free Canopy(2 Car)</strong></li>
+                <li><strong>Pondasi Beton Coplesloof</strong></li>
+                <li><strong>Dinding Bata Ringan</strong></li>
+                <li><strong>Lantai Granite HT 60</strong></li>
+                <li><strong>Sanitar AMRCNDSTD/Setara</strong></li>
+                <li><strong>Kusen Alumunium with Coating</strong></li>
+                <li><strong>Atap MetalDeck Noncorrosive</strong></li>
               </ul>
               <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
               <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan

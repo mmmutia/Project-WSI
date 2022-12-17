@@ -12,10 +12,10 @@
       }
       h1 {
         text-transform: uppercase;
-        color: salmon;
+        color: navy;
       }
     button {
-          background-color: salmon;
+          background-color: navy;
           color: #fff;
           padding: 10px;
           text-decoration: none;
@@ -35,7 +35,7 @@
       box-sizing: border-box;
       background: #f8f8f8;
       border: 2px solid #ccc;
-      outline-color: salmon;
+      outline-color: navy;
     }
     div {
       width: 100%;

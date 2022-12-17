@@ -11,7 +11,7 @@ include 'koneksi.php';
 
 //cek dulu jika ada gambar produk jalankan coding ini
 if($gambar_banner != "") {
-  $ekstensi_diperbolehkan = array('png','jpg'); //ekstensi file gambar yang bisa diupload 
+  $ekstensi_diperbolehkan = array('png','jpg','jpeg'); //ekstensi file gambar yang bisa diupload 
   $x = explode('.', $gambar_banner); //memisahkan nama file dengan ekstensi yang diupload
   $ekstensi = strtolower(end($x));
   $file_tmp = $_FILES['gambar']['tmp_name'];   

@@ -6,13 +6,14 @@
 <html>
   <head>
     <title>Upload Banner - Bernady Land Slawu</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <style type="text/css">
       * {
         font-family: "Trebuchet MS";
       }
       h1 {
         text-transform: uppercase;
-        color: salmon;
+        color: navy;
       }
     table {
       border: solid 1px #DDEEEE;
@@ -23,7 +24,7 @@
     }
     table thead th {
         background-color: #DDEFEF;
-        border: solid 1px #DDEEEE;
+        border: solid 1px navy;
         color: #336B6B;
         padding: 10px;
         text-align: left;
@@ -31,13 +32,13 @@
         text-decoration: none;
     }
     table tbody td {
-        border: solid 1px #DDEEEE;
+        border: solid 1px navy;
         color: #333;
         padding: 10px;
         text-shadow: 1px 1px 1px #fff;
     }
     a {
-          background-color: salmon;
+          background-color: navy;
           color: #fff;
           padding: 10px;
           text-decoration: none;
@@ -63,6 +64,20 @@
     </thead>
     <tbody>
       <?php
+      if(isset($_POST['update'])){
+        $bannerId   = $_POST['txt_id'];
+        $judul   = $_POST['txt_judul'];
+        $deskripsi   = $_POST['txt_deskripsi'];
+        $tglposting = $_POST['txt_tgl_posting'];
+        $gambar = $_POST['txt_gambar'];
+        
+    
+    
+        $query = "UPDATE banner SET judul='$judul', deskripsi='$deskripsi',tgl_posting='$tglPosting ,  gambar='$gambar'' WHERE id_banner='$bannerId'";
+        echo $query;
+        $result = mysqli_query($koneksi, $query);
+        header('Location: editbanner.php');
+    }
       // jalankan query untuk menampilkan semua data diurutkan berdasarkan nim
       $query = "SELECT * FROM banner ORDER BY id_banner ASC";
       $result = mysqli_query($koneksi, $query);
@@ -85,9 +100,9 @@
           <td><?php echo substr($row['deskripsi'], 0, 20); ?>...</td>
           <td><?php echo $row['tgl_posting']; ?></td>
           <td style="text-align: center;"><img src="gambar/<?php echo $row['gambar']; ?>" style="width: 120px;"></td>
-          <td>
-              <a href="edit_produk.php?id=<?php echo $row['id_banner']; ?>">Edit</a> |
-              <a href="proses_hapus.php?id=<?php echo $row['id_banner']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')">Hapus</a>
+          <td style="text-align:center;">
+              <a class="fa fa-pen" href="FormEdit_banner.php?id=<?php echo $row['id_banner']; ?>"></a> 
+              <a class=" fa fa-trash" href="proses_hapus.php?id=<?php echo $row['id_banner']; ?>" onclick="return confirm('Anda yakin akan menghapus data ini?')"></a>
           </td>
       </tr>
          
