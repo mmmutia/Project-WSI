@@ -1,5 +1,3 @@
-
-
 <?php  
 require('koneksi.php');
 session_start();
@@ -34,8 +32,6 @@ $userName = $_SESSION['name'];
   <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
-
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
@@ -67,7 +63,7 @@ $userName = $_SESSION['name'];
           <li><a href="services.php">Layanan</a></li>
           <li><a href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
-          <li><a href="senderemail/contact.php">Contact Us</a></li>
+          <li><a href="contact.php">Contact Us</a></li>
           <!-- <li><a href="login.php">Login</a></li> -->
 
           <?php
@@ -75,11 +71,8 @@ $userName = $_SESSION['name'];
           if($userName = $_SESSION['name']){
             
             echo "
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+            <div class='dropdown'><a href='#'> $userName </a>
               <ul>
-                <li> <a href='profile-user.php'>Profil</a></li>
-                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href=''>Cluster Yang Tersimpan</a></li>
                 <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
               </ul>
             </div>
@@ -116,7 +109,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -130,7 +123,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -147,7 +140,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">The Heart of Jember</h2>
           <p class="animate__animated animate__fadeInUp">Terletak ditengah-tengah wilayah kota yang berbentuk menyerupai hati. Menghadirkan lingkungan yang bersih nan asri, Bernady Land Slawu dibangun dengan infrastruktur bawah tanah dan didukung water treatment plant untuk memenuhi kebutuhan air bersih penghuni.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
@@ -156,7 +149,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">City Outside Tranquility Inside</h2>
           <p class="animate__animated animate__fadeInUp">Mengusung konsep kawasan hijau yang bebas dari polusi, lebih sehat dan lebih asri serta alami memberikan aura positif dan semangat.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
@@ -386,7 +379,6 @@ if($userName = $_SESSION['name']){
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="vendor/waypoints/noframework.waypoints.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
-  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
