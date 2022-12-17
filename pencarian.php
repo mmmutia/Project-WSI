@@ -1,11 +1,25 @@
+<?php
+include 'koneksi.php';
+include 'koneksi.php';
+$query = "SELECT * FROM user_detail WHERE id_user = '$_SESSION[id_user]'";
+$query_select = mysqli_query($koneksi, $query);
+$result = mysqli_fetch_array($query_select);
 
+$keyword = $_GET['keyword'];
 
-<?php  
-require('koneksi.php');
-session_start();
-error_reporting(0);
+$semuadata = [];
+$ambil = $koneksi->query("SELECT * FROM cluster WHERE nama_cluster LIKE '%$keyword%' OR harga LIKE '%$keyword%'");
 
-$userName = $_SESSION['name'];
+// asumsi pencarian banyak maka pakai perulangan
+
+while ($pecah = $ambil->fetch_assoc()) {
+  $semuadata[] = $pecah;
+}
+
+// echo "<pre>";
+// print_r($semuadata);
+// echo "</pre>";
+?>
 
 ?>
 <!DOCTYPE html>
@@ -39,9 +53,6 @@ $userName = $_SESSION['name'];
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
-
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
 
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
@@ -178,7 +189,6 @@ if($userName = $_SESSION['name']){
 
     <!-- ======= Services Section ======= -->
     <section class="services">
-    <div class="box">
       <div class="container">
 
         <div class="row">
@@ -401,6 +411,70 @@ if($userName = $_SESSION['name']){
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
+</body>
+
+</html>
+
+
+        <?php
+        $query = "SELECT * FROM user_detail WHERE id_user = '$_SESSION[id_user]'";
+        $query_select = mysqli_query($koneksi, $query);
+        $result = mysqli_fetch_array($query_select);
+        // print_r($result);
+        $tampilan = '';
+        if ($result['id_status'] == '3') {
+          $tampilan = 'd-none';
+        }
+
+        ?>
+
+        
+
+  <section class="kontent">
+    <div class="container">
+      <h3 class="fw-bold">Hasil Pencarian : <?php echo $keyword ?></h3>
+      <?php
+      if (empty($semuadata)) : ?>
+        <div class="alert alert-danger">Buah <strong><?php echo $keyword ?></strong> Tidak ditemukan ! </div>
+      <?php endif ?>
+
+
+
+      <div class="row mt-5">
+
+        <?php foreach ($semuadata as $key => $value) : ?>
+
+
+          <div class="col-md-3 mt-3">
+            <div class="thumbnail card boxs border-0">
+              <img src="images/images_buah/<?php echo $value['image']; ?>" alt="gunung bromo" class="images">
+              <div class="card-body">
+                <h4 class="card-title fw-bold"><?php echo $value['nama_barang']; ?></h4>
+                <p class="d-flex align-items-center gap-2">
+                  <i class="laris rounded-pill">Tersedia</i>
+                  Rp <?php echo number_format($value['harga_jual']); ?> / kg
+                </p>
+                <hr>
+                <!-- <button type="button" class="btn btn-outline-dark rounded-pill">Add To Cart</button> -->
+                <a href="beli.php?id=<?php echo $value['id_barang']; ?>" class="btn btn-outline-dark rounded-pill">Add To Cart</a>
+                <!-- <input type="submit" class="btn btn-outline-dark rounded-pill" value="add to cart" name="add_to_cart"> -->
+                <a href="detail_produk.php?id=<?php echo $value['id_barang']; ?>" class="btn btn-outline-dark rounded-pill">Detail</a>
+              </div>
+              <div class="ratings position-absolute top-0 bg-white p-2">
+                <p class="d-flex align-items-center gap-2 m-0 ">
+                  <i class="bx bxs-star" style="color: #d8db64 !important;"></i>
+                  4.9
+                </p>
+              </div>
+            </div>
+          </div>
+        <?php endforeach ?>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="vendor/boostrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -130,7 +130,7 @@ $userName = $_SESSION['name'];
             }
           </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li>Cluster Perumahan</li>
           </ol>
         </div>
