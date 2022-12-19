@@ -149,22 +149,22 @@ if($userName = $_SESSION['name']){
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Clients</p>
+            <p>Camelia</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
+            <p>Pinewood</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
+            <p>Plumeria</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
+            <p>Gardenia</p>
           </div>
 
         </div>
@@ -178,14 +178,12 @@ if($userName = $_SESSION['name']){
 
         <div class="section-title">
           <h2>Our Skills</h2>
-          <p>Kawasan rumah exclusive di tengah Kota Jember.Dengan bangunan berkualitas dari developer yang terpercaya.Kawasan yang memiliki sirkulasi udara lebih sejuk dan lokasi yang nyaman.</p>
+          <p>Rumah Modern Minimalis & Strategis Bernady Land Slawu</p>
+          <p>Kawasan rumah exclusive di tengah Kota Jember.Dengan bangunan berkualitas dari developer yang terpercaya.Kawasan yang memiliki sirkulasi udara lebih sejuk dan lokasi yang nyaman. Cluster Camelia, Rumah Modern Baru 2 Lantai & Strategis, Cluster Pinewood Kawasan Rumah Exclusive Di Tengah Kota Jember, Cluster Plumeria ialah Rumah Istimewa 2 Lantai Bernuansa Villa di Kota Jember Perumahan Bernady Land Slawu</p>
         </div>
+   
 
         <div class="skills-content">
-
-        <div class="section-title">
-          <p>Rumah Modern Minimalis & Strategis Bernady Land Slawu</p>
-          </div>
 
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
@@ -196,19 +194,19 @@ if($userName = $_SESSION['name']){
 
           <div class="progress">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">Magnolia <i class="val">90%</i></span>
+              <span class="skill">Pinewood <i class="val">90%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">GARDENIA <i class="val">75%</i></span>
+              <span class="skill">PLUMERIA <i class="val">75%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">PLUMERIA <i class="val">55%</i></span>
+              <span class="skill">GARDENIA<i class="val">55%</i></span>
             </div>
           </div>
 
