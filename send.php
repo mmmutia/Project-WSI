@@ -16,10 +16,10 @@ if(isset($_POST["send"])){
     $mail->SMTPAuth = true;
     $mail->Username = 'mutiabudiutami@gmail.com';
     $mail->Password = 'nwdbnktbygnlftbh';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
 
-    $mail->setForm('mutiabudiutami@gmail.com');
+    $mail->setForm('mutiabudiutami@gmail.com', 'Mutia');
 
     $mail->addAddress($_POST['email']);
     
@@ -37,5 +37,7 @@ if (!$mail->send()) {
 else{
     echo "Email has been sent successfully";
 }
-    }
+}else{
+    echo "Email error : ";
+}
 ?>

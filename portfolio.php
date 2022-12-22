@@ -138,6 +138,53 @@ $userName = $_SESSION['name'];
       </div>
     </section><!-- End Our Portfolio Section -->
 
+<!-- ======= Search Section ======= -->
+    <section class="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Temukan Rumah Impian!</h2>
+          <form action="portfolio.php" method="get" class="">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="nama_cluster" class="form-control" id="name" placeholder="Cari Cluster...." >
+                </div>
+                <div class="col-md-5 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Harga....">
+                </div>
+                <div class="col-md-1 form-group mt-3 mt-md-0">
+                <button type="sumbit" class="btn btn-dark">Cari</button>
+                </div>
+              </div>
+            </form>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6 pt-4">
+            <?php
+              if(isset($_GET['nama_cluster'])){
+                $cari = $_GET['nama_cluster'];
+
+                $data = mysqli_query($koneksi, "select * form cluster where nama_cluster like '%$cari%' or harga like '%$cari%'");
+              }else{
+                $data = mysqli_query($koneksi, "select * froom cluster");
+              }
+              $no = 1;
+              while($d = mysqli_fetch_array($data)){
+
+              }
+            ?>
+
+            <h3 class="fw-bold">Hasil Pencarian : <?php echo $cari ?></h3>
+            <?php
+            if (empty($data)): ?>
+            <div class="allert allert-danger">Cluster <strong><?php echo $cari ?></strong> Tidak Ditemukan !</div>
+            <?php endif ?>
+            
+          </div>
+        </div>
+    </section><!-- End Search Section -->
+
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
       <div class="container">

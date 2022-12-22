@@ -40,7 +40,7 @@ $userName = $_SESSION['name'];
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css//all.min.css">
 
 
   <!-- =======================================================
@@ -249,33 +249,9 @@ if($userName = $_SESSION['name']){
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Features Section ======= -->
-    <section class="features">
-      <div class="container">
+    <!-- ======= Search Section ======= -->
+    <!-- End Search Section -->
 
-        <div class="section-title">
-          <h2>Features</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5">
-            <img src="img/features-1.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 pt-4">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Features Section -->
 
   </main><!-- End #main -->
 

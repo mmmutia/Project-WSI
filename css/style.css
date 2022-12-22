@@ -908,6 +908,7 @@ section {
 /*--------------------------------------------------------------
 # Features
 --------------------------------------------------------------*/
+
 .features .row+.row {
   margin-top: 100px;
 }
@@ -934,6 +935,47 @@ section {
 
 .features p:last-child {
   margin-bottom: 0;
+}
+
+.features .container .row{
+  max-width: 3000px;
+  width: 100%;
+  background: #fff;
+}
+
+.features .container .row .search-box {
+  position: relative;
+  height: 50px;
+  max-width: 380px;
+  margin: auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.search-box input{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  background: #fff;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.search-box .icon{
+  position: absolute;
+  right: -2px;
+  top: 0;
+  width: 50px;
+  background: #fff;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 0 25px 25px 0;
+  color: #111;
+  font-size: 20px;
+  border-radius: 0 25px 25px 0;
 }
 
 /*--------------------------------------------------------------
