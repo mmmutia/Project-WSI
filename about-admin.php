@@ -183,27 +183,32 @@ if($userName = $_SESSION['name']){
 
         <div class="skills-content">
 
+        <div class="section-title">
+          <p>Rumah Modern Minimalis & Strategis Bernady Land Slawu</p>
+          </div>
+
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">HTML <i class="val">100%</i></span>
+              <span class="skill">Camelia <i class="val">100%</i></span>
+              <
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">CSS <i class="val">90%</i></span>
+              <span class="skill">Magnolia <i class="val">90%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
+              <span class="skill">GARDENIA <i class="val">75%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
+              <span class="skill">PLUMERIA <i class="val">55%</i></span>
             </div>
           </div>
 
