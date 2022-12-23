@@ -80,7 +80,7 @@ while ($row =mysqli_fetch_array($result)){
       <center>
         <h1>Edit Banner</h1>
       <center>
-      <form class="user" method="POST" action="edit_produk.php" enctype="multipart/form-data" >
+      <form class="user" method="POST" action="editbanner.php" enctype="multipart/form-data" >
       <section class="base">
       <div>
           <label>ID</label>

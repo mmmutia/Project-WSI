@@ -135,9 +135,9 @@ if($userName = $_SESSION['name']){
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
       <div class="container">
-
         <div class="row">
           <div class="col-lg-12">
+          <center><a href="editcluster.php"><button type="button" class="btn btn-outline-secondary">Edit Cluster</button></a></center><br>
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-boulevard">Boulevard Magnolia</li>

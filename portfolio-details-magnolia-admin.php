@@ -127,8 +127,8 @@ $userName = $_SESSION['name'];
                 <li><strong>Project date</strong>: 01 March, 2020</li>
                 <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
               </ul>
-              <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-              <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan
+              <a href="edit-magnolia.php"><button type="button" class="btn btn-secondary">Edit</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-dark">Simpan
                 
               </button></a>
             </div>
