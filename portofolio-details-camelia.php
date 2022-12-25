@@ -1,3 +1,4 @@
+@ -1,252 +0,0 @@
 <?php  
 require('koneksi.php');
 session_start();
