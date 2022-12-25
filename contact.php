@@ -1,9 +1,24 @@
-<?php  
-require('koneksi.php');
+<?php
+require ('koneksi.php');
 session_start();
 error_reporting(0);
-
 $userName = $_SESSION['name'];
+if( isset($_POST['message']) ){
+    $namamessage = $_POST['namamessage'];
+    $emailmessage = $_POST['emailmessage'];
+    $subjectmessage = $_POST['subjectmessage'];
+    $isimessage = $_POST['isimessage'];
+    
+
+    $query = "INSERT INTO message_kontak(nama,email,subject_kontak,message_koontak) VALUES ('$namamessage','$emailmessage','$subjectmessage','$isimessage')";
+
+    $result = mysqli_query($koneksi, $query);
+    
+    if($result){
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='contact.php'</script>";
+    }
+   
+}
 
 ?>
 
@@ -62,7 +77,7 @@ $userName = $_SESSION['name'];
           <li><a class="" href="index.php">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Cluster</a></li>
+          <li><a href="portfolio.php">Gallery</a></li>
           <li><a href="team.php">Team</a></li>
           <li><a class="active" href="contact.php">Contact Us</a></li>
           <?php
@@ -73,10 +88,10 @@ $userName = $_SESSION['name'];
 
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
-              <li> <a href='profile-user.php'>Profil</a></li>
-              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-              <li> <a href=''>Cluster Yang Tersimpan</a></li>
-              <li><a href='logout.php'>Logout</a></li>
+            <li> <a href='profile-user.php'>Profil</a></li>
+            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
 
@@ -155,7 +170,7 @@ $userName = $_SESSION['name'];
           </div>
 
           <div class="col-lg-6">
-            <form action="send.php" method="post" class="">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -169,14 +184,13 @@ $userName = $_SESSION['name'];
               </div>
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div> <br>
-              <!-- <div class="my-3">
+              </div>
+              <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div> -->
-              
-              <div class="text-center" name="send"><button type="submit" class="btn btn-info">Send Message</button></div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 

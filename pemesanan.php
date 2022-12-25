@@ -167,7 +167,7 @@ if( isset($_POST['pesan']) ){
                             <input type="file" name="txt_fotocopyktp" class="form-control">
                         </div>
                         <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
-                        <a role="button" href="" class="btn btn-danger btn-user btn-block">Batal</a>
+                        <a role="button" href="pemesanan-magnolia.php" class="btn btn-danger btn-user btn-block">Batal</a>
                     </form>
                 </div>
                 <div class="for-pwd-htm">

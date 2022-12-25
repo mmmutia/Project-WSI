@@ -1,9 +1,32 @@
-<?php  
+<?php
+if (isset($_GET['id_cluster'])) {
+  $id_cluster = $_GET['id_cluster'];
+} else {
+  die("Error. No ID Selected!");
+}
 require('koneksi.php');
 session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
+
+$query    = mysqli_query($koneksi, "SELECT * FROM cluster WHERE id_cluster='$id_cluster'");
+$result   = mysqli_fetch_array($query);
+
+if (isset($_POST['simpan'])) {
+  $Id_user = $data['id_user'];
+  $cek = mysqli_query($koneksi, "select * from simpan_cluster where id_cluster = '$id_cluster' AND id_user = '$Id_user' ");
+  if (mysqli_num_rows($cek) == 0) {
+    $query = "INSERT INTO simpan_cluster(id_cluster,id_user) VALUES ('$id_cluster','$Id_user')";
+    $result = mysqli_query($koneksi, $query);
+  } else {
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Anda Sudah Menyimpan Cluster Ini")';
+    echo '</script>';;
+  }
+}
 
 ?>
 
@@ -14,7 +37,7 @@ $userName = $_SESSION['name'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Contact - Bernady Land Slawu</title>
+  <title>Cluster Details - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -60,33 +83,34 @@ $userName = $_SESSION['name'];
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
+          <li><a href="about.phpl">About</a></li>
           <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Gallery</a></li>
+          <li><a class="active" href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
+          <li><a href="contact.php">Contact Us</a></li>
           <?php
 
-          if($userName = $_SESSION['name']){
-            
+          if ($userName = $_SESSION['name']) {
+
             echo "
 
-            <div class='dropdown'><a href='#'> $userName </a>
-            <ul>
-              <li><a href='logout.php'>Logout</a></li>
-            </ul>
-          </div>
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+  <ul>
+  <li> <a href='profile-user.php'>Profil</a></li>
+  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+  </ul>
+</div>
 
-            ";
-
-          }else{
+  ";
+          } else {
             echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
+  <li><a href='login.php'>Login</a></li>
+  ";
           }
 
           ?>
-
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -96,97 +120,76 @@ $userName = $_SESSION['name'];
 
   <main id="main">
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Our Portfolio Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Contact</blockquote></h2>
-          <style>
-            blockquote {
-              font-family: 'Times New Roman', Times, serif;
-              font-size: larger;
-            }
-        </style>
+          <h2>Cluster Details</h2>
           <ol>
             <li><a href="index.php">Home</a></li>
-            <li>Contact</li>
+            <li><a href="portfolio.php">Cluster</a></li>
+            <li><?php echo $result['nama_cluster'] ?> Details</li>
           </ol>
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Our Portfolio Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
       <div class="container">
 
-        <div class="row">
+        <div class="row gy-4">
 
-          <div class="col-lg-6">
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
 
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68126<p>
+                <div class="swiper-slide">
+                  <img src="img/camelia.jpeg" alt="">
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>bernadylandslawu@gmail.com<br>marketingpoint@gmail.com</p>
+
+                <div class="swiper-slide">
+                  <img src="img/portfolio/Camelia 2.jpg" alt="">
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bx bx-phone-call"></i>
-                  <h3>Call Us</h3>
-                  <p>+6281 234 960 399</p>
+
+                <div class="swiper-slide">
+                  <img src="img/portfolio/Camelia 3.jpg" alt="">
                 </div>
+
               </div>
+              <div class="swiper-pagination"></div>
             </div>
-
           </div>
 
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
+
+          <div class="col-lg-4">
+            <form action="portofolio-details.php?id_cluster=<?= $id_cluster; ?>" method="post">
+              <div class="portfolio-info">
+                <h3><?php echo $result['nama_cluster'] ?></h3>
+                <ul>
+                  <li><strong>Category</strong>: Web design</li>
+                  <li><strong>Client</strong>: ASU Company</li>
+                  <li><strong>Project date</strong>: 01 March, 2020</li>
+                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                  <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
+                  <a href=""><button type="submit" name="simpan" class="btn btn-success">Simpan</button></a>
+                </ul>
               </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              <div class="portfolio-description">
+                <h2>This is an example of portfolio detail</h2>
+                <p>
+                  Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                </p>
               </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
-
-    <!-- ======= Map Section ======= -->
-    <section class="map mt-2">
-      <div class="container-fluid p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section><!-- End Map Section -->
+    </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
 
@@ -216,9 +219,9 @@ $userName = $_SESSION['name'];
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
