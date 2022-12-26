@@ -68,18 +68,15 @@ $userName = $_SESSION['name'];
 
           <?php
 
-            if($userName = $_SESSION['name']){
-              
-              echo "
-              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-                <ul>
-                  <li> <a href='profile-user.php'>Profil</a></li>
-                  <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-                  <li> <a href=''>Pembayaran</a></li>
-                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-                </ul>
-              </div>
-              ";
+          if($userName = $_SESSION['name']){
+            
+            echo "
+            <div class='dropdown'><a href='#'> $userName </a>
+              <ul>
+                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+              </ul>
+            </div>
+            ";
 
             }else{
               echo "
@@ -225,14 +222,14 @@ if($userName = $_SESSION['name']){
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Finger Print</a></h4>
-              <p class="description">Perumahan Bernady Land memiliki fitur tercanggih, pintu dilengkapi dangan sidik jari pemilik rumah yang menjadikan rumah semakin aman.</p>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Profit</a></h4>
-              <p class="description">Keuntungan jika memilih Bernady Land sangat banyak, anda dapat dengan mudah untuk pergi ke Mall, SPBU atau ingin pergi untuk menikmati alam. Karena semua itu sudah tersedia disini.</p>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
 
           </div>

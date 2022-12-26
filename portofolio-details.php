@@ -1,10 +1,32 @@
-@ -1,248 +0,0 @@
-<?php  
+<?php
+if (isset($_GET['id_cluster'])) {
+  $id_cluster = $_GET['id_cluster'];
+} else {
+  die("Error. No ID Selected!");
+}
 require('koneksi.php');
 session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
+
+$query    = mysqli_query($koneksi, "SELECT * FROM cluster WHERE id_cluster='$id_cluster'");
+$result   = mysqli_fetch_array($query);
+
+if (isset($_POST['simpan'])) {
+  $Id_user = $data['id_user'];
+  $cek = mysqli_query($koneksi, "select * from simpan_cluster where id_cluster = '$id_cluster' AND id_user = '$Id_user' ");
+  if (mysqli_num_rows($cek) == 0) {
+    $query = "INSERT INTO simpan_cluster(id_cluster,id_user) VALUES ('$id_cluster','$Id_user')";
+    $result = mysqli_query($koneksi, $query);
+  } else {
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Anda Sudah Menyimpan Cluster Ini")';
+    echo '</script>';;
+  }
+}
 
 ?>
 
@@ -61,12 +83,34 @@ $userName = $_SESSION['name'];
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
+          <li><a href="about.phpl">About</a></li>
           <li><a href="services.php">Layanan</a></li>
           <li><a class="active" href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
           <li><a href="contact.php">Contact Us</a></li>
-          <li><a href="login.php">Login</a></li>
+          <?php
+
+          if ($userName = $_SESSION['name']) {
+
+            echo "
+
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+  <ul>
+  <li> <a href='profile-user.php'>Profil</a></li>
+  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+  </ul>
+</div>
+
+  ";
+          } else {
+            echo "
+  <li><a href='login.php'>Login</a></li>
+  ";
+          }
+
+          ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -85,7 +129,7 @@ $userName = $_SESSION['name'];
           <ol>
             <li><a href="index.php">Home</a></li>
             <li><a href="portfolio.php">Cluster</a></li>
-            <li>Cluster Details</li>
+            <li><?php echo $result['nama_cluster'] ?> Details</li>
           </ol>
         </div>
 
@@ -103,15 +147,15 @@ $userName = $_SESSION['name'];
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/boluevard magnolia.jpeg" alt="">
+                  <img src="img/camelia.jpeg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-2.jpg" alt="">
+                  <img src="img/portfolio/Camelia 2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/portfolio/portfolio-3.jpg" alt="">
+                  <img src="img/portfolio/Camelia 3.jpg" alt="">
                 </div>
 
               </div>
@@ -119,22 +163,27 @@ $userName = $_SESSION['name'];
             </div>
           </div>
 
+
           <div class="col-lg-4">
-            <div class="portfolio-info">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-              </ul>
-            </div>
-            <div class="portfolio-description">
-              <h2>This is an example of portfolio detail</h2>
-              <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-              </p>
-            </div>
+            <form action="portofolio-details.php?id_cluster=<?= $id_cluster; ?>" method="post">
+              <div class="portfolio-info">
+                <h3><?php echo $result['nama_cluster'] ?></h3>
+                <ul>
+                  <li><strong>Category</strong>: Web design</li>
+                  <li><strong>Client</strong>: ASU Company</li>
+                  <li><strong>Project date</strong>: 01 March, 2020</li>
+                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                  <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
+                  <a href=""><button type="submit" name="simpan" class="btn btn-success">Simpan</button></a>
+                </ul>
+              </div>
+              <div class="portfolio-description">
+                <h2>This is an example of portfolio detail</h2>
+                <p>
+                  Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                </p>
+              </div>
+            </form>
           </div>
 
         </div>
@@ -178,7 +227,7 @@ $userName = $_SESSION['name'];
             </ul>
           </div>
 
-          <<div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
