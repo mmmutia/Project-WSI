@@ -6,6 +6,8 @@ session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
 
 ?>
 <!DOCTYPE html>
@@ -70,20 +72,63 @@ $userName = $_SESSION['name'];
           <li><a href="contact.php">Contact Us</a></li>
           <!-- <li><a href="login.php">Login</a></li> -->
 
+          
+
+
           <?php
 
           if($userName = $_SESSION['name']){
-            
-            echo "
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-              <ul>
-                <li> <a href='profile-user.php'>Profil</a></li>
-                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-              </ul>
-            </div>
-            ";
+
+            if($data['level'] == '2'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }elseif($data['level'] == '3'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }elseif($data['level'] == '4'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres_user.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }
+            elseif($data['level'] == '1'){
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }
 
           }else{
             echo "
