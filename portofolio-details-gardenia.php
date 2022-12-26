@@ -135,8 +135,8 @@ $userName = $_SESSION['name'];
                 <li><strong>Air</strong>: PDAM</li>
                 <li><strong>Finishing Kamar mandi</strong>: Lantai keramik setara, Dinding keramik setara</li>
               </ul>
-              <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-              <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan
+              <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-dark">Simpan
                 
               </button></a>
             </div>

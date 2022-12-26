@@ -74,7 +74,7 @@
     <tbody>
       <?php
       if(isset($_POST['update'])){
-        $id_spesifikasi = $_POST['txt_id'];
+        // $id_spesifikasi = $_POST['txt_id'];
         $pondasi   = $_POST['txt_pondasi'];
         $dinding   = $_POST['txt_dinding'];
         $rangka_atap   = $_POST['txt_rangka_atap'];
@@ -109,7 +109,7 @@
       {
       ?>
        <tr>
-          <td><?php echo $id_spesifikasi; ?></td>
+          
           <td><?php echo $row['pondasi']; ?></td>
           <td><?php echo substr($row['dinding'], 0, 20); ?>...</td>
           <td><?php echo $row['rangka_atap']; ?></td>
@@ -126,7 +126,7 @@
       </tr>
          
       <?php
-        $clusterId++; //untuk nomor urut terus bertambah 1
+        // $id_spesifikasi++; //untuk nomor urut terus bertambah 1
       }
       ?>
     </tbody>

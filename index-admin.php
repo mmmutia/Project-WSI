@@ -58,33 +58,36 @@ $userName = $_SESSION['name'];
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active " href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
+          <li><a class="active " href="index-admin.php">Home</a></li>
+          <li><a href="about-admin.php">About</a></li>
+          <li><a href="services-admin.php">Layanan</a></li>
+          <li><a href="portfolio-admin.php">Cluster</a></li>
+          <li><a href="team-admin.php">Team</a></li>
+          <li><a href="contact-admin.php">Contact Us</a></li>
           <!-- <li><a href="login.php">Login</a></li> -->
 
           <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
-            <div class='dropdown'><a href='#'> $userName </a>
-              <ul>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-              </ul>
-            </div>
-            ";
+            if($userName = $_SESSION['name']){
+              
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+                  <li> <a href=''>Pembayaran</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
+            }else{
+              echo "
+              <li><a href='login.php'>Login</a></li>
+              ";
+            }
 
-          ?>
+            ?>
 
 
 
@@ -182,7 +185,7 @@ if($userName = $_SESSION['name']){
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box icon-box-cyan">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="portfolio.php">Cluster Perumahan</a></h4>
+              <h4 class="title"><a href="portfolio-admin.php">Cluster Perumahan</a></h4>
               <p class="description">Berbagai macam Cluster yang sangat diimpikian diantaranya, Boluevard Magnolia, Camelia, Ege Gardenia, New Edge Gardenia, Pinewood, Plumeria, QBIX, Ruko, SOHO.</p>
             </div>
           </div>
@@ -294,9 +297,9 @@ if($userName = $_SESSION['name']){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
@@ -305,10 +308,10 @@ if($userName = $_SESSION['name']){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
             </ul>
           </div>
 
