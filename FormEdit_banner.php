@@ -23,7 +23,7 @@ while ($row =mysqli_fetch_array($result)){
   $deskripsi = $row['deskripsi'];
   $gambar = $row['gambar'];
   $tglposting= $row['tgl_posting'];
-  
+   
   
 }
 ?>
