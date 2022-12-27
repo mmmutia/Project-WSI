@@ -135,8 +135,8 @@ while ($pecah = $ambil->fetch_assoc()) {
 
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
-            <input name="Cluster">
-            <input name="Harga"> 
+            <input name="Harga">
+            <input name="cluster"> 
            <button>Search</button>
             </form>
           </div>
