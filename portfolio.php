@@ -168,7 +168,11 @@ if($userName = $_SESSION['name']){
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
             <input name="Harga">
+<<<<<<< Updated upstream
             <input name="cluster"> 
+=======
+            <!-- <input name="cluster"> -->
+>>>>>>> Stashed changes
            <button>Search</button>
             </form>
           </div>
