@@ -2505,3 +2505,14 @@ body {
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
 }
+.contact .php-harga-form button[type=search] {
+  background: #68A4C4;
+  border: 0;
+  padding: 10px 24px;
+  color: rgb(255, 255, 255);
+  transition: 0.4s;
+}
+
+.contact .php-cluster-form button[type=search]:hover {
+  background: #039ef2;
+}
