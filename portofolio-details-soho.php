@@ -1,3 +1,4 @@
+@ -1,257 +0,0 @@
 <?php  
 require('koneksi.php');
 session_start();
@@ -134,8 +135,8 @@ $userName = $_SESSION['name'];
                 <li><strong>Listrik</strong>: PLN 2200 Watt</li>
                 <li><strong>Air</strong>: PDAM</li>
               </ul>
-              <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-              <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-dark">Simpan</button></a>
             </div>
             <div class="portfolio-description">
               <h2>This is an example of portfolio detail</h2>

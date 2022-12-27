@@ -1,3 +1,4 @@
+@ -1,246 +0,0 @@
 <?php  
 require('koneksi.php');
 session_start();
@@ -121,8 +122,8 @@ $userName = $_SESSION['name'];
                 <li><strong>Kusen Alumunium with Coating</strong></li>
                 <li><strong>Atap MetalDeck Noncorrosive</strong></li>
               </ul>
-              <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-              <a href="pemesanan.php"><button type="button" class="btn btn-success">Simpan
+              <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
+              <a href="pemesanan.php"><button type="button" class="btn btn-dark">Simpan
                 
               </button></a>
             </div>

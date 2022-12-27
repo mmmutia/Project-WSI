@@ -1,5 +1,5 @@
 <?php  
-require('../koneksi.php');
+require('koneksi.php');
 session_start();
 error_reporting(0);
 
@@ -54,12 +54,12 @@ $userName = $_SESSION['name'];
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index.php">Home</a></li>
+          <li><a class="" href="index-admin.php">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Layanan</a></li>
           <li><a href="portfolio.php">Cluster</a></li>
@@ -67,25 +67,26 @@ $userName = $_SESSION['name'];
           <li><a class="active" href="contact.php">Contact Us</a></li>
           <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href=''>Pembayaran</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            <div class='dropdown'><a href='#'> $userName </a>
-            <ul>
-              <li><a href='logout.php'>Logout</a></li>
-            </ul>
-          </div>
+}else{
+  echo "
+  <li><a href='login.php'>Login</a></li>
+  ";
+}
 
-            ";
-
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
-
-          ?>
+?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -109,7 +110,7 @@ $userName = $_SESSION['name'];
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index-admin.php">Home</a></li>
             <li>Contact</li>
           </ol>
         </div>
@@ -152,7 +153,7 @@ $userName = $_SESSION['name'];
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="forms/contact-admin.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -216,9 +217,9 @@ $userName = $_SESSION['name'];
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
@@ -227,10 +228,10 @@ $userName = $_SESSION['name'];
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
             </ul>
           </div>
 

@@ -3,22 +3,14 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-if( isset($_POST['message']) ){
-    $namamessage = $_POST['namamessage'];
-    $emailmessage = $_POST['emailmessage'];
-    $subjectmessage = $_POST['subjectmessage'];
-    $isimessage = $_POST['isimessage'];
-    
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$SesLvl = $_SESSION['level'];
 
-    $query = "INSERT INTO message_kontak(nama,email,subject_kontak,message_koontak) VALUES ('$namamessage','$emailmessage','$subjectmessage','$isimessage')";
-
-    $result = mysqli_query($koneksi, $query);
-    
-    if($result){
-        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='contact.php'</script>";
-    }
-   
-}
+// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+// $data = mysqli_fetch_array($query_mysql);
+// $query = $data['id_pemesanan_rumah'];
+// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
+// // $item = mysqli_fetch_array($query_mysql2);
 
 ?>
 
@@ -29,7 +21,7 @@ if( isset($_POST['message']) ){
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Contact - Bernady Land Slawu</title>
+  <title>Profile - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -52,6 +44,10 @@ if( isset($_POST['message']) ){
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -69,17 +65,17 @@ if( isset($_POST['message']) ){
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Gallery</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
+          <li><a class="" href="index-admin.php">Home</a></li>
+          <li><a href="about-admin.php">About</a></li>
+          <li><a href="services-admin.php">Layanan</a></li>
+          <li><a href="portfolio-admin.php">Gallery</a></li>
+          <li><a href="team-admin.php">Team</a></li>
+          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
 
           if($userName = $_SESSION['name']){
@@ -88,10 +84,10 @@ if( isset($_POST['message']) ){
 
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+              <li> <a href='profile-user.php'>Profil</a></li>
+                <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+                <li> <a href=''>Pembayaran</a></li>
+              <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
 
@@ -119,7 +115,7 @@ if( isset($_POST['message']) ){
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Contact</blockquote></h2>
+          <h2><blockquote>Daftar Pemesanan Rumah</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -127,8 +123,8 @@ if( isset($_POST['message']) ){
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li>Contact</li>
+            <li><a href="index-admin.php">Home</a></li>
+            <li>Profil</li>
           </ol>
         </div>
 
@@ -138,73 +134,89 @@ if( isset($_POST['message']) ){
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68126<p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>bernadylandslawu@gmail.com<br>marketingpoint@gmail.com</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <a href="https://wa.me/+6281231230899"><i class="bx bx-phone-call"></a></i>
-                  <h3>Call Us</h3>
-                  <p><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a></p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
-        </div>
+      <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>No</th>    
+                <th>ID Pemesanan Rumah</th>
+                <th>Nama Pemesan</th>
+                <th>Alamat</th>
+                <th>No Telp</th>
+                <th>ID Cluster</th>
+                <th>Tanggal Pemesanan</th>
+                <th>Jenis Pembayaran</th>
+                <th>Foto KTP</th>
+                <th>Status </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $query = "SELECT pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan, pemesanan_rumah.alamat, pemesanan_rumah.no_telp_pemesan, pemesanan_rumah.id_cluster, pemesanan_rumah.tgl_pemesanan, pemesanan_rumah.fotocopy_ktp, pemesanan_rumah.jenis_pembayaran FROM pemesanan_rumah ORDER BY id_pemesanan_rumah ASC";
+        $result = mysqli_query($koneksi, $query);
+        $no=1;
+        // if ($SesLvl == 2){
+        //   $dis = "";
+        // } else if ($SesLvl == 1){
+        //   $dis = "disabled";
+        // } else if ($SesLvl == 3){
+        //   $dis = "disabled";
+        // } else ($SesLvl == 4){
+        //   $dis = "disabled";
+        // } 
+        
+        while($row = mysqli_fetch_array($result)){
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
+          $alamat = $row['alamat'];
+          $no_telp_pemesan = $row['no_telp_pemesanan'];
+          $id_cluster = $row['id_cluster'];
+          $tgl_pemesanan = $row['tgl_pemesanan'];
+          $jenis_pembayaran = $row['jenis_pembayaran'];
+          $focopy_ktp = $row['fotocopy_ktp'];
+        ?>
+        <tr class="text-center">
+              <td><?php echo $no++?></td>
+              <td><?php echo $id_pemesanan_rumah;?></td>
+              <td><?php echo $nama_pemesan;?></td>
+              <td><?php echo $alamat;?></td>
+              <td><?php echo $no_telp_pemesan;?></td>
+              <td><?php echo $id_cluster;?></td>
+              <td><?php echo $tgl_pemesanan;?></td>
+              <td><?php echo $jenis_pembayaran;?></td>
+              <td><?php echo "<img src='img/filepemesanan/$fotocopy_ktp[fotocopy_ktp]' width='70' height='90' />";?></td>
+              <td style="text-align:center;">
+                <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>"><button type="button" class="btn btn-outline-secondary">Proses</button></a>
+            </td>
+            </tr>
+            <?php
+          }
+          ?>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>No</th>
+                <th>ID Pemesanan Rumah</th>
+                <th>Nama Pemesan</th>
+                <th>Alamat</th>
+                <th>No Telp</th>
+                <th>ID Cluster</th>
+                <th>Tanggal Pemesanan</th>
+                <th>Jenis Pembayaran</th>
+                <th>Status</th>
+            </tr>
+        </tfoot>
+    </table>
 
       </div>
     </section><!-- End Contact Section -->
 
     <!-- ======= Map Section ======= -->
-    <section class="map mt-2">
+    <!-- <section class="map mt-2">
       <div class="container-fluid p-0">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-    </section><!-- End Map Section -->
+    </section>End Map Section -->
 
   </main><!-- End #main -->
 
@@ -234,9 +246,9 @@ if( isset($_POST['message']) ){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
@@ -245,10 +257,10 @@ if( isset($_POST['message']) ){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
             </ul>
           </div>
 
@@ -307,6 +319,14 @@ if( isset($_POST['message']) ){
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        select: true
+    } );
+} );
+</script>
 
 </body>
 

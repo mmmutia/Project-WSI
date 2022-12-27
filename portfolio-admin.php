@@ -62,29 +62,31 @@ $userName = $_SESSION['name'];
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
        <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="services.php">Layanan</a></li>
-        <li><a class="active" href="portfolio.php">Cluster</a></li>
-        <li><a href="team.php">Team</a></li>
-        <li><a href="contact.php">Contact Us</a></li>
+        <li><a href="index-admin.php">Home</a></li>
+        <li><a href="about-admin.php">About</a></li>
+        <li><a href="services-admin.php">Layanan</a></li>
+        <li><a class="active" href="portfolio-admin.php">Cluster</a></li>
+        <li><a href="team-admin.php">Team</a></li>
+        <li><a href="contact-admin.php">Contact Us</a></li>
+
         <?php
 
 if($userName = $_SESSION['name']){
   
   echo "
-
-  <div class='dropdown'><a href='#'> $userName </a>
-  <ul>
-    <li><a href='logout.php'>Logout</a></li>
-  </ul>
-</div>
-
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href=''>Pembayaran</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
   ";
 
 }else{
@@ -94,11 +96,6 @@ if($userName = $_SESSION['name']){
 }
 
 ?>
-
-        
-     
-        
-
        </ul>
           
           
@@ -124,7 +121,7 @@ if($userName = $_SESSION['name']){
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index-admin.php">Home</a></li>
             <li>Cluster Perumahan</li>
           </ol>
         </div>
@@ -135,9 +132,9 @@ if($userName = $_SESSION['name']){
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
       <div class="container">
+
         <div class="row">
           <div class="col-lg-12">
-          <center><a href="editcluster.php"><button type="button" class="btn btn-outline-secondary">Edit Cluster</button></a></center><br>
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-boulevard">Boulevard Magnolia</li>
@@ -162,7 +159,7 @@ if($userName = $_SESSION['name']){
                 <h3>Boulevard Magnolia</h3>
                 <div>
                   <a href="img/gambar9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-search"></i></a>
-                  <a href="portfolio-details-magnolia.php" title="Cluster Details" ><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details-magnolia-admin.php" title="Cluster Details" ><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -175,7 +172,7 @@ if($userName = $_SESSION['name']){
                 <h3>Camelia  Type A</h3>
                 <div>
                   <a href="img/gambar6.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -187,7 +184,7 @@ if($userName = $_SESSION['name']){
                 <h3>Camelia  Type B</h3>
                 <div>
                   <a href="img/gambar17.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -199,7 +196,7 @@ if($userName = $_SESSION['name']){
                 <h3>Camelia  Type C</h3>
                 <div>
                   <a href="img/gambar18.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -212,7 +209,7 @@ if($userName = $_SESSION['name']){
                 <h3>Edge Gardenia</h3>
                 <div>
                   <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-gardenia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-gardenia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -225,7 +222,7 @@ if($userName = $_SESSION['name']){
                 <h3>New Edge Gardenia</h3>
                 <div>
                   <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-new-edge.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-new-edge-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -238,7 +235,7 @@ if($userName = $_SESSION['name']){
                 <h3>Pinewood Prime</h3>
                 <div>
                   <a href="img/gambar7.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -250,7 +247,7 @@ if($userName = $_SESSION['name']){
                 <h3>Pinewood Millenial</h3>
                 <div>
                   <a href="img/gambar10.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -262,7 +259,7 @@ if($userName = $_SESSION['name']){
                 <h3>Pinewood Terra</h3>
                 <div>
                   <a href="img/gambar13.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -274,7 +271,7 @@ if($userName = $_SESSION['name']){
                 <h3>Pinewood Magna</h3>
                 <div>
                   <a href="img/gambar11.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -286,7 +283,7 @@ if($userName = $_SESSION['name']){
                 <h3>Pinewood Varsa</h3>
                 <div>
                   <a href="img/gambar12.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -299,7 +296,7 @@ if($userName = $_SESSION['name']){
                 <h3>Plumeria  Type A</h3>
                 <div>
                   <a href="img/gambar5.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -311,7 +308,7 @@ if($userName = $_SESSION['name']){
                 <h3>Plumeria  Type B</h3>
                 <div>
                   <a href="img/gambar14.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -323,7 +320,7 @@ if($userName = $_SESSION['name']){
                 <h3>Plumeria  Type C</h3>
                 <div>
                   <a href="img/gambar15.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -335,7 +332,7 @@ if($userName = $_SESSION['name']){
                 <h3>Plumeria  Type D</h3>
                 <div>
                   <a href="img/gambar16.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -348,7 +345,7 @@ if($userName = $_SESSION['name']){
                 <h3>QBIX</h3>
                 <div>
                   <a href="img/gambar1.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-qbix.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-qbix-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -361,7 +358,7 @@ if($userName = $_SESSION['name']){
                 <h3>Ruko</h3>
                 <div>
                   <a href="img/gambar2.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-ruko.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-ruko-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -374,7 +371,7 @@ if($userName = $_SESSION['name']){
                 <h3>Soho</h3>
                 <div>
                   <a href="img/gambar8.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-soho.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-soho-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -424,10 +421,10 @@ if($userName = $_SESSION['name']){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
             </ul>
           </div>
 

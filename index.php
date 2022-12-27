@@ -6,6 +6,8 @@ session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
 
 ?>
 <!DOCTYPE html>
@@ -40,9 +42,6 @@ $userName = $_SESSION['name'];
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css//all.min.css">
-
-
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -73,20 +72,63 @@ $userName = $_SESSION['name'];
           <li><a href="contact.php">Contact Us</a></li>
           <!-- <li><a href="login.php">Login</a></li> -->
 
+          
+
+
           <?php
 
           if($userName = $_SESSION['name']){
-            
-            echo "
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-              <ul>
-                <li> <a href='profile-user.php'>Profil</a></li>
-                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href=''>Cluster Yang Tersimpan</a></li>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-              </ul>
-            </div>
-            ";
+
+            if($data['level'] == '2'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }elseif($data['level'] == '3'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }elseif($data['level'] == '4'){
+
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                  <li> <a href='proggres_user.php'>Proggres</a></li>
+                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }
+            elseif($data['level'] == '1'){
+              echo "
+              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
+                <ul>
+                  <li> <a href='profile-user.php'>Profil</a></li>
+                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+                </ul>
+              </div>
+              ";
+            }
 
           }else{
             echo "
@@ -178,7 +220,6 @@ if($userName = $_SESSION['name']){
 
     <!-- ======= Services Section ======= -->
     <section class="services">
-    <div class="box">
       <div class="container">
 
         <div class="row">
@@ -233,14 +274,14 @@ if($userName = $_SESSION['name']){
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Finger Print</a></h4>
-              <p class="description">Perumahan Bernady Land memiliki fitur tercanggih, pintu dilengkapi dangan sidik jari pemilik rumah yang menjadikan rumah semakin aman.</p>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Profit</a></h4>
-              <p class="description">Keuntungan jika memilih Bernady Land sangat banyak, anda dapat dengan mudah untuk pergi ke Mall, SPBU atau ingin pergi untuk menikmati alam. Karena semua itu sudah tersedia disini.</p>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
 
           </div>
@@ -249,9 +290,33 @@ if($userName = $_SESSION['name']){
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Search Section ======= -->
-    <!-- End Search Section -->
+    <!-- ======= Features Section ======= -->
+    <section class="features">
+      <div class="container">
 
+        <div class="section-title">
+          <h2>Features</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="img/features-1.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-4">
+            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Features Section -->
 
   </main><!-- End #main -->
 

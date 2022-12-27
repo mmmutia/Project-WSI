@@ -9,6 +9,9 @@ if (isset($_SESSION["name"]) != ''){
     header("location: index.php");
     header("location: contact.php");
     header("location: about.php");
+    header("location: proggres.php");
+    header("location: proggres_user.php");
+    
 }
 
 if (isset($_POST['submit'])) {
@@ -21,7 +24,7 @@ if (isset($_POST['submit'])) {
         $num        = mysqli_num_rows($result);
 
         while ($row = mysqli_fetch_array($result)) {
-            $id = $row['id'];
+            $id = $row['id_user'];
             $userVal = $row['user_email'];
             $passVal = $row['user_password'];
             $userName = $row['user_fullname'];
@@ -35,7 +38,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;
                     $_SESSION['level'] = $level;
-                    header('Location: index-admin.php');
+                    header('Location: index.php');
                 }else{
                     $error = 'user atau password salah!!';
                     echo "<script>alert('$error')</script>";
@@ -46,7 +49,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;
                     $_SESSION['level'] = $level;
-                    header('Location: index-admin.php');
+                    header('Location: index.php');
                 }else{
                     $error = 'user atau password salah!!';
                     echo "<script>alert('$error')</script>";
