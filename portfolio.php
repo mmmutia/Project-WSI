@@ -128,8 +128,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           </ol>
         </div>
 
-<<<<<<< HEAD
-=======
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
             <input name="Harga">
@@ -140,9 +138,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
         </div>
       </div>
     </div>
-
->>>>>>> d460813416d4ab7c039ee020683ff7d2e266a7bd
-      </div>
     </section><!-- End Our Portfolio Section -->
 
     <!-- ======= Portfolio Section ======= -->
