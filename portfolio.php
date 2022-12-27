@@ -8,7 +8,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 // $data = mysqli_fetch_array($query_mysql);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,10 +76,10 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 
   <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
   <ul>
-  <li> <a href='profile-user.php'>Profil</a></li>
-  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    <li> <a href='profile-user.php'>Profil</a></li>
+    <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+    <li> <a href=''>Cluster Yang Tersimpan</a></li>
+    <li><a href='logout.php'>Logout</a></li>
   </ul>
 </div>
 
@@ -129,25 +128,16 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           </ol>
         </div>
 
-<<<<<<< HEAD
-=======
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
             <input name="Harga">
-<<<<<<< Updated upstream
             <input name="cluster"> 
-=======
-            <!-- <input name="cluster"> -->
->>>>>>> Stashed changes
            <button>Search</button>
             </form>
           </div>
         </div>
       </div>
     </div>
-
->>>>>>> d460813416d4ab7c039ee020683ff7d2e266a7bd
-      </div>
     </section><!-- End Our Portfolio Section -->
 
     <!-- ======= Portfolio Section ======= -->
