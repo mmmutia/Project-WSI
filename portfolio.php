@@ -77,10 +77,10 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 
   <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
   <ul>
-  <li> <a href='profile-user.php'>Profil</a></li>
-  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    <li> <a href='profile-user.php'>Profil</a></li>
+    <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+    <li> <a href=''>Cluster Yang Tersimpan</a></li>
+    <li><a href='logout.php'>Logout</a></li>
   </ul>
 </div>
 
@@ -124,13 +124,53 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
             }
           </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li>Cluster Perumahan</li>
           </ol>
         </div>
 
+        <div class="col-lg-6">
+            <form action="pencarian.php" method="GET">
+            <input name="Harga">
+            <input name="cluster"> 
+           <button>Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
       </div>
     </section><!-- End Our Portfolio Section -->
+
+<!-- ======= Search Section ======= -->
+    <!-- <section class="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Temukan Rumah Impian!</h2>
+          <form action="portfolio.php" method="get" class="">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="nama_cluster" class="form-control" id="name" placeholder="Cari Cluster...." >
+                </div>
+                <div class="col-md-5 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Harga....">
+                </div>
+                <div class="col-md-1 form-group mt-3 mt-md-0">
+                <button type="sumbit" class="btn btn-dark">Cari</button>
+                </div>
+              </div>
+            </form>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-6 pt-4">
+            
+            
+          </div>
+        </div>
+    </section>End Search Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
@@ -140,41 +180,246 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".boulevard">Boulevard Magnolia</li>
-              <li data-filter=".camelia">Camelia</li>
-              <li data-filter=".gardenia">Edge Gardenia</li>
-              <li data-filter=".edge">New Edge Gardenia</li>
-              <li data-filter=".pinewood">Pinewood</li>
-              <li data-filter=".plumeria">Plumeria</li>
-              <li data-filter=".qbix">QBIX</li>
-              <li data-filter=".ruko">Ruko</li>
-              <li data-filter=".soho">SOHO</li>
+              <li data-filter=".filter-boulevard">Boulevard Magnolia</li>
+              <li data-filter=".filter-camelia">Camelia</li>
+              <li data-filter=".filter-gardenia">Edge Gardenia</li>
+              <li data-filter=".filter-new-edge">New Edge Gardenia</li>
+              <li data-filter=".filter-pinewood">Pinewood</li>
+              <li data-filter=".filter-plumeria">Plumeria</li>
+              <li data-filter=".filter-qbix">QBIX</li>
+              <li data-filter=".filter-ruko">Ruko</li>
+              <li data-filter=".filter-soho">SOHO</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
-        <?php
-        while ($item = mysqli_fetch_array($query_mysql)){
-          ?>
-          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-boulevard">
             <div class="portfolio-item">
               <img src="img/boluevard magnolia.jpeg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h3><?php echo $item['nama_cluster'];?></h3>
+                <h3>Boulevard Magnolia</h3>
                 <div>
                   <a href="img/gambar9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details.php?id_cluster=<?= $item['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
-                  <!-- <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a> -->
+                  <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          <?php
-        }
-        ?>
 
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
+            <div class="portfolio-item">
+              <img src="img/camelia.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Camelia Type A</h3>
+                <div>
+                  <a href="img/gambar6.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-cameliaA.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
+            <div class="portfolio-item">
+              <img src="img/Camelia 2.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Camelia Type B</h3>
+                <div>
+                  <a href="img/gambar17.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-cameliaB.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
+            <div class="portfolio-item">
+              <img src="img/Camelia 3.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Camelia</h3>
+                <div>
+                  <a href="img/gambar18.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-camelia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-gardenia">
+            <div class="portfolio-item">
+              <img src="img/edge gardenia.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Edge Gardenia</h3>
+                <div>
+                  <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-gardenia.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-new-edge">
+            <div class="portfolio-item">
+              <img src="img/new edge gardenia.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>New Edge Gardenia</h3>
+                <div>
+                  <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-new-edge.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
+            <div class="portfolio-item">
+              <img src="img/pinewood.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Pinewood Prime</h3>
+                <div>
+                  <a href="img/gambar7.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-pinewoodprime.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
+            <div class="portfolio-item">
+              <img src="img/Pinewood 5.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Pinewood Millenial</h3>
+                <div>
+                  <a href="img/gambar10.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-pinewoodMillenial.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
+            <div class="portfolio-item">
+              <img src="img/Pinewood 6.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Pinewood Terra</h3>
+                <div>
+                  <a href="img/gambar13.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-pinewoodTerra.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
+            <div class="portfolio-item">
+              <img src="img/Pinewood 7.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Pinewood Magna</h3>
+                <div>
+                  <a href="img/gambar11.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-pinewoodMagna.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
+            <div class="portfolio-item">
+              <img src="img/Pinewood 8.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Pinewood Varsa</h3>
+                <div>
+                  <a href="img/gambar12.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-pinewoodVarsa.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
+            <div class="portfolio-item">
+              <img src="img/plumeria.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Plumeria Type A</h3>
+                <div>
+                  <a href="img/gambar5.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-plumeriaA.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
+            <div class="portfolio-item">
+              <img src="img/Plumeria 2.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Plumeria Type B</h3>
+                <div>
+                  <a href="img/gambar14.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-plumeriaB.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
+            <div class="portfolio-item">
+              <img src="img/Plumeria 3.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Plumeria Type C</h3>
+                <div>
+                  <a href="img/gambar15.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-plumeriaC.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
+            <div class="portfolio-item">
+              <img src="img/Plumeria 4.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Plumeria Type D</h3>
+                <div>
+                  <a href="img/gambar16.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-plumeriaD.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-qbix">
+            <div class="portfolio-item">
+              <img src="img/qbix.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>QBIX</h3>
+                <div>
+                  <a href="img/gambar1.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-qbix.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-ruko">
+            <div class="portfolio-item">
+              <img src="img/soho.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Ruko</h3>
+                <div>
+                  <a href="img/gambar2.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-ruko.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-wrap filter-soho">
+            <div class="portfolio-item">
+              <img src="img/ruko.jpeg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h3>Soho</h3>
+                <div>
+                  <a href="img/gambar8.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 1"><i class="bx bx-search"></i></a>
+                  <a href="portofolio-details-soho.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
 
