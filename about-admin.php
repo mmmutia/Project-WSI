@@ -75,7 +75,7 @@ if($userName = $_SESSION['name']){
   <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
     <ul>
       <li> <a href='profile-user.php'>Profil</a></li>
-      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
       <li> <a href=''>Pembayaran</a></li>
       <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
     </ul>

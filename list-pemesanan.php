@@ -110,7 +110,7 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Profile</blockquote></h2>
+          <h2><blockquote>Pemesanan Rumah</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -119,7 +119,7 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
         </style>
           <ol>
             <li><a href="index.php">Home</a></li>
-            <li>Profile</li>
+            <li>Pemesanan Rumah</li>
           </ol>
         </div>
 
@@ -129,43 +129,57 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
-        <table class="table-bordered" style="width: 100%;">
-          <thead>
-            <tr>
-              <th>NO</th>
-              <th>Id Pemesanan</th>
-              <th>Nama Pemesan</th>
-              <th>Alamat</th>
-              <th>No Telp</th>
-              <th>Id Cluster</th>
-              <th>Tanggal Pemesanan</th>
-              <th>Foto KTP</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          <?php
-          $no = 1;
-          while ($item = mysqli_fetch_array($query_mysql2)) {
-            ?>
-            <tr class="text-center">
-              <td><?php echo $no++?></td>
-              <td><?php echo $item['id_pemesanan_rumah'];?></td>
-              <td><?php echo $item['nama_pemesan'];?></td>
-              <td><?php echo $item['alamat'];?></td>
-              <td><?php echo $item['no_telp_pemesan'];?></td>
-              <td><?php echo $item['id_cluster'];?></td>
-              <td><?php echo $item['tgl_pemesanan'];?></td>
-              <td><?php echo "<img src='img/filepemesanan/$item[fotocopy_ktp]' width='70' height='90' />";?></td>
-            </tr>
-            <?php
-          }
-          ?>
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-lg-8 m-auto">
+            <form action="forms/contact.php" method="get" role="form" class="php-email-form">
+              <div class="row">
+                <h1 class="text-center"><span>Data Pesanan Rumah</span></h1>
+                <div class="row-md-6 form-group mb-3">
+                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mb-3">
+                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required disabled>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="fotoktp" id="fotoktp" value="<?php echo "<img src='img/$data[fotocopy_ktp]' width='70' height='90'/>";?>" required disabled>
+                </div>
+              </div>
+              <!-- <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
+              </div> -->
+              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
+            </form>
+          </div>
+          <div class="col-lg-4 m-auto">
+          <form action="forms/contact.php" method="get" role="form" class="php-email-form">
+              <div class="row">
+                <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="email" class="form-control" name="nup" id="nup" value="<?php echo $nup;?>" required disabled> <br>
+                  <h6>Info : Dalam 1 x 24 jam tim Marketing Bernady Land Slawu akan menghubungi anda untuk proses pemilihan blok rumah.</h6><br> 
+                  <h6>Hubungi kontak informasi dibawah jika diperlukan.</h6> 
+                </div>
+          </div>
+        </div>
 
       </div>
     </section><!-- End Contact Section -->
+
 
     <!-- ======= Map Section ======= -->
     <!-- <section class="map mt-2">

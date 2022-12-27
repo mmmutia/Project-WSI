@@ -68,23 +68,26 @@ $userName = $_SESSION['name'];
 
           <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
-            <div class='dropdown'><a href='#'> $userName </a>
-              <ul>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-              </ul>
-            </div>
-            ";
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+      <li> <a href=''>Pembayaran</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            }else{
-              echo "
-              <li><a href='login.php'>Login</a></li>
-              ";
-            }
+}else{
+  echo "
+  <li><a href='login.php'>Login</a></li>
+  ";
+}
 
-            ?>
+?>
 
 
 

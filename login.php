@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;
                     $_SESSION['level'] = $level;
-                    header('Location: index.php');
+                    header('Location: index-admin.php');
                 }else{
                     $error = 'user atau password salah!!';
                     echo "<script>alert('$error')</script>";
@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;
                     $_SESSION['level'] = $level;
-                    header('Location: index.php');
+                    header('Location: index-admin.php');
                 }else{
                     $error = 'user atau password salah!!';
                     echo "<script>alert('$error')</script>";
