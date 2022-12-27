@@ -1,15 +1,6 @@
 <?php
 require('koneksi.php');
 session_start();
-error_reporting(0);
-
-$userName = $_SESSION['name'];
-
-?>
-
-<?php
-require('koneksi.php');
-session_start();
 
 $userName = $_SESSION['name'];
 $harga = $_GET['Harga'];
@@ -144,8 +135,8 @@ while ($pecah = $ambil->fetch_assoc()) {
 
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
-            <input name="Harga">
-            <input name="cluster"> 
+            <input name="Cluster">
+            <input name="Harga"> 
            <button>Search</button>
             </form>
           </div>
