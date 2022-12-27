@@ -5,17 +5,12 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
-$nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah");
-$data = mysqli_fetch_array($query_mysql);
-
-if(isset($_POST['nup'])){
-  $nup = $_POST['txt_nup'];
-
-  $query_nup = mysqli_query($koneksi,"INSERT INTO nup (nup) VALUES ('$nup')");
-  
-}
+// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+// $data = mysqli_fetch_array($query_mysql);
+// $query = $data['id_pemesanan_rumah'];
+// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
+// // $item = mysqli_fetch_array($query_mysql2);
 
 ?>
 
@@ -49,9 +44,11 @@ if(isset($_POST['nup'])){
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
@@ -78,7 +75,7 @@ if(isset($_POST['nup'])){
           <li><a class="" href="index-admin.php">Home</a></li>
           <li><a href="about-admin.php">About</a></li>
           <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Cluster</a></li>
+          <li><a href="portfolio-admin.php">Gallery</a></li>
           <li><a href="team-admin.php">Team</a></li>
           <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
@@ -118,8 +115,9 @@ if(isset($_POST['nup'])){
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-        <div class='d-flex justify-content-between align-items-center'>
-          <h2><blockquote>Proses Pemesanan Rumah</blockquote></h2>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2><blockquote>Data Pembayaran </blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -135,64 +133,37 @@ if(isset($_POST['nup'])){
       </div>
     </section><!-- End Contact Section -->
 
-    <!-- ======= Data Pemesan Section ======= -->
-    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 m-auto">
-            <form action="forms/contact.php" method="get" role="form" class="php-email-form">
-              <div class="row">
-                <h1 class="text-center"><span>Data Pemesan</span></h1>
-                <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required readonly >
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>"  height="200px">
-                </div>
-              </div>
-           
-              <!-- <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
-              </div> -->
-              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
-            </form>
-          </div>
-          <div class="row">
-                <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
-          <div class="col-lg-4 m-auto">
-          <form action="" method="post">
-                <!-- <div class="row"> -->
-                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-                  <input type="text" name="txt_nup" class="form-control" id="txt_nup" placeholder="Masukkan NUP">
-                <!-- </div> -->
-                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-                  <button type="submit" class="btn btn-outline-info" name="nup">Simpan</button>
-                <!-- </div>  -->
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
+    <!-- ======= Data Pembayaran Section ======= -->
+    <section class="pembayaran">
+    <div class="container">
+    <div class="card text-center">
+    <div class="card-header">
+        Data Pembayaran 
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Pembayaran DP</h3>
+        <a href="pembayaran-dp.php" class="btn btn-outline-secondary">Lihat Data</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+    </div> <br>
+    <br>
+    <div class="card text-center">
+    <div class="card-header">
+        Data Pembayaran
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Pembayaran InHouse</h3>
+        <a href="pembayaran-inhouse.php" class="btn btn-outline-secondary">Lihat Data</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+    </div>
+   
+    </section>
+    <!-- End Data Pembayaran Section -->
 
     <!-- ======= Map Section ======= -->
     <!-- <section class="map mt-2">
@@ -201,7 +172,7 @@ if(isset($_POST['nup'])){
       </div>
     </section>End Map Section -->
 
-  </main><!-- End #main -->
+  <!-- </main>End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -291,6 +262,7 @@ if(isset($_POST['nup'])){
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -303,7 +275,7 @@ if(isset($_POST['nup'])){
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
 
-
+  
 
 </body>
 

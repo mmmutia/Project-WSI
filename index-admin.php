@@ -75,7 +75,7 @@ if($userName = $_SESSION['name']){
     <ul>
       <li> <a href='profile-user.php'>Profil</a></li>
       <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-      <li> <a href=''>Pembayaran</a></li>
+      <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
       <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
     </ul>
   </div>

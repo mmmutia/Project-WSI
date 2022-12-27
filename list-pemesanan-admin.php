@@ -44,9 +44,11 @@ $SesLvl = $_SESSION['level'];
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
@@ -133,7 +135,7 @@ $SesLvl = $_SESSION['level'];
 
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div class="container">
+      <div  class="container">
       <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
@@ -183,9 +185,9 @@ $SesLvl = $_SESSION['level'];
               <td><?php echo $id_cluster;?></td>
               <td><?php echo $tgl_pemesanan;?></td>
               <td><?php echo $jenis_pembayaran;?></td>
-              <td><?php echo "<img src='img/filepemesanan/$fotocopy_ktp[fotocopy_ktp]' width='70' height='90' />";?></td>
+              <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
               <td style="text-align:center;">
-                <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>"><button type="button" class="btn btn-outline-secondary">Proses</button></a>
+                <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah'] ?>"><button type="button" class="btn btn-outline-secondary">Proses</button></a>
             </td>
             </tr>
             <?php
@@ -193,7 +195,7 @@ $SesLvl = $_SESSION['level'];
           ?>
             
         </tbody>
-        <tfoot>
+        <!-- <tfoot>
             <tr>
                 <th>No</th>
                 <th>ID Pemesanan Rumah</th>
@@ -205,11 +207,17 @@ $SesLvl = $_SESSION['level'];
                 <th>Jenis Pembayaran</th>
                 <th>Status</th>
             </tr>
-        </tfoot>
+        </tfoot> -->
     </table>
-
-      </div>
-    </section><!-- End Contact Section -->
+    </div>
+      <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                scrollX: true,
+            });
+        });
+    </script>
+    <!-- </section>End Contact Section -->
 
     <!-- ======= Map Section ======= -->
     <!-- <section class="map mt-2">
@@ -218,7 +226,7 @@ $SesLvl = $_SESSION['level'];
       </div>
     </section>End Map Section -->
 
-  </main><!-- End #main -->
+  <!-- </main>End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -308,6 +316,7 @@ $SesLvl = $_SESSION['level'];
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -320,13 +329,7 @@ $SesLvl = $_SESSION['level'];
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
 
-  <script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-        select: true
-    } );
-} );
-</script>
+  
 
 </body>
 
