@@ -5,9 +5,17 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
+$nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi, "SELECT pemesanan_rumah.nama_pemesan, pemesanan_rumah.alamat, pemesanan_rumah.no_telp_pemesan, pemesanan_rumah.id_cluster, pemesanan_rumah.tgl_pemesanan, pemesanan_rumah.fotocopy_ktp, pemesanan_rumah.jenis_pembayaran FROM pemesanan_rumah WHERE id_pemesanan_rumah = '$id_pemesanan_rumah'");
+$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah");
 $data = mysqli_fetch_array($query_mysql);
+
+if(isset($_POST['nup'])){
+  $nup = $_POST['txt_nup'];
+
+  $query_nup = mysqli_query($koneksi,"INSERT INTO nup (nup) VALUES ('$nup')");
+  
+}
 
 ?>
 
@@ -70,7 +78,7 @@ $data = mysqli_fetch_array($query_mysql);
           <li><a class="" href="index-admin.php">Home</a></li>
           <li><a href="about-admin.php">About</a></li>
           <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Gallery</a></li>
+          <li><a href="portfolio-admin.php">Cluster</a></li>
           <li><a href="team-admin.php">Team</a></li>
           <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
@@ -83,7 +91,7 @@ $data = mysqli_fetch_array($query_mysql);
             <ul>
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-                <li> <a href=''>Pembayaran</a></li>
+                <li> <a href='pembayaran-user.php'>Pembayaran</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
@@ -127,7 +135,7 @@ $data = mysqli_fetch_array($query_mysql);
       </div>
     </section><!-- End Contact Section -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Data Pemesan Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
         <div class="row">
@@ -136,47 +144,49 @@ $data = mysqli_fetch_array($query_mysql);
               <div class="row">
                 <h1 class="text-center"><span>Data Pemesan</span></h1>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah'];?>" required disabled>
+                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan'];?>" required disabled>
+                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required disabled>
+                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required disabled>
+                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required disabled>
+                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required readonly >
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required disabled>
+                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required disabled>
+                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="fotoktp" id="fotoktp" value="<?php echo "<img src='img/$data[fotocopy_ktp]' width='70' height='90'/>";?>" required disabled>
+                <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>"  height="200px">
                 </div>
               </div>
+           
               <!-- <div class="form-group mt-3">
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
               </div> -->
               <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
             </form>
           </div>
-          <div class="col-lg-4 m-auto">
-          <form action="forms/contact.php" method="get" role="form" class="php-email-form">
-              <div class="row">
+          <div class="row">
                 <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
-                <div class="row">
-                <div class="row-md-6 form-group mb-3 text-center">
-                  <input type="text" name="nup" class="form-control" id="nup" placeholder="Masukkan NUP" required>
-                </div>
-                <div class="row-md-6 form-group mb-3 text-center">
-                  <button type="button" class="btn btn-outline-info">Simpan</button>
-                </div> 
+          <div class="col-lg-4 m-auto">
+          <form action="" method="post">
+                <!-- <div class="row"> -->
+                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
+                  <input type="text" name="txt_nup" class="form-control" id="txt_nup" placeholder="Masukkan NUP">
+                <!-- </div> -->
+                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
+                  <button type="submit" class="btn btn-outline-info" name="nup">Simpan</button>
+                <!-- </div>  -->
+            </form>
           </div>
         </div>
 

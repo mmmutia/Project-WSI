@@ -18,7 +18,8 @@ if( isset($_POST['pesan']) ){
     // $ktp = $_FILES['txt_fotocopyktp'];
     $target_dir = "img/filepemesanan/";
     $target_file = $target_dir . basename($_FILES["txt_fotocopyktp"]["name"]);
-    $ktp = $_FILES["txt_fotocopyktp"]["name"];
+    $ktp = $_FILES['txt_fotocopyktp']['name'];
+    $filepemesanan = $_FILES['temp_name'];
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -167,7 +168,7 @@ if( isset($_POST['pesan']) ){
                             <input type="file" name="txt_fotocopyktp" class="form-control">
                         </div>
                         <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
-                        <a role="button" href="" class="btn btn-danger btn-user btn-block">Batal</a>
+                        <a role="button" href="portfolio.php" class="btn btn-danger btn-user btn-block">Batal</a>
                     </form>
                 </div>
                 <div class="for-pwd-htm">

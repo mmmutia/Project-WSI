@@ -8,7 +8,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 // $data = mysqli_fetch_array($query_mysql);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,6 +128,24 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           </ol>
         </div>
 
+<<<<<<< HEAD
+=======
+        <div class="col-lg-6">
+            <form action="pencarian.php" method="GET">
+            <input name="Harga">
+<<<<<<< Updated upstream
+            <input name="cluster"> 
+=======
+            <!-- <input name="cluster"> -->
+>>>>>>> Stashed changes
+           <button>Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> d460813416d4ab7c039ee020683ff7d2e266a7bd
       </div>
     </section><!-- End Our Portfolio Section -->
 

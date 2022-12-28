@@ -74,10 +74,7 @@ if($userName = $_SESSION['name']){
 
   <div class='dropdown'><a href='#'> $userName </a>
   <ul>
-  <li> <a href='profile-user.php'>Profil</a></li>
-  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    <li><a href='logout.php'>Logout</a></li>
   </ul>
 </div>
 
@@ -152,22 +149,22 @@ if($userName = $_SESSION['name']){
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Clients</p>
+            <p>Camelia</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
+            <p>Pinewood</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
+            <p>Plumeria</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
+            <p>Gardenia</p>
           </div>
 
         </div>
@@ -181,32 +178,35 @@ if($userName = $_SESSION['name']){
 
         <div class="section-title">
           <h2>Our Skills</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Rumah Modern Minimalis & Strategis Bernady Land Slawu</p>
+          <p>Kawasan rumah exclusive di tengah Kota Jember.Dengan bangunan berkualitas dari developer yang terpercaya.Kawasan yang memiliki sirkulasi udara lebih sejuk dan lokasi yang nyaman. Cluster Camelia, Rumah Modern Baru 2 Lantai & Strategis, Cluster Pinewood Kawasan Rumah Exclusive Di Tengah Kota Jember, Cluster Plumeria ialah Rumah Istimewa 2 Lantai Bernuansa Villa di Kota Jember Perumahan Bernady Land Slawu, Dan Cluster Gardenia</p>
         </div>
+   
 
         <div class="skills-content">
 
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">HTML <i class="val">100%</i></span>
+              <span class="skill">Camelia <i class="val">100%</i></span>
+              <
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">CSS <i class="val">90%</i></span>
+              <span class="skill">Pinewood <i class="val">90%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
+              <span class="skill">PLUMERIA <i class="val">75%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
+              <span class="skill">GARDENIA<i class="val">55%</i></span>
             </div>
           </div>
 
@@ -220,69 +220,13 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="section-title">
-          <h2>Tetstimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Bernady Land Slawu</h2>
+          <p>Menjadikan kawasan Bernady Land Slawu sebagai pusat dimana hati sebagai tempat paling nyaman berada - Bernady Land Slawu</p>
         </div>
 
-        <div class="testimonials-carousel swiper">
-          <div class="swiper-wrapper">
-            <div class="testimonial-item swiper-slide">
-              <img src="img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-            <div class="testimonial-item swiper-slide">
-              <img src="img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-            <div class="testimonial-item swiper-slide">
-              <img src="img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-            <div class="testimonial-item swiper-slide">
-              <img src="img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-            <div class="testimonial-item swiper-slide">
-              <img src="img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
+        <div class="section-title">
+          <p>Perumahan Bernady Land Jember Hunian mewah dengan view pegunungan, design nuansa Bali, dan lokasi strategis dekat dengan pusat kota. Dengan akses jalan yang ekstra lebar, hunian ini merupakan investasi properti terbaik di kota Jember. Karena Bernady Land Slawu di kembangkan menjadi kawasan kota mandiri di Jember.</p>
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
       </div>
     </section><!-- End Ttstimonials Section -->
