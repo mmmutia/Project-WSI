@@ -17,17 +17,17 @@ $query = mysqli_query($koneksi, "INSERT INTO cluster (foto_cluster,nama_cluster,
 // $data = mysqli_fetch_array($query_mysql);
 copy($temp, "img/filepemesanan/" . $image_files);
 
-    if ($query) {
-        echo "<script>
-    alert('simpan data sukses');
+    // if ($query) {
+    //     echo "<script>
+    // alert('simpan data sukses');
    
-    </script>";
-    } else {
-        echo "<script>
-    alert('simpan data gagal');
-    document.location= 'cluster.php';
-    </script>";
-    }
+    // </script>";
+    // } else {
+    //     echo "<script>
+    // alert('simpan data gagal');
+    // document.location= 'cluster.php';
+    // </script>";
+    // }
 }
 
 // if (isset($_POST['ubah'])){
@@ -144,11 +144,11 @@ if ($hapus) {
         </div>
         <div>
             <label>Harga</label>
-            <input type="number" name="harga" value="">
+            <input type="text" name="harga" value="">
         </div>
         <div>
             <label>Harga DP</label>
-            <input type="number" name="hargaDp" value="">
+            <input type="text" name="hargaDp" value="">
         </div>
         <div>
          <button type="submit" name ="simpan" aria-activedescendant="">Simpan</button>
@@ -194,9 +194,12 @@ if ($hapus) {
                          <img src="img/filepemesanan/ <?php echo $foto_cluster ?>" width="100px">
                         </td>
                         <td>
-                          hapus
+                          
                         </td>
                  </tr>
-                 <?php }?>
+                 <?php 
+                }
+                ?> 
             </tbody>
+            
           </table>
