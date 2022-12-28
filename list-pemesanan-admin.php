@@ -89,6 +89,7 @@ $SesLvl = $_SESSION['level'];
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
                 <li> <a href=''>Pembayaran</a></li>
+                <li> <a href='proggres.php'>Progres</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
