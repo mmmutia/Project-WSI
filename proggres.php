@@ -127,9 +127,6 @@ $data = mysqli_fetch_array($query_mysql);
     </section><!-- End Contact Section -->
 
      <!-- ======= Contact Section ======= -->
-
-  
-
      <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
      <div class="container">
@@ -167,7 +164,7 @@ $data = mysqli_fetch_array($query_mysql);
             ?>
              <tr class="text-center">
               <td><?php echo $no++?></td>
-              <td><?php echo $item['id_pemesanan'];?></td>
+              <td><?php echo $item['id_pemesanan_rumah'];?></td>
               <td><?php echo $item['id_user'];?></td>
               <td><?php echo $item['nama_pemesan'];?></td>
               <td><?php echo $item['status'];?></td>
@@ -211,7 +208,7 @@ $data = mysqli_fetch_array($query_mysql);
                               <div class="row">
 
                                 <p class="delete">
-                                  Yakin dek mau ngehapus data <?php echo $item['nama_pemesan'] ?> ?
+                                  Yakin ingin menghapus data <?php echo $item['nama_pemesan'] ?> ?
                                 </p>
 
                               </div>

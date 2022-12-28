@@ -29,14 +29,42 @@ if (isset($_POST['submit'])) {
 
         }
 
-        if ($num != 0) {
-            if ($userVal==$email && $passVal==$pass) {
-                $_SESSION['id'] = $id;
-                $_SESSION['name'] = $userName;
-                $_SESSION['level'] = $level;
-                header('Location: index.php');
-            }else{
-                $error = 'user atau password salah!!';
+        if ($num > 0){
+            if ($level <= 2) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index-admin.php');
+                }else{
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            }else if ($level == 3) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index-admin.php');
+                }else{
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            }else if ($level == 4) {
+                if ($userVal==$email && $passVal==$pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: index.php');
+                }else {
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            } else {
+                $error = 'Level anda tidak terdaftar!!';
                 echo "<script>alert('$error')</script>";
                 header('Location: login.php');
             }

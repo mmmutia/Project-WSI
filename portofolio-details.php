@@ -173,8 +173,8 @@ if (isset($_POST['simpan'])) {
                   <li><strong>Client</strong>: ASU Company</li>
                   <li><strong>Project date</strong>: 01 March, 2020</li>
                   <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                  <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-                  <a href=""><button type="submit" name="simpan" class="btn btn-success">Simpan</button></a>
+                  <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
+                  <a href=""><button type="submit" name="simpan" class="btn btn-dark">Simpan</button></a>
                 </ul>
               </div>
               <div class="portfolio-description">

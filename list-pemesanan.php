@@ -3,14 +3,20 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_user = $_SESSION['id_user'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$SesLvl = $_SESSION['level'];
+$nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah ");
 $data = mysqli_fetch_array($query_mysql);
-$query = $data['id_user'];
-$query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_user = '$query'");
-// $item = mysqli_fetch_array($query_mysql2);
 
+if(isset($_POST['nup'])){
+  $nup = $_POST['txt_nup'];
+
+  $query_nup = mysqli_query($koneksi,"INSERT INTO nup (nup) VALUES ('$nup')");
+  
+}
+$_SESSION['identitas'] = $data;
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +49,10 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -60,17 +70,17 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Gallery</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
+          <li><a class="" href="index-admin.php">Home</a></li>
+          <li><a href="about-admin.php">About</a></li>
+          <li><a href="services-admin.php">Layanan</a></li>
+          <li><a href="portfolio-admin.php">Gallery</a></li>
+          <li><a href="team-admin.php">Team</a></li>
+          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
 
           if($userName = $_SESSION['name']){
@@ -81,7 +91,8 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
             <ul>
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href=''>Cluster Yang Tersimpan</a></li>
+                <li> <a href='proggres.php'>Proggres</a></li>
+                <li> <a href=''>Pembayaran</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
@@ -108,9 +119,8 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Pemesanan Rumah</blockquote></h2>
+        <div class='d-flex justify-content-between align-items-center'>
+          <h2><blockquote>Proses Pemesanan Rumah</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -118,8 +128,8 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li>Pemesanan Rumah</li>
+            <li><a href="index-admin.php">Home</a></li>
+            <li>Profil</li>
           </ol>
         </div>
 
@@ -133,51 +143,51 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
           <div class="col-lg-8 m-auto">
             <form action="forms/contact.php" method="get" role="form" class="php-email-form">
               <div class="row">
-                <h1 class="text-center"><span>Data Pesanan Rumah</span></h1>
+                <h1 class="text-center"><span>Data Pemesan</span></h1>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah'];?>" required disabled>
+                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $_SESSION['identitas']['id_pemesanan_rumah'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan'];?>" required disabled>
+                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $_SESSION['identitas']['nama_pemesan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required disabled>
+                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required >
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required disabled>
+                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required disabled>
+                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required readonly >
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required disabled>
+                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required disabled>
+                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="fotoktp" id="fotoktp" value="<?php echo "<img src='img/$data[fotocopy_ktp]' width='70' height='90'/>";?>" required disabled>
+                <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>"  height="200px">
                 </div>
               </div>
-              <!-- <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
-              </div> -->
-              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
             </form>
           </div>
-          <div class="col-lg-4 m-auto">
-          <form action="forms/contact.php" method="get" role="form" class="php-email-form">
-              <div class="row">
-                <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+          </div>
+          
+          <div class="row">
+          <div class="col-lg-8 m-auto">
+          <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+          <form action="" method="post">
+                <!-- <div class="row"> -->
+                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <input type="email" class="form-control" name="nup" id="nup" value="<?php echo $nup;?>" required disabled> <br>
                   <h6>Info : Dalam 1 x 24 jam tim Marketing Bernady Land Slawu akan menghubungi anda untuk proses pemilihan blok rumah.</h6><br> 
                   <h6>Hubungi kontak informasi dibawah jika diperlukan.</h6> 
-                </div>
+                <!-- </div>  -->
+            </form>
           </div>
-        </div>
-
-      </div>
+        </div> 
+        <br>
     </section><!-- End Contact Section -->
 
 
@@ -216,9 +226,9 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
@@ -227,10 +237,10 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
             </ul>
           </div>
 
@@ -289,6 +299,8 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+
 
 </body>
 
