@@ -158,7 +158,7 @@ $data = mysqli_fetch_array($query_mysql);
 
           
           <?php
-          $query_mysql2 = mysqli_query($koneksi,"SELECT pemesanan_rumah.nama_pemesan, proggres.id_user, proggres.tanggal, proggres.id, proggres.id_pemesanan, proggres.status, proggres.keterangan, proggres.foto FROM proggres INNER JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=proggres.id_pemesanan");
+          $query_mysql2 = mysqli_query($koneksi,"SELECT pemesanan_rumah.nama_pemesan, proggres.id_user, proggres.tanggal, proggres.id, proggres.id_pemesanan, proggres.status, proggres.keterangan, proggres.foto FROM proggres INNER JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=proggres.id_pemesanan_rumah");
           $no = 1;
           while ($item = mysqli_fetch_array($query_mysql2)) {
             ?>
@@ -370,7 +370,7 @@ $data = mysqli_fetch_array($query_mysql);
 
 
                 <select class="form-control" name="id_pemesanan_edit" required>
-                <option value='<?php echo $item['id_pemesanan'];?>'><?php echo $item['id_pemesanan'];?> - <?php echo $item['nama_pemesan'];?></option>
+                <option value='<?php echo $item['id_pemesanan_rumah'];?>'><?php echo $item['id_pemesanan_rumah'];?> - <?php echo $item['nama_pemesan'];?></option>
                   <?php
                  
                   $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
@@ -824,7 +824,7 @@ $data = mysqli_fetch_array($query_mysql);
                 <label for="exampleFormControlSelect1">Id Pemesanan</label>
 
 
-                <select class="form-control" name="id_pemesanan" required>
+                <select class="form-control" name="id_pemesanan_rumah" required>
                 <option value='#'> Pilih Id</option>
                   <?php
                  
@@ -1102,7 +1102,7 @@ require("koneksi.php");
 session_start();
 error_reporting(0);
 if (isset($_POST['add-proggres'])) {
-  $idpemesanan = $_POST['id_pemesanan'];
+  $idpemesanan = $_POST['id_pemesanan_rumah'];
   $iduser = $_POST['id_user'];
   $statuspemesanan = $_POST['status'];
   $keterangan = $_POST['keterangan'];
@@ -1112,7 +1112,7 @@ if (isset($_POST['add-proggres'])) {
   move_uploaded_file($file_tmp, './img/proggres/' . $fotoadd);
 
 
-  $query    = "INSERT INTO `proggres` (`id_pemesanan`, `id_user` ,`status`, `keterangan`, `foto`) VALUES ('$idpemesanan', '$iduser', '$statuspemesanan', '$keterangan', '$fotoadd')";
+  $query    = "INSERT INTO `proggres` (`id_pemesanan_rumah`, `id_user` ,`status`, `keterangan`, `foto`) VALUES ('$idpemesanan', '$iduser', '$statuspemesanan', '$keterangan', '$fotoadd')";
   $result   = mysqli_query($koneksi, $query);
 
   if ($result) {
@@ -1146,7 +1146,7 @@ move_uploaded_file($file_tmp, './img/proggres/' . $fotoedit);
 if (isset($_POST['edit-user'])) {
   if (isset($_POST['edit-user'])) {
     if ($fotoedit == "") {
-      $sql = mysqli_query($koneksi, "UPDATE `proggres` SET id_pemesanan='$idpemesananedit', id_user='$iduseredit',status='$statuspemesananedit',keterangan='$keteranganedit' WHERE id='$id'");
+      $sql = mysqli_query($koneksi, "UPDATE `proggres` SET id_pemesanan_rumah='$idpemesananedit', id_user='$iduseredit',status='$statuspemesananedit',keterangan='$keteranganedit' WHERE id='$id'");
       // header('location:users.view.php');
       echo "<script>
             Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
@@ -1164,7 +1164,7 @@ if (isset($_POST['edit-user'])) {
         unlink("./img/proggres/$fotoproggresedit");
       }
 
-      $sql = mysqli_query($koneksi, "UPDATE `proggres` SET id_pemesanan='$idpemesananedit', id_user='$iduseredit',status='$statuspemesananedit',keterangan='$keteranganedit', foto = '$fotoedit' WHERE id='$id'");
+      $sql = mysqli_query($koneksi, "UPDATE `proggres` SET id_pemesanan_rumah='$idpemesananedit', id_user='$iduseredit',status='$statuspemesananedit',keterangan='$keteranganedit', foto = '$fotoedit' WHERE id='$id'");
       // header('location:users.view.php');
       echo "<script>
             Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
