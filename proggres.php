@@ -208,7 +208,7 @@ $data = mysqli_fetch_array($query_mysql);
                               <div class="row">
 
                                 <p class="delete">
-                                  Yakin dek mau ngehapus data <?php echo $item['nama_pemesan'] ?> ?
+                                  Yakin ingin menghapus data <?php echo $item['nama_pemesan'] ?> ?
                                 </p>
 
                               </div>

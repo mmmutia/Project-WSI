@@ -77,7 +77,7 @@ $userName = $_SESSION['name'];
                 <ul>
                   <li> <a href='profile-user.php'>Profil</a></li>
                   <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='proggres.php'>Progres</a></li>
                   <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
                   <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
                 </ul>
@@ -90,7 +90,7 @@ $userName = $_SESSION['name'];
                 <ul>
                   <li> <a href='profile-user.php'>Profil</a></li>
                   <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres.php'>Proggres</a></li>
+                  <li> <a href='proggres.php'>Progres</a></li>
                   <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
                   <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
                 </ul>
@@ -103,7 +103,7 @@ $userName = $_SESSION['name'];
                 <ul>
                   <li> <a href='profile-user.php'>Profil</a></li>
                   <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres_user.php'>Proggres</a></li>
+                  <li> <a href='proggres_user.php'>Progres</a></li>
                   <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
                   <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
                 </ul>
