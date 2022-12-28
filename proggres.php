@@ -164,7 +164,7 @@ $data = mysqli_fetch_array($query_mysql);
             ?>
              <tr class="text-center">
               <td><?php echo $no++?></td>
-              <td><?php echo $item['id_pemesanan'];?></td>
+              <td><?php echo $item['id_pemesanan_rumah'];?></td>
               <td><?php echo $item['id_user'];?></td>
               <td><?php echo $item['nama_pemesan'];?></td>
               <td><?php echo $item['status'];?></td>
