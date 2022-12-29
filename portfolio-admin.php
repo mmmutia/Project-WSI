@@ -1,20 +1,13 @@
-<?php  
+<?php
 require('koneksi.php');
 session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi,"select * from cluster");
+// $data = mysqli_fetch_array($query_mysql);
 
 ?>
-
-<?php  
-require('koneksi.php');
-session_start();
-
-$userName = $_SESSION['name'];
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +34,9 @@ $userName = $_SESSION['name'];
   <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+
 
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
@@ -62,44 +58,49 @@ $userName = $_SESSION['name'];
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
-       <ul>
-        <li><a href="index-admin.php">Home</a></li>
-        <li><a href="about-admin.php">About</a></li>
-        <li><a href="services-admin.php">Layanan</a></li>
-        <li><a class="active" href="portfolio-admin.php">Cluster</a></li>
-        <li><a href="team-admin.php">Team</a></li>
-        <li><a href="contact-admin.php">Contact Us</a></li>
+        <ul>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="services.php">Layanan</a></li>
+          <li><a class="active" href="portfolio.php">Cluster</a></li>
+          <li><a href="team.php">Team</a></li>
+          <li><a href="contact.php">Contact Us</a></li>
+          <?php
 
-        <?php
+          if ($userName = $_SESSION['name']) {
 
-if($userName = $_SESSION['name']){
-  
-  echo "
-  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-    <ul>
-      <li> <a href='profile-user.php'>Profil</a></li>
-      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-      <li> <a href=''>Pembayaran</a></li>
-      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-    </ul>
-  </div>
-  ";
+            echo "
 
-}else{
-  echo "
-  <li><a href='login.php'>Login</a></li>
-  ";
-}
+            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+            <ul>
+            <li> <a href='profile-user.php'>Profil</a></li>
+            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+            </ul>
+          </div>
 
-?>
-       </ul>
-          
-          
-        
+            ";
+          } else {
+            echo "
+            <li><a href='login.php'>Login</a></li>
+            ";
+          }
+
+          ?>
+
+
+
+
+
+        </ul>
+
+
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -113,269 +114,85 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Cluster Perumahan</blockquote></h2>
+          <h2>
+            <blockquote>Cluster Perumahan</blockquote>
+          </h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
               font-size: larger;
             }
-        </style>
+          </style>
           <ol>
-            <li><a href="index-admin.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li>Cluster Perumahan</li>
           </ol>
         </div>
 
+<<<<<<< HEAD
+=======
+        <div class="col-lg-6">
+            <form action="pencarian.php" method="GET">
+            <input name="Harga">
+<<<<<<< Updated upstream
+            <input name="cluster"> 
+=======
+            <!-- <input name="cluster"> -->
+>>>>>>> Stashed changes
+           <button>Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> d460813416d4ab7c039ee020683ff7d2e266a7bd
       </div>
     </section><!-- End Our Portfolio Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
+    <center><a href="cluster.php" class="btn btn-secondary"><i class="fa fa-table"></i> Lihat Data Cluster  </a> <a href="tambah-cluster.php" class="btn btn-secondary"><i class="fa fa-folder-plus"></i> Tambah Cluster</a><center><br>
       <div class="container">
-
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-boulevard">Boulevard Magnolia</li>
-              <li data-filter=".filter-camelia">Camelia</li>
-              <li data-filter=".filter-gardenia">Edge Gardenia</li>
-              <li data-filter=".filter-new-edge">New Edge Gardenia</li>
-              <li data-filter=".filter-pinewood">Pinewood</li>
-              <li data-filter=".filter-plumeria">Plumeria</li>
-              <li data-filter=".filter-qbix">QBIX</li>
-              <li data-filter=".filter-ruko">Ruko</li>
-              <li data-filter=".filter-soho">SOHO</li>
+              <li data-filter=".boulevard">Boulevard Magnolia</li>
+              <li data-filter=".camelia">Camelia</li>
+              <li data-filter=".gardenia">Edge Gardenia</li>
+              <li data-filter=".edge">New Edge Gardenia</li>
+              <li data-filter=".pinewood">Pinewood</li>
+              <li data-filter=".plumeria">Plumeria</li>
+              <li data-filter=".qbix">QBIX</li>
+              <li data-filter=".ruko">Ruko</li>
+              <li data-filter=".soho">SOHO</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-boulevard">
+        <?php
+        while ($item = mysqli_fetch_array($query_mysql)){
+          ?>
+          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
             <div class="portfolio-item">
               <img src="img/boluevard magnolia.jpeg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h3>Boulevard Magnolia</h3>
+                <h3><?php echo $item['nama_cluster'];?></h3>
                 <div>
                   <a href="img/gambar9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-search"></i></a>
-                  <a href="portfolio-details-magnolia-admin.php" title="Cluster Details" ><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details-admin.php?id_cluster=<?= $item['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
+                  <!-- <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a> -->
                 </div>
               </div>
             </div>
           </div>
+          <?php
+        }
+        ?>
 
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
-            <div class="portfolio-item">
-              <img src="img/camelia.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Camelia  Type A</h3>
-                <div>
-                  <a href="img/gambar6.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
-            <div class="portfolio-item">
-              <img src="img/Camelia 2.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Camelia  Type B</h3>
-                <div>
-                  <a href="img/gambar17.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-camelia">
-            <div class="portfolio-item">
-              <img src="img/Camelia 3.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Camelia  Type C</h3>
-                <div>
-                  <a href="img/gambar18.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-camelia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-gardenia">
-            <div class="portfolio-item">
-              <img src="img/edge gardenia.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Edge Gardenia</h3>
-                <div>
-                  <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-gardenia-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-new-edge">
-            <div class="portfolio-item">
-              <img src="img/new edge gardenia.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>New Edge Gardenia</h3>
-                <div>
-                  <a href="img/gambar4.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-new-edge-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
-            <div class="portfolio-item">
-              <img src="img/pinewood.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Pinewood Prime</h3>
-                <div>
-                  <a href="img/gambar7.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
-            <div class="portfolio-item">
-              <img src="img/Pinewood 5.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Pinewood Millenial</h3>
-                <div>
-                  <a href="img/gambar10.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
-            <div class="portfolio-item">
-              <img src="img/Pinewood 6.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Pinewood Terra</h3>
-                <div>
-                  <a href="img/gambar13.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
-            <div class="portfolio-item">
-              <img src="img/Pinewood 7.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Pinewood Magna</h3>
-                <div>
-                  <a href="img/gambar11.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-pinewood">
-            <div class="portfolio-item">
-              <img src="img/Pinewood 8.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Pinewood Varsa</h3>
-                <div>
-                  <a href="img/gambar12.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-pinewood-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
-            <div class="portfolio-item">
-              <img src="img/plumeria.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Plumeria  Type A</h3>
-                <div>
-                  <a href="img/gambar5.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
-            <div class="portfolio-item">
-              <img src="img/Plumeria 2.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Plumeria  Type B</h3>
-                <div>
-                  <a href="img/gambar14.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
-            <div class="portfolio-item">
-              <img src="img/Plumeria 3.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Plumeria  Type C</h3>
-                <div>
-                  <a href="img/gambar15.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-plumeria">
-            <div class="portfolio-item">
-              <img src="img/Plumeria 4.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Plumeria  Type D</h3>
-                <div>
-                  <a href="img/gambar16.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-plumeria-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-qbix">
-            <div class="portfolio-item">
-              <img src="img/qbix.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>QBIX</h3>
-                <div>
-                  <a href="img/gambar1.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-qbix-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-ruko">
-            <div class="portfolio-item">
-              <img src="img/soho.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Ruko</h3>
-                <div>
-                  <a href="img/gambar2.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-ruko-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-wrap filter-soho">
-            <div class="portfolio-item">
-              <img src="img/ruko.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h3>Soho</h3>
-                <div>
-                  <a href="img/gambar8.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-soho-admin.php" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
 
@@ -421,10 +238,10 @@ if($userName = $_SESSION['name']){
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="portfolio.php">Cluster Perumahan</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Fasilitas</a></li>
             </ul>
           </div>
 
@@ -470,6 +287,20 @@ if($userName = $_SESSION['name']){
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div class="modal fade" id="modalLogout">
+    <div class="modal-dialog">
+      <div class="modal-content" style="margin-top:100px;">
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+          </div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+          <div class="modal-footer">
+            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
@@ -480,9 +311,18 @@ if($userName = $_SESSION['name']){
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="vendor/waypoints/noframework.waypoints.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
+  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
+
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+  <script type="text/javascript">
+    function confirmLogout(logout_url){
+      $('#modalLogout').modal('show', {backdrop: 'static'});
+      document.getElementById('logout_link').setAttribute('href', logout_url);
+    }
+  </script>
 
 </body>
 

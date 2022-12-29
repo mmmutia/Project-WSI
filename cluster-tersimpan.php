@@ -263,6 +263,21 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <div class="modal fade" id="modalLogout">
+    <div class="modal-dialog">
+      <div class="modal-content" style="margin-top:100px;">
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+          </div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+          <div class="modal-footer">
+            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
@@ -275,6 +290,13 @@ $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_us
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+  <script type="text/javascript">
+    function confirmLogout(logout_url){
+      $('#modalLogout').modal('show', {backdrop: 'static'});
+      document.getElementById('logout_link').setAttribute('href', logout_url);
+    }
+  </script>
 
 </body>
 

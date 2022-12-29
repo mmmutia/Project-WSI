@@ -86,10 +86,10 @@ $SesLvl = $_SESSION['level'];
 
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
-              <li> <a href='profile-user.php'>Profil</a></li>
-                <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-                <li> <a href='pembayaran-user.php'>Pembayaran</a></li>
-              <li><a href='logout.php'>Logout</a></li>
+            <li> <a href='profile-user.php'>Profil</a></li>
+            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
 
@@ -261,6 +261,21 @@ $SesLvl = $_SESSION['level'];
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <div class="modal fade" id="modalLogout">
+    <div class="modal-dialog">
+      <div class="modal-content" style="margin-top:100px;">
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+          </div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+          <div class="modal-footer">
+            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
@@ -274,7 +289,12 @@ $SesLvl = $_SESSION['level'];
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
-
+  <script type="text/javascript">
+    function confirmLogout(logout_url){
+      $('#modalLogout').modal('show', {backdrop: 'static'});
+      document.getElementById('logout_link').setAttribute('href', logout_url);
+    }
+  </script>
   
 
 </body>

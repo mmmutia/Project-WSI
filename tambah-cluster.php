@@ -1,10 +1,51 @@
-<?php  
-require('koneksi.php');
+<?php
+require ('koneksi.php');
 session_start();
 error_reporting(0);
-
 $userName = $_SESSION['name'];
+$SesLvl = $_SESSION['level'];
 
+if (isset($_POST['simpan'])){
+    // $id_cluster = $_POST['id_cluster'];
+    $foto = $_FILES['foto_cluster']['name'];
+    $temp = $_FILES['foto_cluster']['tmp_name'];
+    $nama_cluster = $_POST['nama_cluster'];
+    $blok = $_POST['blok'];
+    $jumlah_unit = $_POST['jumlah_unit'];
+    $harga = $_POST['harga'];
+    $hargaDp = $_POST['hargaDp'];
+    $image_files = $nama_cluster. '.jpg';
+
+//     $queryy ="INSERT INTO cluster (foto_cluster,nama_cluster,blok,harga,harga_dp) VALUES ('$image_files','$nama_cluster','$blok','$harga','$hargaDp')";
+//    $query =mysqli_query ($koneksi, $queryy);
+$query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
+// $data = mysqli_fetch_array($query_mysql);
+copy($temp, "img/filepemesanan/" . $image_files);
+$result = mysqli_query($koneksi, $query);
+if($result){
+  echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+}
+
+}
+
+if (isset($_POST['hapus'])) {
+
+    $hapus = mysqli_query($koneksi, "DELETE FROM cluster
+        WHERE id_cluster = '$_POST[id_cluster]'
+    ");
+
+if ($hapus) {
+    echo "<script>
+    alert('hapus data sukses');
+    document.location= 'index.php?halaman=cluster';
+    </script>";
+} else {
+    echo "<script>
+    alert('hapus data gagal');
+    document.location= 'index.php?halaman=cluster';
+    </script>";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +55,7 @@ $userName = $_SESSION['name'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Contact - Bernady Land Slawu</title>
+  <title>Tambah Cluster - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,6 +78,10 @@ $userName = $_SESSION['name'];
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -52,7 +97,7 @@ $userName = $_SESSION['name'];
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
+        <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
@@ -60,33 +105,35 @@ $userName = $_SESSION['name'];
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
+          <li><a href="about-admin.php">About</a></li>
+          <li><a href="services-admin.php">Layanan</a></li>
+          <li><a href="portfolio-admin.php">Cluster</a></li>
+          <li><a href="team-admin.php">Team</a></li>
+          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
 
-if($userName = $_SESSION['name']){
-  
-  echo "
-  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-    <ul>
-      <li> <a href='profile-user.php'>Profil</a></li>
-      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-      <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-    </ul>
-  </div>
-  ";
+          if($userName = $_SESSION['name']){
+            
+            echo "
 
-}else{
-  echo "
-  <li><a href='login.php'>Login</a></li>
-  ";
-}
+            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+            <ul>
+              <li> <a href='profile-user.php'>Profil</a></li>
+                <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+                <li> <a href='pembayaran-user.php'>Pembayaran</a></li>
+              <li><a href='logout.php'>Logout</a></li>
+            </ul>
+          </div>
 
-?>
+            ";
+
+          }else{
+            echo "
+            <li><a href='login.php'>Login</a></li>
+            ";
+          }
+
+          ?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -100,9 +147,8 @@ if($userName = $_SESSION['name']){
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Contact</blockquote></h2>
+        <div class='d-flex justify-content-between align-items-center'>
+          <h2><blockquote>Tambah Cluster</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -111,83 +157,65 @@ if($userName = $_SESSION['name']){
         </style>
           <ol>
             <li><a href="index-admin.php">Home</a></li>
-            <li>Contact</li>
+            <li><a href="portfolio-admin.php">Cluster Perumahan</a></li>
+            <li>Tambah Cluster Perumahan</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Contact Section -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Data Pemesan Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
-
         <div class="row">
-
-          <div class="col-lg-6">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68126<p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>bernadylandslawu@gmail.com<br>marketingpoint@gmail.com</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bx bx-phone-call"></i>
-                  <h3>Call Us</h3>
-                  <p>+6281 234 960 399</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            <form action="forms/contact-admin.php" method="post" role="form" class="php-email-form">
+          <div class="col-lg-8 m-auto">
+            <form action="" method="get" role="form" class="php-email-form">
               <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                <h1 class="text-center"><span>Tambah Cluster</span></h1>
+                <div class="row-md-6 form-group mb-3">
+                  <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                <div class="row-md-6 form-group mb-3">
+                  <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required>
+                </div>
+                <div class="row-md-6 form-group mb-3">
+                  <input type="text" name="jumlah_unit" class="form-control" id="jumlah_unit" placeholder="Jumlah Unit Rumah *" value="" required>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required >
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required >
+                </div>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
+                  <label>Foto Cluster</label>
+                  <input type="file" name="foto_cluster" accept="image/*" required>
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
+                <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
                 </div>
               </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+           
+              <!-- <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
+              </div> -->
+              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
             </form>
           </div>
-
-        </div>
+         
 
       </div>
     </section><!-- End Contact Section -->
 
+
     <!-- ======= Map Section ======= -->
-    <section class="map mt-2">
+    <!-- <section class="map mt-2">
       <div class="container-fluid p-0">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-    </section><!-- End Map Section -->
+    </section>End Map Section -->
 
   </main><!-- End #main -->
 
@@ -241,7 +269,7 @@ if($userName = $_SESSION['name']){
               Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
               68126<br>
               Indonesia <br><br>
-              <strong>Phone:</strong> +62 812 3123 0899<br>
+              <strong>Phone:</strong><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a><br>
               <strong>Email:</strong> bernadylandslawu@gmail.com<br>
             </p>
 
@@ -278,21 +306,6 @@ if($userName = $_SESSION['name']){
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div class="modal fade" id="modalLogout">
-    <div class="modal-dialog">
-      <div class="modal-content" style="margin-top:100px;">
-          <div class="modal-header">
-            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-          </div>
-          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-          <div class="modal-footer">
-            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-          </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
@@ -306,12 +319,7 @@ if($userName = $_SESSION['name']){
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
 
-  <script type="text/javascript">
-    function confirmLogout(logout_url){
-      $('#modalLogout').modal('show', {backdrop: 'static'});
-      document.getElementById('logout_link').setAttribute('href', logout_url);
-    }
-  </script>
+
 
 </body>
 

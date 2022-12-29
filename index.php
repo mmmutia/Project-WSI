@@ -68,66 +68,28 @@ $userName = $_SESSION['name'];
 
           <?php
 
-          if($userName = $_SESSION['name']){
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            if($data['level'] == '2'){
+}else{
+  echo "
+  <li><a href='login.php'>Login</a></li>
+  ";
+}
 
-              echo "
-              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
-                <ul>
-                  <li> <a href='profile-user.php'>Profil</a></li>
-                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres.php'>Progres</a></li>
-                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-                </ul>
-              </div>
-              ";
-            }elseif($data['level'] == '3'){
-
-              echo "
-              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
-                <ul>
-                  <li> <a href='profile-user.php'>Profil</a></li>
-                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres.php'>Progres</a></li>
-                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-                </ul>
-              </div>
-              ";
-            }elseif($data['level'] == '4'){
-
-              echo "
-              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
-                <ul>
-                  <li> <a href='profile-user.php'>Profil</a></li>
-                  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                  <li> <a href='proggres_user.php'>Progres</a></li>
-                  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-                </ul>
-              </div>
-              ";
-            }
-            elseif($data['level'] == '1'){
-              echo "
-              <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName</a>
-                <ul>
-                  <li> <a href='profile-user.php'>Profil</a></li>
-                  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-                </ul>
-              </div>
-              ";
-            }
-
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
-
-          ?>
+?>
 
 
 
@@ -152,7 +114,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -166,7 +128,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='' class='btn-get-started animate__animated animate__fadeInUp'>Read More</a>
+      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
     </div>
   </div>
 
@@ -183,7 +145,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">The Heart of Jember</h2>
           <p class="animate__animated animate__fadeInUp">Terletak ditengah-tengah wilayah kota yang berbentuk menyerupai hati. Menghadirkan lingkungan yang bersih nan asri, Bernady Land Slawu dibangun dengan infrastruktur bawah tanah dan didukung water treatment plant untuk memenuhi kebutuhan air bersih penghuni.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
@@ -192,7 +154,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">City Outside Tranquility Inside</h2>
           <p class="animate__animated animate__fadeInUp">Mengusung konsep kawasan hijau yang bebas dari polusi, lebih sehat dan lebih asri serta alami memberikan aura positif dan semangat.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
         </div>
       </div>
 
