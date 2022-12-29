@@ -3,8 +3,9 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
-if( isset($_POST['pesan']) ){
+if( isset($_POST['tambah']) ){
     // $Id_user = $_POST['txt_id_user'];
     // $foto = $_FILES['foto_cluster']['name'];
     // $temp = $_FILES['foto_cluster']['tmp_name'];
@@ -14,10 +15,10 @@ if( isset($_POST['pesan']) ){
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
     $hargaDp = $_POST['hargaDp'];
-    $filter = $_POST['txt_filter'];
+    // $filter = $_POST['txt_filter'];
     $target_dir = "img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
-    $addcluster = $_FILES['txt_fotocluster']['name'];
+    $uploadcluster = $_FILES['txt_fotocluster']['name'];
     $filecluster = $_FILES['temp_name'];
     $image_files = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -46,7 +47,7 @@ if( isset($_POST['pesan']) ){
     }
     
 
-    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,filter,foto_cluster) VALUES ($nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$filter','$addcluster')";
+    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES (''$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$uploadcluster')";
 
     $result = mysqli_query($koneksi, $query);
     
@@ -227,12 +228,12 @@ if( isset($_POST['pesan']) ){
         <div class="row">
           <div class="col-lg-8 m-auto">
             <!-- <form action="" method="get" role="form" class="php-email-form"> -->
-            <form class="php-email-form" action="" method="POST" enctype="multipart/form-data">
+            <form class="php-email-form" action="tambah-cluster.php" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Tambah Cluster</span></h1>
                 <div class="row-md-6 form-group mb-3">
                   <!-- <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required> -->
-                  <input type="text" name="nama_cluster" class="form-control" placeholder="Nama Cluster *" value="">
+                  <input type="text" name="txt_namacluster" class="form-control" placeholder="Nama Cluster *" value="">
                 </div>
                 <div class="row-md-6 form-group mb-3">
                   <!-- <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required> -->
@@ -249,10 +250,6 @@ if( isset($_POST['pesan']) ){
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
                   <input type="text" class="form-control" name="hargaDp" placeholder="Harga DP*" value="">
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required > -->
-                  <input type="text" class="form-control" name="txt_filter" placeholder="Filter *" value="">
                 </div>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
