@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2022 at 04:22 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Dec 29, 2022 at 04:08 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,24 +43,7 @@ CREATE TABLE `cluster` (
 --
 
 INSERT INTO `cluster` (`id_cluster`, `foto_cluster`, `nama_cluster`, `blok`, `jumlah_unit`, `harga`, `harga_dp`, `filter`) VALUES
-(1, '', 'Boulevard Magnolia', 'A-BM', 0, 'Rp 400.000.000', 'Rp 40.000.000', 'boulevard'),
-(2, '', 'Camelia Type A', 'B-CA', 0, 'Rp 500.000.000', 'Rp 50.000.000', 'camelia'),
-(3, '', 'Camelia Type B', 'B-CB', 0, 'Rp 500.000.000', 'Rp 50.000.000', 'camelia'),
-(4, '', 'Camelia Type C', 'B-CC', 0, 'Rp 500.000.000', 'Rp 50.000.000', 'camelia'),
-(5, '', 'Edge Gardenia', 'C-EG', 0, 'Rp 600.000.000', 'Rp 60.000.000', 'gardenia'),
-(6, '', 'New Edge Gardenia', 'D-NEG', 0, 'Rp 700.000.000', 'Rp 70.000.000', 'edge'),
-(7, '', 'Pinewood Prime', 'E-PP', 0, 'Rp 1.000.000.000', 'Rp 100.000.000', 'pinewood'),
-(8, '', 'Pinewood Millenial', 'E-PMI', 0, 'Rp 200.000.000', 'Rp 20.000.000', 'pinewood'),
-(9, '', 'Pinewood Terra', 'E-PT', 0, 'Rp 800.000.000', 'Rp 80.000.000', 'pinewood'),
-(10, '', 'Pinewood Magna', 'E-PMA', 0, 'Rp 800.000.000', 'Rp 80.000.000', 'pinewood'),
-(11, '', 'Pinewood Varsa', 'E-PV', 0, 'Rp 800.000.000', 'Rp 80.000.000', 'pinewood'),
-(12, '', 'Plumeria Type A', 'F-PA', 0, 'Rp 700.000.000', 'Rp 70.000.000', 'plumeria'),
-(13, '', 'Plumeria Type B', 'F-PB', 0, 'Rp 700.000.000', 'Rp 70.000.000', 'plumeria'),
-(14, '', 'Plumeria Type C', 'F-PC', 0, 'Rp 700.000.000', 'Rp 70.000.000', 'plumeria'),
-(15, '', 'Plumeria Type D', 'F-PD', 0, 'Rp 700.000.000', 'Rp 70.000.000', 'plumeria'),
-(16, '', 'QBIX', 'G-QB', 0, 'Rp 800.000.000', 'Rp 80.000.000', 'qbix'),
-(17, '', 'SOHO', 'H-SH', 0, 'Rp 800.000.000', 'Rp 80.000.000', 'soho'),
-(18, '', 'Ruko Avenue 3', 'I-RK', 0, 'Rp 1.000.000.000', 'Rp 100.000.000', 'ruko');
+(4, '', 'Magnolia', 'A-BN', 200, 'Rp 900.000.000', 'Rp 90.000.000', '');
 
 -- --------------------------------------------------------
 
@@ -104,6 +87,7 @@ CREATE TABLE `message_kontak` (
 
 CREATE TABLE `nup` (
   `id_nup` int(11) NOT NULL,
+  `id_pemesanan_rumah` int(11) NOT NULL,
   `nup` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -157,13 +141,15 @@ CREATE TABLE `pemesanan_rumah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pemesanan_rumah`
+-- Triggers `pemesanan_rumah`
 --
-
-INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `no_telp_pemesan`, `id_cluster`, `tgl_pemesanan`, `nup`, `fotocopy_ktp`, `jenis_pembayaran`, `jumlah_dp`, `detail_blok`, `id_user`) VALUES
-(1, 'Mutia Budi Utami', 'JL. TAMANSURUH', '082359338615', 1, '2022-12-09', '', '242868975_3144954972453045_3878055506550562439_n.jpg', 'InHouse', '', '', 5),
-(8, 'Anjas', 'Anjas', '', 3, '0000-00-00', '', '', '', '', '', 6),
-(9, 'Ilham Ibnu Ahmad', 'Leces', '081', 12, '2022-12-26', '', '', '', '', '', 8);
+DELIMITER $$
+CREATE TRIGGER `pemesanan_rumah` AFTER INSERT ON `pemesanan_rumah` FOR EACH ROW BEGIN
+UPDATE cluster SET jumlah_unit = jumlah_unit - 1
+WHERE id_cluster = new.id_cluster;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -173,25 +159,13 @@ INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `
 
 CREATE TABLE `proggres` (
   `id` int(2) NOT NULL,
-  `id_pemesanan_rumah` int(2) NOT NULL,
+  `id_pemesanan` int(2) NOT NULL,
   `id_user` int(2) NOT NULL,
   `status` enum('Pengerjaan','Selesai','','') NOT NULL,
   `keterangan` text NOT NULL,
   `foto` text NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `proggres`
---
-
-INSERT INTO `proggres` (`id`, `id_pemesanan_rumah`, `id_user`, `status`, `keterangan`, `foto`, `tanggal`) VALUES
-(14, 1, 5, 'Pengerjaan', 'hahahah', 'testaja.jpg', '2022-12-26'),
-(16, 1, 5, 'Pengerjaan', 'ahah', 'testaja.jpg', '2022-12-26'),
-(17, 1, 5, 'Pengerjaan', 'otol', 'testaja.jpg', '2022-12-26'),
-(18, 1, 5, 'Pengerjaan', 'toltoltol', 'ah.jpg', '2022-12-26'),
-(19, 1, 5, 'Pengerjaan', 'toltoltoltol', 'ah.jpg', '2022-12-26'),
-(21, 1, 5, 'Pengerjaan', 'Renov', 'Pamflet OPREC HIMANIKA.png', '2022-12-28');
 
 -- --------------------------------------------------------
 
@@ -217,14 +191,6 @@ CREATE TABLE `simpan_cluster` (
   `id_cluster` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `simpan_cluster`
---
-
-INSERT INTO `simpan_cluster` (`id_simpan`, `id_cluster`, `id_user`) VALUES
-(8, 2, 5),
-(10, 15, 5);
 
 -- --------------------------------------------------------
 
@@ -294,7 +260,8 @@ ALTER TABLE `level_detail`
 -- Indexes for table `nup`
 --
 ALTER TABLE `nup`
-  ADD PRIMARY KEY (`id_nup`);
+  ADD PRIMARY KEY (`id_nup`),
+  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
 
 --
 -- Indexes for table `pembayaran_dp`
@@ -315,15 +282,15 @@ ALTER TABLE `pembayaran_inhouse`
 --
 ALTER TABLE `pemesanan_rumah`
   ADD PRIMARY KEY (`id_pemesanan_rumah`),
-  ADD KEY `id_cluster` (`id_cluster`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_cluster` (`id_cluster`);
 
 --
 -- Indexes for table `proggres`
 --
 ALTER TABLE `proggres`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_pemesanan` (`id_pemesanan_rumah`),
+  ADD KEY `id_pemesanan` (`id_pemesanan`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -361,6 +328,12 @@ ALTER TABLE `user_detail`
 --
 
 --
+-- AUTO_INCREMENT for table `cluster`
+--
+ALTER TABLE `cluster`
+  MODIFY `id_cluster` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `level_detail`
 --
 ALTER TABLE `level_detail`
@@ -388,7 +361,7 @@ ALTER TABLE `pembayaran_inhouse`
 -- AUTO_INCREMENT for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `proggres`
@@ -425,25 +398,56 @@ ALTER TABLE `user_detail`
 --
 
 --
+-- Constraints for table `nup`
+--
+ALTER TABLE `nup`
+  ADD CONSTRAINT `nup_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pembayaran_dp`
+--
+ALTER TABLE `pembayaran_dp`
+  ADD CONSTRAINT `pembayaran_dp_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pembayaran_inhouse`
+--
+ALTER TABLE `pembayaran_inhouse`
+  ADD CONSTRAINT `pembayaran_inhouse_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  ADD CONSTRAINT `pemesanan_rumah_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`),
-  ADD CONSTRAINT `pemesanan_rumah_ibfk_3` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`);
+  ADD CONSTRAINT `pemesanan_rumah_ibfk_3` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pemesanan_rumah_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`);
 
 --
 -- Constraints for table `proggres`
 --
 ALTER TABLE `proggres`
-  ADD CONSTRAINT `proggres_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`),
-  ADD CONSTRAINT `proggres_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`);
+  ADD CONSTRAINT `proggres_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`),
+  ADD CONSTRAINT `proggres_ibfk_3` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `serah_terima`
+--
+ALTER TABLE `serah_terima`
+  ADD CONSTRAINT `serah_terima_ibfk_2` FOREIGN KEY (`id_pembayaran_dp`) REFERENCES `pembayaran_dp` (`id_pembayaran_dp`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `serah_terima_ibfk_3` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `simpan_cluster`
 --
 ALTER TABLE `simpan_cluster`
-  ADD CONSTRAINT `simpan_cluster_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`),
-  ADD CONSTRAINT `simpan_cluster_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`);
+  ADD CONSTRAINT `simpan_cluster_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`),
+  ADD CONSTRAINT `simpan_cluster_ibfk_2` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`);
+
+--
+-- Constraints for table `spesifikasi_teknis`
+--
+ALTER TABLE `spesifikasi_teknis`
+  ADD CONSTRAINT `spesifikasi_teknis_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_detail`
