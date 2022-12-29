@@ -82,7 +82,7 @@ while ($row =mysqli_fetch_array($result)){
       <center>
         <h1>Edit Cluster</h1>
       <center>
-      <form class="user" method="POST" action="editcluster.php" enctype="multipart/form-data" >
+      <form class="user" method="POST" action="cluster.php" enctype="multipart/form-data" >
       <section class="base">
       <div>
           <label>ID Cluster</label>
@@ -111,7 +111,7 @@ while ($row =mysqli_fetch_array($result)){
         <div>
          <button type="submit" name ="update" aria-activedescendant="">Update</button>
         </div>
-        <p><a href="editcluster.php">Kembali</a></p>
+        <p><a href="cluster.php">Kembali</a></p>
         </section>
       </form>
   </body>
