@@ -2,50 +2,107 @@
 require ('koneksi.php');
 session_start();
 error_reporting(0);
-$userName = $_SESSION['name'];
 $SesLvl = $_SESSION['level'];
-
-if (isset($_POST['simpan'])){
-    // $id_cluster = $_POST['id_cluster'];
-    $foto = $_FILES['foto_cluster']['name'];
-    $temp = $_FILES['foto_cluster']['tmp_name'];
-    $nama_cluster = $_POST['nama_cluster'];
-    $blok = $_POST['blok'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where level = '$SesLvl'");
+$data = mysqli_fetch_array($query_mysql);
+if( isset($_POST['pesan']) ){
+    // $Id_user = $_POST['txt_id_user'];
+    // $foto = $_FILES['foto_cluster']['name'];
+    // $temp = $_FILES['foto_cluster']['tmp_name'];
+    
+    $nama_cluster = $_POST['txt_namacluster'];
+    $blok = $_POST['txt_blok'];
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
     $hargaDp = $_POST['hargaDp'];
-    $image_files = $nama_cluster. '.jpg';
+    $filter = $_POST['txt_filter'];
+    $target_dir = "img/images_cluster/";
+    $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
+    $addcluster = $_FILES['txt_fotocluster']['name'];
+    $filecluster = $_FILES['temp_name'];
+    $image_files = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-//     $queryy ="INSERT INTO cluster (foto_cluster,nama_cluster,blok,harga,harga_dp) VALUES ('$image_files','$nama_cluster','$blok','$harga','$hargaDp')";
-//    $query =mysqli_query ($koneksi, $queryy);
-$query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
-// $data = mysqli_fetch_array($query_mysql);
-copy($temp, "img/filepemesanan/" . $image_files);
-$result = mysqli_query($koneksi, $query);
-if($result){
-  echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+    // Check if image file is a actual image or fake image
+
+    $check = getimagesize($_FILES["txt_fotocluster"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["txt_fotocopyktp"]["tmp_name"], $target_file)) {
+            
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+    
+
+    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,filter,foto_cluster) VALUES ($nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$filter','$addcluster')";
+
+    $result = mysqli_query($koneksi, $query);
+    
+    if($result){
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+    }
+   
 }
+// require ('koneksi.php');
+// session_start();
+// error_reporting(0);
+// $userName = $_SESSION['name'];
+// $SesLvl = $_SESSION['level'];
 
-}
+// if (isset($_POST['simpan'])){
+//     // $id_cluster = $_POST['id_cluster'];
+//     $foto = $_FILES['foto_cluster']['name'];
+//     $temp = $_FILES['foto_cluster']['tmp_name'];
+//     $nama_cluster = $_POST['nama_cluster'];
+//     $blok = $_POST['blok'];
+//     $jumlah_unit = $_POST['jumlah_unit'];
+//     $harga = $_POST['harga'];
+//     $hargaDp = $_POST['hargaDp'];
+//     $image_files = $nama_cluster. '.jpg';
 
-if (isset($_POST['hapus'])) {
+// //     $queryy ="INSERT INTO cluster (foto_cluster,nama_cluster,blok,harga,harga_dp) VALUES ('$image_files','$nama_cluster','$blok','$harga','$hargaDp')";
+// //    $query =mysqli_query ($koneksi, $queryy);
+// $query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
+// // $data = mysqli_fetch_array($query_mysql);
+// copy($temp, "img/filepemesanan/" . $image_files);
+// $result = mysqli_query($koneksi, $query);
+// if($result){
+//   echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+// }
 
-    $hapus = mysqli_query($koneksi, "DELETE FROM cluster
-        WHERE id_cluster = '$_POST[id_cluster]'
-    ");
+// }
 
-if ($hapus) {
-    echo "<script>
-    alert('hapus data sukses');
-    document.location= 'index.php?halaman=cluster';
-    </script>";
-} else {
-    echo "<script>
-    alert('hapus data gagal');
-    document.location= 'index.php?halaman=cluster';
-    </script>";
-}
-}
+// if (isset($_POST['hapus'])) {
+
+//     $hapus = mysqli_query($koneksi, "DELETE FROM cluster
+//         WHERE id_cluster = '$_POST[id_cluster]'
+//     ");
+
+// if ($hapus) {
+//     echo "<script>
+//     alert('hapus data sukses');
+//     document.location= 'index.php?halaman=cluster';
+//     </script>";
+// } else {
+//     echo "<script>
+//     alert('hapus data gagal');
+//     document.location= 'index.php?halaman=cluster';
+//     </script>";
+// }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -170,32 +227,45 @@ if ($hapus) {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 m-auto">
-            <form action="" method="get" role="form" class="php-email-form">
+            <!-- <form action="" method="get" role="form" class="php-email-form"> -->
+            <form class="php-email-form" action="" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Tambah Cluster</span></h1>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required>
+                  <!-- <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required> -->
+                  <input type="text" name="nama_cluster" class="form-control" placeholder="Nama Cluster *" value="">
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required>
+                  <!-- <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required> -->
+                  <input name="txt_blok" type="text" class="form-control" placeholder="Blok Cluster *" value="" />
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="jumlah_unit" class="form-control" id="jumlah_unit" placeholder="Jumlah Unit Rumah *" value="" required>
+                  <!-- <input type="text" name="jumlah_unit" class="form-control" id="jumlah_unit" placeholder="Jumlah Unit Rumah *" value="" required> -->
+                  <input type="text" name="jumlah_unit" class="form-control" placeholder="Jumlah Unit Rumah *" value="">
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required >
+                  <!-- <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required > -->
+                  <input type="text" class="form-control" name="harga" placeholder="Harga *" value="">
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required >
+                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
+                  <input type="text" class="form-control" name="hargaDp" placeholder="Harga DP*" value="">
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <!-- <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required > -->
+                  <input type="text" class="form-control" name="txt_filter" placeholder="Filter *" value="">
                 </div>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                   <label>Foto Cluster</label>
-                  <input type="file" name="foto_cluster" accept="image/*" required>
+                  <input type="file" name="txt_fotocluster" class="form-control">
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
+                <div class="group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                    </div>
+                <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
-                </div>
+                </div> -->
               </div>
            
               <!-- <div class="form-group mt-3">

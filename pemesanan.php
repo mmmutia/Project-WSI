@@ -29,11 +29,7 @@ if( isset($_POST['pesan']) ){
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
     }
-
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
