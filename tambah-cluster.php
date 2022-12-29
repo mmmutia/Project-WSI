@@ -2,8 +2,7 @@
 require ('koneksi.php');
 session_start();
 error_reporting(0);
-$SesLvl = $_SESSION['level'];
-$query_mysql = mysqli_query($koneksi,"select * from user_detail where level = '$SesLvl'");
+$userName = $_SESSION['name'];
 $data = mysqli_fetch_array($query_mysql);
 if( isset($_POST['pesan']) ){
     // $Id_user = $_POST['txt_id_user'];
