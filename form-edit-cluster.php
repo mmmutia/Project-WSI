@@ -5,7 +5,7 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
-if( isset($_POST['edit']) ){
+if( isset($_POST['update']) ){
     // $Id_user = $_POST['txt_id_user'];
     // $foto = $_FILES['foto_cluster']['name'];
     // $temp = $_FILES['foto_cluster']['tmp_name'];
@@ -14,7 +14,7 @@ if( isset($_POST['edit']) ){
     $blok = $_POST['txt_blok'];
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
-    $hargaDp = $_POST['hargaDp'];
+    $hargaDp = $_POST['harga_dp'];
     // $filter = $_POST['txt_filter'];
     $target_dir = "img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
@@ -46,11 +46,11 @@ if( isset($_POST['edit']) ){
         }
     }
     
-
-    $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',harga='$harga , harga_dp='$hargadp,foto_cluster=$uploadcluster'' WHERE id_cluster='$clusterId'";
+    $clusterId = $_POST['txt_id'];
+    $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp',foto_cluster='$uploadcluster' WHERE id_cluster='$clusterId'";
         echo $query;
         $result = mysqli_query($koneksi, $query);
-        header('Location: form-edit-cluster.php');
+        // header('Location: form-edit-cluster.php');
     
     if($result){
         echo "<script>alert('Data Telah Berhasil Di Update');window.location='cluster.php'</script>";
@@ -78,11 +78,12 @@ $result = mysqli_query($koneksi, $query)or die(mysql_error());
 //$nomor = 1;
 while ($row =mysqli_fetch_array($result)){
   $clusterId    = $row['id_cluster'];
-  $clusterNama = $row['nama_cluster'];
-  $clusterBlok = $row['blok'];
+  $nama_cluster = $row['nama_cluster'];
+  $blok = $row['blok'];
+  $jumlah_unit = $row['jumlah_unit'];
   $harga = $row['harga'];
-  $hargadp= $row['harga_dp'];
-  $clusterFoto= $row['foto_cluster'];
+  $hargaDp= $row['harga_dp'];
+  $uploadcluster= $row['txt_fotocluster'];
   
   
 }
@@ -140,7 +141,7 @@ while ($row =mysqli_fetch_array($result)){
       <center>
         <h1>Edit Cluster</h1>
       <center>
-      <form class="user" method="POST" action="cluster.php" enctype="multipart/form-data" >
+      <form class="user" method="POST" action="form-edit-cluster.php" enctype="multipart/form-data" >
       <section class="base">
       <div>
           <label>ID Cluster</label>
@@ -148,26 +149,30 @@ while ($row =mysqli_fetch_array($result)){
         </div>
         <div>
           <label>Nama Cluster</label>
-          <input type="text" name="txt_nama" value="<?php echo $clusterNama; ?>" autofocus=""/>
+          <input type="text" name="txt_namacluster" value="<?php echo $nama_cluster; ?>" autofocus=""/>
         </div>
         <div>
           <label>Blok</label>
-         <input type="text" name="txt_blok" value="<?php echo $clusterBlok; ?>" />
+         <input type="text" name="txt_blok" value="<?php echo $blok; ?>" />
+        </div>
+        <div>
+          <label>Unit</label>
+         <input type="text" name="jumlah_unit" value="<?php echo $jumlah_unit; ?>" />
         </div>
         <div>
           <label>Harga</label>
-         <input type="text" name="txt_harga" value="<?php echo $harga; ?>" />
+         <input type="text" name="harga" value="<?php echo $harga; ?>" />
         </div>
         <div>
           <label>Harga DP</label>
-         <input type="text" name="txt_hargadp" value="<?php echo $hargadp; ?>" />
+         <input type="text" name="harga_dp" value="<?php echo $hargaDp; ?>" />
         </div>
         <div>
           <label>Foto Cluster</label>
-         <input type="file" name="txt_foto" value="<?php echo $clusterFoto; ?>" />
+         <input type="file" name="txt_fotocluster" value="<?php echo $uploadcluster; ?>" />
         </div>
         <div>
-         <button type="submit" name ="edit" aria-activedescendant="">Update</button>
+         <button type="submit" name ="update" aria-activedescendant="">Update</button>
         </div>
         <p><a href="cluster.php">Kembali</a></p>
         </section>

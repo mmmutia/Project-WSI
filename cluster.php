@@ -6,20 +6,20 @@ $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
-if (isset($_POST['simpan'])){
-    // $id_cluster = $_POST['id_cluster'];
-    $foto = $_FILES['foto_cluster']['name'];
-    $temp = $_FILES['foto_cluster']['tmp_name'];
-    $nama_cluster = $_POST['nama_cluster'];
-    $blok = $_POST['blok'];
-    $jumlah_unit = $_POST['jumlah_unit'];
-    $harga = $_POST['harga'];
-    $hargaDp = $_POST['hargaDp'];
-    $image_files = $nama_cluster. '.jpg';
+// if (isset($_POST['simpan'])){
+//     // $id_cluster = $_POST['id_cluster'];
+//     $foto = $_FILES['foto_cluster']['name'];
+//     $temp = $_FILES['foto_cluster']['tmp_name'];
+//     $nama_cluster = $_POST['nama_cluster'];
+//     $blok = $_POST['blok'];
+//     $jumlah_unit = $_POST['jumlah_unit'];
+//     $harga = $_POST['harga'];
+//     $hargaDp = $_POST['hargaDp'];
+//     $image_files = $nama_cluster. '.jpg';
 
-$query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
-// $data = mysqli_fetch_array($query_mysql);
-copy($temp, "img/images_cluster/" . $image_files);
+// $query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
+// // $data = mysqli_fetch_array($query_mysql);
+// copy($temp, "img/images_cluster/" . $image_files);
 
 if (isset($_POST['hapus'])) {
 
@@ -37,7 +37,6 @@ if ($hapus) {
     alert('hapus data gagal');
     document.location= 'index.php?halaman=cluster';
     </script>";
-}
 }
 }
 ?>
@@ -190,7 +189,7 @@ if ($hapus) {
                     $foto_cluster = $row['foto_cluster'];
                     $nama_cluster = $row['nama_cluster'];
                     $blok = $row['blok'];
-                    $jumlah_unit = $_row['jumlah_unit'];
+                    $jumlah_unit = $row['jumlah_unit'];
                     $harga = $row['harga'];
                     $hargaDp = $row['harga_dp'];
                 ?>
@@ -203,7 +202,7 @@ if ($hapus) {
                         <td><?php echo $hargaDp?></td>
                         <td><img src="img/images_cluster/<?php echo $row['foto_cluster']; ?>"  height="60px"></td>
                         <td>
-                        <a href="form-edit-cluster.php?id= <?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle 
+                        <a href="form-edit-cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle 
                         <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
 
                         <a href="#" class="btn btn-danger btn-circle <?php echo $dis;?>" 
