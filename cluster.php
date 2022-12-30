@@ -19,7 +19,7 @@ if (isset($_POST['simpan'])){
 
 $query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
 // $data = mysqli_fetch_array($query_mysql);
-copy($temp, "img/filepemesanan/" . $image_files);
+copy($temp, "img/images_cluster/" . $image_files);
 
 if (isset($_POST['hapus'])) {
 
@@ -201,10 +201,10 @@ if ($hapus) {
                         <td><?php echo $jumlah_unit ?></td>
                         <td><?php echo $harga ?></td>
                         <td><?php echo $hargaDp?></td>
-                        <td><img src="img/filepemesanan/<?php echo $row['foto_cluster']; ?>"  height="60px"></td>
+                        <td><img src="img/images_cluster/<?php echo $row['foto_cluster']; ?>"  height="60px"></td>
                         <td>
-                        <a href="cluster.php?id= <?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle 
-                        <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
+                        <a href="form-edit-cluster.php?id= <?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle 
+                        <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
 
                         <a href="#" class="btn btn-danger btn-circle <?php echo $dis;?>" 
                         onClick="confirmModal('hapus_cluster.php?&id=<?php echo $row['id_cluster']; ?>');"><i class="fa fa-trash"></i></a>
@@ -356,7 +356,17 @@ if ($hapus) {
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
-  
+
+  <script>
+//Hapus Data
+      function confirmModal(link) {
+        let ok = confirm("Apakah anda yakin ingin menghapus data ini?")
+
+        if(ok){
+          window.location = link
+        }
+      }
+  </script>
 
 </body>
 

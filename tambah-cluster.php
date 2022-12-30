@@ -39,7 +39,7 @@ if( isset($_POST['tambah']) ){
     echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["txt_fotocopyktp"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($_FILES["txt_fotocluster"]["tmp_name"], $target_file)) {
             
         } else {
             echo "Sorry, there was an error uploading your file.";
@@ -47,7 +47,7 @@ if( isset($_POST['tambah']) ){
     }
     
 
-    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES (''$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$uploadcluster')";
+    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$uploadcluster')";
 
     $result = mysqli_query($koneksi, $query);
     
@@ -257,7 +257,7 @@ if( isset($_POST['tambah']) ){
                   <input type="file" name="txt_fotocluster" class="form-control">
                 </div>
                 <div class="group">
-                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        <input type="submit" name="tambah" class="btn btn-info btn-md" value="submit">
                     </div>
                 <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
