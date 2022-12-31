@@ -83,7 +83,7 @@ while ($row =mysqli_fetch_array($result)){
   $jumlah_unit = $row['jumlah_unit'];
   $harga = $row['harga'];
   $hargaDp= $row['harga_dp'];
-  $uploadcluster= $row['txt_fotocluster'];
+  $uploadcluster= $row['foto_cluster'];
   
   
 }
