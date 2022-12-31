@@ -213,6 +213,10 @@ while ($row =mysqli_fetch_array($result)){
             <form class="php-email-form" action="form-edit-cluster.php" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Update Cluster</span></h1>
+                <div>
+          <label>ID Cluster</label>
+          <input type="hidden" name="txt_id" value="<?php echo $clusterId; ?>"/>
+        </div>
                 <div class="row-md-6 form-group mb-3">
 				<label>Nama Cluster</label>
                   <input class="form-control" type="text" name="txt_namacluster" value="<?php echo $nama_cluster; ?>" autofocus=""/>
@@ -236,12 +240,11 @@ while ($row =mysqli_fetch_array($result)){
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                   <label>Foto Cluster</label>
-         <input type="file" name="txt_fotocluster" value="<?php echo $uploadcluster; ?>" />
+         <input type="file" name="txt_fotocluster" value="<?php echo $uploadcluster;  ?>" />
                 </div>
-                <div>
-         <button type="submit" name ="update" aria-activedescendant="">Update</button>
-        </div>
-        <p><a href="cluster.php">Kembali</a></p>
+                <div class="group">
+                        <input type="submit" name="update" class="btn btn-info btn-md" value="Update">
+                    </div>
                 <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="Update">Update</button></center>
                 </div> -->
@@ -373,3 +376,41 @@ while ($row =mysqli_fetch_array($result)){
 </body>
 
 </html>
+  
+
+<!-- <form class="user" method="POST" action="form-edit-cluster.php" enctype="multipart/form-data" >
+      <section class="base">
+      <div>
+          <label>ID Cluster</label>
+          <input type="hidden" name="txt_id" value="" autofocus=""/>
+        </div>
+        <div>
+          <label>Nama Cluster</label>
+          <input type="text" name="txt_namacluster" value="" autofocus=""/>
+        </div>
+        <div>
+          <label>Blok</label>
+         <input type="text" name="txt_blok" value="" />
+        </div>
+        <div>
+          <label>Unit</label>
+         <input type="text" name="jumlah_unit" value="" />
+        </div>
+        <div>
+          <label>Harga</label>
+         <input type="text" name="harga" value="" />
+        </div>
+        <div>
+          <label>Harga DP</label>
+         <input type="text" name="harga_dp" value="" />
+        </div>
+        <div>
+          <label>Foto Cluster</label>
+         <input type="file" name="txt_fotocluster" value="" />
+        </div>
+        <div>
+         <button type="submit" name ="update" aria-activedescendant="">Update</button>
+        </div>
+        <p><a href="cluster.php">Kembali</a></p>
+        </section>
+      </form> -->
