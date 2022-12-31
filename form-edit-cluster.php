@@ -9,18 +9,26 @@ if( isset($_POST['update']) ){
     // $Id_user = $_POST['txt_id_user'];
     // $foto = $_FILES['foto_cluster']['name'];
     // $temp = $_FILES['foto_cluster']['tmp_name'];
-    
+    $clusterId = $_POST['txt_id'];
     $nama_cluster = $_POST['txt_namacluster'];
     $blok = $_POST['txt_blok'];
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
     $hargaDp = $_POST['harga_dp'];
+    $fotolama = $row['foto_clusterlama'];
     // $filter = $_POST['txt_filter'];
     $target_dir = "img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
     $uploadcluster = $_FILES['txt_fotocluster']['name'];
     $filecluster = $_FILES['temp_name'];
     $image_files = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    
+    //cek jika ada foto baru
+    if($uploadcluster){
+      //kalau ada gambar
+      //hapus gambar lama
+      unlink('img/images_cluster/'.$fotolama);
+      
 
     // Check if image file is a actual image or fake image
 
@@ -46,9 +54,12 @@ if( isset($_POST['update']) ){
         }
     }
     
-    $clusterId = $_POST['txt_id'];
+    //membuat query
     $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp',foto_cluster='$uploadcluster' WHERE id_cluster='$clusterId'";
-        echo $query;
+    }else{
+         $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp' WHERE id_cluster='$clusterId'";
+    }
+	echo $query;
         $result = mysqli_query($koneksi, $query);
         // header('Location: form-edit-cluster.php');
     
@@ -231,7 +242,7 @@ while ($row =mysqli_fetch_array($result)){
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <label>Harga</label>
-         <input class="form-control" type="text" name="harga" value="<?php echo $harga; ?>" />
+         <input class="form-control" type="text" name="harga" value="<?php echo $harga; ?>"/>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <label>Harga DP</label>
@@ -240,7 +251,11 @@ while ($row =mysqli_fetch_array($result)){
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                   <label>Foto Cluster</label>
-         <input type="file" name="txt_fotocluster" value="<?php echo $uploadcluster;  ?>" />
+		  <div class = "image-wrapper">
+	  <img src="img/images_cluster/<?php echo $row['foto_cluster']?>">
+	  </div>
+         <input type="file" name="txt_fotocluster" value="" />
+	 <input type="hidden" name="txt_fotoclusterlama" value="<?php echo $row['foto_cluster']; ?>" />
                 </div>
                 <div class="group">
                         <input type="submit" name="update" class="btn btn-info btn-md" value="Update">
@@ -406,6 +421,7 @@ while ($row =mysqli_fetch_array($result)){
         </div>
         <div>
           <label>Foto Cluster</label>
+	  
          <input type="file" name="txt_fotocluster" value="" />
         </div>
         <div>
