@@ -1,20 +1,20 @@
 <?php
-require ('koneksi.php');
+require('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$userId = $_SESSION['id'];
 $SesLvl = $_SESSION['level'];
 $nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah ");
+$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah where id_user = '$userId'");
 $data = mysqli_fetch_array($query_mysql);
 
-if(isset($_POST['nup'])){
+if (isset($_POST['nup'])) {
   $nup = $_POST['txt_nup'];
 
-  $query_nup = mysqli_query($koneksi,"INSERT INTO nup (nup) VALUES ('$nup')");
-  
+  $query_nup = mysqli_query($koneksi, "INSERT INTO nup (nup) VALUES ('$nup')");
 }
 $_SESSION['identitas'] = $data;
 ?>
@@ -83,8 +83,8 @@ $_SESSION['identitas'] = $data;
           <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
 
-          if($userName = $_SESSION['name']){
-            
+          if ($userName = $_SESSION['name']) {
+
             echo "
 
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
@@ -98,8 +98,7 @@ $_SESSION['identitas'] = $data;
           </div>
 
             ";
-
-          }else{
+          } else {
             echo "
             <li><a href='login.php'>Login</a></li>
             ";
@@ -120,13 +119,15 @@ $_SESSION['identitas'] = $data;
     <section class="breadcrumbs">
       <div class="container">
         <div class='d-flex justify-content-between align-items-center'>
-          <h2><blockquote>Proses Pemesanan Rumah</blockquote></h2>
+          <h2>
+            <blockquote>Proses Pemesanan Rumah</blockquote>
+          </h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
               font-size: larger;
             }
-        </style>
+          </style>
           <ol>
             <li><a href="index-admin.php">Home</a></li>
             <li>Profil</li>
@@ -145,48 +146,48 @@ $_SESSION['identitas'] = $data;
               <div class="row">
                 <h1 class="text-center"><span>Data Pemesan</span></h1>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $_SESSION['identitas']['id_pemesanan_rumah'];?>" required readonly>
+                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $_SESSION['identitas']['nama_pemesan'];?>" required readonly>
+                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat'];?>" required >
+                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat']; ?>" required>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan'];?>" required readonly>
+                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster'];?>" required readonly >
+                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan'];?>" required readonly>
+                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran'];?>" required readonly>
+                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>"  height="200px">
+                  <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>" height="200px">
                 </div>
               </div>
             </form>
           </div>
-          </div>
-          
-          <div class="row">
+        </div>
+
+        <div class="row">
           <div class="col-lg-8 m-auto">
-          <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
-          <form action="" method="post">
-                <!-- <div class="row"> -->
-                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="nup" id="nup" value="<?php echo $nup;?>" required disabled> <br>
-                  <h6>Info : Dalam 1 x 24 jam tim Marketing Bernady Land Slawu akan menghubungi anda untuk proses pemilihan blok rumah.</h6><br> 
-                  <h6>Hubungi kontak informasi dibawah jika diperlukan.</h6> 
+            <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+            <form action="" method="post">
+              <!-- <div class="row"> -->
+              <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
+              <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                <input type="email" class="form-control" name="nup" id="nup" value="<?php echo $nup; ?>" required disabled> <br>
+                <h6>Info : Dalam 1 x 24 jam tim Marketing Bernady Land Slawu akan menghubungi anda untuk proses pemilihan blok rumah.</h6><br>
+                <h6>Hubungi kontak informasi dibawah jika diperlukan.</h6>
                 <!-- </div>  -->
             </form>
           </div>
-        </div> 
+        </div>
         <br>
     </section><!-- End Contact Section -->
 
@@ -290,14 +291,14 @@ $_SESSION['identitas'] = $data;
   <div class="modal fade" id="modalLogout">
     <div class="modal-dialog">
       <div class="modal-content" style="margin-top:100px;">
-          <div class="modal-header">
-            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-          </div>
-          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-          <div class="modal-footer">
-            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-          </div>
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+        </div>
+        <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+        <div class="modal-footer">
+          <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+          <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
@@ -314,10 +315,12 @@ $_SESSION['identitas'] = $data;
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
-  
+
   <script type="text/javascript">
-    function confirmLogout(logout_url){
-      $('#modalLogout').modal('show', {backdrop: 'static'});
+    function confirmLogout(logout_url) {
+      $('#modalLogout').modal('show', {
+        backdrop: 'static'
+      });
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
