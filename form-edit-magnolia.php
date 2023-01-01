@@ -23,7 +23,7 @@
 if (isset($_GET['id'])) {
 $id_spesifikasi = $_GET['id'];
 $query = "SELECT * FROM spesifikasi_teknis WHERE id_spesifikasi='$id_spesifikasi'";
-$result = mysqli_query($koneksi, $query)or die(mysql_error());
+$result = mysqli_query($koneksi, $query)or die(mysqli_error($koneksi));
 }else{
     echo 'data kosong';
    }
