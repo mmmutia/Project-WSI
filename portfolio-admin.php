@@ -205,9 +205,15 @@ echo "
         </div>
 
         <div class="col-lg-6">
+<<<<<<< Updated upstream
             <form action="portfolio-admin.php" method="GET">
             <input type="text" name="cari"> 
             <input type="submit" value="Search">
+=======
+            <center><form action="pencarian.php" method="GET"><center>
+            <input name="cluster">
+           <button>Search</button>
+>>>>>>> Stashed changes
             </form>
           </div>
         </div>
