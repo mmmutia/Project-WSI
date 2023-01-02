@@ -22,9 +22,9 @@ $SesLvl = $_SESSION['level'];
 // copy($temp, "img/images_cluster/" . $image_files);
 
 if (isset($_GET['hapus'])) {
-    $id_hapus = $_GET['hapus'];
+    $id_cluster= $_GET['id_cluster'];
     $hapus = mysqli_query($koneksi, "DELETE FROM cluster
-        WHERE id_cluster = '$id_hapus'");
+        WHERE id_cluster = '$id_cluster'");
 
 if ($hapus) {
     echo "<script>
