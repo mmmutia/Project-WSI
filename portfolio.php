@@ -131,14 +131,23 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
         </div>
 
         <div class="col-lg-6">
-            <form action="pencarian.php" method="GET">
-            <input name="cluster"> 
-           <button>Search</button>
+        <form action="portfolio-admin.php" method="GET">
+            <input type="text" name="cari"> 
+            <input type="submit" value="Search">
             </form>
           </div>
         </div>
       </div>
     </div>
+    
+    <?php 
+	if(isset($_GET['cari'])){
+		$cari = $_GET['cari'];
+    $query_mysql = mysqli_query($koneksi,"select * from cluster where nama_cluster like '%".$cari."%'");				
+	}else{
+		$query_mysql = mysqli_query($koneksi,"select * from cluster");		
+	}
+  ?>
     
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">

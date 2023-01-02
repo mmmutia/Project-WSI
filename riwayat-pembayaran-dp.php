@@ -6,6 +6,26 @@ $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pembayaran'];
 $SesLvl = $_SESSION['level'];
 
+$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$result   = mysqli_fetch_array($query);
+
+if (isset($_POST['konfirmasi'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query = "UPDATE pembayaran_dp SET status_dp = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $result = mysqli_query($koneksi, $query);
+
+    header("location:riwayat-pembayaran-dp.php");
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Berhasil Konfirmasi")';
+    echo '</script>';
+}
+if (isset($_POST['hapus'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_dp WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
+    header("location:riwayat-pembayaran-dp.php");
+    // $result = mysqli_query($koneksi, $query1); 
+}
+
 
 
 // $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
@@ -166,18 +186,34 @@ $SesLvl = $_SESSION['level'];
         // } else ($SesLvl == 4){
         //   $dis = "disabled";
         // } 
-        
+        ?>
+        <?php
         while($row = mysqli_fetch_array($result)){
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
           $tgl_pembayaran = $row['tgl_pembayaran_dp'];
           $bukti_foto = $row['bukti_pembayaran_dp'];
-          // $status = $row['status_dp'];
-        ?>
+          $status = $row['status_dp'];
+          ?>
         <tr class="text-center">
-              <td><?php echo $no++?></td>
-              <td><?php echo $id_pemesanan_rumah;?></td>
-              <td><?php echo $tgl_pembayaran;?></td>
-              <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td><?php echo $no++?></td>
+          <td><?php echo $id_pemesanan_rumah;?></td>
+          <td><?php echo $tgl_pembayaran;?></td>
+          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td><?php echo $status;?></td>
+          <td>
+          <form action="riwayat-pembayaran-dp.php" method="post" role="form" class="php-email-form">
+          <input type="text" value="<?php echo $id_pemesanan_rumah;?>" name="id_pemesanan_rumah" hidden>
+          <?php if ($status == "Lunas") {
+            ?>
+            <button class="submit" type="submit" name="hapus">Delete</button>
+            <?php
+          } else {
+            ?>
+            <button class="submit" type="submit" name="konfirmasi">Konfirmasi</button>
+            <?php
+          }?>
+          </form>
+          </td>
             </tr>
             <?php
           }

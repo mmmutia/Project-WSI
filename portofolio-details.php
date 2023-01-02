@@ -10,13 +10,13 @@ if (isset($_GET['id_cluster'])||isset($_GET['id_simpan'])) {
   die("Error. No ID Selected!");
 }
 
-$id_cluster = $_SESSION['id_cluster'];
+// $id_cluster = $_SESSION['id_cluster'];
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
 
 
-$query    = mysqli_query($koneksi, "SELECT * FROM cluster JOIN spesifikasi_teknis ON spesifikasi_teknis.id_cluster=cluster.id_cluster WHERE cluster.id_cluster='$id_cluster'");
+$query    = mysqli_query($koneksi, "SELECT * FROM spesifikasi_teknis JOIN cluster ON cluster.id_cluster=spesifikasi_teknis.id_cluster WHERE spesifikasi_teknis.id_cluster='$id_cluster'");
 $result   = mysqli_fetch_array($query);
 
 if (isset($_POST['simpan'])) {
