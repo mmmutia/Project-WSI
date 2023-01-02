@@ -142,7 +142,7 @@ $SesLvl = $_SESSION['level'];
     </div>
     <div class="card-body">
         <h3 class="card-title">Pembayaran DP</h3>
-        <a href="pembayaran-dp.php" class="btn btn-outline-secondary">Lihat Data</a>
+        <a href="riwayat-pembayaran-dp.php" class="btn btn-outline-secondary">Lihat Data</a>
     </div>
     <div class="card-footer text-muted">
         2 days ago
@@ -155,7 +155,7 @@ $SesLvl = $_SESSION['level'];
     </div>
     <div class="card-body">
         <h3 class="card-title">Pembayaran InHouse</h3>
-        <a href="pembayaran-inhouse.php" class="btn btn-outline-secondary">Lihat Data</a>
+        <a href="riwayat-pembayaran-inhouse.php" class="btn btn-outline-secondary">Lihat Data</a>
     </div>
     <div class="card-footer text-muted">
         2 days ago

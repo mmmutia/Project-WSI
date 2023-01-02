@@ -169,19 +169,20 @@ if (isset($_POST['simpan'])) {
               <div class="portfolio-info">
                 <h3><?php echo $result['nama_cluster'] ?></h3>
                 <ul>
-                  <li><strong>Category</strong>: Web design</li>
-                  <li><strong>Client</strong>: ASU Company</li>
-                  <li><strong>Project date</strong>: 01 March, 2020</li>
-                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                  <a href="#"><button type="button" class="btn btn-secondary">Edit Cluster</button></a>
-                  <a href="#"><button type="submit" name="simpan" class="btn btn-dark">Edit Sertifikasi</button></a>
-                </ul>
+                <li><strong>Pondasi</strong>: <?php echo $result['pondasi'] ?></li>
+                  <li><strong>Dinding</strong>: <?php echo $result['dinding'] ?></li>
+                  <li><strong>Rangka Atap</strong>: <?php echo $result['rangka_atap'] ?></li>
+                  <li><strong>Kusen</strong>: <?php echo $result['kusen'] ?></li>
+                  <li><strong>Plafond</strong>: <?php echo $result['plafond'] ?></li>
+                  <li><strong>Air</strong>: <?php echo $result['air'] ?></li>
+                  <li><strong>Listrik </strong>: <?php echo $result['listrik'] ?></li>
+                  <li><strong>Jumlah Kamar</strong>: <?php echo $result['jumlah_kamar'] ?></li>
+                  <li><strong>Luas Tanah</strong>: <?php echo $result['luas_tanah'] ?></li>
+                  <div class="portfolio-description">
+                <h2>Harga : <?php echo $result['harga'] ?></h2>
               </div>
-              <div class="portfolio-description">
-                <h2>This is an example of portfolio detail</h2>
-                <p>
-                  Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-                </p>
+                  <a href="cluster.php"><button type="button" class="btn btn-secondary">Edit Cluster</button></a>
+                </ul>
               </div>
             </form>
           </div>

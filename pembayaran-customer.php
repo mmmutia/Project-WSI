@@ -4,14 +4,11 @@ session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$id_pembayaran_dp = $_SESSION['id_pembayaran_dp'];
 $SesLvl = $_SESSION['level'];
 
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
+$query_mysql = mysqli_query($koneksi,"select * from pembayaran_dp where id_pembayaran_dp = '$id_pembayaran_dp'");
+$data = mysqli_fetch_array($query_mysql);
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +86,8 @@ $SesLvl = $_SESSION['level'];
             <li> <a href='profile-user.php'>Profil</a></li>
             <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
             <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+            <li> <a href='proggres.php'>Progres</a></li>
+            <li> <a href='daftar-cluster-tersimpan.php'>cluster Tersimpan</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
@@ -111,6 +110,7 @@ $SesLvl = $_SESSION['level'];
   </header><!-- End Header -->
 
   <main id="main">
+
 
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
@@ -145,7 +145,8 @@ $SesLvl = $_SESSION['level'];
           <div class="card-body">
             <h5 class="card-title">Pembayaran DP Rumah</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-outline-secondary">Bayar Sekarang</a>
+            <button data-modal-target="#modal-add" class="btn btn-outline-secondary" name="add-pembayaran-dp">Bayar Sekarang</button>
+            <a href="riwayat-pembayaran-dp.php" class="btn btn-outline-secondary" name="add-pembayaran-dp">Riwayat Pembayaran</a>
           </div>
           <div class="card-footer text-muted">
             2 days ago
@@ -160,7 +161,8 @@ $SesLvl = $_SESSION['level'];
           <div class="card-body">
             <h5 class="card-title">Pembayaran InHouse</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-outline-secondary">Bayar Sekarang</a>
+            <button data-modal-target="#modal-add-inhouse" class="btn btn-outline-secondary" name="add-pembayaran-inhouse">Bayar Sekarang</button>
+            <a href="riwayat-pembayaran-inhouse.php" class="btn btn-outline-secondary" name="add-pembayaran-inhouse">Riwayat Pembayaran</a>
           </div>
           <div class="card-footer text-muted">
             2 days ago
@@ -170,16 +172,490 @@ $SesLvl = $_SESSION['level'];
       </div>
    
     </section>
+
+    <!-- Pop up Add -->
+    <div class="modal-add" id="modal-add">
+        <div class="modal-header-add">
+          <h2 class="add">Upload Pembayaran DP</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-add">
+            <form action="pembayaran-customer.php" method="post" enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Id Pemesanan</label>
+
+
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Tanggal Pembayaran DP</label>
+
+
+                <input type="date" class="form-control" name="tgl_pembayaran_dp" required>
+                
+                </select>
+
+              </div>
+
+             
+              <div class="form-group">
+                <label class="custom-file-label" for="customFileLang">Upload Bukti Pembayaran DP</label>
+                <input type="file" class="form-control" id="bukti_pembayaran_dp" name="bukti_pembayaran_dp" id="foto" required>
+
+              </div>
+
+
+              <div class="align-middle text-center">
+                <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-dp">Add</button>
+                <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-add {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-add {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-add {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.add {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.add {
+          text-align: center;
+
+        }
+
+        .modal-header-add button.close-btn-add {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-add button.close-btn-add:hover {
+          color: #6b46c1;
+        }
+
+        .active-add {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalAdd = document.querySelectorAll("[data-modal-target]");
+        const closeModalAdd = document.querySelectorAll(
+          "[data-close-add]"
+        );
+
+        openModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-add");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-add");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-add");
+        }
+      </script>
+      <!-- end Pop up Add -->
+
+      <!-- Pop up Add -->
+    <div class="modal-add" id="modal-add">
+        <div class="modal-header-add">
+          <h2 class="add">Upload Pembayaran DP</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-add">
+            <form action="pembayaran-customer.php" method="post" enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Id Pemesanan</label>
+
+
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Tanggal Pembayaran DP</label>
+
+
+                <input type="date" class="form-control" name="tgl_pembayaran_dp" required>
+                
+                </select>
+
+              </div>
+
+             
+              <div class="form-group">
+                <label class="custom-file-label" for="customFileLang">Upload Bukti Pembayaran DP</label>
+                <input type="file" class="form-control" id="bukti_pembayaran_dp" name="bukti_pembayaran_dp" id="foto" required>
+
+              </div>
+
+
+              <div class="align-middle text-center">
+                <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-dp">Add</button>
+                <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-add {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-add {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-add {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.add {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.add {
+          text-align: center;
+
+        }
+
+        .modal-header-add button.close-btn-add {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-add button.close-btn-add:hover {
+          color: #6b46c1;
+        }
+
+        .active-add {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalAdd = document.querySelectorAll("[data-modal-target]");
+        const closeModalAdd = document.querySelectorAll(
+          "[data-close-add]"
+        );
+
+        openModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-add");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-add");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-add");
+        }
+      </script>
+      <!-- end Pop up Add -->
+
     <!-- End Data Pembayaran Section -->
 
-    <!-- ======= Map Section ======= -->
-    <!-- <section class="map mt-2">
-      <div class="container-fluid p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>End Map Section -->
+      <!-- Pop up Add Inhouse -->
+    <div class="modal-add-inhouse" id="modal-add-inhouse">
+        <div class="modal-header-add">
+          <h2 class="add">Upload Pembayaran Inhouse</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
 
-  <!-- </main>End #main -->
+          <div class="modal-body-add">
+            <form action="pembayaran-customer.php" method="post" enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Id Pemesanan</label>
+
+
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Tanggal Pembayaran DP</label>
+
+
+                <input type="date" class="form-control" name="tgl_pembayaran_inhouse" required>
+                
+                </select>
+
+              </div>
+
+             
+              <div class="form-group">
+                <label class="custom-file-label" for="customFileLang">Upload Bukti Pembayaran Inhouse</label>
+                <input type="file" class="form-control" id="bukti_pembayaran_inhouse" name="bukti_pembayaran_inhouse" id="foto" required>
+
+              </div>
+
+
+              <div class="align-middle text-center">
+                <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-inhouse">Add</button>
+                <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-add-inhouse {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-add {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-add {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.add {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.add {
+          text-align: center;
+
+        }
+
+        .modal-header-add button.close-btn-add {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-add button.close-btn-add:hover {
+          color: #6b46c1;
+        }
+
+        .active-add {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalAdd = document.querySelectorAll("[data-modal-target]");
+        const closeModalAdd = document.querySelectorAll(
+          "[data-close-add]"
+        );
+
+        openModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalAdd.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-add-inhouse");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-add");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-add");
+        }
+      </script>
+      <!-- end Pop up Add -->
+  
+
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -307,3 +783,169 @@ $SesLvl = $_SESSION['level'];
 </body>
 
 </html>
+
+    <?php
+    require("koneksi.php");
+    session_start();
+    error_reporting(0);
+    if (isset($_POST['add-pembayaran-dp'])) {
+      $idpemesanan = $_POST['id_pemesanan_rumah'];
+      $tanggal = $_POST['tgl_pembayaran_dp'];
+      
+      $fotoadd = $_FILES['bukti_pembayaran_dp']['name'];
+      $file_tmp = $_FILES['bukti_pembayaran_dp']['tmp_name'];
+      move_uploaded_file($file_tmp, './img/pembayaran_dp/' . $fotoadd);
+
+
+      $query    = "INSERT INTO `pembayaran_dp` (`id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`) VALUES ('$idpemesanan', '$tanggal', '$fotoadd')";
+      $result   = mysqli_query($koneksi, $query);
+
+      if ($result) {
+        echo "<script>
+        Swal.fire({title: 'Data Berhasil Disimpan',text: '',icon: 'success',confirmButtonText: 'OK'
+        }).then((result) => {if (result.value)
+          {window.location = '';}
+        })</script>";
+      } else {
+
+        echo "<script>
+          Swal.fire({title: 'Data Gagal Disimpan',text: '',icon: 'error',confirmButtonText: 'OK'
+          }).then((result) => {if (result.value)
+            {window.location = '';}
+          })</script>";
+      }
+    }
+    require('./koneksi.php');
+    error_reporting(0);
+    $id = $_GET['id'];
+    $idpemesananedit = $_POST['id_pemesanan_edit'];
+    $tanggaledit = $_POST['tanggal_edit'];
+
+    $fotoedit = $_FILES['fotoedit']['name'];
+    $file_tmp = $_FILES['fotoedit']['tmp_name'];
+    move_uploaded_file($file_tmp, './img/pembayaran_dp/' . $fotoedit);
+
+
+    if (isset($_POST['edit-user'])) {
+      if (isset($_POST['edit-user'])) {
+        if ($fotoedit == "") {
+          $sql = mysqli_query($koneksi, "UPDATE `pembayaran_dp` SET id_pemesanan_rumah='$idpemesananedit', tgl_pembayaran_dp='$tanggaledit',status_dp='$statuspemesananedit' WHERE id='$id'");
+          // header('location:users.view.php');
+          echo "<script>
+                Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+        } else {
+
+          $hapusfoto = "select bukti_pembayaran_dp as bukti_pembayaran_dp from pembayaran_dp where id='$_GET[id]'";
+          $result = mysqli_query($koneksi, $hapusfoto);
+          $row = mysqli_fetch_array($result, MYSQLI_BOTH);
+
+          $fotoproggresedit = $row['bukti_pembayaran_dp'];
+          if (file_exists("./img/pembayaran_dp/$fotoproggresedit")) {
+            unlink("./img/pembayaran_dp/$fotoproggresedit");
+          }
+
+          $sql = mysqli_query($koneksi, "UPDATE `pembayaran_dp` SET id_pemesanan_rumah='$idpemesananedit', tgl_pembayaran_dp='$tanggaledit', bukti_pembayaran_dp = '$fotoedit' WHERE id='$id'");
+          // header('location:users.view.php');
+          echo "<script>
+                Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+        }
+      } else {
+        echo "<script>
+                Swal.fire({title: 'Data Gagal Disimpan',text: '',icon: 'error',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+      }
+    }
+
+    include "koneksi.php";
+    error_reporting(0);
+    ?>
+
+    <?php
+    require("koneksi.php");
+    session_start();
+    error_reporting(0);
+    if (isset($_POST['add-pembayaran-inhouse'])) {
+      $idpemesanan = $_POST['id_pemesanan_rumah'];
+      $tanggal_inhouse = $_POST['tgl_pembayaran_inhouse']; 
+      $foto_inhouse = $_FILES['bukti_pembayaran_inhouse']['name'];
+      $file_tmp = $_FILES['bukti_pembayaran_inhouse']['tmp_name'];
+      move_uploaded_file($file_tmp, './img/pembayaran_inhouse/' . $fotoadd);
+
+
+      $query    = "INSERT INTO `pembayaran_inhouse` (`id_pemesanan_rumah`, `tgl_pembayaran_inhouse`, `bukti_pembayaran_inhouse`) VALUES ('$idpemesanan', '$tanggal_inhouse', '$foto_inhouse')";
+      $result   = mysqli_query($koneksi, $query);
+
+      if ($result) {
+        echo "<script>
+        Swal.fire({title: 'Data Berhasil Disimpan',text: '',icon: 'success',confirmButtonText: 'OK'
+        }).then((result) => {if (result.value)
+          {window.location = '';}
+        })</script>";
+      } else {
+
+        echo "<script>
+          Swal.fire({title: 'Data Gagal Disimpan',text: '',icon: 'error',confirmButtonText: 'OK'
+          }).then((result) => {if (result.value)
+            {window.location = '';}
+          })</script>";
+      }
+    }
+    require('./koneksi.php');
+    error_reporting(0);
+    $id = $_GET['id'];
+    $idpemesananedit = $_POST['id_pemesanan_edit'];
+    $tanggal_edit = $_POST['tanggal_edit'];
+
+    $foto_edit = $_FILES['foto_edit']['name'];
+    $file_tmp = $_FILES['foto_edit']['tmp_name'];
+    move_uploaded_file($file_tmp, './img/pembayaran_inhouse/' . $foto_edit);
+
+
+    if (isset($_POST['edit-user'])) {
+      if (isset($_POST['edit-user'])) {
+        if ($fotoedit == "") {
+          $sql = mysqli_query($koneksi, "UPDATE `pembayaran_inhouse` SET id_pemesanan_rumah='$idpemesananedit', tgl_pembayaran_inhouse='$tanggal_edit' WHERE id='$id'");
+          // header('location:users.view.php');
+          echo "<script>
+                Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+        } else {
+
+          $hapusfoto = "select bukti_pembayaran_inhouse as bukti_pembayaran_inhouse from pembayaran_inhouse where id='$_GET[id]'";
+          $result = mysqli_query($koneksi, $hapusfoto);
+          $row = mysqli_fetch_array($result, MYSQLI_BOTH);
+
+          $fotoproggresedit = $row['bukti_pembayaran_inhouse'];
+          if (file_exists("./img/pembayaran_inhouse/$fotoproggresedit")) {
+            unlink("./img/pembayaran_inhouse/$fotoproggresedit");
+          }
+
+          $sql = mysqli_query($koneksi, "UPDATE `pembayaran_dp` SET id_pemesanan_rumah='$idpemesananedit', tgl_pembayaran_dp='$tanggaledit', bukti_pembayaran_dp = '$fotoedit' WHERE id='$id'");
+          // header('location:users.view.php');
+          echo "<script>
+                Swal.fire({title: 'Data Berhasil Diubah',text: '',icon: 'success',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+        }
+      } else {
+        echo "<script>
+                Swal.fire({title: 'Data Gagal Disimpan',text: '',icon: 'error',confirmButtonText: 'OK'
+                }).then((result) => {if (result.value)
+                    {window.location = 'pembayaran-customer.php';}
+                })</script>";
+      }
+    }
+
+    include "koneksi.php";
+    error_reporting(0);

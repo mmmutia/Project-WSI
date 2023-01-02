@@ -15,6 +15,7 @@ if( isset($_POST['update']) ){
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
     $hargaDp = $_POST['harga_dp'];
+    $spesifikasi_teknis = $_POST['spesifikasi_teknis'];
     $fotolama = $row['foto_clusterlama'];
     // $filter = $_POST['txt_filter'];
     $target_dir = "img/images_cluster/";
@@ -55,9 +56,9 @@ if( isset($_POST['update']) ){
     }
     
     //membuat query
-    $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp',foto_cluster='$uploadcluster' WHERE id_cluster='$clusterId'";
+    $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp',spesifikasi_teknis='$spesifikasi_teknis',foto_cluster='$uploadcluster' WHERE id_cluster='$clusterId'";
     }else{
-         $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp' WHERE id_cluster='$clusterId'";
+         $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp', spesifikasi_teknis='$spesifikasi_teknis' WHERE id_cluster='$clusterId'";
     }
 	echo $query;
         $result = mysqli_query($koneksi, $query);
@@ -94,6 +95,7 @@ while ($row =mysqli_fetch_array($result)){
   $jumlah_unit = $row['jumlah_unit'];
   $harga = $row['harga'];
   $hargaDp= $row['harga_dp'];
+  $spesifikasi_teknis = $row['spesifikasi_teknis'];
   $uploadcluster= $row['foto_cluster'];
   
   
@@ -247,6 +249,10 @@ while ($row =mysqli_fetch_array($result)){
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <label>Harga DP</label>
          <input class="form-control" type="text" name="harga_dp" value="<?php echo $hargaDp; ?>" />
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <label>Spesifikasi Teknis</label>
+         <input class="form-control" type="text-area" name="spesifikasi_teknis" value="<?php echo $spesifikasi_teknis; ?>" />
                 </div>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 

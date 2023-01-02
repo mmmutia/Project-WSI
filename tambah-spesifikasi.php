@@ -5,6 +5,39 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
+if( isset($_POST['add_spesifikasi']) ){
+  $id_cluster = $_POST['id_cluster'];
+  $pondasi = $_POST['pondasi'];
+  $dinding = $_POST['dinding'];
+  $rangka_atap = $_POST['rangka_atap'];
+  $kusen = $_POST['kusen'];
+  $plafond = $_POST['plafond'];
+  $air = $_POST['air'];
+  $listrik = $_POST['listrik'];
+  $jumlah_kamar = $_POST['jumlah_kamar'];
+  $luas_tanah = $_POST['luas_tanah'];
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+      if (move_uploaded_file($_FILES["txt_fotocluster"]["tmp_name"], $target_file)) {
+          
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
+  
+
+  $query = "INSERT INTO spesifikasi_teknis(id_cluster, pondasi, dinding, rangka_atap, kusen, plafond, air, listrik, jumlah_kamar, luas_tanah) VALUES ('$id_cluster','$pondasi','$dinding','$rangka_atap','$kusen','$plafond','$air','$listrik','$jumlah_kamar','$luas_tanah')";
+
+  $result = mysqli_query($koneksi, $query);
+  
+  if($result){
+      echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+  }
+ 
+}
 
 ?>
 
@@ -131,65 +164,53 @@ $data = mysqli_fetch_array($query_mysql);
         <div class="row">
           <div class="col-lg-8 m-auto">
             <!-- <form action="" method="get" role="form" class="php-email-form"> -->
-            <form class="php-email-form" action="edit-spesifikasi.php" method="POST" enctype="multipart/form-data">
+            <form class="php-email-form" action="" method="POST" enctype="multipart/form-data">
               <div class="row">
-                <h1 class="text-center"><span>Tambah Spesifikasi</span></h1>
-                <div class="row-md-6 form-group mb-3">
-                  
-
+              <h1 class="text-center"><span>Tambah Spesifikasi Cluster</span></h1>
+              <div class="form-group">
                 <select class="form-control" name="id_cluster" required>
-                          <option value='#'> Pilih Id</option>
-                            <?php
-                          
-                            $query = mysqli_query($koneksi, "select * from cluster");
-                            while ($row = mysqli_fetch_array($query)) {
-                              echo "<option value=$row[id_cluster]> $row[id_cluster] - $row[nama_cluster]</option>";
-                            }
-                            ?>
+                <option value='#'> Pilih Id Cluster</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from cluster");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_cluster]> $row[id_cluster] - $row[nama_cluster]</option>";
+                  }
+                  ?>
 
 
-                          </select>
+                </select>
+
+              </div><br></br>
+                <div class="row-md-6 form-group mb-3">
+                  <input name="pondasi" type="text" class="form-control" placeholder="Pondasi *" value="" />
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <!-- <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required> -->
-                  <input name="txt_pondasi" type="text" class="form-control" placeholder="Pondasi *" value="" />
+                  <input name="dinding" type="text" class="form-control" placeholder="Dinding *" value="" />
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <!-- <input type="text" name="jumlah_unit" class="form-control" id="jumlah_unit" placeholder="Jumlah Unit Rumah *" value="" required> -->
-                  <input type="text" name="txt_dinding" class="form-control" placeholder="Dinding *" value="">
+                  <input name="rangka_atap" type="text" class="form-control" placeholder="Rangka Atap *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga *" value="" required > -->
-                  <input type="text" class="form-control" name="txt_rangka_atap" placeholder="Rangka Atap *" value="">
+                <div class="row-md-6 form-group mb-3">
+                  <input name="kusen" type="text" class="form-control" placeholder="Kusen *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_kusen" placeholder="Kusen*" value="">
+                <div class="row-md-6 form-group mb-3">
+                  <input name="plafond" type="text" class="form-control" placeholder="Plafond *" value="" />
                 </div>
+                <div class="row-md-6 form-group mb-3">
+                  <input name="air" type="text" class="form-control" placeholder="Air *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_plafond" placeholder="Plafond*" value="">
+                <div class="row-md-6 form-group mb-3">
+                  <input name="listrik" type="text" class="form-control" placeholder="Listrik *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_air" placeholder="Air*" value="">
+                <div class="row-md-6 form-group mb-3">
+                  <input name="jumlah_kamar" type="text" class="form-control" placeholder="Jumlah Kamar *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_listrik" placeholder="Listrik*" value="">
+                <div class="row-md-6 form-group mb-3">
+                  <input name="luas_tanah" type="text" class="form-control" placeholder="Luas Tanah *" value="" />
                 </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_jumlah_kamar" placeholder="Jumlah Kamar*" value="">
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
-                  <input type="text" class="form-control" name="txt_luas_tanah" placeholder="Luas Tanah*" value="">
-                </div>
-                
                 <div class="group">
-                        <input type="submit" name="simpan" class="btn btn-info btn-md" value="submit">
+                        <input type="submit" name="add_spesifikasi" class="btn btn-info btn-md" value="submit">
                     </div>
                 <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
@@ -322,30 +343,4 @@ $data = mysqli_fetch_array($query_mysql);
 </body>
 
 </html>
-<?php
-require ('koneksi.php');
-session_start();
-error_reporting(0);
-if (isset($_POST['simpan'])){
-  // $id_spesifikasi = $_POST['id_spesifikasi'];
-  $id_cluster = $_POST['id_cluster'];
-  $pondasi   = $_POST['txt_pondasi'];
-  $dinding = $_POST['txt_dinding'];
-  $rangka_atap = $_POST['txt_rangka_atap'];
-  $kusen = $_POST['txt_kusen'];
-  $plafond = $_POST['txt_plafond'];
-  $air = $_POST['txt_air'];
-  $listrik = $_POST['txt_listrik'];
-  $Jumlah_kamar = $_POST['txt_jumlah_kamar'];
-  $luas_tanah =$_POST['txt_luas_tanah'];
 
-
-$query = "INSERT INTO spesifikasi_teknis ('id_cluster', 'pondasi', 'dinding', 'rangka_atap', 'kusen', 'plafond', 'air', 'listrik', 'jumlah_kamar', 'luas_tanah') VALUES ('$id_cluster','$pondasi', '$dinding', '$rangka_atap', '$kusen', '$plafond', '$air', '$listrik', '$umlah_kamar', '$luas_tanah')";
-$result = mysqli_query($koneksi, $query);
-  
-if($result){
-
-  echo "<script>alert('Data Telah Berhasil Disimpan');window.location='edit-spesifikasi.php'</script>";
-
-}
-}

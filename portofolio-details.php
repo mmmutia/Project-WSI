@@ -9,11 +9,13 @@ require('koneksi.php');
 session_start();
 error_reporting(0);
 
+$id_cluster = $_SESSION['id_cluster'];
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
 
-$query    = mysqli_query($koneksi, "SELECT * FROM cluster WHERE id_cluster='$id_cluster'");
+
+$query    = mysqli_query($koneksi, "SELECT * FROM cluster JOIN spesifikasi_teknis ON spesifikasi_teknis.id_cluster=cluster.id_cluster WHERE cluster.id_cluster='$id_cluster'");
 $result   = mysqli_fetch_array($query);
 
 if (isset($_POST['simpan'])) {
@@ -177,29 +179,21 @@ if (isset($_POST['hapus'])) {
               <div class="portfolio-info">
                 <h3><?php echo $result['nama_cluster'] ?></h3>
                 <ul>
-                  <li><strong>Category</strong>: Web design</li>
-                  <li><strong>Client</strong>: ASU Company</li>
-                  <li><strong>Project date</strong>: 01 March, 2020</li>
-                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                  <a href="pemesanan.php"><button type="button" class="btn btn-info">Pesan Rumah Ini</button></a>
-                  <?php
-                  if ($_GET['id_simpan']) {
-                    ?>
-                    <a href=""><button type="submit" name="hapus" class="btn btn-success">Hapus Simpan</button></a>
-                    <?php
-                  }else {
-                    ?>
-                    <a href=""><button type="submit" name="simpan" class="btn btn-success">Simpan</button></a>
-                    <?php
-                  }
-                  ?>
-                </ul>
+                  <li><strong>Pondasi</strong>: <?php echo $result['pondasi'] ?></li>
+                  <li><strong>Dinding</strong>: <?php echo $result['dinding'] ?></li>
+                  <li><strong>Rangka Atap</strong>: <?php echo $result['rangka_atap'] ?></li>
+                  <li><strong>Kusen</strong>: <?php echo $result['kusen'] ?></li>
+                  <li><strong>Plafond</strong>: <?php echo $result['plafond'] ?></li>
+                  <li><strong>Air</strong>: <?php echo $result['air'] ?></li>
+                  <li><strong>Listrik </strong>: <?php echo $result['listrik'] ?></li>
+                  <li><strong>Jumlah Kamar</strong>: <?php echo $result['jumlah_kamar'] ?></li>
+                  <li><strong>Luas Tanah</strong>: <?php echo $result['luas_tanah'] ?></li>
+                  <div class="portfolio-description">
+                <h2>Harga : <?php echo $result['harga'] ?></h2>
               </div>
-              <div class="portfolio-description">
-                <h2>This is an example of portfolio detail</h2>
-                <p>
-                  Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-                </p>
+                  <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
+                  <a href=""><button type="submit" name="simpan" class="btn btn-dark">Simpan</button></a>
+                </ul>
               </div>
             </form>
           </div>

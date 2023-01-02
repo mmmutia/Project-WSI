@@ -130,7 +130,7 @@ if($userName = $_SESSION['name']){
             <img src="img/bg-bernady.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
-            <h3>Bernady Land Slawu</h3>
+            <h3>Bernady Land Slawu</h3><br>
             <p class="fst-italic">
              Terletak di tengah-tengah wilayah Kota yang berbentuk menyerupai hati menjadikan kawasan Bernady Land Slawu sebagai pusat dimana 
              hati sebagai tempat yang paling nyaman berada. Hunian yang dibuat dengan estetika yang modern dan futuristik memberikan kesan ekslusif. 
@@ -180,9 +180,8 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="section-title">
-          <h2>Our Skills</h2>
-          <p>Rumah Modern Minimalis & Strategis Bernady Land Slawu</p>
-          <p>Kawasan rumah exclusive di tengah Kota Jember.Dengan bangunan berkualitas dari developer yang terpercaya.Kawasan yang memiliki sirkulasi udara lebih sejuk dan lokasi yang nyaman. Cluster Camelia, Rumah Modern Baru 2 Lantai & Strategis, Cluster Pinewood Kawasan Rumah Exclusive Di Tengah Kota Jember, Cluster Plumeria ialah Rumah Istimewa 2 Lantai Bernuansa Villa di Kota Jember Perumahan Bernady Land Slawu, Dan Cluster Gardenia</p>
+          <h2>Rumah Modern Minimalis & Strategis Bernady Land Slawu</h2>
+          <p>Kawasan rumah exclusive di tengah Kota Jember. Dengan bangunan berkualitas dari developer yang terpercaya.Kawasan yang memiliki sirkulasi udara lebih sejuk dan lokasi yang nyaman. </p>
         </div>
    
 
@@ -191,7 +190,6 @@ if($userName = $_SESSION['name']){
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
               <span class="skill">Camelia <i class="val">100%</i></span>
-              <
             </div>
           </div>
 
@@ -203,13 +201,13 @@ if($userName = $_SESSION['name']){
 
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">PLUMERIA <i class="val">75%</i></span>
+              <span class="skill">Plumeria <i class="val">75%</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-              <span class="skill">GARDENIA<i class="val">55%</i></span>
+              <span class="skill">QBIX<i class="val">55%</i></span>
             </div>
           </div>
 
