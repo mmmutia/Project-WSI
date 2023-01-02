@@ -132,7 +132,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
-            <input name="Harga">
             <input name="cluster"> 
            <button>Search</button>
             </form>
