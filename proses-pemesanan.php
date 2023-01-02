@@ -5,15 +5,18 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
-$nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah");
+$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah ");
 $data = mysqli_fetch_array($query_mysql);
 
-if(isset($_POST['nup'])){
-  $nup = $_POST['txt_nup'];
+if(isset($_POST['add_detail'])){
+  $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
+  $detail_blok = $_POST['detail_blok'];
+  $jumlah_dp = $_POST['jumlah_dp'];
 
-  $query_nup = mysqli_query($koneksi,"INSERT INTO nup (nup) VALUES ('$nup')");
+  $query_nup = mysqli_query($koneksi,"INSERT INTO detail_pemesanan (id_pemesanan_rumah, detail_blok, jumlah_dp) VALUES ('$id_pemesanan_rumah','$detail_blok', '$jumlah_dp')");
+
+  
   
 }
 
@@ -32,6 +35,7 @@ if(isset($_POST['nup'])){
 
   <!-- Favicons -->
   <link href="img/logo-bernady.png" rel="icon">
+
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -91,7 +95,7 @@ if(isset($_POST['nup'])){
             <ul>
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-                <li> <a href='pembayaran-user.php'>Pembayaran</a></li>
+                <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
@@ -176,16 +180,31 @@ if(isset($_POST['nup'])){
             </form>
           </div>
           <div class="row">
-                <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+                <h1 class="text-center"><span> Detail Blok Rumah </span></h1>
           <div class="col-lg-4 m-auto">
-          <form action="" method="post">
-                <!-- <div class="row"> -->
-                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-                  <input type="text" name="txt_nup" class="form-control" id="txt_nup" placeholder="Masukkan NUP">
-                <!-- </div> -->
-                <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-                  <button type="submit" class="btn btn-outline-info" name="nup">Simpan</button>
-                <!-- </div>  -->
+          <form action="" method="post" >
+                <div class="row">
+                <div class="form-group">
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id Pemesanan Rumah</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+                </select><br>
+              </div>
+                <div class="row-md-6 form-group mb-3 text-center">
+                  <input type="text" name="detail_blok" class="form-control" id="detail_blok" placeholder="Masukkan Blok">
+                </div>
+                <div class="row-md-6 form-group mb-3 text-center">
+                  <input type="text" name="jumlah_dp" class="form-control" id="jumlah_dp" placeholder="Jumlah DP">
+                </div>
+                <div class="row-md-6 form-group mb-3 text-center">
+                  <button type="submit" class="btn btn-outline-info" name="add_detail">Simpan</button>
+                </div> 
             </form>
           </div>
         </div>

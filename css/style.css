@@ -2516,3 +2516,12 @@ body {
 .contact .php-cluster-form button[type=search]:hover {
   background: #039ef2;
 }
+
+.dataTables_wrapper {
+  font-family: tahoma;
+  font-size: 10px;
+  position: relative;
+  clear: both;
+  *zoom: 1;
+  zoom: 1;
+}

@@ -6,12 +6,6 @@ $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +69,7 @@ $SesLvl = $_SESSION['level'];
           <li><a class="" href="index-admin.php">Home</a></li>
           <li><a href="about-admin.php">About</a></li>
           <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Gallery</a></li>
+          <li><a href="portfolio-admin.php">Cluster</a></li>
           <li><a href="team-admin.php">Team</a></li>
           <li><a class="active" href="contact-admin.php">Contact Us</a></li>
           <?php
@@ -87,8 +81,8 @@ $SesLvl = $_SESSION['level'];
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
             <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
@@ -117,7 +111,7 @@ $SesLvl = $_SESSION['level'];
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Data Pembayaran Inhouse</blockquote></h2>
+          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -141,19 +135,14 @@ $SesLvl = $_SESSION['level'];
             <tr>
                 <th>No</th>    
                 <th>ID Pemesanan Rumah</th>
-                <th>Nama Pemesan</th>
-                <th>Alamat</th>
-                <th>No Telp</th>
-                <th>ID Cluster</th>
-                <th>Tanggal Pemesanan</th>
-                <th>Jenis Pembayaran</th>
-                <th>Foto KTP</th>
-                <th>Status </th>
+                <th>Tanggal Pembayaran</th>
+                <th>Bukti Pembayaran</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
         <?php
-        $query = "SELECT pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan, pemesanan_rumah.alamat, pemesanan_rumah.no_telp_pemesan, pemesanan_rumah.id_cluster, pemesanan_rumah.tgl_pemesanan, pemesanan_rumah.fotocopy_ktp, pemesanan_rumah.jenis_pembayaran FROM pemesanan_rumah ORDER BY id_pemesanan_rumah ASC";
+        $query = "SELECT * from pembayaran_inhouse";
         $result = mysqli_query($koneksi, $query);
         $no=1;
         // if ($SesLvl == 2){
@@ -168,27 +157,15 @@ $SesLvl = $_SESSION['level'];
         
         while($row = mysqli_fetch_array($result)){
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
-          $nama_pemesan = $row['nama_pemesan'];
-          $alamat = $row['alamat'];
-          $no_telp_pemesan = $row['no_telp_pemesanan'];
-          $id_cluster = $row['id_cluster'];
-          $tgl_pemesanan = $row['tgl_pemesanan'];
-          $jenis_pembayaran = $row['jenis_pembayaran'];
-          $focopy_ktp = $row['fotocopy_ktp'];
+          $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
+          $bukti_foto = $row['bukti_pembayaran_inhouse'];
         ?>
         <tr class="text-center">
               <td><?php echo $no++?></td>
               <td><?php echo $id_pemesanan_rumah;?></td>
-              <td><?php echo $nama_pemesan;?></td>
-              <td><?php echo $alamat;?></td>
-              <td><?php echo $no_telp_pemesan;?></td>
-              <td><?php echo $id_cluster;?></td>
-              <td><?php echo $tgl_pemesanan;?></td>
-              <td><?php echo $jenis_pembayaran;?></td>
-              <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
-              <td style="text-align:center;">
-                <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah'] ?>"><button type="button" class="btn btn-outline-secondary">Proses</button></a>
-            </td>
+              <td><?php echo $tgl_pembayaran;?></td>
+              <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
+              <td></td>
             </tr>
             <?php
           }
@@ -343,14 +320,17 @@ $SesLvl = $_SESSION['level'];
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
-
+  
   <script type="text/javascript">
     function confirmLogout(logout_url){
       $('#modalLogout').modal('show', {backdrop: 'static'});
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
+  
 
 </body>
 
 </html>
+
+

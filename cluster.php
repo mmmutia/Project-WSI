@@ -202,9 +202,8 @@ if ($hapus) {
                         <td><?php echo $hargaDp?></td>
                         <td><img src="img/images_cluster/<?php echo $row['foto_cluster']; ?>"  height="60px"></td>
                         <td>
-                        <a href="form-edit-cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle 
-                        <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
-
+                        <a href="tambah-spesifikasi.php" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a >
+                        <a href="form-edit-cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
                         <a href="#" class="btn btn-danger btn-circle <?php echo $dis;?>" 
                         onClick="confirmModal('hapus_cluster.php?&id=<?php echo $row['id_cluster']; ?>');"><i class="fa fa-trash"></i></a>
                         </td>

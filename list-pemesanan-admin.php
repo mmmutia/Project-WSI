@@ -50,6 +50,10 @@ $SesLvl = $_SESSION['level'];
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+  <link href="vendor/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
+
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -148,7 +152,7 @@ $SesLvl = $_SESSION['level'];
                 <th>Tanggal Pemesanan</th>
                 <th>Jenis Pembayaran</th>
                 <th>Foto KTP</th>
-                <th>Status </th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -170,7 +174,7 @@ $SesLvl = $_SESSION['level'];
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
           $nama_pemesan = $row['nama_pemesan'];
           $alamat = $row['alamat'];
-          $no_telp_pemesan = $row['no_telp_pemesanan'];
+          $no_telp_pemesan = $row['no_telp_pemesan'];
           $id_cluster = $row['id_cluster'];
           $tgl_pemesanan = $row['tgl_pemesanan'];
           $jenis_pembayaran = $row['jenis_pembayaran'];
@@ -186,9 +190,11 @@ $SesLvl = $_SESSION['level'];
               <td><?php echo $tgl_pemesanan;?></td>
               <td><?php echo $jenis_pembayaran;?></td>
               <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
-              <td style="text-align:center;">
-                <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah'] ?>"><button type="button" class="btn btn-outline-secondary">Proses</button></a>
-            </td>
+              <td>
+              <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a><br>
+              <a href="hapus_pemesanan.php" class="btn btn-danger btn-circle <?php echo $dis;?>" 
+                onClick="confirmModal('hapus_pemesanan.php?&id=<?php echo $row['id_pemesanan_rumah']; ?>');"><i class="fa fa-trash"></i></a>
+              </td>
             </tr>
             <?php
           }

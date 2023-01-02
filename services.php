@@ -75,9 +75,8 @@ if($userName = $_SESSION['name']){
   <ul>
     <li> <a href='profile-user.php'>Profil</a></li>
       <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-      <li> <a href='proggres.php'>Proggres</a></li>
-      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href='proggres.php'>Pembayaran</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres.php'>Proggres</a></li>        
       <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
       <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
   </ul>
@@ -163,7 +162,8 @@ if($userName = $_SESSION['name']){
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section>
+    <!-- End Services Section -->
 
     <!-- ======= Why Us Section ======= -->
     <!-- <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
@@ -207,7 +207,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">Mall</a></h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                <p class="card-text">Menjadi pusat perbelanjaan yang secara arsitektur berupa bangunan tertutup dengan suhu yang diatur dan memiliki jalur untuk berjalan jalan yang teratur sehingga berada di antara antar toko-toko kecil yang saling berhadapan yang memudahkan penghuni Bernady Land untuk berbelanja kebutuhan sehari-hari</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -219,7 +219,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">Hotel</a></h5>
-                <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
+                <p class="card-text">Menjadikan sebuah bangunan atau usaha yang menyediakan jasa inap dan juga menyediakan makanan dan minuman bagi tamu yang datang serta mempunyai fasilitas jasa lannya. Yang mana semua fasilitasnya juga di peruntukkan bagi masyarakat umum.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -232,7 +232,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">SPBU</a></h5>
-                <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
+                <p class="card-text">(Stasiun Pengisian Bahan Bakar untuk Umum) merupakan prasarana umum yang disediakan oleh PT. Pertamina untuk masyarakat luas guna memenuhi kebutuhan bahan bakar. Pada umumnya SPBU menjual bahan bakar sejenis premium, solar, pertamax dan pertamax plus.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -244,7 +244,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">Cendani Park</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <p class="card-text">Sebuah area yang mempunyai ruang dalam berbagai kondisi. Kondisi yang dimaksud diantaranya lokasi, ukuran atau luasan, iklim, dan kondisi khusus lainnya seperti tujuan serta fungsi spesifik dari pembangunan taman.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -256,7 +256,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">Bernady Camp</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <p class="card-text">Merupakan lokasi untuk mendirikan tenda dan melakukan kegiatan berkemah, berupa ruang luas di luar ruangan.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -268,7 +268,7 @@ if($userName = $_SESSION['name']){
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="#">STIL Autocare</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <p class="card-text">Sebagai tempat dimana di dalamnya terjadi aktifitas kegiatan perbengkelan yang meliputi perawatan guna menjaga keawetan mobil dan perbaikan guna memperbaiki segala sesuatu yang rusak pada mobil, sehingga kondisi mobil kembali baik dan sempurna.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -277,61 +277,6 @@ if($userName = $_SESSION['name']){
 
       </div>
     </section><!-- End Service Details Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- <section class="pricing section-bg" data-aos="fade-up">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Pricing</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-4 box">
-            <h3>Free</h3>
-            <h4>$0<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span></li>
-              <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-            </ul>
-            <a href="#" class="get-started-btn">Get Started</a>
-          </div>
-
-          <div class="col-lg-4 box featured">
-            <h3>Business</h3>
-            <h4>$29<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-              <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-            </ul>
-            <a href="#" class="get-started-btn">Get Started</a>
-          </div>
-
-          <div class="col-lg-4 box">
-            <h3>Developer</h3>
-            <h4>$49<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-              <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-            </ul>
-            <a href="#" class="get-started-btn">Get Started</a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>End Pricing Section -->
 
   </main><!-- End #main -->
 

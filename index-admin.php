@@ -112,7 +112,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
+      <a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
     </div>
   </div>
 
@@ -126,7 +126,7 @@ if($userName = $_SESSION['name']){
     <div class='carousel-container'>
       <h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
       <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='editbanner.php' class='btn-get-started animate__animated animate__fadeInUp'>Edit</a>
+      <a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
     </div>
   </div>
 
@@ -143,7 +143,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">The Heart of Jember</h2>
           <p class="animate__animated animate__fadeInUp">Terletak ditengah-tengah wilayah kota yang berbentuk menyerupai hati. Menghadirkan lingkungan yang bersih nan asri, Bernady Land Slawu dibangun dengan infrastruktur bawah tanah dan didukung water treatment plant untuk memenuhi kebutuhan air bersih penghuni.</p>
-          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
+          <a href="portfolio.php" class="btn-get-started animate__animated animate__fadeInUp">Cari Rumah</a>
         </div>
       </div>
 
@@ -152,7 +152,7 @@ if($userName = $_SESSION['name']){
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">City Outside Tranquility Inside</h2>
           <p class="animate__animated animate__fadeInUp">Mengusung konsep kawasan hijau yang bebas dari polusi, lebih sehat dan lebih asri serta alami memberikan aura positif dan semangat.</p>
-          <a href="editbanner.php" class="btn-get-started animate__animated animate__fadeInUp">Edit</a>
+          <a href="services.php" class="btn-get-started animate__animated animate__fadeInUp">Fasilitas</a>
         </div>
       </div>
 
@@ -225,14 +225,14 @@ if($userName = $_SESSION['name']){
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="">Urban Activities </a></h4>
+              <p class="description">Banyak kegiatan yang bisa kamu lakukan bersama temen, tetangga, atau saudara saat punya hunian dikawasan Bernady Land Slawu.</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <h4 class="title"><a href="">Pentingnya Ruang Terbuka Hijau</a></h4>
+              <p class="description">Ruang Terbuka Hijau yang terdapat di setiap Cluster kawasan Bernady Land Slawu, memiliki banyak manfaat untuk tumbuh kembang keluarga dan lingkungan hidup yang sehat</p>
             </div>
 
           </div>
@@ -240,34 +240,6 @@ if($userName = $_SESSION['name']){
 
       </div>
     </section><!-- End Why Us Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section class="features">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Features</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5">
-            <img src="img/features-1.svg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 pt-4">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Features Section -->
 
   </main><!-- End #main -->
 

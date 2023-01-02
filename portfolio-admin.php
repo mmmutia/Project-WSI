@@ -169,12 +169,11 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           ?>
           <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
             <div class="portfolio-item">
-              <img src="img/boluevard magnolia.jpeg" class="img-fluid" alt="">
+              <img src="img/images_cluster/<?php echo $item['foto_cluster']; ?>" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h3><?php echo $item['nama_cluster'];?></h3>
                 <div>
-                  <a href="img/gambar9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-search"></i></a>
-                  <a href="portofolio-details-admin.php?id_cluster=<?= $item['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details.php?id_cluster=<?= $item['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
                   <!-- <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a> -->
                 </div>
               </div>

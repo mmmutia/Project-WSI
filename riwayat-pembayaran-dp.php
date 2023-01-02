@@ -2,10 +2,15 @@
 require ('koneksi.php');
 session_start();
 error_reporting(0);
-$nama_cluster = $_SESSION['nama_cluster'];
+$userName = $_SESSION['name'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$SesLvl = $_SESSION['level'];
 
-$query_mysql = mysqli_query($koneksi,"select * from cluster where nama_cluster = '$nama_cluster'");
-$data = mysqli_fetch_array($query_mysql);
+// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+// $data = mysqli_fetch_array($query_mysql);
+// $query = $data['id_pemesanan_rumah'];
+// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
+// // $item = mysqli_fetch_array($query_mysql2);
 
 ?>
 
@@ -45,9 +50,6 @@ $data = mysqli_fetch_array($query_mysql);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
-  <link href="vendor/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -85,8 +87,10 @@ $data = mysqli_fetch_array($query_mysql);
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
             <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+            <li> <a href='proggres.php'>Progres</a></li>
+            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
@@ -115,7 +119,7 @@ $data = mysqli_fetch_array($query_mysql);
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Data Spesifikasi</blockquote></h2>
+          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -129,75 +133,60 @@ $data = mysqli_fetch_array($query_mysql);
         </div>
 
       </div>
-    
-  </div>
     </section><!-- End Contact Section -->
-    <center> <a href="tambah-spesifikasi.php" class="btn btn-secondary"><i class="fa fa-folder-plus"></i> Tambah Spesifikasi</a><center><br>
+
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div  class="container">
       <table id="example" class="table table-striped" style="width:100%">
-      <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Id Cluster</th>
-                    <th>Pondasi</th>
-                    <th>Dinding</th>
-                    <th>Rangka Atap</th>
-                    <th>Kusen</th>
-                    <th>Plafond</th>
-                    <th>Air</th>
-                    <th>Listrik</th>
-                    <th>Jumlah Kamar</th>
-                    <th>Luas Tanah</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                 include 'koneksi.php';
-                 $no = 1;
-                 $cluster = mysqli_query($koneksi, "SELECT * FROM spesifikasi_teknis");
-                 while ($row = mysqli_fetch_array($cluster)) {
-                  $id_spesifikasi = $row['id_spesifikasi'];
-                  $id_cluster = $row['id_cluster'];
-                  $pondasi   = $row['pondasi'];
-                  $dinding = $row['dinding'];
-                  $rangka_atap = $row['rangka_atap'];
-                  $kusen = $row['kusen'];
-                  $plafond = $row['plafond'];
-                  $air = $row['air'];
-                  $listrik = $row['listrik'];
-                  $Jumlah_kamar = $row['jumlah_kamar'];
-                  $luas_tanah =$row['luas_tanah'];
+        <thead>
+            <tr>
+                <th>No</th>    
+                <th>ID Pemesanan Rumah</th>
+                <th>Tanggal Pembayaran</th>
+                <th>Bukti Pembayaran</th>
+                <th>Status</th>
+                <!-- <th></th> -->
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        <?php
+        $query = "SELECT * from pembayaran_dp";
+        $result = mysqli_query($koneksi, $query);
+        $no=1;
+        // if ($SesLvl == 2){
+        //   $dis = "";
+        // } else if ($SesLvl == 1){
+        //   $dis = "disabled";
+        // } else if ($SesLvl == 3){
+        //   $dis = "disabled";
+        // } else ($SesLvl == 4){
+        //   $dis = "disabled";
+        // } 
+        
+        while($row = mysqli_fetch_array($result)){
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
+          $bukti_foto = $row['bukti_pembayaran_dp'];
+          // $status = $row['status_dp'];
+        ?>
+        <tr class="text-center">
+              <td><?php echo $no++?></td>
+              <td><?php echo $id_pemesanan_rumah;?></td>
+              <td><?php echo $tgl_pembayaran;?></td>
+              <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
               
-                ?>
-                 <tr>
-                 <td><?php echo $no++ ?></td>   
-                 <td><?php echo $id_spesifikasi ?></td>
-                 <td><?php echo $id_cluster ?></td>    
-                        <td><?php echo $pondasi ?></td>
-                        <td><?php echo $dinding ?></td>
-                        <td><?php echo $rangka_atap ?></td>
-                        <td><?php echo $kusen ?></td>
-                        <td><?php echo $plafond ?></td>
-                        <td><?php echo $air ?></td>
-                        <td><?php echo $listrik ?></td>
-                        <td><?php echo $jumlah_kamar ?></td>
-                        <td><?php echo $luas_tanah ?></td>
-                        <td>
-                        <a href="form-edit-spesifikasi.php?id= <?php echo $row['id_spesifikasi']; ?>" class="btn btn-warning btn-circle 
-                        <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
-                        </td>
-                 </tr>
-                 <?php 
-                }
-                ?> 
-            </tbody>
-          </table>
+              <td></td>
+            </tr>
+            <?php
+          }
+          ?>
+            
+        </tbody>
+    </table>
     </div>
-    
-</div>
       <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -206,13 +195,6 @@ $data = mysqli_fetch_array($query_mysql);
         });
     </script>
     <!-- </section>End Contact Section -->
-
-    <!-- ======= Map Section ======= -->
-    <!-- <section class="map mt-2">
-      <div class="container-fluid p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>End Map Section -->
 
   <!-- </main>End #main -->
 
@@ -341,13 +323,7 @@ $data = mysqli_fetch_array($query_mysql);
   
 
 </body>
- 
 
-    </div>
-  </div>
-</div>
 </html>
-
-
 
 

@@ -11,11 +11,6 @@ $nup = $_SESSION['nup'];
 $query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah where id_user = '$userId'");
 $data = mysqli_fetch_array($query_mysql);
 
-if (isset($_POST['nup'])) {
-  $nup = $_POST['txt_nup'];
-
-  $query_nup = mysqli_query($koneksi, "INSERT INTO nup (nup) VALUES ('$nup')");
-}
 $_SESSION['identitas'] = $data;
 ?>
 
@@ -176,15 +171,17 @@ $_SESSION['identitas'] = $data;
 
         <div class="row">
           <div class="col-lg-8 m-auto">
-            <h1 class="text-center"><span> Nomor Urut Pemesanan </span></h1>
+          <h1 class="text-center"><span> Detail Blok </span></h1>
+          <form action="" method="post">
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+            <input type="email" class="form-control" name="detail_blok" id="detail_blok" value="<?php echo $data2['detail_blok']; ?>" required readonly>
             <form action="" method="post">
               <!-- <div class="row"> -->
               <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
               <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                <input type="email" class="form-control" name="nup" id="nup" value="<?php echo $nup; ?>" required disabled> <br>
-                <h6>Info : Dalam 1 x 24 jam tim Marketing Bernady Land Slawu akan menghubungi anda untuk proses pemilihan blok rumah.</h6><br>
-                <h6>Hubungi kontak informasi dibawah jika diperlukan.</h6>
-                <!-- </div>  -->
+              <h1 class="text-center"><span> Jumlah DP </span></h1>
+                <input type="email" class="form-control" name="jumlah_dp" id="jumlah_dp" value="<?php echo $data2['jumlah_dp']; ?>" required readonly> <br>
+                </div> 
             </form>
           </div>
         </div>
