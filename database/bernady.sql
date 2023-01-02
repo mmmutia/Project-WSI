@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2022 at 04:08 PM
+-- Generation Time: Jan 02, 2023 at 06:44 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -43,7 +43,35 @@ CREATE TABLE `cluster` (
 --
 
 INSERT INTO `cluster` (`id_cluster`, `foto_cluster`, `nama_cluster`, `blok`, `jumlah_unit`, `harga`, `harga_dp`, `filter`) VALUES
-(4, '', 'Magnolia', 'A-BN', 200, 'Rp 900.000.000', 'Rp 90.000.000', '');
+(4, '', 'Magnolia', 'A-BN', 199, 'Rp 900.000.000', 'Rp 90.000.000', ''),
+(5, 'pinewood2.jpg', 'Boulevard ', 'B-CD', 149, 'Rp 900.000.000', 'Rp 90.000.000', ''),
+(6, 'pinewood-123.jpg', 'Pinewood Terra', 'P-VB', 150, 'Rp. 800.000.000', 'Rp 80.000.000', ''),
+(7, 'WhatsApp Image 2023-01-01 at 15.24.43.jpeg', 'Gardenia', 'G-AF', 50, 'Rp. 800.000.000', 'Rp 80.000.000', ''),
+(8, '1200x600-4-cara-menghias-kue-ulang-tahun-mudah-dan-murah-190919p.jpg', 'Camelia ', 'C-TY', 70, 'Rp. 700.000.000', 'Rp. 70.000.000', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_pemesanan`
+--
+
+CREATE TABLE `detail_pemesanan` (
+  `id_detail_pemesanan` int(11) NOT NULL,
+  `id_pemesanan_rumah` int(11) NOT NULL,
+  `detail_blok` varchar(100) NOT NULL,
+  `jumlah_dp` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_pemesanan`
+--
+
+INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan_rumah`, `detail_blok`, `jumlah_dp`) VALUES
+(10, 20, 'B-BN8', 'Rp 80.000.000'),
+(11, 20, 'B-BN8', 'Rp 80.000.000'),
+(12, 20, 'B-BN8', 'Rp 80.000.000'),
+(13, 20, 'B-BN8', 'Rp 80.000.000'),
+(14, 20, 'B-BN8', 'Rp 80.000.000');
 
 -- --------------------------------------------------------
 
@@ -69,31 +97,6 @@ INSERT INTO `level_detail` (`id_level`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_kontak`
---
-
-CREATE TABLE `message_kontak` (
-  `nama` varchar(50) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `subject_kontak` varchar(50) NOT NULL,
-  `message_kontak` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nup`
---
-
-CREATE TABLE `nup` (
-  `id_nup` int(11) NOT NULL,
-  `id_pemesanan_rumah` int(11) NOT NULL,
-  `nup` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pembayaran_dp`
 --
 
@@ -102,8 +105,15 @@ CREATE TABLE `pembayaran_dp` (
   `id_pemesanan_rumah` int(11) NOT NULL,
   `tgl_pembayaran_dp` date NOT NULL,
   `bukti_pembayaran_dp` varchar(100) NOT NULL,
-  `status_dp` varchar(100) NOT NULL
+  `status_dp` enum('Menunggu Konfirmasi','Belum Lunas','Lunas','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pembayaran_dp`
+--
+
+INSERT INTO `pembayaran_dp` (`id_pembayaran_dp`, `id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`, `status_dp`) VALUES
+(5, 20, '2022-12-30', 'WIN_20221227_07_30_04_Pro.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -119,6 +129,13 @@ CREATE TABLE `pembayaran_inhouse` (
   `status_inhouse` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pembayaran_inhouse`
+--
+
+INSERT INTO `pembayaran_inhouse` (`id_pembayaran_inhouse`, `id_pemesanan_rumah`, `tgl_pembayaran_inhouse`, `bukti_pembayaran_inhouse`, `status_inhouse`) VALUES
+(7, 20, '2022-12-31', 'qbix4.jpeg', '');
+
 -- --------------------------------------------------------
 
 --
@@ -132,13 +149,18 @@ CREATE TABLE `pemesanan_rumah` (
   `no_telp_pemesan` varchar(15) NOT NULL,
   `id_cluster` int(11) NOT NULL,
   `tgl_pemesanan` date NOT NULL,
-  `nup` varchar(50) NOT NULL,
   `fotocopy_ktp` varchar(100) NOT NULL,
   `jenis_pembayaran` varchar(100) NOT NULL,
-  `jumlah_dp` varchar(100) NOT NULL,
-  `detail_blok` varchar(50) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pemesanan_rumah`
+--
+
+INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `no_telp_pemesan`, `id_cluster`, `tgl_pemesanan`, `fotocopy_ktp`, `jenis_pembayaran`, `id_user`) VALUES
+(20, 'Mutia Budi Utami', 'Jakarta', '08123456789', 4, '2022-12-29', 'WIN_20221227_07_30_04_Pro.jpg', 'InHouse', 5),
+(24, 'Budi', 'Jember', '08987654321', 5, '2023-01-02', 'WhatsApp Image 2022-11-11 at 15.46.31.jpeg', 'InHouse', 6);
 
 --
 -- Triggers `pemesanan_rumah`
@@ -176,7 +198,6 @@ CREATE TABLE `proggres` (
 CREATE TABLE `serah_terima` (
   `id_serah_terima` int(11) NOT NULL,
   `id_pemesanan_rumah` int(11) NOT NULL,
-  `id_pembayaran_dp` int(11) NOT NULL,
   `no_surat_bangunan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -191,6 +212,14 @@ CREATE TABLE `simpan_cluster` (
   `id_cluster` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `simpan_cluster`
+--
+
+INSERT INTO `simpan_cluster` (`id_simpan`, `id_cluster`, `id_user`) VALUES
+(11, 5, 2),
+(12, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -211,6 +240,15 @@ CREATE TABLE `spesifikasi_teknis` (
   `jumlah_kamar` varchar(100) NOT NULL,
   `luas_tanah` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `spesifikasi_teknis`
+--
+
+INSERT INTO `spesifikasi_teknis` (`id_spesifikasi`, `id_cluster`, `pondasi`, `dinding`, `rangka_atap`, `kusen`, `plafond`, `air`, `listrik`, `jumlah_kamar`, `luas_tanah`) VALUES
+(3, 4, 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', '', 'a'),
+(6, 7, 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q'),
+(7, 8, 'TT', 'TT', 'TT', 'TT', 'TT', 'TT', 'TT', 'TT', 'TT');
 
 -- --------------------------------------------------------
 
@@ -251,31 +289,31 @@ ALTER TABLE `cluster`
   ADD PRIMARY KEY (`id_cluster`);
 
 --
+-- Indexes for table `detail_pemesanan`
+--
+ALTER TABLE `detail_pemesanan`
+  ADD PRIMARY KEY (`id_detail_pemesanan`),
+  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
+
+--
 -- Indexes for table `level_detail`
 --
 ALTER TABLE `level_detail`
   ADD PRIMARY KEY (`id_level`);
 
 --
--- Indexes for table `nup`
---
-ALTER TABLE `nup`
-  ADD PRIMARY KEY (`id_nup`),
-  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
-
---
 -- Indexes for table `pembayaran_dp`
 --
 ALTER TABLE `pembayaran_dp`
   ADD PRIMARY KEY (`id_pembayaran_dp`),
-  ADD UNIQUE KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
+  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`) USING BTREE;
 
 --
 -- Indexes for table `pembayaran_inhouse`
 --
 ALTER TABLE `pembayaran_inhouse`
   ADD PRIMARY KEY (`id_pembayaran_inhouse`),
-  ADD UNIQUE KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
+  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`) USING BTREE;
 
 --
 -- Indexes for table `pemesanan_rumah`
@@ -298,8 +336,7 @@ ALTER TABLE `proggres`
 --
 ALTER TABLE `serah_terima`
   ADD PRIMARY KEY (`id_serah_terima`),
-  ADD UNIQUE KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`),
-  ADD UNIQUE KEY `id_pembayaran_dp` (`id_pembayaran_dp`);
+  ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`) USING BTREE;
 
 --
 -- Indexes for table `simpan_cluster`
@@ -314,7 +351,7 @@ ALTER TABLE `simpan_cluster`
 --
 ALTER TABLE `spesifikasi_teknis`
   ADD PRIMARY KEY (`id_spesifikasi`),
-  ADD UNIQUE KEY `id_cluster` (`id_cluster`);
+  ADD KEY `id_cluster` (`id_cluster`) USING BTREE;
 
 --
 -- Indexes for table `user_detail`
@@ -331,7 +368,13 @@ ALTER TABLE `user_detail`
 -- AUTO_INCREMENT for table `cluster`
 --
 ALTER TABLE `cluster`
-  MODIFY `id_cluster` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cluster` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `detail_pemesanan`
+--
+ALTER TABLE `detail_pemesanan`
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `level_detail`
@@ -340,34 +383,28 @@ ALTER TABLE `level_detail`
   MODIFY `id_level` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `nup`
---
-ALTER TABLE `nup`
-  MODIFY `id_nup` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `pembayaran_dp`
 --
 ALTER TABLE `pembayaran_dp`
-  MODIFY `id_pembayaran_dp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembayaran_dp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pembayaran_inhouse`
 --
 ALTER TABLE `pembayaran_inhouse`
-  MODIFY `id_pembayaran_inhouse` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembayaran_inhouse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `proggres`
 --
 ALTER TABLE `proggres`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `serah_terima`
@@ -379,13 +416,13 @@ ALTER TABLE `serah_terima`
 -- AUTO_INCREMENT for table `simpan_cluster`
 --
 ALTER TABLE `simpan_cluster`
-  MODIFY `id_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `spesifikasi_teknis`
 --
 ALTER TABLE `spesifikasi_teknis`
-  MODIFY `id_spesifikasi` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_spesifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_detail`
@@ -398,10 +435,10 @@ ALTER TABLE `user_detail`
 --
 
 --
--- Constraints for table `nup`
+-- Constraints for table `detail_pemesanan`
 --
-ALTER TABLE `nup`
-  ADD CONSTRAINT `nup_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
+ALTER TABLE `detail_pemesanan`
+  ADD CONSTRAINT `detail_pemesanan_ibfk_1` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pembayaran_dp`
@@ -419,7 +456,7 @@ ALTER TABLE `pembayaran_inhouse`
 -- Constraints for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  ADD CONSTRAINT `pemesanan_rumah_ibfk_3` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pemesanan_rumah_ibfk_3` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`),
   ADD CONSTRAINT `pemesanan_rumah_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`);
 
 --
@@ -433,7 +470,6 @@ ALTER TABLE `proggres`
 -- Constraints for table `serah_terima`
 --
 ALTER TABLE `serah_terima`
-  ADD CONSTRAINT `serah_terima_ibfk_2` FOREIGN KEY (`id_pembayaran_dp`) REFERENCES `pembayaran_dp` (`id_pembayaran_dp`) ON UPDATE CASCADE,
   ADD CONSTRAINT `serah_terima_ibfk_3` FOREIGN KEY (`id_pemesanan_rumah`) REFERENCES `pemesanan_rumah` (`id_pemesanan_rumah`) ON UPDATE CASCADE;
 
 --
