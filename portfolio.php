@@ -131,15 +131,9 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
         </div>
 
         <div class="col-lg-6">
-<<<<<<< Updated upstream
-        <form action="portfolio-admin.php" method="GET">
+        <form action="portfolio.php" method="GET">
             <input type="text" name="cari"> 
             <input type="submit" value="Search">
-=======
-            <form action="pencarian.php" method="GET">
-            <input name="cari"> 
-           <button>Search</button>
->>>>>>> Stashed changes
             </form>
           </div>
         </div>
