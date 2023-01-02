@@ -1,18 +1,21 @@
 <?php
 require('koneksi.php');
 session_start();
+error_reporting(0);
 
 $userName = $_SESSION['name'];
-$harga = $_GET['Harga'];
-$semuadata = [];
-$ambil = $koneksi->query("SELECT * FROM cluster WHERE nama_cluster LIKE '%$harga%'");
-
-while ($pecah = $ambil->fetch_assoc()) {
-    $semuadata[] = $pecah;
-}
+$query_mysql = mysqli_query($koneksi,"select * from cluster");
+// $data = mysqli_fetch_array($query_mysql);
+ 
+    if(isset($_GET['cari'])){
+        $cari = $_GET['cari'];
+        $data = mysql_query("select * from mhs where nama like '%".$cari."%'"); 
+    }
+    else{
+        $data = mysql_query("select * from mhs"); 
+    }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,10 +84,12 @@ while ($pecah = $ambil->fetch_assoc()) {
 
   <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
   <ul>
-    <li> <a href='profile-user.php'>Profil</a></li>
-    <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-    <li> <a href=''>Cluster Yang Tersimpan</a></li>
-    <li><a href='logout.php'>Logout</a></li>
+  <li> <a href='profile-user.php'>Profil</a></li>
+  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+  <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+  <li> <a href='proggres.php'>Progres</a></li>
+  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
   </ul>
 </div>
 
@@ -128,70 +133,43 @@ while ($pecah = $ambil->fetch_assoc()) {
             }
           </style>
           <ol>
-            <li><a href="../index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li>Cluster Perumahan</li>
           </ol>
         </div>
 
         <div class="col-lg-6">
             <form action="pencarian.php" method="GET">
-            <input name="cluster"> 
-           <button>Search</button>
+            <center><input name="cluster"></center>
+           <input type="submit" value="Search">
             </form>
           </div>
         </div>
       </div>
     </div>
-
-      </div>
-    </section><!-- End Our Portfolio Section -->
-
-<!-- ======= Search Section ======= -->
-    <!-- <section class="features">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Temukan Rumah Impian!</h2>
-          <form action="portfolio.php" method="get" class="">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="nama_cluster" class="form-control" id="name" placeholder="Cari Cluster...." >
-                </div>
-                <div class="col-md-5 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Harga....">
-                </div>
-                <div class="col-md-1 form-group mt-3 mt-md-0">
-                <button type="sumbit" class="btn btn-dark">Cari</button>
-                </div>
-              </div>
-            </form>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-6 pt-4">
-            
-            
-          </div>
-        </div>
-    </section>End Search Section -->
-
+    
     <!-- ======= Portfolio Section ======= -->
     <section class="portfolio">
       <div class="container">
-
+      <?php 
+    if(isset($_GET['cari'])){
+        $cari = $_GET['cari'];
+        echo "<b>Hasil pencarian : ".$cari."</b>";
+    }
+?>
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-boulevard">Boulevard Magnolia</li>
-              <li data-filter=".filter-camelia">Camelia</li>
-              <li data-filter=".filter-gardenia">Edge Gardenia</li>
-              <li data-filter=".filter-new-edge">New Edge Gardenia</li>
-              <li data-filter=".filter-pinewood">Pinewood</li>
-              <li data-filter=".filter-plumeria">Plumeria</li>
-              <li data-filter=".filter-qbix">QBIX</li>
-              <li data-filter=".filter-ruko">Ruko</li>
-              <li data-filter=".filter-soho">SOHO</li>
+              <li data-filter=".boulevard">Boulevard Magnolia</li>
+              <li data-filter=".camelia">Camelia</li>
+              <li data-filter=".gardenia">Edge Gardenia</li>
+              <li data-filter=".edge">New Edge Gardenia</li>
+              <li data-filter=".pinewood">Pinewood</li>
+              <li data-filter=".plumeria">Plumeria</li>
+              <li data-filter=".qbix">QBIX</li>
+              <li data-filter=".ruko">Ruko</li>
+              <li data-filter=".soho">SOHO</li>
             </ul>
           </div>
         </div>
@@ -199,15 +177,22 @@ while ($pecah = $ambil->fetch_assoc()) {
         <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
         <?php
-        while ($item = mysqli_fetch_array($query_mysql)){
+         if(isset($_GET['cari'])){
+          $cari = $_GET['cari'];
+          $data = mysql_query("select * from cluster where harga like '%".$cari."%'"); 
+          }
+          else{
+              $data = mysql_query("select * from cluster"); 
+          }
+          while($d = mysql_fetch_array($data)){
           ?>
-          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
+          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $d['filter'];?>">
             <div class="portfolio-item">
-              <img src="img/images_cluster/<?php echo $item['foto_cluster']; ?>" class="img-fluid" alt="">
+              <img src="img/images_cluster/<?php echo $d['foto_cluster']; ?>" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h3><?php echo $item['nama_cluster'];?></h3>
+                <h3><?php echo $d['nama_cluster'];?></h3>
                 <div>
-                  <a href="portofolio-details.php?id_cluster=<?= $item['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
+                  <a href="portofolio-details.php?id_cluster=<?= $d['id_cluster'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
                   <!-- <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a> -->
                 </div>
               </div>
@@ -216,6 +201,7 @@ while ($pecah = $ambil->fetch_assoc()) {
           <?php
         }
         ?>
+
 
         </div>
 
@@ -310,6 +296,20 @@ while ($pecah = $ambil->fetch_assoc()) {
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div class="modal fade" id="modalLogout">
+    <div class="modal-dialog">
+      <div class="modal-content" style="margin-top:100px;">
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+          </div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+          <div class="modal-footer">
+            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
@@ -325,6 +325,13 @@ while ($pecah = $ambil->fetch_assoc()) {
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+  <script type="text/javascript">
+    function confirmLogout(logout_url){
+      $('#modalLogout').modal('show', {backdrop: 'static'});
+      document.getElementById('logout_link').setAttribute('href', logout_url);
+    }
+  </script>
 
 </body>
 
