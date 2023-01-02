@@ -21,21 +21,20 @@ $SesLvl = $_SESSION['level'];
 // // $data = mysqli_fetch_array($query_mysql);
 // copy($temp, "img/images_cluster/" . $image_files);
 
-if (isset($_POST['hapus'])) {
-
+if (isset($_GET['hapus'])) {
+    $id_hapus = $_GET['hapus'];
     $hapus = mysqli_query($koneksi, "DELETE FROM cluster
-        WHERE id_cluster = '$_POST[id_cluster]'
-    ");
+        WHERE id_cluster = '$id_hapus'");
 
 if ($hapus) {
     echo "<script>
     alert('hapus data sukses');
-    document.location= 'index.php?halaman=cluster';
+    document.location= 'cluster.php';
     </script>";
 } else {
     echo "<script>
     alert('hapus data gagal');
-    document.location= 'index.php?halaman=cluster';
+    document.location= 'cluster.php';
     </script>";
 }
 }
@@ -204,8 +203,7 @@ if ($hapus) {
                         <td>
                         <a href="tambah-spesifikasi.php" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a >
                         <a href="form-edit-cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
-                        <a href="#" class="btn btn-danger btn-circle <?php echo $dis;?>" 
-                        onClick="confirmModal('hapus_cluster.php?&id=<?php echo $row['id_cluster']; ?>');"><i class="fa fa-trash"></i></a>
+                        <a href="cluster.php?&id=<?php echo $row['id_cluster']; ?>" class="btn btn-danger btn-circle <?php echo $dis; ?><i class="fa fa-trash"></i></a>
                         </td>
                  </tr>
                  <?php 
