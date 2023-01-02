@@ -21,23 +21,6 @@ $SesLvl = $_SESSION['level'];
 // // $data = mysqli_fetch_array($query_mysql);
 // copy($temp, "img/images_cluster/" . $image_files);
 
-if (isset($_GET['hapus'])) {
-    $id_cluster= $_GET['id_cluster'];
-    $hapus = mysqli_query($koneksi, "DELETE FROM cluster
-        WHERE id_cluster = '$id_cluster'");
-
-if ($hapus) {
-    echo "<script>
-    alert('hapus data sukses');
-    document.location= 'cluster.php';
-    </script>";
-} else {
-    echo "<script>
-    alert('hapus data gagal');
-    document.location= 'cluster.php';
-    </script>";
-}
-}
 ?>
 
 <!DOCTYPE html>
@@ -203,7 +186,8 @@ if ($hapus) {
                         <td>
                         <a href="tambah-spesifikasi.php" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a >
                         <a href="form-edit-cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a >
-                        <a href="cluster.php?&id=<?php echo $row['id_cluster']; ?>" class="btn btn-danger btn-circle <?php echo $dis; ?><i class="fa fa-trash"></i></a>
+                        
+                        <a href="javascript:del(<?php echo $row['id_cluster'];?>)">Hapus</a></td>
                         </td>
                  </tr>
                  <?php 
@@ -353,7 +337,8 @@ if ($hapus) {
     }
   </script>
 
-  <script>
+  <!-- <script>
+
 //Hapus Data
       function confirmModal(link) {
         let ok = confirm("Apakah anda yakin ingin menghapus data ini?")
@@ -362,7 +347,14 @@ if ($hapus) {
           window.location = link
         }
       }
-  </script>
+  </script> -->
+
+  <script language="JavaScript" type="text/javascript">
+function del(id){
+if (confirm("yakin akan menghapus data ini?")){
+window.location.href = 'hapus_cluster.php?id=' + $idcluster;
+}}
+</script>
 
 </body>
 
