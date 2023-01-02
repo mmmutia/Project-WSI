@@ -3,8 +3,10 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
 $SesLvl = $_SESSION['level'];
+
+
 
 // $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 // $data = mysqli_fetch_array($query_mysql);
@@ -131,10 +133,8 @@ $SesLvl = $_SESSION['level'];
             <li>Profil</li>
           </ol>
         </div>
-
       </div>
     </section><!-- End Contact Section -->
-
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div  class="container">
@@ -149,6 +149,7 @@ $SesLvl = $_SESSION['level'];
                 <!-- <th></th> -->
                 
             </tr>
+            <a href="status.php" class="btn btn-outline-secondary" name="">Pilih Status</a>
         </thead>
 
         <tbody>
@@ -177,8 +178,6 @@ $SesLvl = $_SESSION['level'];
               <td><?php echo $id_pemesanan_rumah;?></td>
               <td><?php echo $tgl_pembayaran;?></td>
               <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
-              
-              <td></td>
             </tr>
             <?php
           }
