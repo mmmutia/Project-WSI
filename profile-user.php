@@ -3,6 +3,7 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
+$userLvl = $_SESSION['level'];
 // $id_user = $_SESSION['id_user'];
 
 $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
@@ -69,32 +70,71 @@ $data = mysqli_fetch_array($query_mysql);
           <li><a class="active" href="contact.php">Contact Us</a></li>
           <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+if($userName = $_SESSION['name']){
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='proggres.php'>Progres</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li
-            </ul>
-          </div>
+  if($userLvl == '1'){
 
-            ";
+    echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
+  }elseif($userLvl == '2'){
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
+    echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+      <li> <a href='proggres.php'>Pembayaran</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
+  }
+  elseif($userLvl == '3'){
 
-          ?>
+    echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+      <li> <a href='proggres.php'>Pembayaran</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
+  }
+  elseif($userLvl == '4'){
 
+    echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+    
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
+  }
+
+
+}else{
+  echo "
+  <li><a href='login.php'>Login</a></li>
+  ";
+}
+
+?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

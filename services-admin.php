@@ -4,6 +4,7 @@ session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$userLvl = $_SESSION['level'];
 
 ?>
 
@@ -56,37 +57,111 @@ $userName = $_SESSION['name'];
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
-
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about-admin.php">About</a></li>
-          <li><a class="active" href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Cluster</a></li>
-          <li><a href="team-admin.php">Team</a></li>
-          <li><a href="contact-admin.php">Contact Us</a></li>
-          <?php
 
-if($userName = $_SESSION['name']){
+<ul>
+
+<?php
+
+if($userLvl == '1'){
+
+  echo "
+
+  <li><a class='' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a class='active' href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio-admin.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+
+  
+}elseif($userLvl == '2'){
+
   
   echo "
-  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-    <ul>
-    <li> <a href='profile-user.php'>Profil</a></li>
-    <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-    <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-    <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-    </ul>
-  </div>
-  ";
 
-}else{
-  echo "
-  <li><a href='login.php'>Login</a></li>
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
   ";
+  
+}elseif($userLvl == '3'){
+
+  
+  echo "
+
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio-admin.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+  
 }
 
 ?>
+
+
+  <?php
+
+if($userName = $_SESSION['name']){
+
+if($userLvl == '1'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}elseif($userLvl == '2'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Pembayaran</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}
+elseif($userLvl == '3'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Pembayaran</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}
+
+
+}else{
+echo "
+<li><a href='login.php'>Login</a></li>
+";
+}
+
+?>
+
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

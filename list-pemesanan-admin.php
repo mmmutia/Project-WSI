@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
-$SesLvl = $_SESSION['level'];
+$userLvl = $_SESSION['level'];
 
 // $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 // $data = mysqli_fetch_array($query_mysql);
@@ -75,37 +75,110 @@ $SesLvl = $_SESSION['level'];
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about-admin.php">About</a></li>
-          <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Cluster</a></li>
-          <li><a href="team-admin.php">Team</a></li>
-          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
-          <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+<ul>
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-            </ul>
-          </div>
+<?php
 
-            ";
+if($userLvl == '1'){
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
+  echo "
 
-          ?>
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio-admin.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+
+  
+}elseif($userLvl == '2'){
+
+  
+  echo "
+
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+  
+}elseif($userLvl == '3'){
+
+  
+  echo "
+
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio-admin.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+  
+}
+
+?>
+
+
+  <?php
+
+if($userName = $_SESSION['name']){
+
+if($userLvl == '1'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}elseif($userLvl == '2'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Proggres</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}
+elseif($userLvl == '3'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Proggres</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}
+
+
+}else{
+echo "
+<li><a href='login.php'>Login</a></li>
+";
+}
+
+?>
+
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

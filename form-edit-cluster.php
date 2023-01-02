@@ -86,7 +86,7 @@ if( isset($_POST['update']) ){
 // }
 $clusterId = $_GET['id'];
 $query = "SELECT * FROM cluster WHERE id_cluster='$clusterId'";
-$result = mysqli_query($koneksi, $query)or die(mysql_error());
+$result = mysqli_query($koneksi, $query);
 //$nomor = 1;
 while ($row =mysqli_fetch_array($result)){
   $clusterId    = $row['id_cluster'];

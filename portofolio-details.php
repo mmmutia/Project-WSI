@@ -1,13 +1,14 @@
 <?php
+require('koneksi.php');
+session_start();
+error_reporting(0);
+
 if (isset($_GET['id_cluster'])||isset($_GET['id_simpan'])) {
   $id_cluster = $_GET['id_cluster'];
   $id_simpan = $_GET['id_simpan'];
 } else {
   die("Error. No ID Selected!");
 }
-require('koneksi.php');
-session_start();
-error_reporting(0);
 
 $id_cluster = $_SESSION['id_cluster'];
 $userName = $_SESSION['name'];
@@ -22,7 +23,7 @@ if (isset($_POST['simpan'])) {
   $Id_user = $data['id_user'];
   $cek = mysqli_query($koneksi, "select * from simpan_cluster where id_cluster = '$id_cluster' AND id_user = '$Id_user' ");
   if (mysqli_num_rows($cek) == 0) {
-    $query = "INSERT INTO simpan_cluster(id_cluster,id_user) VALUES ('$id_cluster','$Id_user')";
+    $query = "INSERT INTO simpan_cluster(id_cluster,id_user) VALUES ('$_GET[id_cluster]','$data[id_user]')";
     $result = mysqli_query($koneksi, $query);
   } else {
     header("location:portofolio-details.php?id_cluster=$id_cluster");
@@ -175,7 +176,7 @@ if (isset($_POST['hapus'])) {
 
 
           <div class="col-lg-4">
-            <form action="portofolio-details.php?id_cluster=<?= $id_cluster; ?>&id_simpan=<?= $id_simpan; ?>" method="post">
+            <form action="portofolio-details.php?id_cluster=<?= $_GET['id_cluster']?>&id_simpan=<?= $_GET['id_simpan'] ?>" method="post">
               <div class="portfolio-info">
                 <h3><?php echo $result['nama_cluster'] ?></h3>
                 <ul>
@@ -192,7 +193,7 @@ if (isset($_POST['hapus'])) {
                 <h2>Harga : <?php echo $result['harga'] ?></h2>
               </div>
                   <a href="pemesanan.php"><button type="button" class="btn btn-secondary">Pesan Rumah Ini</button></a>
-                  <a href=""><button type="submit" name="simpan" class="btn btn-dark">Simpan</button></a>
+                  <button type="submit" name="simpan" class="btn btn-dark">Simpan</button>
                 </ul>
               </div>
             </form>

@@ -70,12 +70,12 @@ $_SESSION['identitas'] = $data;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about-admin.php">About</a></li>
-          <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Gallery</a></li>
-          <li><a href="team-admin.php">Team</a></li>
-          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
+          <li><a class="" href="index.php">Home</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="services.php">Layanan</a></li>
+          <li><a href="portfolio.php">Gallery</a></li>
+          <li><a href="team.php">Team</a></li>
+          <li><a class="active" href="contact.php">Contact Us</a></li>
           <?php
 
           if ($userName = $_SESSION['name']) {
@@ -85,9 +85,10 @@ $_SESSION['identitas'] = $data;
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
               <li> <a href='profile-user.php'>Profil</a></li>
-                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-                <li> <a href='proggres.php'>Proggres</a></li>
-                <li> <a href=''>Pembayaran</a></li>
+              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+              <li> <a href='proggres_user.php'>Proggres</a></li>
+              <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+              <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
                 <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li
             </ul>
           </div>

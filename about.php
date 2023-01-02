@@ -75,13 +75,14 @@ if($userName = $_SESSION['name']){
     <ul>
       <li> <a href='profile-user.php'>Profil</a></li>
       <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-      <li> <a href='pembayaran.php'>Pembayaran</a></li>
-      <li> <a href='proggres.php'>Proggres</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
       <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
       <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
     </ul>
   </div>
   ";
+
 
 }else{
   echo "
