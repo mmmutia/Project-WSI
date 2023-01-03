@@ -12,6 +12,24 @@ $userLvl = $_SESSION['level'];
 // $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
 // // $item = mysqli_fetch_array($query_mysql2);
 
+if (isset($_POST['hapus'])) {
+
+  $hapus = mysqli_query($koneksi, "DELETE FROM pemesanan_rumah
+      WHERE id_pemesanan_rumah = '$id_pemesanan_rumah[id_pemesanan_rumah]'
+  ");
+
+if ($hapus) {
+  echo "<script>
+  alert('hapus data sukses');
+  document.location= 'index.php?halaman=cluster ';
+  </script>";
+} else {
+  echo "<script>
+  alert('hapus data gagal');
+  document.location= 'index.php?halaman=cluster';
+  </script>";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -265,8 +283,7 @@ echo "
               <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
               <td>
               <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a><br>
-              <a href="hapus_pemesanan.php" class="btn btn-danger btn-circle <?php echo $dis;?>" 
-                onClick="confirmModal('hapus_pemesanan.php?&id=<?php echo $row['id_pemesanan_rumah']; ?>');"><i class="fa fa-trash"></i></a>
+              <a href="list-pemesanan-admin.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-danger btn-circle <?php echo $dis;?>"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             <?php
@@ -409,6 +426,7 @@ echo "
     </div>
   </div>
 
+  
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
@@ -429,6 +447,18 @@ echo "
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
+
+  <script>
+
+//Hapus Data
+      function confirmModal(link) {
+        let ok = confirm("Apakah anda yakin ingin menghapus data ini?")
+
+        if(ok){
+          window.location = link
+        }
+      }
+  </script> -->
   
 
 </body>
