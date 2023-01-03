@@ -167,16 +167,6 @@ if( isset($_POST['pesan']) ){
                         <a role="button" href="portfolio.php" class="btn btn-danger btn-user btn-block">Batal</a>
                     </form>
                 </div>
-                <div class="for-pwd-htm">
-                    <div class="form-group">
-                        <label for="user" class="label">Email</label>
-                        <input type="email" name="txt_email" id="username" class="form-control">
-                    </div>
-                    <div class="group">
-                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                    </div>
-                    <div class="hr"></div>
-                </div>
             </div>
         </div>
     </div>

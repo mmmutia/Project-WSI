@@ -18,7 +18,7 @@ if( isset($_POST['tambah']) ){
     $result = mysqli_query($koneksi, $query);
     
     if($result){
-        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+        echo "<script>alert('Data Telah Berhasil Di tambahkan');window.location='serah-terima.php'</script>";
     }
    
 }
@@ -194,7 +194,7 @@ if( isset($_POST['tambah']) ){
         <div class="row">
           <div class="col-lg-8 m-auto">
             <!-- <form action="" method="get" role="form" class="php-email-form"> -->
-            <form class="php-email-form" action="riwayat-serah-terima.php" method="POST" enctype="multipart/form-data">
+            <form class="php-email-form" action="serah-terima.php" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Tambah Serah Terima</span></h1>
                 <div class="row-md-6 form-group mb-3">
@@ -206,7 +206,7 @@ if( isset($_POST['tambah']) ){
                   <input name="no_surat_bangunan" type="text" class="form-control" placeholder="Surat Bangungan *" value="" />
                 </div>
                 <div class="group">
-                        <input type="submit" name="tambah" class="btn btn-info btn-md" value="submit">
+                        <input type="submit" name="tambah" class="btn btn-info btn-md">
                     </div>
                 <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
