@@ -158,7 +158,7 @@ if (isset($_POST['hapus'])) {
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/camelia.jpeg" alt="">
+                  <img src="img/Pinewood 7.jpeg" alt="">
                 </div>
 
                 <div class="swiper-slide">
