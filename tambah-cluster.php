@@ -15,6 +15,7 @@ if( isset($_POST['tambah']) ){
     $jumlah_unit = $_POST['jumlah_unit'];
     $harga = $_POST['harga'];
     $hargaDp = $_POST['hargaDp'];
+    $filter = $_POST['filter'];
     // $filter = $_POST['txt_filter'];
     $target_dir = "img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
@@ -47,7 +48,7 @@ if( isset($_POST['tambah']) ){
     }
     
 
-    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$uploadcluster')";
+    $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,filter,foto_cluster) VALUES ('$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$filter','$uploadcluster')";
 
     $result = mysqli_query($koneksi, $query);
     
@@ -250,6 +251,10 @@ if( isset($_POST['tambah']) ){
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
                   <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
                   <input type="text" class="form-control" name="hargaDp" placeholder="Harga DP*" value="">
+                </div>
+                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
+                  <!-- <input type="text" class="form-control" name="hargaDp" id="hargaDp" placeholder="Harga DP*" value="" required > -->
+                  <input type="text" class="form-control" name="filter" placeholder="Masukkan Filter*" value="">
                 </div>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
