@@ -1,25 +1,37 @@
 <?php
-require('koneksi.php');
+require ('koneksi.php');
 session_start();
 error_reporting(0);
+$userName = $_SESSION['name'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$userLvl = $_SESSION['level'];
 
-if (isset($_GET['id_pemesanan_rumah'])||isset($_GET['id_detail_pemesanan'])) {
-  $id_detail_pemesanan = $_GET['id_detail_rumah'];
-  $id_pemesanan_rumah = $_GET['id_pemesanan_rumah'];
-} else {
-  die("Error. No ID Selected!");
-}
+// if (isset($_GET['id_pemesanan_rumah'])||isset($_GET['id_detail_pemesanan'])) {
+//   $id_detail_pemesanan = $_GET['id_detail_rumah'];
+//   $id_pemesanan_rumah = $_GET['id_pemesanan_rumah'];
+// } else {
+//   die("Error. No ID Selected!");
+// }
 
 // $id_cluster = $_SESSION['id_cluster'];
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
+$id_user = $data['id_user'];
+// $query = mysqli_fetch_array($query);
 
+// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+// $data = mysqli_fetch_array($query_mysql);
+// $query = $data['id_pemesanan_rumah'];
+// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
+// // $item = mysqli_fetch_array($query_mysql2);
 
-$query    = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah INNER JOIN detail_pemesanan ON detail_pemesanan.id_pemesanan_rumah = pemesanan_rumah.id_pemesanan_rumah INNER JOIN serah_terima ON pemesanan_rumah.id_pemesanan_rumah = serah_terima.id_pemesanan_rumah WHERE pemesanan_rumah.id_detail_pemesanan = $id_detail_pemesanan");
-$result   = mysqli_fetch_array($query);
+if (isset($_POST['hapus'])) {
 
-$_SESSION['identitas'] = $data;
+  $hapus = mysqli_query($koneksi, "DELETE FROM pemesanan_rumah
+      WHERE id_pemesanan_rumah = '$id_pemesanan_rumah[id_pemesanan_rumah]'
+  ");
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,9 +64,15 @@ $_SESSION['identitas'] = $data;
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+  <link href="vendor/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
@@ -77,38 +95,137 @@ $_SESSION['identitas'] = $data;
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Gallery</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
-          <?php
 
-          if ($userName = $_SESSION['name']) {
+<ul>
 
-            echo "
+<?php
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-              <li> <a href='profile-user.php'>Profil</a></li>
-              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-              <li> <a href='proggres_user.php'>Proggres</a></li>
-              <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-              <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li
-            </ul>
-          </div>
+if($userLvl == '1'){
 
-            ";
-          } else {
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
+  echo "
 
-          ?>
+  <li><a class='active' href='index.php'>Home</a></li>
+  <li><a href='about.php'>About</a></li>
+  <li><a href='services.php'>Layanan</a></li>
+  <li><a href='portfolio.php'>Cluster</a></li>
+  <li><a href='team.php'>Team</a></li>
+  <li><a href='contact.php'>Contact Us</a></li>
+  
+  ";
+
+  
+}elseif($userLvl == '2'){
+
+  
+  echo "
+
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+  
+}elseif($userLvl == '3'){
+
+  
+  echo "
+
+  <li><a class='active' href='index-admin.php'>Home</a></li>
+  <li><a href='about-admin.php'>About</a></li>
+  <li><a href='services-admin.php'>Layanan</a></li>
+  <li><a href='portfolio-admin.php'>Cluster</a></li>
+  <li><a href='team-admin.php'>Team</a></li>
+  <li><a href='contact-admin.php'>Contact Us</a></li>
+  
+  ";
+  
+}elseif($userLvl == '4'){
+
+  
+  echo "
+
+          <li><a href='index.php'>Home</a></li>
+          <li><a href='about.php'>About</a></li>
+          <li><a href='services'.php>Layanan</a></li>
+          <li><a class='active' href='portfolio.php'>Cluster</a></li>
+          <li><a href='team.php'>Team</a></li>
+          <li><a href='contact.php'>Contact Us</a></li>
+  
+  ";
+  
+}
+
+?>
+
+
+  <?php
+
+if($userName = $_SESSION['name']){
+
+if($userLvl == '1'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}elseif($userLvl == '2'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Proggres</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}
+elseif($userLvl == '3'){
+
+echo "
+<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+<ul>
+<li> <a href='profile-user.php'>Profil</a></li>
+<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+<li> <a href='proggres.php'>Proggres</a></li>
+<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+</ul>
+</div>
+";
+}elseif ($userLvl == '4') {
+  echo "
+  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
+    <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
+}
+
+
+}else{
+echo "
+<li><a href='login.php'>Login</a></li>
+";
+}
+
+?>
+
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -122,16 +239,15 @@ $_SESSION['identitas'] = $data;
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-        <div class='d-flex justify-content-between align-items-center'>
-          <h2>
-            <blockquote>Proses Pemesanan Rumah</blockquote>
-          </h2>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2><blockquote>Data Pemesanan Rumah</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
               font-size: larger;
             }
-          </style>
+        </style>
           <ol>
             <li><a href="index-admin.php">Home</a></li>
             <li>Profil</li>
@@ -143,64 +259,58 @@ $_SESSION['identitas'] = $data;
 
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 m-auto">
-            <form action="forms/contact.php" method="get" role="form" class="php-email-form">
-              <div class="row">
-                <h1 class="text-center"><span>Data Pemesan</span></h1>
-                <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $result['id_pemesanan_rumah']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $result['nama_pemesan']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $result['alamat']; ?>" required>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $result['no_telp_pemesan']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $result['id_cluster']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $result['tgl_pemesanan']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $result['jenis_pembayaran']; ?>" required readonly>
-                </div>
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <img src="img/filepemesanan/<?php echo $result['fotocopy_ktp']; ?>" height="200px">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-8 m-auto">
-          <h4 class="text-center"><span> Detail Blok </span></h4>
-          <form action="" method="post">
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-            <input type="email" class="form-control" name="detail_blok" id="detail_blok" value="<?php echo $result['detail_blok']; ?>" required readonly>
-            <form action="" method="post">
-              <!-- <div class="row"> -->
-              <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
-              <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-              <h4 class="text-center"><span> Jumlah DP </span></h4>
-                <input type="email" class="form-control" name="jumlah_dp" id="jumlah_dp" value="<?php echo $result['jumlah_dp']; ?>" required readonly> 
-                </div> 
-                <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-              <h4 class="text-center"><span> No Surat Bangunan </span></h4>
-                <input type="email" class="form-control" name="no_surat_bangunan" id="no_surat_bangunan" value="<?php echo $result['no_surat_bangunan']; ?>" required readonly> <br>
-                </div> 
-            </form>
-          </div>
-        </div>
-        <br>
-    </section><!-- End Contact Section -->
-
+      <div  class="container">
+      <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>No</th>    
+                <th>ID Pemesanan Rumah</th>
+                <th>Nama Pemesan</th>
+                <th>Alamat</th>
+                <th>No Telp</th>
+                <th>ID Cluster</th>
+                <th>Tanggal Pemesanan</th>
+                <th>Jenis Pembayaran</th>
+                <th>Foto KTP</th>
+                <th>Detail Blok</th>
+                <th>No Surat Bangunan</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $query2 = "SELECT * FROM detail_pemesanan JOIN pemesanan_rumah ON detail_pemesanan.id_pemesanan_rumah = pemesanan_rumah.id_pemesanan_rumah JOIN serah_terima ON pemesanan_rumah.id_pemesanan_rumah = serah_terima.id_pemesanan_rumah  WHERE pemesanan_rumah.id_user = '$id_user'";
+        $result = mysqli_query($koneksi,$query2);
+        $no=1;   
+        while($row = mysqli_fetch_array($result)){
+        ?>
+        <tr class="text-center">
+              <td><?php echo $no++?></td>
+              <td><?php echo $row['id_pemesanan_rumah'];?></td>
+              <td><?php echo $row['nama_pemesan'];?></td>
+              <td><?php echo $row['alamat'];?></td>
+              <td><?php echo $row['no_telp_pemesan'];?></td>
+              <td><?php echo $row['id_cluster'];?></td>
+              <td><?php echo $row['tgl_pemesanan'];?></td>
+              <td><?php echo $row['jenis_pembayaran'];?></td>
+              <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
+              <td><?php echo $row['detail_blok'];?></td>
+              <td><?php echo $row['no_surat_bangunan'];?></td>
+            </tr>
+            <?php
+          }
+          ?>
+            
+        </tbody>
+    </table>
+    </div>
+      <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                scrollX: true,
+            });
+        });
+    </script>
+    <!-- </section>End Contact Section -->
 
     <!-- ======= Map Section ======= -->
     <!-- <section class="map mt-2">
@@ -209,7 +319,7 @@ $_SESSION['identitas'] = $data;
       </div>
     </section>End Map Section -->
 
-  </main><!-- End #main -->
+  <!-- </main>End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -301,19 +411,21 @@ $_SESSION['identitas'] = $data;
   <div class="modal fade" id="modalLogout">
     <div class="modal-dialog">
       <div class="modal-content" style="margin-top:100px;">
-        <div class="modal-header">
-          <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-        </div>
-        <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-        <div class="modal-footer">
-          <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-          <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-        </div>
+          <div class="modal-header">
+            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+          </div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+          <div class="modal-footer">
+            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+          </div>
       </div>
     </div>
   </div>
 
+  
   <!-- Vendor JS Files -->
+  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -325,16 +437,26 @@ $_SESSION['identitas'] = $data;
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
-
+  
   <script type="text/javascript">
-    function confirmLogout(logout_url) {
-      $('#modalLogout').modal('show', {
-        backdrop: 'static'
-      });
+    function confirmLogout(logout_url){
+      $('#modalLogout').modal('show', {backdrop: 'static'});
       document.getElementById('logout_link').setAttribute('href', logout_url);
     }
   </script>
 
+  <script>
+
+//Hapus Data
+      function confirmModal(link) {
+        let ok = confirm("Apakah anda yakin ingin menghapus data ini?")
+
+        if(ok){
+          window.location = link
+        }
+      }
+  </script> -->
+  
 
 </body>
 

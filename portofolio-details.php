@@ -110,6 +110,7 @@ if (isset($_POST['hapus'])) {
   <li> <a href='profile-user.php'>Profil</a></li>
   <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
   <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+  <li> <a href='proggres.php'>Proggres</a></li>
   <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
   </ul>
 </div>
@@ -158,15 +159,15 @@ if (isset($_POST['hapus'])) {
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="img/Pinewood 7.jpeg" alt="">
+                  <img src="img/images_cluster/<?php echo $result['foto_cluster']; ?>" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/portfolio/Camelia 2.jpg" alt="">
+                  <img src="img/images_cluster/<?php echo $result['foto_cluster']; ?>" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="img/portfolio/Camelia 3.jpg" alt="">
+                  <img src="img/images_cluster/<?php echo $result['foto_cluster']; ?>" alt="">
                 </div>
 
               </div>

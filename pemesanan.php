@@ -133,15 +133,15 @@ if( isset($_POST['pesan']) ){
                         <div class="form-group">
                             <select class="form-control" name="txt_idcluster">
                                 <option>-- Cluster --</option>
-                                <option>1. Boulevard Magnolia</option>
-                                <option>2. Camelia</option>
-                                <option>3. Edge Gardenia</option>
-                                <option>4. New Edge Gardenia</option>
-                                <option>5. Pinewood</option>
-                                <option>6. Plumeria</option>
-                                <option>7. QBIX</option>
-                                <option>8. Ruko</option>
-                                <option>9. SOHO</option>
+                                <option>9. Pinewood</option>
+                                <option>10. Boulevard Magnolia</option>
+                                <option>11. Camelia</option>
+                                <option>12. Edge Gardenia</option>
+                                <option>13. New Edge Gardenia</option>
+                                <option>14. Plumeria</option>
+                                <option>15. QBIX</option>
+                                <option>16. Ruko</option>
+                                <option>17. SOHO</option>
                             </select>
                         </div>
                         <div class="row">

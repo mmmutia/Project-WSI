@@ -797,7 +797,7 @@ $data = mysqli_fetch_array($query_mysql);
       move_uploaded_file($file_tmp, './img/pembayaran_dp/' . $fotoadd);
 
 
-      $query    = "INSERT INTO `pembayaran_dp` (`id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`, `status_dp`) VALUES ('$idpemesanan', '$tanggal', '$fotoadd')";
+      $query    = "INSERT INTO `pembayaran_dp` (`id_pembayaran_dp`,`id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`, `status_dp`) VALUES ('','$idpemesanan', '$tanggal', '$fotoadd','')";
       $result   = mysqli_query($koneksi, $query);
 
       if ($result) {

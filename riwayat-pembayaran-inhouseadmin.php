@@ -180,6 +180,7 @@ if (isset($_POST['hapus'])) {
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
           $nama_pemesan = $row['nama_pemesan'];
           $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
           $bukti_foto = $row['bukti_pembayaran_inhouse'];

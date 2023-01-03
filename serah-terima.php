@@ -14,11 +14,11 @@ if( isset($_POST['tambah']) ){
     $no_surat = $_POST['no_surat_bangunan'];
     
 
-    $query = "INSERT INTO serah_terima(id_pemesanan_rumah,no_surat_bangunan) VALUES ('$id_pemesanan_rumah','$no_surat')";
+    $query = "INSERT INTO serah_terima(id_serah_terima,id_pemesanan_rumah,no_surat_bangunan) VALUES ('','$id_pemesanan_rumah','$no_surat')";
     $result = mysqli_query($koneksi, $query);
     
     if($result){
-        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='riwayat-serah-terima.php'</script>";
     }
    
 }
@@ -194,19 +194,34 @@ if( isset($_POST['tambah']) ){
         <div class="row">
           <div class="col-lg-8 m-auto">
             <!-- <form action="" method="get" role="form" class="php-email-form"> -->
-            <form class="php-email-form" action="riwayat-serah-terima.php" method="POST" enctype="multipart/form-data">
+            <form class="php-email-form" action="serah-terima.php" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Tambah Serah Terima</span></h1>
-                <div class="row-md-6 form-group mb-3">
-                  <!-- <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required> -->
-                  <input type="text" name="id_pemesanan_rumah" class="form-control" placeholder="Id Pemesanan Rumah *" value="">
-                </div>
+                <div class="form-group">
+                <label for="exampleFormControlSelect1">Id Pemesanan Rumah</label>
+
+
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+
+
+                </select>
+
+              </div><br>
+                </div></br>
                 <div class="row-md-6 form-group mb-3">
                   <!-- <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required> -->
                   <input name="no_surat_bangunan" type="text" class="form-control" placeholder="Surat Bangungan *" value="" />
                 </div>
                 <div class="group">
-                        <input type="submit" name="tambah" class="btn btn-info btn-md" value="submit">
+                        <button type="submit" name="tambah" class="btn btn-info btn-md">Simpan</button>
                     </div>
                 <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
                 <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
