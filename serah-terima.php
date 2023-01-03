@@ -3,37 +3,20 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
-$SesLvl = $_SESSION['level'];
+$query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
+$data = mysqli_fetch_array($query_mysql);
+if( isset($_POST['add-serah-terima']) ){
+    $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
+    $no_surat = $_POST['no_surat_bangunan'];
 
-$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
-$result   = mysqli_fetch_array($query);
-
-if (isset($_POST['konfirmasi'])) {
-    $id = $_POST['id_pemesanan_rumah'];
-    $query = "UPDATE pembayaran_dp SET status_dp = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $query = "INSERT INTO serah_terima (id_pemesanan_rumah,no_surat_bangunan) VALUES ('$id_pemesanan_rumah','$no_surat')";
     $result = mysqli_query($koneksi, $query);
-
-    header("location:riwayat-pembayaran-dp.php");
-    echo '<script type ="text/JavaScript">';
-    echo 'alert("Berhasil Konfirmasi")';
-    echo '</script>';
+    
+    if($result){
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+    }
+   
 }
-if (isset($_POST['hapus'])) {
-    $id = $_POST['id_pemesanan_rumah'];
-    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_dp WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:riwayat-pembayaran-dp.php");
-    // $result = mysqli_query($koneksi, $query1); 
-}
-
-
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +26,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - Bernady Land Slawu</title>
+  <title>Tambah Cluster - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -66,11 +49,9 @@ if (isset($_POST['hapus'])) {
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css">
 
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
@@ -108,12 +89,11 @@ if (isset($_POST['hapus'])) {
 
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-            <li> <a href='proggres.php'>Progres</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+              <li> <a href='profile-user.php'>Profil</a></li>
+                <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+                <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+                <li> <a href='proggres.php'>Progress</a></li>
+              <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
 
@@ -139,9 +119,8 @@ if (isset($_POST['hapus'])) {
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
+        <div class='d-flex justify-content-between align-items-center'>
+          <h2><blockquote>Tambah Serah Terima</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -150,74 +129,58 @@ if (isset($_POST['hapus'])) {
         </style>
           <ol>
             <li><a href="index-admin.php">Home</a></li>
-            <li>Profil</li>
+            <li><a href="portfolio-admin.php">Cluster Perumahan</a></li>
+            <li>Tambah Cluster Perumahan</li>
           </ol>
         </div>
+
       </div>
     </section><!-- End Contact Section -->
-    <!-- ======= Contact Section ======= -->
+
+    <!-- ======= Data Pemesan Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div  class="container">
-      <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>No</th>    
-                <th>ID Pemesanan Rumah</th>
-                <th>Tanggal Pembayaran</th>
-                <th>Bukti Pembayaran</th>
-                <th>Status</th>
-                <th></th>
-                
-            </tr>
-        </thead>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 m-auto">
+            <!-- <form action="" method="get" role="form" class="php-email-form"> -->
+            <form class="php-email-form" action="riwayat-serah-terima.php" method="POST" enctype="multipart/form-data">
+              <div class="row">
+                <h1 class="text-center"><span>Tambah Serah Terima</span></h1>
+                <div class="form-group">
+                <select class="form-control" name="id_pemesanan_rumah" required>
+                <option value='#'> Pilih Id Pemesanan Rumah</option>
+                  <?php
+                 
+                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
+                  }
+                  ?>
+                </select>
+              </div><br><br>
+                <div class="row-md-6 form-group mb-3">
+                  <input name="no_surat_bangunan" type="text" class="form-control" placeholder="No Surat Bangunan *" value="" />
+                </div>
+                <div class="group">
+                        <input type="submit" name="add-serah-terima" class="btn btn-info btn-md" value="submit">
+                    </div>
+              </div>
+            </form>
+          </div>
+         
 
-        <tbody>
-        <?php
-        $query = "SELECT * from pembayaran_dp";
-        $result = mysqli_query($koneksi, $query);
-        $no=1;
-        // if ($SesLvl == 2){
-        //   $dis = "";
-        // } else if ($SesLvl == 1){
-        //   $dis = "disabled";
-        // } else if ($SesLvl == 3){
-        //   $dis = "disabled";
-        // } else ($SesLvl == 4){
-        //   $dis = "disabled";
-        // } 
-        ?>
-        <?php
-        while($row = mysqli_fetch_array($result)){
-          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
-          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
-          $bukti_foto = $row['bukti_pembayaran_dp'];
-          $status = $row['status_dp'];
-          ?>
-        <tr class="text-center">
-          <td><?php echo $no++?></td>
-          <td><?php echo $id_pemesanan_rumah;?></td>
-          <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
-          <td><?php echo $status;?></td>
-          <td>
-          
-            <?php
-          }
-          ?>
-            
-        </tbody>
-    </table>
-    </div>
-      <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                scrollX: true,
-            });
-        });
-    </script>
-    <!-- </section>End Contact Section -->
+      </div>
+    </section><!-- End Contact Section -->
 
-  <!-- </main>End #main -->
+
+    <!-- ======= Map Section ======= -->
+    <!-- <section class="map mt-2">
+      <div class="container-fluid p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>End Map Section -->
+
+  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -306,23 +269,7 @@ if (isset($_POST['hapus'])) {
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div class="modal fade" id="modalLogout">
-    <div class="modal-dialog">
-      <div class="modal-content" style="margin-top:100px;">
-          <div class="modal-header">
-            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-          </div>
-          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-          <div class="modal-footer">
-            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-          </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Vendor JS Files -->
-  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -334,17 +281,9 @@ if (isset($_POST['hapus'])) {
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
-  
-  <script type="text/javascript">
-    function confirmLogout(logout_url){
-      $('#modalLogout').modal('show', {backdrop: 'static'});
-      document.getElementById('logout_link').setAttribute('href', logout_url);
-    }
-  </script>
-  
+
+
 
 </body>
 
 </html>
-
-

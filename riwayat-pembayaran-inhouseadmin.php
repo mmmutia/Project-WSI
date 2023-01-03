@@ -3,36 +3,28 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
-$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_inhouse JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_inhouse.id_pemesanan_rumah WHERE pembayaran_inhouse.id_pemesanan_rumah='$id_pemesanan_rumah'");
 $result   = mysqli_fetch_array($query);
 
 if (isset($_POST['konfirmasi'])) {
     $id = $_POST['id_pemesanan_rumah'];
-    $query = "UPDATE pembayaran_dp SET status_dp = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $query = "UPDATE pembayaran_inhouse SET status_inhouse = 'Lunas' WHERE id_pemesanan_rumah='$id'";
     $result = mysqli_query($koneksi, $query);
 
-    header("location:riwayat-pembayaran-dp.php");
+    header("location:riwayat-pembayaran-inhouse.php");
     echo '<script type ="text/JavaScript">';
     echo 'alert("Berhasil Konfirmasi")';
     echo '</script>';
 }
 if (isset($_POST['hapus'])) {
     $id = $_POST['id_pemesanan_rumah'];
-    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_dp WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:riwayat-pembayaran-dp.php");
+    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_inhouse WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
+    header("location:riwayat-pembayaran-inhouse.php");
     // $result = mysqli_query($koneksi, $query1); 
 }
-
-
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
 
 ?>
 
@@ -173,7 +165,7 @@ if (isset($_POST['hapus'])) {
 
         <tbody>
         <?php
-        $query = "SELECT * from pembayaran_dp";
+        $query = "SELECT * from pembayaran_inhouse";
         $result = mysqli_query($koneksi, $query);
         $no=1;
         // if ($SesLvl == 2){
@@ -189,17 +181,30 @@ if (isset($_POST['hapus'])) {
         <?php
         while($row = mysqli_fetch_array($result)){
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
-          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
-          $bukti_foto = $row['bukti_pembayaran_dp'];
-          $status = $row['status_dp'];
+          $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
+          $bukti_foto = $row['bukti_pembayaran_inhouse'];
+          $status = $row['status_inhouse'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
           <td><?php echo $id_pemesanan_rumah;?></td>
           <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
           <td><?php echo $status;?></td>
           <td>
+          <form action="riwayat-pembayaran-admin.php" method="post" role="form" class="php-email-form">
+          <input type="text" value="<?php echo $id_pemesanan_rumah;?>" name="id_pemesanan_rumah" hidden>
+          <?php if ($status == "Lunas") {
+            ?>
+            <button class="submit" type="submit" name="hapus">Delete</button>
+            <?php
+          } else {
+            ?>
+            <button class="submit" type="submit" name="konfirmasi">Konfirmasi</button>
+            <?php
+          }?>
+          </form>
+          </td>
           
             <?php
           }

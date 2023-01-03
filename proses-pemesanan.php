@@ -96,6 +96,7 @@ if(isset($_POST['add_detail'])){
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
                 <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
+                <li> <a href='proggres.php'>Progress</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>

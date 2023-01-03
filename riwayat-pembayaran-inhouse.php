@@ -6,6 +6,26 @@ $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
+$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_inhouse JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_inhouse.id_pemesanan_rumah WHERE pembayaran_inhouse.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$result   = mysqli_fetch_array($query);
+
+if (isset($_POST['konfirmasi'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query = "UPDATE pembayaran_inhouse SET status_inhouse = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $result = mysqli_query($koneksi, $query);
+
+    header("location:riwayat-pembayaran-inhouse.php");
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Berhasil Konfirmasi")';
+    echo '</script>';
+}
+if (isset($_POST['hapus'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_inhouse WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
+    header("location:riwayat-pembayaran-inhouse.php");
+    // $result = mysqli_query($koneksi, $query1); 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +103,8 @@ $SesLvl = $_SESSION['level'];
             <li> <a href='profile-user.php'>Profil</a></li>
             <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
             <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+            <li> <a href='proggres.php'>Progres</a></li>
+            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
@@ -123,10 +145,8 @@ $SesLvl = $_SESSION['level'];
             <li>Profil</li>
           </ol>
         </div>
-
       </div>
     </section><!-- End Contact Section -->
-
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div  class="container">
@@ -138,8 +158,11 @@ $SesLvl = $_SESSION['level'];
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
+                <th></th>
+                
             </tr>
         </thead>
+
         <tbody>
         <?php
         $query = "SELECT * from pembayaran_inhouse";
@@ -154,37 +177,27 @@ $SesLvl = $_SESSION['level'];
         // } else ($SesLvl == 4){
         //   $dis = "disabled";
         // } 
-        
+        ?>
+        <?php
         while($row = mysqli_fetch_array($result)){
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
           $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
           $bukti_foto = $row['bukti_pembayaran_inhouse'];
-        ?>
+          $status = $row['status_inhouse'];
+          ?>
         <tr class="text-center">
-              <td><?php echo $no++?></td>
-              <td><?php echo $id_pemesanan_rumah;?></td>
-              <td><?php echo $tgl_pembayaran;?></td>
-              <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
-              <td></td>
-            </tr>
+          <td><?php echo $no++?></td>
+          <td><?php echo $id_pemesanan_rumah;?></td>
+          <td><?php echo $tgl_pembayaran;?></td>
+          <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
+          <td><?php echo $status;?></td>
+          <td>
+          
             <?php
           }
           ?>
             
         </tbody>
-        <!-- <tfoot>
-            <tr>
-                <th>No</th>
-                <th>ID Pemesanan Rumah</th>
-                <th>Nama Pemesan</th>
-                <th>Alamat</th>
-                <th>No Telp</th>
-                <th>ID Cluster</th>
-                <th>Tanggal Pemesanan</th>
-                <th>Jenis Pembayaran</th>
-                <th>Status</th>
-            </tr>
-        </tfoot> -->
     </table>
     </div>
       <script>
@@ -195,13 +208,6 @@ $SesLvl = $_SESSION['level'];
         });
     </script>
     <!-- </section>End Contact Section -->
-
-    <!-- ======= Map Section ======= -->
-    <!-- <section class="map mt-2">
-      <div class="container-fluid p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>End Map Section -->
 
   <!-- </main>End #main -->
 
@@ -305,7 +311,7 @@ $SesLvl = $_SESSION['level'];
           </div>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->

@@ -109,10 +109,8 @@ if (isset($_POST['hapus'])) {
             <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
             <ul>
             <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-            <li> <a href='proggres.php'>Progres</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+            <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
+            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
             </ul>
           </div>
@@ -200,7 +198,20 @@ if (isset($_POST['hapus'])) {
           <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
           <td><?php echo $status;?></td>
           <td>
-          
+          <form action="riwayat-pembayaran-dpadmin.php" method="post" role="form" class="php-email-form">
+          <input type="text" value="<?php echo $id_pemesanan_rumah;?>" name="id_pemesanan_rumah" hidden>
+          <?php if ($status == "Lunas") {
+            ?>
+            <button class="submit" type="submit" name="hapus">Delete</button>
+            <?php
+          } else {
+            ?>
+            <button class="submit" type="submit" name="konfirmasi">Konfirmasi</button>
+            <?php
+          }?>
+          </form>
+          </td>
+            </tr>
             <?php
           }
           ?>

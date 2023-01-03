@@ -214,7 +214,7 @@ echo "
     </div>
     <div class="card-body">
         <h3 class="card-title">Pembayaran DP</h3>
-        <a href="riwayat-pembayaran-dp.php" class="btn btn-outline-secondary">Lihat Data</a>
+        <a href="riwayat-pembayaran-dpadmin.php" class="btn btn-outline-secondary">Lihat Data</a>
     </div>
     <div class="card-footer text-muted">
         2 days ago
@@ -227,11 +227,25 @@ echo "
     </div>
     <div class="card-body">
         <h3 class="card-title">Pembayaran InHouse</h3>
-        <a href="riwayat-pembayaran-inhouse.php" class="btn btn-outline-secondary">Lihat Data</a>
+        <a href="riwayat-pembayaran-inhouseadmin.php" class="btn btn-outline-secondary">Lihat Data</a>
     </div>
     <div class="card-footer text-muted">
         2 days ago
     </div>
+    </div> <br>
+    <br>
+    <div class="card text-center">
+    <div class="card-header">
+        Data Serah Terima
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Serah Terima</h3>
+        <a href="serah-terima.php" class="btn btn-outline-secondary">Tambah Data</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+    
     </div>
    
     </section>

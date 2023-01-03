@@ -3,36 +3,28 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
-$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$query    = mysqli_query($koneksi, "SELECT * FROM serah_terima JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=serah_terima.id_pemesanan_rumah WHERE pemesanan_rumah.id_pemesanan_rumah='$id_pemesanan_rumah'");
 $result   = mysqli_fetch_array($query);
 
 if (isset($_POST['konfirmasi'])) {
     $id = $_POST['id_pemesanan_rumah'];
-    $query = "UPDATE pembayaran_dp SET status_dp = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $query = "UPDATE serah_terima WHERE id_pemesanan_rumah='$id'";
     $result = mysqli_query($koneksi, $query);
 
-    header("location:riwayat-pembayaran-dp.php");
+    header("location:riwayat-serah-terima.php");
     echo '<script type ="text/JavaScript">';
     echo 'alert("Berhasil Konfirmasi")';
     echo '</script>';
 }
 if (isset($_POST['hapus'])) {
     $id = $_POST['id_pemesanan_rumah'];
-    $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_dp WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:riwayat-pembayaran-dp.php");
+    $query1 = mysqli_query($koneksi,"DELETE FROM serah_terima WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
+    header("location:riwayat-serah-terima.php");
     // $result = mysqli_query($koneksi, $query1); 
 }
-
-
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
 
 ?>
 
@@ -110,7 +102,7 @@ if (isset($_POST['hapus'])) {
             <ul>
             <li> <a href='profile-user.php'>Profil</a></li>
             <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
             <li> <a href='proggres.php'>Progres</a></li>
             <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
@@ -141,7 +133,7 @@ if (isset($_POST['hapus'])) {
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
+          <h2><blockquote>Riwayat Serah Terima</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -163,17 +155,13 @@ if (isset($_POST['hapus'])) {
             <tr>
                 <th>No</th>    
                 <th>ID Pemesanan Rumah</th>
-                <th>Tanggal Pembayaran</th>
-                <th>Bukti Pembayaran</th>
-                <th>Status</th>
-                <th></th>
-                
+                <th>No Surat Bangunan</th>
             </tr>
         </thead>
 
         <tbody>
         <?php
-        $query = "SELECT * from pembayaran_dp";
+        $query = "SELECT * from serah_terima";
         $result = mysqli_query($koneksi, $query);
         $no=1;
         // if ($SesLvl == 2){
@@ -189,18 +177,12 @@ if (isset($_POST['hapus'])) {
         <?php
         while($row = mysqli_fetch_array($result)){
           $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
-          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
-          $bukti_foto = $row['bukti_pembayaran_dp'];
-          $status = $row['status_dp'];
+          $no_surat = $row['no_surat_bangunan'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
           <td><?php echo $id_pemesanan_rumah;?></td>
-          <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
-          <td><?php echo $status;?></td>
-          <td>
-          
+          <td><?php echo $no_surat;?></td>
             <?php
           }
           ?>
@@ -319,7 +301,7 @@ if (isset($_POST['hapus'])) {
           </div>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
