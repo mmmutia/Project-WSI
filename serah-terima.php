@@ -5,11 +5,16 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
-if( isset($_POST['add-serah-terima']) ){
+if( isset($_POST['tambah']) ){
+    // $Id_user = $_POST['txt_id_user'];
+    // $foto = $_FILES['foto_cluster']['name'];
+    // $temp = $_FILES['foto_cluster']['tmp_name'];
+    
     $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
     $no_surat = $_POST['no_surat_bangunan'];
+    
 
-    $query = "INSERT INTO serah_terima (id_pemesanan_rumah,no_surat_bangunan) VALUES ('$id_pemesanan_rumah','$no_surat')";
+    $query = "INSERT INTO serah_terima(id_pemesanan_rumah,no_surat_bangunan) VALUES ('$id_pemesanan_rumah','$no_surat')";
     $result = mysqli_query($koneksi, $query);
     
     if($result){
@@ -17,6 +22,53 @@ if( isset($_POST['add-serah-terima']) ){
     }
    
 }
+// require ('koneksi.php');
+// session_start();
+// error_reporting(0);
+// $userName = $_SESSION['name'];
+// $SesLvl = $_SESSION['level'];
+
+// if (isset($_POST['simpan'])){
+//     // $id_cluster = $_POST['id_cluster'];
+//     $foto = $_FILES['foto_cluster']['name'];
+//     $temp = $_FILES['foto_cluster']['tmp_name'];
+//     $nama_cluster = $_POST['nama_cluster'];
+//     $blok = $_POST['blok'];
+//     $jumlah_unit = $_POST['jumlah_unit'];
+//     $harga = $_POST['harga'];
+//     $hargaDp = $_POST['hargaDp'];
+//     $image_files = $nama_cluster. '.jpg';
+
+// //     $queryy ="INSERT INTO cluster (foto_cluster,nama_cluster,blok,harga,harga_dp) VALUES ('$image_files','$nama_cluster','$blok','$harga','$hargaDp')";
+// //    $query =mysqli_query ($koneksi, $queryy);
+// $query = mysqli_query($koneksi, "INSERT INTO cluster (nama_cluster,blok,jumlah_unit,harga,harga_dp,foto_cluster) VALUES ('$nama_cluster','$blok', '$jumlah_unit','$harga','$hargaDp','$foto')");
+// // $data = mysqli_fetch_array($query_mysql);
+// copy($temp, "img/filepemesanan/" . $image_files);
+// $result = mysqli_query($koneksi, $query);
+// if($result){
+//   echo "<script>alert('Data Telah Berhasil Disimpan');window.location='cluster.php'</script>";
+// }
+
+// }
+
+// if (isset($_POST['hapus'])) {
+
+//     $hapus = mysqli_query($koneksi, "DELETE FROM cluster
+//         WHERE id_cluster = '$_POST[id_cluster]'
+//     ");
+
+// if ($hapus) {
+//     echo "<script>
+//     alert('hapus data sukses');
+//     document.location= 'index.php?halaman=cluster';
+//     </script>";
+// } else {
+//     echo "<script>
+//     alert('hapus data gagal');
+//     document.location= 'index.php?halaman=cluster';
+//     </script>";
+// }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +143,7 @@ if( isset($_POST['add-serah-terima']) ){
             <ul>
               <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-                <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-                <li> <a href='proggres.php'>Progress</a></li>
+                <li> <a href='pembayaran-user.php'>Pembayaran</a></li>
               <li><a href='logout.php'>Logout</a></li>
             </ul>
           </div>
@@ -120,7 +171,7 @@ if( isset($_POST['add-serah-terima']) ){
     <section class="breadcrumbs">
       <div class="container">
         <div class='d-flex justify-content-between align-items-center'>
-          <h2><blockquote>Tambah Serah Terima</blockquote></h2>
+          <h2><blockquote>Tambah Cluster</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -146,25 +197,26 @@ if( isset($_POST['add-serah-terima']) ){
             <form class="php-email-form" action="riwayat-serah-terima.php" method="POST" enctype="multipart/form-data">
               <div class="row">
                 <h1 class="text-center"><span>Tambah Serah Terima</span></h1>
-                <div class="form-group">
-                <select class="form-control" name="id_pemesanan_rumah" required>
-                <option value='#'> Pilih Id Pemesanan Rumah</option>
-                  <?php
-                 
-                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
-                  }
-                  ?>
-                </select>
-              </div><br><br>
                 <div class="row-md-6 form-group mb-3">
-                  <input name="no_surat_bangunan" type="text" class="form-control" placeholder="No Surat Bangunan *" value="" />
+                  <!-- <input type="text" name="nama_cluster" class="form-control" id="nama_cluster" placeholder="Nama Cluster *" value="" required> -->
+                  <input type="text" name="id_pemesanan_rumah" class="form-control" placeholder="Id Pemesanan Rumah *" value="">
+                </div>
+                <div class="row-md-6 form-group mb-3">
+                  <!-- <input type="text" name="blok" class="form-control" id="blok" placeholder="Blok Cluster *" value="" required> -->
+                  <input name="no_surat_bangunan" type="text" class="form-control" placeholder="Surat Bangungan *" value="" />
                 </div>
                 <div class="group">
-                        <input type="submit" name="add-serah-terima" class="btn btn-info btn-md" value="submit">
+                        <input type="submit" name="tambah" class="btn btn-info btn-md" value="submit">
                     </div>
+                <!-- <div class="row-md-6 form-group mt-3 mt-md-0 mb-3"> 
+                <center><button type="submit" class="btn btn-outline-info" name="simpan">Simpan</button></center>
+                </div> -->
               </div>
+           
+              <!-- <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required disabled>
+              </div> -->
+              <!-- <div class="text-center"><button type="submit">Send Message</button></div> -->
             </form>
           </div>
          

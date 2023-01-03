@@ -2,14 +2,22 @@
 require('koneksi.php');
 session_start();
 error_reporting(0);
-$userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
-$userId = $_SESSION['id'];
-$SesLvl = $_SESSION['level'];
-$nup = $_SESSION['nup'];
 
-$query_mysql = mysqli_query($koneksi, "SELECT * FROM detail_pemesanan JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=detail_pemesanan.id_pemesanan_rumah WHERE detail_pemesanan.id_pemesanan_rumah='$id_pemesanan_rumah'");
+if (isset($_GET['id_pemesanan_rumah'])||isset($_GET['id_detail_pemesanan'])) {
+  $id_detail_pemesanan = $_GET['id_detail_rumah'];
+  $id_pemesanan_rumah = $_GET['id_pemesanan_rumah'];
+} else {
+  die("Error. No ID Selected!");
+}
+
+// $id_cluster = $_SESSION['id_cluster'];
+$userName = $_SESSION['name'];
+$query_mysql = mysqli_query($koneksi, "select * from user_detail where user_fullname = '$userName'");
 $data = mysqli_fetch_array($query_mysql);
+
+
+$query    = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah INNER JOIN detail_pemesanan ON detail_pemesanan.id_pemesanan_rumah = pemesanan_rumah.id_pemesanan_rumah INNER JOIN serah_terima ON pemesanan_rumah.id_pemesanan_rumah = serah_terima.id_pemesanan_rumah WHERE pemesanan_rumah.id_detail_pemesanan = $id_detail_pemesanan");
+$result   = mysqli_fetch_array($query);
 
 $_SESSION['identitas'] = $data;
 ?>
@@ -142,28 +150,28 @@ $_SESSION['identitas'] = $data;
               <div class="row">
                 <h1 class="text-center"><span>Data Pemesan</span></h1>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $data['id_pemesanan_rumah']; ?>" required readonly>
+                  <input type="text" name="idpemesan" class="form-control" id="idpemesan" value="<?php echo $result['id_pemesanan_rumah']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mb-3">
-                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $data['nama_pemesan']; ?>" required readonly>
+                  <input type="text" name="namapemesan" class="form-control" id="namapemesan" value="<?php echo $result['nama_pemesan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $data['alamat']; ?>" required>
+                  <input type="email" class="form-control" name="alamat" id="alamat" value="<?php echo $result['alamat']; ?>" required>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $data['no_telp_pemesan']; ?>" required readonly>
+                  <input type="email" class="form-control" name="notelp" id="notelp" value="<?php echo $result['no_telp_pemesan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $data['id_cluster']; ?>" required readonly>
+                  <input type="email" class="form-control" name="idcluster" id="idcluster" value="<?php echo $result['id_cluster']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $data['tgl_pemesanan']; ?>" required readonly>
+                  <input type="email" class="form-control" name="tglpemesan" id="tglpemesan" value="<?php echo $result['tgl_pemesanan']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $data['jenis_pembayaran']; ?>" required readonly>
+                  <input type="email" class="form-control" name="jenispembayaran" id="jenispembayaran" value="<?php echo $result['jenis_pembayaran']; ?>" required readonly>
                 </div>
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-                  <img src="img/filepemesanan/<?php echo $data['fotocopy_ktp']; ?>" height="200px">
+                  <img src="img/filepemesanan/<?php echo $result['fotocopy_ktp']; ?>" height="200px">
                 </div>
               </div>
             </form>
@@ -175,17 +183,17 @@ $_SESSION['identitas'] = $data;
           <h4 class="text-center"><span> Detail Blok </span></h4>
           <form action="" method="post">
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
-            <input type="email" class="form-control" name="detail_blok" id="detail_blok" value="<?php echo $data['detail_blok']; ?>" required readonly>
+            <input type="email" class="form-control" name="detail_blok" id="detail_blok" value="<?php echo $result['detail_blok']; ?>" required readonly>
             <form action="" method="post">
               <!-- <div class="row"> -->
               <!-- <div class="row-md-6 form-group mb-3 text-center"> -->
               <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
               <h4 class="text-center"><span> Jumlah DP </span></h4>
-                <input type="email" class="form-control" name="jumlah_dp" id="jumlah_dp" value="<?php echo $data['jumlah_dp']; ?>" required readonly> 
+                <input type="email" class="form-control" name="jumlah_dp" id="jumlah_dp" value="<?php echo $result['jumlah_dp']; ?>" required readonly> 
                 </div> 
                 <div class="row-md-6 form-group mt-3 mt-md-0 mb-3">
               <h4 class="text-center"><span> No Surat Bangunan </span></h4>
-                <input type="email" class="form-control" name="no_surat_bangunan" id="no_surat_bangunan" value="<?php echo $data['no_surat_bangunan']; ?>" required readonly> <br>
+                <input type="email" class="form-control" name="no_surat_bangunan" id="no_surat_bangunan" value="<?php echo $result['no_surat_bangunan']; ?>" required readonly> <br>
                 </div> 
             </form>
           </div>

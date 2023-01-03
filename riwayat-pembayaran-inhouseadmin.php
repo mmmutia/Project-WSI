@@ -14,7 +14,7 @@ if (isset($_POST['konfirmasi'])) {
     $query = "UPDATE pembayaran_inhouse SET status_inhouse = 'Lunas' WHERE id_pemesanan_rumah='$id'";
     $result = mysqli_query($koneksi, $query);
 
-    header("location:riwayat-pembayaran-inhouse.php");
+    header("location:riwayat-pembayaran-inhouseadmin.php");
     echo '<script type ="text/JavaScript">';
     echo 'alert("Berhasil Konfirmasi")';
     echo '</script>';
@@ -22,7 +22,7 @@ if (isset($_POST['konfirmasi'])) {
 if (isset($_POST['hapus'])) {
     $id = $_POST['id_pemesanan_rumah'];
     $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_inhouse WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:riwayat-pembayaran-inhouse.php");
+    header("location:riwayat-pembayaran-inhouseadmin.php");
     // $result = mysqli_query($koneksi, $query1); 
 }
 
@@ -102,7 +102,7 @@ if (isset($_POST['hapus'])) {
             <ul>
             <li> <a href='profile-user.php'>Profil</a></li>
             <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+            <li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
             <li> <a href='proggres.php'>Progres</a></li>
             <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
             <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
@@ -154,7 +154,7 @@ if (isset($_POST['hapus'])) {
         <thead>
             <tr>
                 <th>No</th>    
-                <th>ID Pemesanan Rumah</th>
+                <th>Nama Pemesan</th>
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
@@ -165,7 +165,7 @@ if (isset($_POST['hapus'])) {
 
         <tbody>
         <?php
-        $query = "SELECT * from pembayaran_inhouse";
+        $query = "SELECT * from pembayaran_inhouse join pemesanan_rumah on pembayaran_inhouse.id_pemesanan_rumah=pemesanan_rumah.id_pemesanan_rumah";
         $result = mysqli_query($koneksi, $query);
         $no=1;
         // if ($SesLvl == 2){
@@ -180,19 +180,19 @@ if (isset($_POST['hapus'])) {
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
-          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
           $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
           $bukti_foto = $row['bukti_pembayaran_inhouse'];
           $status = $row['status_inhouse'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
-          <td><?php echo $id_pemesanan_rumah;?></td>
+          <td><?php echo $nama_pemesan;?></td>
           <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
+          <td><img src="img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
           <td><?php echo $status;?></td>
           <td>
-          <form action="riwayat-pembayaran-admin.php" method="post" role="form" class="php-email-form">
+          <form action="riwayat-pembayaran-inhouseadmin.php" method="post" role="form" class="php-email-form">
           <input type="text" value="<?php echo $id_pemesanan_rumah;?>" name="id_pemesanan_rumah" hidden>
           <?php if ($status == "Lunas") {
             ?>

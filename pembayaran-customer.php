@@ -797,7 +797,7 @@ $data = mysqli_fetch_array($query_mysql);
       move_uploaded_file($file_tmp, './img/pembayaran_dp/' . $fotoadd);
 
 
-      $query    = "INSERT INTO `pembayaran_dp` (`id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`, `status_dp`) VALUES ('$idpemesanan', '$tanggal', '$fotoadd', 'Belum Di Konfirmasi')";
+      $query    = "INSERT INTO `pembayaran_dp` (`id_pemesanan_rumah`, `tgl_pembayaran_dp`, `bukti_pembayaran_dp`, `status_dp`) VALUES ('$idpemesanan', '$tanggal', '$fotoadd')";
       $result   = mysqli_query($koneksi, $query);
 
       if ($result) {
@@ -877,7 +877,7 @@ $data = mysqli_fetch_array($query_mysql);
       $tanggal_inhouse = $_POST['tgl_pembayaran_inhouse']; 
       $foto_inhouse = $_FILES['bukti_pembayaran_inhouse']['name'];
       $file_tmp = $_FILES['bukti_pembayaran_inhouse']['tmp_name'];
-      move_uploaded_file($file_tmp, './img/pembayaran_inhouse/' . $fotoadd);
+      move_uploaded_file($file_tmp, './img/bukti_inhouse/' . $foto_inhouse);
 
 
       $query    = "INSERT INTO `pembayaran_inhouse` (`id_pemesanan_rumah`, `tgl_pembayaran_inhouse`, `bukti_pembayaran_inhouse`) VALUES ('$idpemesanan', '$tanggal_inhouse', '$foto_inhouse')";
@@ -906,7 +906,7 @@ $data = mysqli_fetch_array($query_mysql);
 
     $foto_edit = $_FILES['foto_edit']['name'];
     $file_tmp = $_FILES['foto_edit']['tmp_name'];
-    move_uploaded_file($file_tmp, './img/pembayaran_inhouse/' . $foto_edit);
+    move_uploaded_file($file_tmp, './img/bukti_inhouse/' . $foto_edit);
 
 
     if (isset($_POST['edit-user'])) {
@@ -926,8 +926,8 @@ $data = mysqli_fetch_array($query_mysql);
           $row = mysqli_fetch_array($result, MYSQLI_BOTH);
 
           $fotoproggresedit = $row['bukti_pembayaran_inhouse'];
-          if (file_exists("./img/pembayaran_inhouse/$fotoproggresedit")) {
-            unlink("./img/pembayaran_inhouse/$fotoproggresedit");
+          if (file_exists("./img/bukti_inhouse/$fotoproggresedit")) {
+            unlink("./img/bukti_inhouse/$fotoproggresedit");
           }
 
           $sql = mysqli_query($koneksi, "UPDATE `pembayaran_dp` SET id_pemesanan_rumah='$idpemesananedit', tgl_pembayaran_dp='$tanggaledit', bukti_pembayaran_dp = '$fotoedit' WHERE id='$id'");

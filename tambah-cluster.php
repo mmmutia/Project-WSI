@@ -49,7 +49,6 @@ if( isset($_POST['tambah']) ){
     
 
     $query = "INSERT INTO cluster(nama_cluster,blok,jumlah_unit,harga,harga_dp,filter,foto_cluster) VALUES ('$nama_cluster','$blok','$jumlah_unit','$harga','$hargaDp','$filter','$uploadcluster')";
-
     $result = mysqli_query($koneksi, $query);
     
     if($result){

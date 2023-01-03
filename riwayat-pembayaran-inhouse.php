@@ -6,7 +6,7 @@ $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
-$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_inhouse JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_inhouse.id_pemesanan_rumah WHERE pembayaran_inhouse.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_inhouse INNER JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_inhouse.id_pemesanan_rumah WHERE pembayaran_inhouse.id_pemesanan_rumah='$id_pemesanan_rumah'");
 $result   = mysqli_fetch_array($query);
 
 if (isset($_POST['konfirmasi'])) {
@@ -154,7 +154,7 @@ if (isset($_POST['hapus'])) {
         <thead>
             <tr>
                 <th>No</th>    
-                <th>ID Pemesanan Rumah</th>
+                <th>Nama Pemesan</th>
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
@@ -165,7 +165,7 @@ if (isset($_POST['hapus'])) {
 
         <tbody>
         <?php
-        $query = "SELECT * from pembayaran_inhouse";
+        $query = "SELECT * from pembayaran_inhouse join pemesanan_rumah on pembayaran_inhouse.id_pemesanan_rumah=pemesanan_rumah.id_pemesanan_rumah";
         $result = mysqli_query($koneksi, $query);
         $no=1;
         // if ($SesLvl == 2){
@@ -180,16 +180,16 @@ if (isset($_POST['hapus'])) {
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
-          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
           $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
           $bukti_foto = $row['bukti_pembayaran_inhouse'];
           $status = $row['status_inhouse'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
-          <td><?php echo $id_pemesanan_rumah;?></td>
+          <td><?php echo $nama_pemesan;?></td>
           <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
+          <td><img src="./img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
           <td><?php echo $status;?></td>
           <td>
           
