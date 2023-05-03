@@ -5,18 +5,34 @@ error_reporting(0);
 $userName = $_SESSION['name'];
 $id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
-
-$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah ");
+$id = $_GET['id'];
+$query_mysql = mysqli_query($koneksi, "SELECT * FROM pemesanan_rumah WHERE id_pemesanan_rumah ='$id' ");
+$query_mysql2 = mysqli_query($koneksi, "SELECT * FROM detail_pemesanan  WHERE id_pemesanan_rumah='$id'");
 $data = mysqli_fetch_array($query_mysql);
+$dataa = mysqli_fetch_array($query_mysql2);
 
 if(isset($_POST['add_detail'])){
+  $id_detail_pemesanan = $_POST['id_detail_pemesanan'];
   $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
   $detail_blok = $_POST['detail_blok'];
   $jumlah_dp = $_POST['jumlah_dp'];
-
-  $query_nup = mysqli_query($koneksi,"INSERT INTO detail_pemesanan (id_pemesanan_rumah, detail_blok, jumlah_dp) VALUES ('$id_pemesanan_rumah','$detail_blok', '$jumlah_dp')");
-
-  
+  $cek = "SELECT * FROM detail_pemesanan WHERE id_pemesanan_rumah='$id_pemesanan_rumah'";
+    $result_cek = mysqli_query($koneksi, $cek);
+    $jumlah = mysqli_num_rows($result_cek);
+    // echo "<script>alert('$jumlah');</script>";
+    if ($jumlah == 0) {
+        $query_nup = "INSERT INTO detail_pemesanan (id_pemesanan_rumah, detail_blok, jumlah_dp) VALUES ('$id_pemesanan_rumah','$detail_blok', '$jumlah_dp')";
+        $result = mysqli_query($koneksi, $query_nup);
+        if ($result) {
+            echo "<script>alert('Data Telah Berhasil Disimpan');window.location='list-pemesanan-admin.php'</script>";
+        }
+    } elseif ($jumlah > 0) {
+        $query = "UPDATE detail_pemesanan SET id_pemesanan_rumah='$id_pemesanan_rumah',detail_blok='$detail_blok', jumlah_dp='$jumlah_dp' WHERE id_detail_pemesanan='$id_detail_pemesanan'";
+        $result = mysqli_query($koneksi, $query);
+        if ($result) {
+            echo "<script>alert('Data Telah Berhasil Disimpan');window.location='list-pemesanan-admin.php'</script>";
+      }
+    }  
   
 }
 
@@ -184,24 +200,16 @@ if(isset($_POST['add_detail'])){
                 <h1 class="text-center"><span> Detail Blok Rumah </span></h1>
           <div class="col-lg-4 m-auto">
           <form action="" method="post" >
-                <div class="row">
-                <div class="form-group">
-                <select class="form-control" name="id_pemesanan_rumah" required>
-                <option value='#'> Pilih Id Pemesanan Rumah</option>
-                  <?php
-                 
-                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
-                  }
-                  ?>
-                </select><br>
-              </div>
+              <div class="row">
                 <div class="row-md-6 form-group mb-3 text-center">
-                  <input type="text" name="detail_blok" class="form-control" id="detail_blok" placeholder="Masukkan Blok">
+                  <input type="text" name="id_pemesanan_rumah" class="form-control" id="id_pemesanan_rumah" placeholder="Masukkan ID Pemesanan Rumah" value="<?php echo $data['id_pemesanan_rumah'];?>">
+                  <input type="text" name="id_detail_pemesanan" class="form-control" id="id_detail_pemesanan" placeholder="Masukkan ID Pemesanan Rumah" value="<?php echo $dataa['id_detail_pemesanan'];?>" hidden>
                 </div>
                 <div class="row-md-6 form-group mb-3 text-center">
-                  <input type="text" name="jumlah_dp" class="form-control" id="jumlah_dp" placeholder="Jumlah DP">
+                  <input type="text" name="detail_blok" class="form-control" id="detail_blok" placeholder="Masukkan Blok" value="<?php echo $dataa['detail_blok'];?>">
+                </div>
+                <div class="row-md-6 form-group mb-3 text-center">
+                  <input type="text" name="jumlah_dp" class="form-control" id="jumlah_dp" placeholder="Jumlah DP" value="<?php echo $dataa['jumlah_dp'];?>">
                 </div>
                 <div class="row-md-6 form-group mb-3 text-center">
                   <button type="submit" class="btn btn-outline-info" name="add_detail">Simpan</button>
