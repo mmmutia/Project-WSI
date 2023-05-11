@@ -21,13 +21,13 @@ if (isset($_POST['submit'])) {
         $num        = mysqli_num_rows($result);
 
         while ($row = mysqli_fetch_array($result)) {
-            $id = $row['id_user'];
+        
+    $id = $row['id_user'];
             $userVal = $row['user_email'];
             $passVal = $row['user_password'];
             $userName = $row['user_fullname'];
             $level = $row['level'];
         }
-
         if ($num > 0) {
             if ($level <= 2) {
                 if ($userVal == $email && $passVal == $pass) {

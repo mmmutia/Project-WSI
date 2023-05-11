@@ -1,35 +1,38 @@
 <?php
+// Koneksi ke database
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "bernady";
+$con = mysqli_connect($host, $user, $password, $database);
 
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "database_name";
+// Mengambil data input dari aplikasi Android
+$email = $_POST['txt_mail'];
+$password = $_POST['txt_pass'];
 
-// Membuat koneksi
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Meng-handle proses login
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // User ditemukan, kirim respons berhasil ke aplikasi Android
-        echo "success";
+// Validasi input
+if(empty($email) || empty($password)) {
+    $response['success'] = false;
+    $response['message'] = "Email dan password tidak boleh kosong";
+} else {
+    // Query untuk mencari user berdasarkan email dan password
+    $query = "SELECT * FROM user_detail WHERE user_email = '$email' AND password = '$password'";
+    $result = mysqli_query($con, $query);
+    $num_rows = mysqli_num_rows($result);
+    
+    if($num_rows > 0) {
+        // Jika user ditemukan, kirim response berhasil
+        $response['success'] = true;
+        $response['message'] = "Login berhasil";
+        $response['user'] = mysqli_fetch_assoc($result);
     } else {
-        // User tidak ditemukan, kirim respons gagal ke aplikasi Android
-        echo "failed";
+        // Jika user tidak ditemukan, kirim response gagal
+        $response['success'] = false;
+        $response['message'] = "Email atau password salah";
     }
 }
 
-$conn->close();
-
+// Mengembalikan response dalam format JSON
+echo json_encode($response);
+mysqli_close($con);
 ?>

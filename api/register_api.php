@@ -1,35 +1,34 @@
 <?php
-
+// Koneksi ke database
 $servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "database_name";
+$username = "root";
+$password = "";
+$dbname = "bernady";
 
-// Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Cek koneksi
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Meng-handle proses register
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// Ambil parameter POST dari request
+$name = $_POST["txt_nama"];
+$email = $_POST["txt_email"];
+$password = $_POST["txt_pass"];
 
-    $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+// Hash password menggunakan fungsi password_hash
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    if ($conn->query($sql) === TRUE) {
-        // User berhasil ditambahkan, kirim respons berhasil ke aplikasi Android
-        echo "success";
-    } else {
-        // User gagal ditambahkan, kirim respons gagal ke aplikasi Android
-        echo "failed";
-    }
+// Query untuk insert data user ke tabel "users"
+$sql = "INSERT INTO user_detail (name, user_email, password) VALUES ('$name', '$email', '$hashed_password')";
+
+if ($conn->query($sql) === TRUE) {
+    // Jika insert berhasil, kirim response OK dengan kode 200
+    http_response_code(200);
+} else {
+    // Jika insert gagal, kirim response error dengan kode 500
+    http_response_code(500);
 }
 
 $conn->close();
-
 ?>
