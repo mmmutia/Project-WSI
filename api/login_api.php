@@ -1,38 +1,49 @@
 <?php
-// Koneksi ke database
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "bernady";
-$con = mysqli_connect($host, $user, $password, $database);
 
-// Mengambil data input dari aplikasi Android
-$email = $_POST['txt_mail'];
-$password = $_POST['txt_pass'];
+if ($_SERVER['REQUEST_METHOD']=='POST') {
 
-// Validasi input
-if(empty($email) || empty($password)) {
-    $response['success'] = false;
-    $response['message'] = "Email dan password tidak boleh kosong";
-} else {
-    // Query untuk mencari user berdasarkan email dan password
-    $query = "SELECT * FROM user_detail WHERE user_email = '$email' AND password = '$password'";
-    $result = mysqli_query($con, $query);
-    $num_rows = mysqli_num_rows($result);
+    $email = $_POST['txt_email'];
+    $password = $_POST['txt_password'];
+
+    require_once 'koneksi.php';
+
+    $sql = "SELECT * FROM users_detail WHERE user_email='$email' ";
+
+    $response = mysqli_query($koneksi, $sql);
+
+    $result = array();
+    $result['login'] = array();
     
-    if($num_rows > 0) {
-        // Jika user ditemukan, kirim response berhasil
-        $response['success'] = true;
-        $response['message'] = "Login berhasil";
-        $response['user'] = mysqli_fetch_assoc($result);
-    } else {
-        // Jika user tidak ditemukan, kirim response gagal
-        $response['success'] = false;
-        $response['message'] = "Email atau password salah";
+    if ( mysqli_num_rows($response) === 1 ) {
+        
+        $row = mysqli_fetch_assoc($response);
+
+        if ( password_verify($password, $row['user_password']) ) {
+            
+            $index['name'] = $row['user_fullname'];
+            $index['email'] = $row['user_email'];
+            $index['id'] = $row['id'];
+
+            array_push($result['login'], $index);
+
+            $result['success'] = "1";
+            $result['message'] = "success";
+            echo json_encode($result);
+
+            mysqli_close($conn);
+
+        } else {
+
+            $result['success'] = "0";
+            $result['message'] = "error";
+            echo json_encode($result);
+
+            mysqli_close($conn);
+
+        }
+
     }
+
 }
 
-// Mengembalikan response dalam format JSON
-echo json_encode($response);
-mysqli_close($con);
 ?>
