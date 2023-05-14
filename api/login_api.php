@@ -1,13 +1,15 @@
 <?php
+require_once '../koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $email = $_POST['txt_email'];
-    $password = $_POST['txt_password'];
+    $data = json_decode(file_get_contents('php://input'), true);
 
-    require_once 'koneksi.php';
+    $email = (isset($data['email'])) ? $data['email'] : "";
+    $password = (isset($data['password'])) ? $data['password'] : "";
 
-    $sql = "SELECT * FROM users_detail WHERE user_email='$email' ";
+
+    $sql = "SELECT * FROM user_detail WHERE user_email='$email' ";
 
     $response = mysqli_query($koneksi, $sql);
 
@@ -20,17 +22,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
         if ( password_verify($password, $row['user_password']) ) {
             
-            $index['name'] = $row['user_fullname'];
-            $index['email'] = $row['user_email'];
-            $index['id'] = $row['id'];
-
-            array_push($result['login'], $index);
+            $result['Data']['name'] = $row['user_fullname'];
+            $result['Data']['email'] = $row['user_email'];
 
             $result['success'] = "1";
             $result['message'] = "success";
+            $result['id'] = $row['id_user'];
             echo json_encode($result);
 
-            mysqli_close($conn);
+            mysqli_close($koneksi);
 
         } else {
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $result['message'] = "error";
             echo json_encode($result);
 
-            mysqli_close($conn);
+            mysqli_close($koneksi);
 
         }
 
