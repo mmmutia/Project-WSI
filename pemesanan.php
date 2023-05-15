@@ -116,32 +116,32 @@ if( isset($_POST['pesan']) ){
                 <div id="login-box" class="col-md-12">
                     <form class="user" action="pemesanan.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group" hidden>
-                            <input name="txt_id_user" type="text" class="form-control" placeholder="Nama Lengkap *"
+                            <input name="txt_id_user" type="text" class="form-control" placeholder="Nama Lengkap "
                                 value="<?php echo $data['id_user'];?>" />
                         </div>
                         <div class="form-group">
-                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *"
+                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap "
                                 value="<?php echo $data['user_fullname'];?>" />
                         </div>
                         <div class="form-group">
-                            <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
+                            <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat " value="" />
                         </div>
                         <div class="form-group">
-                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon *"
+                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon "
                                 value="" />
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="txt_idcluster">
                                 <option>-- Cluster --</option>
-                                <option>9. Pinewood</option>
-                                <option>10. Boulevard Magnolia</option>
-                                <option>11. Camelia</option>
-                                <option>12. Edge Gardenia</option>
-                                <option>13. New Edge Gardenia</option>
-                                <option>14. Plumeria</option>
-                                <option>15. QBIX</option>
-                                <option>16. Ruko</option>
-                                <option>17. SOHO</option>
+                                <option>Pinewood</option>
+                                <option>Boulevard Magnolia</option>
+                                <option>Camelia</option>
+                                <option>Edge Gardenia</option>
+                                <option>New Edge Gardenia</option>
+                                <option>Plumeria</option>
+                                <option>QBIX</option>
+                                <option>Ruko</option>
+                                <option>SOHO</option>
                             </select>
                         </div>
                         <div class="row">
@@ -160,8 +160,12 @@ if( isset($_POST['pesan']) ){
                         </div>
 
                         <div class="form-group">
-                            <!-- <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" /> -->
-                            <input type="file" name="txt_fotocopyktp" class="form-control">
+                        <p class="image_upload">
+                            <label for="txt_fotocopyktp">
+                            <a class="btn btn-secondary btn-md" rel="nofollow"><span class='glyphicon glyphicon-paperclip'></span> Upload Scan KTP</a>
+                            </label>
+                            <input type="file" name="txt_fotocopyktp"  id="txt_fotocopyktp" >
+                        </p>    
                         </div>
                         <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
                         <a role="button" href="portfolio.php" class="btn btn-danger btn-user btn-block">Batal</a>
