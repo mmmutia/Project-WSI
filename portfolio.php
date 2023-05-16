@@ -155,7 +155,7 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 
         <div class="row">
           <div class="col-lg-12">
-            <ul id="portfolio-flters">
+            <ul id="portfolio-fiters">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".boulevard">Boulevard Magnolia</li>
               <li data-filter=".camelia">Camelia</li>
@@ -190,8 +190,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
           <?php
         }
         ?>
-
-
         </div>
 
       </div>
@@ -310,7 +308,6 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
   <script src="vendor/waypoints/noframework.waypoints.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
   <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
-
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
