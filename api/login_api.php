@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $result['Data']['name'] = $row['user_fullname'];
             $result['Data']['email'] = $row['user_email'];
 
-            $result['success'] = "1";
+            $result['success'] = true;
             $result['message'] = "success";
             $result['id'] = $row['id_user'];
             echo json_encode($result);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
         } else {
 
-            $result['success'] = "0";
+            $result['success'] = false;
             $result['message'] = "error";
             echo json_encode($result);
 
