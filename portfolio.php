@@ -155,16 +155,16 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
 
         <div class="row">
           <div class="col-lg-12">
-            <ul id="portfolio-fiters">
+            <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".boulevard">Boulevard Magnolia</li>
               <li data-filter=".camelia">Camelia</li>
-              <li data-filter=".gardenia">Edge Gardenia</li>
-              <li data-filter=".edge">New Edge Gardenia</li>
+              <li data-filter=".edge">Edge Gardenia</li>
+              <li data-filter=".newedge">New Edge Gardenia</li>
               <li data-filter=".pinewood">Pinewood</li>
               <li data-filter=".plumeria">Plumeria</li>
               <li data-filter=".qbix">QBIX</li>
-              <li data-filter=".ruko">Ruko</li>
+              <li data-filter=".ruko">Ruko Avenue 3</li>
               <li data-filter=".soho">SOHO</li>
             </ul>
           </div>
