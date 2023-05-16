@@ -64,7 +64,7 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Layanan</a></li>
+          <li><a href="services.php">Services</a></li>
           <li><a class="active" href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Team</a></li>
           <li><a href="contact.php">Contact Us</a></li>

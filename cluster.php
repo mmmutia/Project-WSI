@@ -86,7 +86,7 @@ $SesLvl = $_SESSION['level'];
         <ul>
           <li><a class="" href="index-admin.php">Home</a></li>
           <li><a href="about-admin.php">About</a></li>
-          <li><a href="services-admin.php">Layanan</a></li>
+          <li><a href="services-admin.php">Services</a></li>
           <li><a href="portfolio-admin.php">Cluster</a></li>
           <li><a href="team-admin.php">Team</a></li>
           <li><a class="active" href="contact-admin.php">Contact Us</a></li>
