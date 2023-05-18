@@ -116,32 +116,34 @@ if( isset($_POST['pesan']) ){
                 <div id="login-box" class="col-md-12">
                     <form class="user" action="pemesanan.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group" hidden>
-                            <input name="txt_id_user" type="text" class="form-control" placeholder="Nama Lengkap "
+                            <input name="txt_id_user" type="text" class="form-control" placeholder="Nama Lengkap *"
                                 value="<?php echo $data['id_user'];?>" />
                         </div>
                         <div class="form-group">
-                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap "
+                            <input name="txt_namapemesan" type="text" class="form-control" placeholder="Nama Lengkap *"
                                 value="<?php echo $data['user_fullname'];?>" />
                         </div>
                         <div class="form-group">
-                            <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat " value="" />
+                            <input name="txt_alamat" type="text" class="form-control" placeholder="Alamat *" value="" />
                         </div>
                         <div class="form-group">
-                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon "
+                            <input name="NomorTelp" type="number" class="form-control" placeholder="Nomor Telepon *"
                                 value="" />
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="txt_idcluster">
-                                <option>-- Cluster --</option>
-                                <option>Pinewood</option>
-                                <option>Boulevard Magnolia</option>
-                                <option>Camelia</option>
-                                <option>Edge Gardenia</option>
-                                <option>New Edge Gardenia</option>
-                                <option>Plumeria</option>
-                                <option>QBIX</option>
-                                <option>Ruko</option>
-                                <option>SOHO</option>
+                            <option>-- Cluster --</option>
+                                <option>33. Boulevard Magnolia</option>
+                                <option>34. Camelia</option>
+                                <option>36. Edge Gardenia</option>
+                                <option>37. New Edge Gardenia</option>
+                                <option>38. Pinewood Magna</option>
+                                <option>39. Pinewood Prime</option>
+                                <option>40. Pinewood  Varsa</option>
+                                <option>41. Pinewood Millenial</option>
+                                <option>42. Pinewood Terra</option>
+                                <option>43. Pinewood Terra +</option>
+                                <option>44. Plumeria</option>
                             </select>
                         </div>
                         <div class="row">
@@ -159,14 +161,21 @@ if( isset($_POST['pesan']) ){
                             </div>
                         </div>
 
-                        <div class="form-group">
-                        <p class="image_upload">
-                            <label for="txt_fotocopyktp">
-                            <a class="btn btn-secondary btn-md" rel="nofollow"><span class='glyphicon glyphicon-paperclip'></span> Upload Scan KTP</a>
-                            </label>
-                            <input type="file" name="txt_fotocopyktp"  id="txt_fotocopyktp" >
-                        </p>    
+                        <!-- <div class="form-group">
+                            <input type="file" name="txt_fotocopyktp" class="form-control">
+                        </div> -->
+
+                        <div class="row">
+                        <div class="col-2 form-group">
+                            <!-- <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" /> -->
+                            <label for="txt_fotocopy">Upload KTP</label>
                         </div>
+                        <div class="col-10 form-group">
+                            <input type="file" name="txt_fotocopyktp" class="form-control">
+                        </div>
+                        </div>
+
+
                         <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
                         <a role="button" href="portfolio.php" class="btn btn-danger btn-user btn-block">Batal</a>
                     </form>

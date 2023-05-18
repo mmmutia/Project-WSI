@@ -147,12 +147,12 @@ if($userLvl == '1'){
   
   echo "
 
-          <li><a href='index.php'>Home</a></li>
-          <li><a href='about.php'>About</a></li>
+          <li><a href='index.php'>Beranda</a></li>
+          <li><a href='about.php'>Tentang</a></li>
           <li><a href='services'.php>Layanan</a></li>
           <li><a class='active' href='portfolio.php'>Cluster</a></li>
-          <li><a href='team.php'>Team</a></li>
-          <li><a href='contact.php'>Contact Us</a></li>
+          <li><a href='team.php'>Tim</a></li>
+          <li><a href='contact.php'>Kontak</a></li>
   
   ";
   
@@ -249,7 +249,7 @@ echo "
             }
         </style>
           <ol>
-            <li><a href="index-admin.php">Home</a></li>
+            <li><a href="index-admin.php">Beranda</a></li>
             <li>Profil</li>
           </ol>
         </div>
@@ -328,7 +328,7 @@ echo "
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
+            <h4>Pesan Kami</h4>
             <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
           </div>
           <div class="col-lg-6">
@@ -345,7 +345,7 @@ echo "
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Link</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
@@ -356,7 +356,7 @@ echo "
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Layanan</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
@@ -366,7 +366,7 @@ echo "
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
+            <h4>Kontak</h4>
             <p>
               Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
               68126<br>
@@ -378,7 +378,7 @@ echo "
           </div>
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About Bernady Land Slawu</h3>
+            <h3>Tentang Bernady Land Slawu</h3>
             <p>The Heart of Jember</p>
             <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
             <div class="social-links mt-3">

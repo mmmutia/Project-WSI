@@ -74,12 +74,12 @@ if( isset($_POST['message']) ){
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="" href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="services.php">Services</a></li>
+          <li><a class="" href="index.php">Beranda</a></li>
+          <li><a href="about.php">Tentang</a></li>
+          <li><a href="services.php">Layanan</a></li>
           <li><a href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a class="active" href="contact.php">Contact Us</a></li>
+          <li><a href="team.php">Tim</a></li>
+          <li><a class="active" href="contact.php">Kontak</a></li>
           <?php
 
           if($userName = $_SESSION['name']){
@@ -121,7 +121,7 @@ if( isset($_POST['message']) ){
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Contact</blockquote></h2>
+          <h2><blockquote>Kontak</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -129,8 +129,8 @@ if( isset($_POST['message']) ){
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li>Contact</li>
+            <li><a href="index.php">Beranda</a></li>
+            <li>Kontak</li>
           </ol>
         </div>
 
@@ -149,21 +149,21 @@ if( isset($_POST['message']) ){
               <div class="col-md-12">
                 <div class="info-box">
                   <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
+                  <h3>Alamat</h3>
                   <p>Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68126<p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
+                  <h3>Email </h3>
                   <p>bernadylandslawu@gmail.com<br>marketingpoint@gmail.com</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <a href="https://wa.me/+6281231230899"><i class="bx bx-phone-call"></a></i>
-                  <h3>Call Us</h3>
+                  <h3>Phone</h3>
                   <p><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a></p>
                   <p><a href="https://wa.me/+6282359338615">+62 823 5933 8615</a></p>
                 </div>
@@ -192,7 +192,7 @@ if( isset($_POST['message']) ){
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
+            <h4>Pesan Kami</h4>
             <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
           </div>
           <div class="col-lg-6">
@@ -209,7 +209,7 @@ if( isset($_POST['message']) ){
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Link</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
@@ -220,7 +220,7 @@ if( isset($_POST['message']) ){
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Layanan</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
@@ -230,7 +230,7 @@ if( isset($_POST['message']) ){
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
+            <h4>Kontak</h4>
             <p>
               Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
               68126<br>

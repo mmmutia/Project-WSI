@@ -29,7 +29,18 @@ if (isset($_POST['submit'])) {
             $level = $row['level'];
         }
         if ($num > 0) {
-            if ($level <= 2) {
+            if ($level == 1) {
+                if ($userVal == $email && $passVal == $pass) {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['name'] = $userName;
+                    $_SESSION['level'] = $level;
+                    header('Location: admin/index.php');
+                } else {
+                    $error = 'user atau password salah!!';
+                    echo "<script>alert('$error')</script>";
+                    header('Location: login.php');
+                }
+            } else if ($level == 2) {
                 if ($userVal == $email && $passVal == $pass) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;
@@ -51,7 +62,7 @@ if (isset($_POST['submit'])) {
                     echo "<script>alert('$error')</script>";
                     header('Location: login.php');
                 }
-            } else if ($level == 4) {
+            }else if ($level == 4) {
                 if ($userVal == $email && $passVal == $pass) {
                     $_SESSION['id'] = $id;
                     $_SESSION['name'] = $userName;

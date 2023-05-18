@@ -195,7 +195,7 @@ $query = mysqli_query($koneksi,"SELECT * from simpan_cluster JOIN cluster ON clu
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
+            <h4>Pesan Kami</h4>
             <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
           </div>
           <div class="col-lg-6">
@@ -212,7 +212,7 @@ $query = mysqli_query($koneksi,"SELECT * from simpan_cluster JOIN cluster ON clu
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>Link</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
@@ -223,7 +223,7 @@ $query = mysqli_query($koneksi,"SELECT * from simpan_cluster JOIN cluster ON clu
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Layanan</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
@@ -233,7 +233,7 @@ $query = mysqli_query($koneksi,"SELECT * from simpan_cluster JOIN cluster ON clu
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
+            <h4>Kontak</h4>
             <p>
               Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
               68126<br>
@@ -245,7 +245,7 @@ $query = mysqli_query($koneksi,"SELECT * from simpan_cluster JOIN cluster ON clu
           </div>
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About bernadyLandSlawu</h3>
+            <h3>Tentang BernadyLandSlawu</h3>
             <p>The Heart of Jember</p>
             <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
             <div class="social-links mt-3">

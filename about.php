@@ -60,12 +60,12 @@ $userName = $_SESSION['name'];
       <nav id="navbar" class="navbar">
       
                   <ul>
-                  <li><a class="" href="index.php">Home</a></li>
-                  <li><a class="active" href="about.php">About</a></li>
-                  <li><a href="services.php">Services</a></li>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
                   <li><a href="portfolio.php">Cluster</a></li>
-                  <li><a href="team.php">Team</a></li>
-                  <li><a href="contact.php">Contact Us</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
                   <?php
 
 if($userName = $_SESSION['name']){
@@ -106,7 +106,7 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote> About Us</blockquote></h2>
+          <h2><blockquote> Tentang Bernady</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -114,8 +114,8 @@ if($userName = $_SESSION['name']){
             }
         </style>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li>About Us</li>
+            <li><a href="index.php">Beranda</a></li>
+            <li>Tentang Bernady</li>
           </ol>
         </div>
 
@@ -242,7 +242,7 @@ if($userName = $_SESSION['name']){
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
+            <h4>esan Kami</h4>
             <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
           </div>
           <div class="col-lg-6">
@@ -263,18 +263,16 @@ if($userName = $_SESSION['name']){
               <div class="row">
       
                 <div class="col-lg-3 col-md-6 footer-links">
-                  <h4>Useful Links</h4>
+                  <h4>Link</h4>
                   <ul>
-                    <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                    <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="index.php">Beranda</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="about.php">Tentang</a></li>
+                    <li><i class="bx bx-chevron-right"></i> <a href="services.php">Layanan</a></li>
                   </ul>
                 </div>
       
                 <div class="col-lg-3 col-md-6 footer-links">
-                  <h4>Our Services</h4>
+                  <h4>Layanan</h4>
                   <ul>
                     <li><i class="bx bx-chevron-right"></i> <a href="services.php">Properti Baru</a></li>
                     <li><i class="bx bx-chevron-right"></i> <a href="pemesanan.php">Pesan Rumah</a></li>
@@ -284,7 +282,7 @@ if($userName = $_SESSION['name']){
                 </div>
       
                 <div class="col-lg-3 col-md-6 footer-contact">
-                  <h4>Contact Us</h4>
+                  <h4>Kontak</h4>
                   <p>
                     Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
                     68126<br>
