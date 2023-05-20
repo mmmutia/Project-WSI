@@ -15,6 +15,8 @@ if( isset($_POST['pesan']) ){
     $IdCluster = $_POST['txt_idcluster'];
     $jenispembayaran = $_POST['txt_metodepembayaran'];
     $tglpesan = $_POST['txt_tglpemesanan'];
+    $jml_cicilan_dp = $_POST['txt_cicilandp'];
+    $jml_cicilan_inhouse = $_POST['txt_cicilan_inhouse'];
     // $ktp = $_FILES['txt_fotocopyktp'];
     $target_dir = "img/filepemesanan/";
     $target_file = $target_dir . basename($_FILES["txt_fotocopyktp"]["name"]);
@@ -44,7 +46,7 @@ if( isset($_POST['pesan']) ){
     }
     
 
-    $query = "INSERT INTO pemesanan_rumah(nama_pemesan,alamat,no_telp_pemesan,id_cluster,tgl_pemesanan,fotocopy_ktp,jenis_pembayaran,id_user) VALUES ('$Namapemesan','$alamat','$Notelp','$IdCluster','$tglpesan','$ktp','$jenispembayaran','$Id_user')";
+    $query = "INSERT INTO pemesanan_rumah(nama_pemesan,alamat,no_telp_pemesan,id_cluster,tgl_pemesanan,fotocopy_ktp,jenis_pembayaran,jml_cicilan_dp,jml_cicilan_inhouse,id_user) VALUES ('$Namapemesan','$alamat','$Notelp','$IdCluster','$tglpesan','$ktp','$jenispembayaran','$jml_cicilan_dp','$jml_cicilan_inhouse','$Id_user')";
 
     $result = mysqli_query($koneksi, $query);
     
@@ -160,22 +162,35 @@ if( isset($_POST['pesan']) ){
                                     placeholder="Tgl pemesanan *" value="" />
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <input type="file" name="txt_fotocopyktp" class="form-control">
-                        </div> -->
-
+                        <div class="form-group">
+                                <select class="form-control" name="txt_cicilandp" >
+                                    <option>-- PIlih Jumlah Cicilan DP --</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                        </div>
+                        <div class="form-group">
+                                <select class="form-control" name="txt_cicilaninhouse">
+                                    <option>-- PIlih Jumlah Cicilan InHouse --</option>
+                                    <option>Pilih Ini Jika Metode Pembayaran KPR</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select>
+                        </div>
                         <div class="row">
                         <div class="col-2 form-group">
                             <!-- <input name="txt_fotocopyktp" type="file" class="form-control" placeholder="file *" value="" /> -->
-                            <label for="txt_fotocopy">Upload KTP</label>
+                            <label for="txt_fotocopyktp">Upload KTP</label>
                         </div>
                         <div class="col-10 form-group">
                             <input type="file" name="txt_fotocopyktp" class="form-control">
                         </div>
-                        </div>
-
-
+                        </div>
                         <button type="submit" name="pesan" class="btn btn-primary btn-user btn-block">Pesan</button>
                         <a role="button" href="portfolio.php" class="btn btn-danger btn-user btn-block">Batal</a>
                     </form>
