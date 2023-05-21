@@ -2,23 +2,7 @@
 require('../koneksi.php');
 session_start();
 error_reporting(0);
-$userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
-$userLvl = $_SESSION['level'];
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
-if (isset($_POST['hapus'])) {
-
-    $hapus = mysqli_query($koneksi, "DELETE FROM pemesanan_rumah
-      WHERE id_pemesanan_rumah = '$id_pemesanan_rumah[id_pemesanan_rumah]'
-  ");
-}
-?>
+$userName = $_SESSION['name'];?>
 
 <!DOCTYPE html>
 <html lang="en">
