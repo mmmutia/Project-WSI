@@ -71,7 +71,12 @@ $userName = $_SESSION['name'];
           if($userName = $_SESSION['name']){
             
             echo "
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a><ul>
+          <div class='dropdown' style='margin-right:50px;><a href='#'> 
+          <a href='#' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>$userName</span>
+          </a>
+          <ul>
                 <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
                 <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
