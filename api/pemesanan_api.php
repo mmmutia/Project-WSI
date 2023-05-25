@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Memeriksa apakah semua data pemesanan ada dalam permintaan
     if (
         isset($_POST['nama']) && isset($_POST['alamat']) && isset($_POST['telp']) &&
-        isset($_POST['cluster']) && isset($_POST['pembayaran']) && isset($_POST['tgl']) &&
+        isset($_POST['cluster']) && isset($_POST['pembayaran']) && isset($_POST['tgl']) && ($_POST['cicilandp']) && ($_POST['cicilaninhouse']) &&
         isset($_FILES['gambar'])
     ) {
         // Mendapatkan data pemesanan dari permintaan
@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cluster = $_POST['cluster'];
         $pembayaran = $_POST['pembayaran'];
         $tgl = $_POST['tgl'];
+        $cicilandp = $_POST['cicialandp'];
+        $cicilaninhouse = $_POST['cicilaninhouse'];
         
         // Mengunggah gambar ke direktori tujuan
         $uploadDir = 'path/to/destination/directory/';
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if (move_uploaded_file($uploadedFile, $destination)) {
             // Gambar berhasil diunggah, lanjutkan dengan penyimpanan data pemesanan ke database
-            $sql = "INSERT INTO pemesanan (nama, alamat, telp, cluster, pembayaran, tgl, gambar) VALUES ('$nama', '$alamat', '$telp', '$cluster', '$pembayaran', '$tgl', '$destination')";
+            $sql = "INSERT INTO pemesanan (nama_pemesan, alamat, no_telp_pemesan, id_cluster, tgl_pemesanan, fotocopy_ktp,jenis_pembayaran, jml_cicilan_dp, jml_cicilan_inhouse) VALUES ('$nama', '$alamat', '$telp', '$cluster', '$pembayaran', '$tgl', '$cicilandp', '$cicilaninhouse','$destination')";
             
             if ($conn->query($sql) === TRUE) {
                 // Pemesanan berhasil disimpan ke database

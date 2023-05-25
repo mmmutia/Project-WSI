@@ -4,6 +4,7 @@ session_start();
 error_reporting(0);
 
 $userName = $_SESSION['name'];
+$koneksi = mysqli_connect($server, $username, $password, $db);
 $query_mysql = mysqli_query($koneksi,"select * from cluster");
 // $data = mysqli_fetch_array($query_mysql);
 
