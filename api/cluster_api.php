@@ -14,15 +14,15 @@ if ($conn->connect_error) {
 }
 
 // Mendapatkan data dari database
-$sql = "SELECT spesifikasi_teknis.*, cluster.foto_cluster as foto_cluster, harga, nama_cluster FROM spesifikasi_teknis LEFT JOIN cluster on cluster.id_cluster = spesifikasi_teknis.id_cluster WHERE cluster.id_cluster = '$_GET[id_cluster]'";  // Ganti "nama_tabel" dengan nama tabel Anda
+$sql = "SELECT spesifikasi_teknis.*, cluster.foto_cluster as foto_cluster, harga, nama_cluster FROM spesifikasi_teknis LEFT JOIN cluster on cluster.id_cluster = spesifikasi_teknis.id_cluster";  // Ganti "nama_tabel" dengan nama tabel Anda
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // $response = array();
+    $response = array();
 
     // Memproses setiap baris data
     while ($row = $result->fetch_assoc()) {
-        $item = array(
+        $response["data"][] = array(
             'id' => $row['id_spesifikasi'],
             'pondasi' => $row['pondasi'],
             'dinding' => $row['dinding'],
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
     }
 
     // Mengubah response menjadi format JSON
-    echo json_encode($item);
+    echo json_encode($response);
 } else {
     echo "Data tidak ditemukan.";
 }
