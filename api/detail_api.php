@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
     // Memproses setiap baris data
     while ($row = $result->fetch_assoc()) {
         $item = array(
-            'id' => $row['id_spesifikasi'],
+            'id' => $row['id_cluster'],
             'pondasi' => $row['pondasi'],
             'dinding' => $row['dinding'],
             'rangkaatap' => $row['rangka_atap'],

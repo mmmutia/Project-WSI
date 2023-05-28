@@ -179,7 +179,7 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
         <?php
         while ($item = mysqli_fetch_array($query_mysql)){
           ?>
-          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
+          <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo str_replace('.', '', $item['filter']);?>">
             <div class="portfolio-item">
               <img src="img/images_cluster/<?php echo $item['foto_cluster']; ?>" class="img-fluid" alt="">
               <div class="portfolio-info">
