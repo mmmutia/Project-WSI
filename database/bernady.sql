@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2023 at 07:38 PM
+-- Generation Time: May 25, 2023 at 05:46 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -44,16 +44,16 @@ CREATE TABLE `cluster` (
 --
 
 INSERT INTO `cluster` (`id_cluster`, `foto_cluster`, `nama_cluster`, `blok`, `jumlah_unit`, `harga`, `harga_dp`, `filter`, `jenis_cluster`) VALUES
-(33, 'Boulevard-Magnolia.jpeg', 'Boulevard Magnolia', 'BM', 120, 'Rp 900.000.000', 'Rp 90.000.000', '.boulevard', 'Subsidi'),
+(33, 'Boulevard-Magnolia.jpeg', 'Boulevard Magnolia', 'BM', 119, 'Rp 900.000.000', 'Rp 90.000.000', '.boulevard', 'Subsidi'),
 (34, 'Camelia-Type-A.jpeg', 'Camelia', 'C', 80, 'Rp 800.000.000', 'Rp 80.000.000', '.camelia', 'Subsidi'),
-(36, 'Edge-Gardenia.jpeg', 'Edge Gardenia', 'EG', 60, 'Rp 1.100.000.000', 'Rp 110.000.000', '.edge', 'Non-Subsidi'),
-(37, 'New-Edge-Gardenia.jpeg', 'New Edge Gardenia', 'NEG', 80, 'Rp 1.500.000.000', 'Rp 150.000.000', '.newedge', 'Non-Subsidi'),
+(36, 'Edge-Gardenia.jpeg', 'Edge Gardenia', 'EG', 59, 'Rp 1.100.000.000', 'Rp 110.000.000', '.edge', 'Non-Subsidi'),
+(37, 'New-Edge-Gardenia.jpeg', 'New Edge Gardenia', 'NEG', 79, 'Rp 1.500.000.000', 'Rp 150.000.000', '.newedge', 'Non-Subsidi'),
 (38, 'Pinewood-Magna.jpeg', 'Pinewood Magna', 'PM', 100, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
 (39, 'Pinewood 1.jpeg', 'Pinewood Prime', 'PP', 50, 'Rp 1.200.000.000', 'Rp 120.000.000', '.pinewood', 'Non-Subsidi'),
 (40, 'Pinewood 3.jpeg', 'Pinewood Varsa', 'PV', 50, 'Rp 1.400.000.000', 'Rp 140.000.000', '.pinewood', 'Non-Subsidi'),
-(41, 'Pinewood 4.jpeg', 'Pinewood Millenial', 'PM', 40, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
+(41, 'Pinewood 4.jpeg', 'Pinewood Millenial', 'PM', 39, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
 (42, 'Pinewood 5.jpeg', 'Pinewood Terra', 'PT', 60, 'Rp 1.500.000.000', 'Rp 150.000.000', '.pinewood', 'Non-Subsidi'),
-(43, 'Pinewood.jpeg', 'Pinewood Terra +', 'PTP', 40, 'Rp 1.800.000.000', 'Rp 180.000.000', '.pinewood', 'Non-Subsidi'),
+(43, 'Pinewood.jpeg', 'Pinewood Terra +', 'PTP', 39, 'Rp 1.800.000.000', 'Rp 180.000.000', '.pinewood', 'Non-Subsidi'),
 (44, 'Plumeria-Type-C.jpeg', 'Plumeria', 'P', 110, 'Rp 2.000.000.000', 'Rp 200.000.000', '.plumeria', 'Non-Subsidi'),
 (45, 'QBIX-Type-A.jpeg', 'QBIX', 'Q', 150, 'Rp 1.200.000.000', 'Rp 120.000.000', '.qbix', 'Non-Subsidi'),
 (46, 'Ruko-Avenue.jpeg', 'Ruko Avenue 3', 'RK', 20, 'Rp 1.500.000.000', 'Rp 150.000.000', '.ruko', 'Non-Subsidi'),
@@ -75,6 +75,22 @@ CREATE TABLE `detail_pemesanan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `level_detail`
 --
 
@@ -92,6 +108,40 @@ INSERT INTO `level_detail` (`id_level`, `level`) VALUES
 (2, 'admin_keuangan'),
 (3, 'pemilik'),
 (4, 'customer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -136,8 +186,21 @@ CREATE TABLE `pemesanan_rumah` (
   `tgl_pemesanan` date NOT NULL,
   `fotocopy_ktp` varchar(100) NOT NULL,
   `jenis_pembayaran` varchar(100) NOT NULL,
+  `jml_cicilan_dp` int(100) NOT NULL,
+  `jml_cicilan_inhouse` int(100) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pemesanan_rumah`
+--
+
+INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `no_telp_pemesan`, `id_cluster`, `tgl_pemesanan`, `fotocopy_ktp`, `jenis_pembayaran`, `jml_cicilan_dp`, `jml_cicilan_inhouse`, `id_user`) VALUES
+(35, 'Muti', 'banyuwangi', '123456', 33, '2023-05-18', 'WhatsApp Image 2023-05-17 at 11.41.24.jpg', 'InHouse', 0, 0, 5),
+(38, 'Muti', 'banyuwangi', '321654', 43, '2023-05-18', 'WhatsApp_Image_2023-05-17_at_11.41.24-removebg-preview.png', 'InHouse', 0, 0, 5),
+(50, 'Muti', 'jember', '987654321', 37, '2023-05-20', 'Screenshot (1186).png', 'KPR', 0, 0, 5),
+(54, 'Muti', 'tanggul', '987654321', 36, '2023-05-20', 'Boulevard-Magnolia.jpeg', 'KPR', 0, 0, 5),
+(55, 'Muti', 'tanggul', '45613789', 41, '2023-05-20', 'Pinewood 1.jpeg', 'InHouse', 4, 0, 5);
 
 --
 -- Triggers `pemesanan_rumah`
@@ -149,6 +212,25 @@ WHERE id_cluster = new.id_cluster;
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -190,6 +272,13 @@ CREATE TABLE `simpan_cluster` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `simpan_cluster`
+--
+
+INSERT INTO `simpan_cluster` (`id_simpan`, `id_cluster`, `id_user`) VALUES
+(80, 34, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -229,6 +318,23 @@ INSERT INTO `spesifikasi_teknis` (`id_spesifikasi`, `id_cluster`, `pondasi`, `di
 (47, 37, 'Pondasi menerus batu kali', 'Pasangan bata di plester, Finish cat + Plamir dicat', 'Rangka galvalum, Penutup genteng flat beton dicat', 'Alumunium', '-', 'PDAM', 'PLN 1300 Watt', '2', '600 x 1200'),
 (48, 36, 'Pondasi menerus batu kali', 'Pasangan bata di plester, Finish cat + Plamir dicat', 'Rangka galvalum, Penutup genteng flat beton dicat', 'Alumunium', 'Rangka hollow, Penutup gypsumboard dicat', 'PDAM', 'PLN 1300 Watt', '3', '600 x 1300'),
 (49, 34, 'Pondasi menerus batu kali', 'Pasangan bata di plester, Finish cat + finishing', 'Rangka galvalum, Penutup genteng flat beton dicat', 'Alumunium brown 4\"', 'Rangka hollow, Penutup gypsumboard dicat', 'PDAM', 'PLN 2200 Watt', '3', '600 x 1300');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -278,10 +384,29 @@ ALTER TABLE `detail_pemesanan`
   ADD KEY `id_pemesanan_rumah` (`id_pemesanan_rumah`);
 
 --
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
 -- Indexes for table `level_detail`
 --
 ALTER TABLE `level_detail`
   ADD PRIMARY KEY (`id_level`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `pembayaran_dp`
@@ -302,8 +427,16 @@ ALTER TABLE `pembayaran_inhouse`
 --
 ALTER TABLE `pemesanan_rumah`
   ADD PRIMARY KEY (`id_pemesanan_rumah`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_cluster` (`id_cluster`);
+  ADD UNIQUE KEY `id_cluster` (`id_cluster`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `proggres`
@@ -336,6 +469,13 @@ ALTER TABLE `spesifikasi_teknis`
   ADD KEY `id_cluster` (`id_cluster`) USING BTREE;
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
 -- Indexes for table `user_detail`
 --
 ALTER TABLE `user_detail`
@@ -359,10 +499,22 @@ ALTER TABLE `detail_pemesanan`
   MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `level_detail`
 --
 ALTER TABLE `level_detail`
   MODIFY `id_level` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pembayaran_dp`
@@ -380,7 +532,13 @@ ALTER TABLE `pembayaran_inhouse`
 -- AUTO_INCREMENT for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `proggres`
@@ -398,13 +556,19 @@ ALTER TABLE `serah_terima`
 -- AUTO_INCREMENT for table `simpan_cluster`
 --
 ALTER TABLE `simpan_cluster`
-  MODIFY `id_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `spesifikasi_teknis`
 --
 ALTER TABLE `spesifikasi_teknis`
   MODIFY `id_spesifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_detail`
@@ -438,7 +602,6 @@ ALTER TABLE `pembayaran_inhouse`
 -- Constraints for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  ADD CONSTRAINT `pemesanan_rumah_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON DELETE CASCADE,
   ADD CONSTRAINT `pemesanan_rumah_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_detail` (`id_user`) ON DELETE CASCADE;
 
 --
