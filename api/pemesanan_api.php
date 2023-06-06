@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (
         isset($_POST['nama']) && isset($_POST['alamat']) && isset($_POST['telp']) &&
         isset($_POST['cluster']) && isset($_POST['pembayaran']) && isset($_POST['tgl']) && ($_POST['cicilandp']) && ($_POST['cicilaninhouse']) &&
-        isset($_FILES['gambar'])
+        isset($_FILES['gambar']) && isset($_POST['iduser'])
     ) {
         // Mendapatkan data pemesanan dari permintaan
         $nama = $_POST['nama'];
@@ -25,32 +25,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cluster = $_POST['cluster'];
         $pembayaran = $_POST['pembayaran'];
         $tgl = $_POST['tgl'];
-        $cicilandp = $_POST['cicialandp'];
+        $cicilandp = $_POST['cicilandp'];
         $cicilaninhouse = $_POST['cicilaninhouse'];
+        $user = $_POST['iduser'];
         
         // Mengunggah gambar ke direktori tujuan
-        $uploadDir = 'path/to/destination/directory/';
+        $uploadDir = 'img/filepemesanan/';
+        // Memeriksa apakah direktori tujuan sudah ada
+        if (!is_dir($uploadDir)) {
+            // Jika belum ada, buat direktori
+            mkdir($uploadDir, 0755, true);
+        }
         $uploadedFile = $_FILES['gambar']['tmp_name'];
         $fileName = $_FILES['gambar']['name'];
         $destination = $uploadDir . $fileName;
         
         if (move_uploaded_file($uploadedFile, $destination)) {
             // Gambar berhasil diunggah, lanjutkan dengan penyimpanan data pemesanan ke database
-            $sql = "INSERT INTO pemesanan (nama_pemesan, alamat, no_telp_pemesan, id_cluster, tgl_pemesanan, fotocopy_ktp,jenis_pembayaran, jml_cicilan_dp, jml_cicilan_inhouse) VALUES ('$nama', '$alamat', '$telp', '$cluster', '$pembayaran', '$tgl', '$cicilandp', '$cicilaninhouse','$destination')";
-            
-            if ($conn->query($sql) === TRUE) {
-                // Pemesanan berhasil disimpan ke database
-                $response = array(
-                    'status' => 'success',
-                    'message' => 'Order placed successfully.'
-                );
-            } else {
-                // Gagal menyimpan pemesanan ke database
-                $response = array(
-                    'status' => 'error',
-                    'message' => 'Failed to place order.'
-                );
-            }
+            $sql = "INSERT INTO pemesanan_rumah (nama_pemesan, alamat, no_telp_pemesan, id_cluster, tgl_pemesanan, fotocopy_ktp, jenis_pembayaran, jml_cicilan_dp, jml_cicilan_inhouse, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssisssssi", $nama, $alamat, $telp, $cluster, $tgl, $destination, $pembayaran, $cicilandp, $cicilaninhouse, $user);
+            $stmt->execute();
+            $stmt->close();
+
+            // Pemesanan berhasil disimpan ke database
+            $response = array(
+                'status' => 'success',
+                'message' => 'Order placed successfully.'
+            );
         } else {
             // Gagal mengunggah gambar
             $response = array(
