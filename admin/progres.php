@@ -1103,7 +1103,7 @@ if (isset($_POST['add-proggres'])) {
   
   $fotoadd = $_FILES['foto_proggres']['name'];
   $file_tmp = $_FILES['foto_proggres']['tmp_name'];
-  move_uploaded_file($file_tmp, 'img/proggres/' . $fotoadd);
+  move_uploaded_file($file_tmp, '../img/proggres/' . $fotoadd);
 
 
   $query    = "INSERT INTO `proggres` (`id_pemesanan`, `id_user` ,`status`, `keterangan`, `foto`) VALUES ('$idpemesanan', '$iduser', '$statuspemesanan', '$keterangan', '$fotoadd')";
