@@ -88,7 +88,10 @@ if($userName = $_SESSION['name']){
 
 }else{
   echo "
-  <li><a href='login.php'>Login</a></li>
+  <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
   ";
 }
 

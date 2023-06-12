@@ -64,19 +64,17 @@ $userName = $_SESSION['name'];
           <li><a href="portfolio.php">Cluster</a></li>
           <li><a href="team.php">Tim</a></li>
           <li><a href="contact.php">Kontak</a></li>
-          <!-- <li><a href="login.php">Login</a></li> -->
 
           <?php
-
           if($userName = $_SESSION['name']){
-            
+  
             echo "
-          <div class='dropdown' style='margin-right:70px;><a href='#'> 
-          <a href='#' style='text-decoration: none; color: white;'>
-            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 35px; height: 35px; margin-right: 15px; display: inline-block;'>
-            <span style='font-size: 14px; display: inline-block;'>$userName</span>
-          </a>
-          <ul>
+            <div class='dropdown' style='margin-right:50px;><a href='#'> 
+                    <a href='#' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>$userName</span>
+                    </a>
+                    <ul>
                 <li> <a href='profile-user.php'>Profil</a></li>
                 <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
                 <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
@@ -86,61 +84,108 @@ $userName = $_SESSION['name'];
               </ul>
             </div>
             ";
-
+          
+          
           }else{
             echo "
-            <li><a href='login.php'>Login</a></li>
+            <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
             ";
           }
-
+          
           ?>
 
 
+</ul>
 
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+<i class="bi bi-list mobile-nav-toggle"></i>
 
-    </div>
-  </header><!-- End Header -->
+</nav><!-- .navbar -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-cntent-center align-items-center">
-    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-      <?php
+
+</div>
+
+</header><!-- End Header -->
+
+
+
+<!-- ======= Hero Section ======= -->
+
+<section id="hero" class="d-flex justify-cntent-center align-items-center">
+
+<div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+
+
+<?php
+
+
 
 if($userName = $_SESSION['name']){
-            
-  echo "
-  <!-- Slide 1 -->
-  <div class='carousel-item active'>
-    <div class='carousel-container'>
-      <h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
-      <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
-    </div>
-  </div>
+
+    
+
+echo "
+
+<!-- Slide 1 -->
+
+<div class='carousel-item active'>
+
+<div class='carousel-container'>
+
+<h2 class='animate__animated animate__fadeInDown'>Selamat Datang $userName di <span>Bernady Land Slawu</span></h2>
+
+<p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
+
+<a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
+
+</div>
+
+</div>
 
 
-  ";
+
+
+
+";
+
+
 
 }else{
-  echo "
-  <!-- Slide 1 -->
-  <div class='carousel-item active'>
-    <div class='carousel-container'>
-      <h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
-      <p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
-      <a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
-    </div>
-  </div>
+
+echo "
+
+<!-- Slide 1 -->
+
+<div class='carousel-item active'>
+
+<div class='carousel-container'>
+
+<h2 class='animate__animated animate__fadeInDown'>Selamat Datang di <span>Bernady Land Slawu</span></h2>
+
+<p class='animate__animated animate__fadeInUp'>Hunian yang dirancang sebagai sebuah kota modern di masa depan dengan estetika yang modern dan futuristik memberikan kesan eksklusif.</p>
+
+<a href='portfolio.php' class='btn-get-started animate__animated animate__fadeInUp'>Pesan Rumah</a>
+
+</div>
+
+</div>
 
 
-  ";
+
+
+
+";
+
 }
 
-      ?>
+
+
+?>
+
 
     
 

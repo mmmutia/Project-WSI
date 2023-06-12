@@ -86,46 +86,57 @@ if (isset($_POST['hapus'])) {
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <!-- <h1 class="text-light"><a href="index.html"><span>Moderna</span></a></h1> -->
+        <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index.php">Beranda</a></li>
-          <li><a href="about.phpl">Tentang</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a class="active" href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Tim</a></li>
-          <li><a href="contact.php">Kontak</a></li>
-          <?php
+      
+                  <ul>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
+                  <?php
 
-          if ($userName = $_SESSION['name']) {
-
-            echo "
-
-  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-  <ul>
-  <li> <a href='profile-user.php'>Profil</a></li>
-  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-  <li> <a href='proggres.php'>Proggres</a></li>
-  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-  </ul>
-</div>
-
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;><a href='#'> 
+          <a href='#' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>$userName</span>
+          </a>
+          <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
   ";
-          } else {
-            echo "
-  <li><a href='login.php'>Login</a></li>
-  ";
-          }
 
-          ?>
+
+}else{
+  echo "
+  <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
+  ";
+}
+
+?>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
 
     </div>
   </header><!-- End Header -->

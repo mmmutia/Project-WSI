@@ -18,7 +18,7 @@ $data = mysqli_fetch_array($query_mysql);
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - Bernady Land Slawu</title>
+  <title>About - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -41,12 +41,6 @@ $data = mysqli_fetch_array($query_mysql);
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -64,43 +58,50 @@ $data = mysqli_fetch_array($query_mysql);
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index.php">Beranda</a></li>
-          <li><a href="about.php">Tentang</a></li>
-          <li><a href="services.php">Layanan</a></li>
-          <li><a href="portfolio.php">Cluster</a></li>
-          <li><a href="team.php">Tim</a></li>
-          <li><a class="active" href="contact.php">Kontak</a></li>
-          <?php
+      
+                  <ul>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
+                  <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;><a href='#'> 
+          <a href='#' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>$userName</span>
+          </a>
+          <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-              <li> <a href='profile-user.php'>Profil</a></li>
-              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-              <li> <a href='proggres_user.php'>Proggres</a></li>
-              <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-              <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-            </ul>
-          </div>
 
-            ";
+}else{
+  echo "
+  <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
+  ";
+}
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
-
-          ?>
+?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -108,7 +109,6 @@ $data = mysqli_fetch_array($query_mysql);
 
     </div>
   </header><!-- End Header -->
-
   <main id="main">
 
 

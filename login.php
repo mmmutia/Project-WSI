@@ -153,12 +153,6 @@ if (isset($_POST['submit'])) {
                         <div class="form-group">
                             <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="txt_pass">
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox small">
-                                <input type="checkbox" class="custom-control-input" id="show_password" name="show_password">
-                                <label class="custom-control-label" for="show_password">Show Password</label>
-                            </div>
-                        </div>
                         <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Login</button>
                     </form>
                     <hr>

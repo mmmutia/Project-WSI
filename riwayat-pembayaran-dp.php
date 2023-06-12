@@ -43,7 +43,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - Bernady Land Slawu</title>
+  <title>Riwayat Pembayaran - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -82,6 +82,46 @@ if (isset($_POST['hapus'])) {
 
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Data Pembayaran DP - Bernady Land Slawu</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="img/logo-bernady.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="vendor/aos/aos.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Moderna - v4.10.1
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex justify-content-between align-items-center">
@@ -89,48 +129,58 @@ if (isset($_POST['hapus'])) {
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about-admin.php">About</a></li>
-          <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Cluster</a></li>
-          <li><a href="team-admin.php">Team</a></li>
-          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
-          <?php
+      
+                  <ul>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
+                  <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;><a href='#'> 
+          <a href='#' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>$userName</span>
+          </a>
+          <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-            <li> <a href='proggres.php'>Progres</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-            </ul>
-          </div>
 
-            ";
+}else{
+  echo "
+  <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
+  ";
+}
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
-
-          ?>
+?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
+
+    </div>
+  </header><!-- End Header -->
     </div>
   </header><!-- End Header -->
 
@@ -149,8 +199,8 @@ if (isset($_POST['hapus'])) {
             }
         </style>
           <ol>
-            <li><a href="index-admin.php">Home</a></li>
-            <li>Profil</li>
+            <li><a href="pembayaran-customer.php">Pembayaran</a></li>
+            <li>Pembayaran DP</li>
           </ol>
         </div>
       </div>
@@ -166,7 +216,6 @@ if (isset($_POST['hapus'])) {
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
-                <th></th>
                 
             </tr>
         </thead>
@@ -188,15 +237,11 @@ if (isset($_POST['hapus'])) {
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
-          $nama_pemesan = $row['nama_pemesan'];
-          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
-          $bukti_foto = $row['bukti_pembayaran_dp'];
-          $status = $row['status_dp'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
-          <td><?php echo $nama_pemesan;?></td>
-          <td><?php echo $tgl_pembayaran;?></td>
+          <td><?php echo $row['nama_pemesan'];?></td>
+          <td><?php echo $row['tgl_pembayaran_dp'];?></td>
           <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
           <td><?php echo $status;?></td>
           <td>
