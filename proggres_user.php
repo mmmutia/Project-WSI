@@ -173,7 +173,7 @@ if($userName = $_SESSION['name']){
 
  </div>
          </td>
-         <!-- <td><?php echo "<img src='./img/proggres/$item[foto]' width='70' height='90' />";?></td> -->
+         <!-- <td><?php echo "<img src='../img/proggres/$item[foto]' width='70' height='90' />";?></td> -->
          <td>
          <div class="align-items-center">
  <button data-modal-target="#modal-foto<?php echo $item['id']?>" class="btn btn-outline-primary btn-circle">Lihat Foto</button>
