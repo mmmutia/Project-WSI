@@ -10,6 +10,16 @@ if (isset($_POST['update'])) {
     // $foto = $_FILES['foto_cluster']['name'];
     // $temp = $_FILES['foto_cluster']['tmp_name'];
     $clusterId = $_POST['txt_id'];
+    $query = "SELECT * FROM cluster WHERE id_cluster='$clusterId'";
+    $query2 = "SELECT * FROM tanah_kosong WHERE id_cluster='$clusterId'";
+    $result1 = mysqli_query($koneksi, $query);
+    $result2 = mysqli_query($koneksi, $query2);
+    while ($row = mysqli_fetch_array($result1)) {
+        $jumlah_unit1 = $row['jumlah_unit'];
+    }
+    while ($row = mysqli_fetch_array($result2)) {
+        $tanah_kosong = $row['jumlah'];
+    }
     $nama_cluster = $_POST['txt_namacluster'];
     $blok = $_POST['txt_blok'];
     $jumlah_unit = $_POST['jumlah_unit'];
@@ -17,11 +27,13 @@ if (isset($_POST['update'])) {
     $hargaDp = $_POST['harga_dp'];
     $fotolama = $row['foto_clusterlama'];
     // $filter = $_POST['txt_filter'];
-    $target_dir = "img/images_cluster/";
+    $target_dir = "../img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
     $uploadcluster = $_FILES['txt_fotocluster']['name'];
     $filecluster = $_FILES['temp_name'];
     $image_files = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $rumus = $jumlah_unit - $jumlah_unit1 ;
+    $hasil = $tanah_kosong-$rumus;
 
     //cek jika ada foto baru
     if ($uploadcluster) {
@@ -55,11 +67,15 @@ if (isset($_POST['update'])) {
 
         //membuat query
         $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp',foto_cluster='$uploadcluster' WHERE id_cluster='$clusterId'";
+        $queryy = "UPDATE tanah_kosong SET jumlah='$hasil' WHERE id_cluster='$clusterId'";
     } else {
         $query = "UPDATE cluster SET nama_cluster='$nama_cluster', blok='$blok',jumlah_unit='$jumlah_unit',harga='$harga', harga_dp='$hargaDp' WHERE id_cluster='$clusterId'";
+        $queryy = "UPDATE tanah_kosong SET jumlah='$hasil' WHERE id='1'";
+
     }
     echo $query;
     $result = mysqli_query($koneksi, $query);
+    $result1 = mysqli_query($koneksi, $queryy);
     // header('Location: form-edit-cluster.php');
 
     if ($result) {
@@ -310,23 +326,23 @@ while ($row = mysqli_fetch_array($result)) {
                         </form>
                     </div>
                 </div>
-            <!-- /.container-fluid -->
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

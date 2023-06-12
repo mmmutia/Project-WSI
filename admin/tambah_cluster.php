@@ -18,7 +18,7 @@ if (isset($_POST['tambah'])) {
     $filter = $_POST['filter'];
     $jenis_cluster = $_POST['jenis_cluster'];
     // $filter = $_POST['txt_filter'];
-    $target_dir = "img/images_cluster/";
+    $target_dir = "../img/images_cluster/";
     $target_file = $target_dir . basename($_FILES["txt_fotocluster"]["name"]);
     $uploadcluster = $_FILES['txt_fotocluster']['name'];
     $filecluster = $_FILES['temp_name'];
