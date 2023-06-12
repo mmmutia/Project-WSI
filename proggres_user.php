@@ -25,6 +25,10 @@ $data = mysqli_fetch_array($query_mysql);
   <link href="img/logo-bernady.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
@@ -164,7 +168,7 @@ if($userName = $_SESSION['name']){
          <td><?php echo $item['tanggal'];?></td>
          <td>
          <div class="align-items-center">
- <button data-modal-target="#modal-keterangan<?php echo $item['id']?>" class="">Lihat Keterangan</button>
+ <button data-modal-target="#modal-keterangan<?php echo $item['id']?>" class="btn btn-outline-primary btn-circle">LIhat Keterangan</button>
 
 
  </div>
@@ -172,7 +176,7 @@ if($userName = $_SESSION['name']){
          <!-- <td><?php echo "<img src='./img/proggres/$item[foto]' width='70' height='90' />";?></td> -->
          <td>
          <div class="align-items-center">
- <button data-modal-target="#modal-foto<?php echo $item['id']?>" class="">Lihat Foto</button>
+ <button data-modal-target="#modal-foto<?php echo $item['id']?>" class="btn btn-outline-primary btn-circle">Lihat Foto</button>
 
 
  </div>
@@ -528,7 +532,7 @@ if($userName = $_SESSION['name']){
            
             <img src='./img/proggres/<?php echo $item['foto']?>' width='150' height='150' />
             
-            </div>
+            </div><br>
 
               <div class="align-middle text-center">
                 
@@ -655,7 +659,7 @@ if($userName = $_SESSION['name']){
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Keterangan</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="txt_alamat" placeholder="Enter Address" maxlength="500" rows="5"><?php echo $item['keterangan']?></textarea>
-              </div>
+              </div><br>
 
 
               <div class="align-middle text-center">

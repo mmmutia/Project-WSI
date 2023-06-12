@@ -230,7 +230,7 @@ if (!isset($_SESSION['name'])) {
                                             <th>Tanggal Pembayaran</th>
                                             <th>Bukti Pembayaran</th>
                                             <th>Status</th>
-                                            <th></th>
+                                            <th>Aksi</th>
 
                                         </tr>
                                     </thead>
@@ -269,11 +269,11 @@ if (!isset($_SESSION['name'])) {
                                                         <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
                                                         <?php if ($status == "Lunas") {
                                                         ?>
-                                                            <button class="submit" type="submit" name="hapus">Delete</button>
+                                                            <button class="btn btn-danger btn-circle" type="submit" name="hapus"><i class="fa fa-trash"></i></button>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <button class="submit" type="submit" name="konfirmasi">Konfirmasi</button>
+                                                            <button class="btn btn-outline-success" type="submit" name="konfirmasi"><i class="fa fa-check"></i> Konfirmasi</button>
                                                         <?php
                                                         } ?>
                                                     </form>

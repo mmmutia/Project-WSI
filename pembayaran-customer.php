@@ -220,7 +220,7 @@ if($userName = $_SESSION['name']){
               </div>
 
 
-              <div class="align-middle text-center">
+              <div class="align-middle text-center"><br>
                 <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-dp">Add</button>
                 <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
               </div>
@@ -380,7 +380,7 @@ if($userName = $_SESSION['name']){
               </div>
 
 
-              <div class="align-middle text-center">
+              <div class="align-middle text-center"><br>
                 <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-dp">Add</button>
                 <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
               </div>
@@ -525,7 +525,7 @@ if($userName = $_SESSION['name']){
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Tanggal Pembayaran DP</label>
+                <label for="exampleFormControlSelect1">Tanggal Pembayaran Inhouse</label>
 
 
                 <input type="date" class="form-control" name="tgl_pembayaran_inhouse" required>
@@ -542,7 +542,7 @@ if($userName = $_SESSION['name']){
               </div>
 
 
-              <div class="align-middle text-center">
+              <div class="align-middle text-center"><br>
                 <button class="btn btn-success btn-sm ms-auto" name="add-pembayaran-inhouse">Add</button>
                 <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
               </div>

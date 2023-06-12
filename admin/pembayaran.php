@@ -193,6 +193,8 @@ if (!isset($_SESSION['name'])) {
                     <!-- DataTales Example -->
                     <section class="pembayaran">
                         <div class="container">
+                        <div class="row">
+                        <div class="col-sm-6">
                             <div class="card text-center">
                                 <div class="card-header">
                                     Data Pembayaran
@@ -204,8 +206,9 @@ if (!isset($_SESSION['name'])) {
                                 <div class="card-footer text-muted">
                                     2 days ago
                                 </div>
-                            </div> <br>
-                            <br>
+                            </div> 
+                        </div>
+                            <div class="col-sm-6">
                             <div class="card text-center">
                                 <div class="card-header">
                                     Data Pembayaran
@@ -217,8 +220,10 @@ if (!isset($_SESSION['name'])) {
                                 <div class="card-footer text-muted">
                                     2 days ago
                                 </div>
+                            </div>
                             </div> <br>
                             <br>
+                            <div class="col-sm-12">
                             <div class="card text-center">
                                 <div class="card-header">
                                     Data Serah Terima
@@ -230,7 +235,7 @@ if (!isset($_SESSION['name'])) {
                                 <div class="card-footer text-muted">
                                     2 days ago
                                 </div>
-
+                            </div>
                             </div>
 
                     </section>

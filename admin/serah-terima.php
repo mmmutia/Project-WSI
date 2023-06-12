@@ -18,7 +18,7 @@ if (isset($_POST['tambah'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='../riwayat-serah-terima.php'</script>";
+        echo "<script>alert('Data Telah Berhasil Disimpan');window.location='../admin/serah-terima.php'</script>";
     }
 }
 // require ('koneksi.php');

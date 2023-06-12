@@ -22,7 +22,7 @@ $userName = $_SESSION['name']; ?>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -214,18 +214,18 @@ $userName = $_SESSION['name']; ?>
                               <td><?php echo $item['tanggal']; ?></td>
                               <td>
                                 <div class="align-items-center">
-                                  <button data-modal-target="#modal-keterangan<?php echo $item['id'] ?>" class="">Lihat Keterangan</button>
+                                  <button data-modal-target="#modal-keterangan<?php echo $item['id'] ?>" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"></i></button>
                                 </div>
                               </td>
                               <td>
                                 <div class="align-items-center">
-                                  <button data-modal-target="#modal-foto<?php echo $item['id'] ?>" class="">Lihat Foto</button>
+                                  <button data-modal-target="#modal-foto<?php echo $item['id'] ?>" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"></i></button>
                                 </div>
                               </td>
                               <td>
                                 <div class="align-items-center">
-                                <button data-modal-target="#modal-edit<?php echo $item['id']?>" class="">Edit</button>
-                                <button data-modal-target="#modal-delete<?php echo $item['id']?>" class="">Hapus</button>
+                                <button data-modal-target="#modal-edit<?php echo $item['id']?>" class="btn btn-warning btn-circle"><i class="fa fa-pen"></i></button>
+                                <button data-modal-target="#modal-delete<?php echo $item['id']?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
 
                               </div>
               </td>

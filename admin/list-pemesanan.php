@@ -253,7 +253,7 @@ if (isset($_POST['hapus'])) {
                                                 <td><?php echo $jenis_pembayaran; ?></td>
                                                 <td><img src="../img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>" height="80px"></td>
                                                 <td>
-                                                    <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a><br>
+                                                    <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
                                                     <a onclick="confirmModal('hapus_pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>')" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a>
                                                     <!-- <a href="list-pemesanan-admin.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a> -->
                                                 </td>

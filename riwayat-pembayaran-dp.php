@@ -3,7 +3,7 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
 $query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp INNER JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
@@ -26,14 +26,6 @@ if (isset($_POST['hapus'])) {
     // $result = mysqli_query($koneksi, $query1); 
 }
 
-
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
 ?>
 
 <!DOCTYPE html>
@@ -43,53 +35,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Riwayat Pembayaran - Bernady Land Slawu</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="img/logo-bernady.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="vendor/aos/aos.css" rel="stylesheet">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="css/style.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
-  <!-- =======================================================
-  * Template Name: Moderna - v4.10.1
-  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Data Pembayaran DP - Bernady Land Slawu</title>
+  <title>Riwayat Pembayaran DP - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -181,8 +127,6 @@ if($userName = $_SESSION['name']){
 
     </div>
   </header><!-- End Header -->
-    </div>
-  </header><!-- End Header -->
 
   <main id="main">
 
@@ -212,7 +156,7 @@ if($userName = $_SESSION['name']){
         <thead>
             <tr>
                 <th>No</th>    
-                <th>Nama Pemesanan</th>
+                <th>Nama Pemesan</th>
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
@@ -242,8 +186,8 @@ if($userName = $_SESSION['name']){
           <td><?php echo $no++?></td>
           <td><?php echo $row['nama_pemesan'];?></td>
           <td><?php echo $row['tgl_pembayaran_dp'];?></td>
-          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
-          <td><?php echo $status;?></td>
+          <td><img src="./img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td><?php echo $row['status_dp'];?></td>
           <td>
           
             <?php
@@ -364,7 +308,7 @@ if($userName = $_SESSION['name']){
           </div>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->

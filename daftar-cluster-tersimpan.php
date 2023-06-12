@@ -164,11 +164,11 @@ if($userName = $_SESSION['name']){
           ?>
           <div class="col-lg-4 col-md-6 portfolio-wrap <?php echo $item['filter'];?>">
             <div class="portfolio-item">
-              <img src="img/boluevard magnolia.jpeg" class="img-fluid" alt="">
+              <img src="img/images_cluster/<?php echo $item['foto_cluster']; ?>" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h3><?php echo $item['nama_cluster'];?></h3>
                 <div>
-                  <a href="img/gambar9.jpeg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-search"></i></a>
+                  <a href="img/images_cluster/<?php echo $item['foto_cluster']; ?>" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"></a>
                   <a href="portofolio-details.php?id_cluster=<?= $item['id_cluster'];?>&id_simpan=<?= $item['id_simpan'];?>" title="Cluster Details"><i class="bx bx-link"></i></a>
                   <!-- <a href="portfolio-details-magnolia.php" title="Cluster Details"><i class="fa-regular fa-bookmark fa-xs"></i></a> -->
                 </div>
@@ -274,21 +274,41 @@ if($userName = $_SESSION['name']){
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="vendor/aos/aos.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
-  <script src="https://kit.fontawesome.com/207ca6be0a.js" crossorigin="anonymous"></script>
+              <div class="modal fade" id="modalLogout">
+          <div class="modal-dialog">
+            <div class="modal-content" style="margin-top:100px;">
+                <div class="modal-header">
+                  <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+                </div>
+                <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+                <div class="modal-footer">
+                  <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+                  <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Vendor JS Files -->
+        <script src="vendor/purecounter/purecounter_vanilla.js"></script>
+        <script src="vendor/aos/aos.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="vendor/waypoints/noframework.waypoints.js"></script>
+        <script src="vendor/php-email-form/validate.js"></script>
+      
+        <!-- Template Main JS File -->
+        <script src="js/main.js"></script>
 
-
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-
-</body>
-
-</html>
+        <script type="text/javascript">
+          function confirmLogout(logout_url){
+            $('#modalLogout').modal('show', {backdrop: 'static'});
+            document.getElementById('logout_link').setAttribute('href', logout_url);
+          }
+        </script>
+      
+      </body>
+      
+      </html>
