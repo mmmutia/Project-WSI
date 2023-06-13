@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2023 at 03:59 PM
+-- Generation Time: Jun 13, 2023 at 06:35 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -44,14 +44,14 @@ CREATE TABLE `cluster` (
 --
 
 INSERT INTO `cluster` (`id_cluster`, `foto_cluster`, `nama_cluster`, `blok`, `jumlah_unit`, `harga`, `harga_dp`, `filter`, `jenis_cluster`) VALUES
-(33, 'Boulevard-Magnolia.jpeg', 'Boulevard Magnolia', 'BM', 119, 'Rp 900.000.000', 'Rp 90.000.000', '.boulevard', 'Subsidi'),
-(34, 'Camelia-Type-A.jpeg', 'Camelia', 'C', 80, 'Rp 800.000.000', 'Rp 80.000.000', '.camelia', 'Subsidi'),
-(36, 'Edge-Gardenia.jpeg', 'Edge Gardenia', 'EG', 59, 'Rp 1.100.000.000', 'Rp 110.000.000', '.edge', 'Non-Subsidi'),
-(37, 'New-Edge-Gardenia.jpeg', 'New Edge Gardenia', 'NEG', 79, 'Rp 1.500.000.000', 'Rp 150.000.000', '.newedge', 'Non-Subsidi'),
+(33, 'ALI97743.JPG', 'Boulevard Magnolia', 'BM', 300, 'Rp 900.000.000', 'Rp 90.000.000', '.boulevard', 'Subsidi'),
+(34, 'ALI97737.JPG', 'Camelia', 'C', 80, 'Rp 800.000.000', 'Rp 80.000.000', '.camelia', 'Subsidi'),
+(36, 'ALI97744.JPG', 'Edge Gardenia', 'EG', 59, 'Rp 1.100.000.000', 'Rp 110.000.000', '.edge', 'Non-Subsidi'),
+(37, 'ALI97748.JPG', 'New Edge Gardenia', 'NEG', 78, 'Rp 1.500.000.000', 'Rp 150.000.000', '.newedge', 'Non-Subsidi'),
 (38, 'Pinewood-Magna.jpeg', 'Pinewood Magna', 'PM', 100, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
 (39, 'Pinewood 1.jpeg', 'Pinewood Prime', 'PP', 50, 'Rp 1.200.000.000', 'Rp 120.000.000', '.pinewood', 'Non-Subsidi'),
 (40, 'Pinewood 3.jpeg', 'Pinewood Varsa', 'PV', 50, 'Rp 1.400.000.000', 'Rp 140.000.000', '.pinewood', 'Non-Subsidi'),
-(41, 'Pinewood 4.jpeg', 'Pinewood Millenial', 'PM', 39, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
+(41, 'Pinewood 4.jpeg', 'Pinewood Millenial', 'PM', 37, 'Rp 1.000.000.000', 'Rp 100.000.000', '.pinewood', 'Non-Subsidi'),
 (42, 'Pinewood 5.jpeg', 'Pinewood Terra', 'PT', 60, 'Rp 1.500.000.000', 'Rp 150.000.000', '.pinewood', 'Non-Subsidi'),
 (43, 'Pinewood.jpeg', 'Pinewood Terra +', 'PTP', 39, 'Rp 1.800.000.000', 'Rp 180.000.000', '.pinewood', 'Non-Subsidi'),
 (44, 'Plumeria-Type-C.jpeg', 'Plumeria', 'P', 110, 'Rp 2.000.000.000', 'Rp 200.000.000', '.plumeria', 'Non-Subsidi'),
@@ -146,11 +146,9 @@ CREATE TABLE `pemesanan_rumah` (
 --
 
 INSERT INTO `pemesanan_rumah` (`id_pemesanan_rumah`, `nama_pemesan`, `alamat`, `no_telp_pemesan`, `id_cluster`, `tgl_pemesanan`, `fotocopy_ktp`, `jenis_pembayaran`, `jml_cicilan_dp`, `jml_cicilan_inhouse`, `id_user`) VALUES
-(35, 'Muti', 'banyuwangi', '123456', 33, '2023-05-18', 'WhatsApp Image 2023-05-17 at 11.41.24.jpg', 'InHouse', 0, 0, 5),
-(38, 'Muti', 'banyuwangi', '321654', 43, '2023-05-18', 'WhatsApp_Image_2023-05-17_at_11.41.24-removebg-preview.png', 'InHouse', 0, 0, 5),
-(50, 'Muti', 'jember', '987654321', 37, '2023-05-20', 'Screenshot (1186).png', 'KPR', 0, 0, 5),
-(54, 'Muti', 'tanggul', '987654321', 36, '2023-05-20', 'Boulevard-Magnolia.jpeg', 'KPR', 0, 0, 5),
-(55, 'Muti', 'tanggul', '45613789', 41, '2023-05-20', 'Pinewood 1.jpeg', 'InHouse', 4, 0, 5);
+(58, 'Budi', 'bogor', '654321987', 41, '2023-06-13', '2019081303L.png', 'InHouse', 3, 0, 6),
+(64, 'Budi', 'jauh', '0987654321', 37, '2023-06-13', 'WhatsApp Image 2023-05-22 at 23.02.02.jpg', 'InHouse', 2, 2, 6),
+(65, 'Budi', 'jauh', '0987654321', 41, '2023-06-13', 'WhatsApp Image 2023-03-13 at 07.48.19.jpeg', 'InHouse', 1, 3, 6);
 
 --
 -- Triggers `pemesanan_rumah`
@@ -272,6 +270,25 @@ INSERT INTO `spesifikasi_teknis` (`id_spesifikasi`, `id_cluster`, `pondasi`, `di
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tanah_kosong`
+--
+
+CREATE TABLE `tanah_kosong` (
+  `id` int(11) NOT NULL,
+  `id_cluster` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tanah_kosong`
+--
+
+INSERT INTO `tanah_kosong` (`id`, `id_cluster`, `jumlah`) VALUES
+(1, 33, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_detail`
 --
 
@@ -307,7 +324,7 @@ INSERT INTO `user_detail` (`id_user`, `user_email`, `user_password`, `user_fulln
 -- Indexes for table `cluster`
 --
 ALTER TABLE `cluster`
-  ADD PRIMARY KEY (`id_cluster`);
+  ADD UNIQUE KEY `id_cluster` (`id_cluster`) USING BTREE;
 
 --
 -- Indexes for table `detail_pemesanan`
@@ -341,8 +358,8 @@ ALTER TABLE `pembayaran_inhouse`
 --
 ALTER TABLE `pemesanan_rumah`
   ADD PRIMARY KEY (`id_pemesanan_rumah`),
-  ADD UNIQUE KEY `id_cluster` (`id_cluster`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_cluster` (`id_cluster`) USING BTREE,
+  ADD KEY `id_user` (`id_user`) USING BTREE;
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -381,6 +398,13 @@ ALTER TABLE `simpan_cluster`
 ALTER TABLE `spesifikasi_teknis`
   ADD PRIMARY KEY (`id_spesifikasi`),
   ADD KEY `id_cluster` (`id_cluster`) USING BTREE;
+
+--
+-- Indexes for table `tanah_kosong`
+--
+ALTER TABLE `tanah_kosong`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cluster` (`id_cluster`);
 
 --
 -- Indexes for table `user_detail`
@@ -427,7 +451,7 @@ ALTER TABLE `pembayaran_inhouse`
 -- AUTO_INCREMENT for table `pemesanan_rumah`
 --
 ALTER TABLE `pemesanan_rumah`
-  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_pemesanan_rumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -439,7 +463,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `proggres`
 --
 ALTER TABLE `proggres`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `serah_terima`
@@ -458,6 +482,12 @@ ALTER TABLE `simpan_cluster`
 --
 ALTER TABLE `spesifikasi_teknis`
   MODIFY `id_spesifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `tanah_kosong`
+--
+ALTER TABLE `tanah_kosong`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_detail`
@@ -518,6 +548,12 @@ ALTER TABLE `simpan_cluster`
 --
 ALTER TABLE `spesifikasi_teknis`
   ADD CONSTRAINT `spesifikasi_teknis_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tanah_kosong`
+--
+ALTER TABLE `tanah_kosong`
+  ADD CONSTRAINT `tanah_kosong_ibfk_1` FOREIGN KEY (`id_cluster`) REFERENCES `cluster` (`id_cluster`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_detail`
