@@ -14,7 +14,7 @@ if (isset($_POST['konfirmasi'])) {
     $query = "UPDATE pembayaran_dp SET status_dp = 'Lunas' WHERE id_pemesanan_rumah='$id'";
     $result = mysqli_query($koneksi, $query);
 
-    header("location:../admin/riwayat-pembayaran-dpadmin.php");
+    header("location:../admin/riwayat-pembayaran-dppemilik.php");
     echo '<script type ="text/JavaScript">';
     echo 'alert("Berhasil Konfirmasi")';
     echo '</script>';
@@ -22,7 +22,7 @@ if (isset($_POST['konfirmasi'])) {
 if (isset($_POST['hapus'])) {
     $id = $_POST['id_pemesanan_rumah'];
     $query1 = mysqli_query($koneksi,"DELETE FROM pembayaran_dp WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:../admin/riwayat-pembayaran-dpadmin.php");
+    header("location:../admin/riwayat-pembayaran-dppemilik.php");
     // $result = mysqli_query($koneksi, $query1); 
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['hapus'])) {
 
 
 if (!isset($_SESSION['name'])) {
-    header('Location: ../index.php');
+    header('Location: ../index-pemilik.php');
 }
 ?>
 
@@ -88,7 +88,7 @@ if (!isset($_SESSION['name'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index-keuangan.php">
+                <a class="nav-link" href="index-pemilik.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -265,7 +265,7 @@ if (!isset($_SESSION['name'])) {
                                                 <td><img src="../img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>" height="80px"></td>
                                                 <td><?php echo $status; ?></td>
                                                 <td>
-                                                    <form action="../admin/riwayat-pembayaran-dpadmin.php" method="post" role="form" class="php-email-form">
+                                                    <form action="../admin/riwayat-pembayaran-dppemilik.php" method="post" role="form" class="php-email-form">
                                                         <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
                                                         <?php if ($status == "Lunas") {
                                                         ?>

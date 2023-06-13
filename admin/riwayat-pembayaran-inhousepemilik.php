@@ -14,7 +14,7 @@ if (isset($_POST['konfirmasi'])) {
     $query = "UPDATE pembayaran_inhouse SET status_inhouse = 'Lunas' WHERE id_pemesanan_rumah='$id'";
     $result = mysqli_query($koneksi, $query);
 
-    header("location:../admin/riwayat-pembayaran-inhouseadmin.php");
+    header("location:../admin/riwayat-pembayaran-inhousepemilik.php");
     echo '<script type ="text/JavaScript">';
     echo 'alert("Berhasil Konfirmasi")';
     echo '</script>';
@@ -22,11 +22,11 @@ if (isset($_POST['konfirmasi'])) {
 if (isset($_POST['hapus'])) {
     $id = $_POST['id_pemesanan_rumah'];
     $query1 = mysqli_query($koneksi, "DELETE FROM pembayaran_inhouse WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
-    header("location:../admin/riwayat-pembayaran-inhouseadmin.php");
+    header("location:../admin/riwayat-pembayaran-inhousepemilik.php");
     // $result = mysqli_query($koneksi, $query1); 
 }
 if (!isset($_SESSION['name'])) {
-    header('Location: ../index.php');
+    header('Location: ../index-pemilik.php');
 }
 ?>
 
@@ -75,7 +75,7 @@ if (!isset($_SESSION['name'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index-keuangan.php">
+                <a class="nav-link" href="index-pemilik.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -97,18 +97,18 @@ if (!isset($_SESSION['name'])) {
                 <span class="ml-3">Data Perumahan</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="laporan_tanah_kosong.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                </svg>
+                <span class="ml-3">Data Tanah Kosong</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="laporan_pembayaran.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                 <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                 </svg>
                 <span class="ml-3">Pembayaran</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="progres.php">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
-                </svg>
-                <span class="ml-3">Progres</span></a>
             </li>
 
         </ul>
@@ -252,7 +252,7 @@ if (!isset($_SESSION['name'])) {
                                                 <td><img src="../img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>" height="80px"></td>
                                                 <td><?php echo $status; ?></td>
                                                 <td>
-                                                    <form action="../admin/riwayat-pembayaran-inhouseadmin.php" method="post" role="form" class="php-email-form">
+                                                    <form action="../admin/riwayat-pembayaran-inhousepemilik.php" method="post" role="form" class="php-email-form">
                                                         <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
                                                         <?php if ($status == "Lunas") {
                                                         ?>
