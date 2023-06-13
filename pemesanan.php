@@ -134,25 +134,20 @@ if( isset($_POST['pesan']) ){
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="txt_idcluster">
-                            <option>-- Cluster --</option>
-                                <option>33. Boulevard Magnolia</option>
-                                <option>34. Camelia</option>
-                                <option>36. Edge Gardenia</option>
-                                <option>37. New Edge Gardenia</option>
-                                <option>38. Pinewood Magna</option>
-                                <option>39. Pinewood Prime</option>
-                                <option>40. Pinewood  Varsa</option>
-                                <option>41. Pinewood Millenial</option>
-                                <option>42. Pinewood Terra</option>
-                                <option>43. Pinewood Terra +</option>
-                                <option>44. Plumeria</option>
+                            <option value='#'>Pilih Cluster</option>
+                            <?php
+                            $query = mysqli_query($koneksi, "select * from cluster");
+                            while ($row = mysqli_fetch_array($query)) {
+                                echo "<option value=$row[id_cluster]> $row[id_cluster] - $row[nama_cluster]</option>";
+                            }
+                            ?>
                             </select>
                         </div>
                         <div class="row">
                             <div class="col-8 form-group">
                                 <!-- <input name="NPerumahan" type="number" class="form-control"  placeholder="Nomor Perumahan *" value="" /> -->
                                 <select class="form-control" name="txt_metodepembayaran">
-                                    <option>-- Metode Pembayaran --</option>
+                                    <option> Metode Pembayaran </option>
                                     <option>InHouse</option>
                                     <option>KPR</option>
                                 </select>
@@ -164,7 +159,7 @@ if( isset($_POST['pesan']) ){
                         </div>
                         <div class="form-group">
                                 <select class="form-control" name="txt_cicilandp" >
-                                    <option>-- PIlih Jumlah Cicilan DP --</option>
+                                    <option> PIlih Jumlah Cicilan DP </option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -172,7 +167,7 @@ if( isset($_POST['pesan']) ){
                         </div>
                         <div class="form-group">
                                 <select class="form-control" name="txt_cicilaninhouse">
-                                    <option>-- PIlih Jumlah Cicilan InHouse --</option>
+                                    <option> PIlih Jumlah Cicilan InHouse </option>
                                     <option>Pilih Ini Jika Metode Pembayaran KPR</option>
                                     <option>1</option>
                                     <option>2</option>

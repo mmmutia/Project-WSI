@@ -3,7 +3,7 @@ require ('koneksi.php');
 session_start();
 error_reporting(0);
 $userName = $_SESSION['name'];
-$id_pemesanan_rumah = $_SESSION['id_pembayaran'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
 $SesLvl = $_SESSION['level'];
 
 $query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_dp INNER JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_dp.id_pemesanan_rumah WHERE pembayaran_dp.id_pemesanan_rumah='$id_pemesanan_rumah'");
@@ -26,14 +26,6 @@ if (isset($_POST['hapus'])) {
     // $result = mysqli_query($koneksi, $query1); 
 }
 
-
-
-// $query_mysql = mysqli_query($koneksi,"select * from user_detail where user_fullname = '$userName'");
-// $data = mysqli_fetch_array($query_mysql);
-// $query = $data['id_pemesanan_rumah'];
-// $query_mysql2 = mysqli_query($koneksi,"select * from pemesanan_rumah where id_pemesanan_rumah = '$query'");
-// // $item = mysqli_fetch_array($query_mysql2);
-
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +35,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - Bernady Land Slawu</title>
+  <title>Riwayat Pembayaran DP - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -66,12 +58,6 @@ if (isset($_POST['hapus'])) {
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -89,47 +75,55 @@ if (isset($_POST['hapus'])) {
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="" href="index-admin.php">Home</a></li>
-          <li><a href="about-admin.php">About</a></li>
-          <li><a href="services-admin.php">Layanan</a></li>
-          <li><a href="portfolio-admin.php">Cluster</a></li>
-          <li><a href="team-admin.php">Team</a></li>
-          <li><a class="active" href="contact-admin.php">Contact Us</a></li>
-          <?php
+      
+                  <ul>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
+                  <?php
 
-          if($userName = $_SESSION['name']){
-            
-            echo "
+if($userName = $_SESSION['name']){
+  
+  echo "
+  <div class='dropdown' style='margin-right:50px;><a href='#'> 
+          <a href='#' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>$userName</span>
+          </a>
+          <ul>
+      <li> <a href='profile-user.php'>Profil</a></li>
+      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+      <li> <a href='proggres_user.php'>Proggres</a></li>
+      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+    </ul>
+  </div>
+  ";
 
-            <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-            <ul>
-            <li> <a href='profile-user.php'>Profil</a></li>
-            <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-            <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-            <li> <a href='proggres.php'>Progres</a></li>
-            <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-            <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-            </ul>
-          </div>
 
-            ";
+}else{
+  echo "
+  <a href='login.php' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>Login</span>
+                    </a>
+  ";
+}
 
-          }else{
-            echo "
-            <li><a href='login.php'>Login</a></li>
-            ";
-          }
-
-          ?>
+?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
 
     </div>
   </header><!-- End Header -->
@@ -149,8 +143,8 @@ if (isset($_POST['hapus'])) {
             }
         </style>
           <ol>
-            <li><a href="index-admin.php">Home</a></li>
-            <li>Profil</li>
+            <li><a href="pembayaran-customer.php">Pembayaran</a></li>
+            <li>Pembayaran DP</li>
           </ol>
         </div>
       </div>
@@ -162,11 +156,10 @@ if (isset($_POST['hapus'])) {
         <thead>
             <tr>
                 <th>No</th>    
-                <th>Nama Pemesanan</th>
+                <th>Nama Pemesan</th>
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
-                <th></th>
                 
             </tr>
         </thead>
@@ -188,17 +181,13 @@ if (isset($_POST['hapus'])) {
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
-          $nama_pemesan = $row['nama_pemesan'];
-          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
-          $bukti_foto = $row['bukti_pembayaran_dp'];
-          $status = $row['status_dp'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
-          <td><?php echo $nama_pemesan;?></td>
-          <td><?php echo $tgl_pembayaran;?></td>
-          <td><img src="img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
-          <td><?php echo $status;?></td>
+          <td><?php echo $row['nama_pemesan'];?></td>
+          <td><?php echo $row['tgl_pembayaran_dp'];?></td>
+          <td><img src="./img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td><?php echo $row['status_dp'];?></td>
           <td>
           
             <?php
@@ -319,7 +308,7 @@ if (isset($_POST['hapus'])) {
           </div>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- Vendor JS Files -->
   <!-- <script src="js/jquery-3.6.3.min.js"></script> -->

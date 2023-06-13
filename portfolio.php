@@ -81,19 +81,22 @@ $query_mysql = mysqli_query($koneksi,"select * from cluster");
               <span style='font-size: 14px; display: inline-block;'>$userName</span>
             </a>
             <ul>
-  <li> <a href='profile-user.php'>Profil</a></li>
-  <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-  <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-  <li> <a href='proggres.php'>Progres</a></li>
-  <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
-  <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-  </ul>
-</div>
+              <li> <a href='profile-user.php'>Profil</a></li>
+              <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+              <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+              <li> <a href='proggres.php'>Progres</a></li>
+              <li> <a href='daftar-cluster-tersimpan.php'>Cluster Yang Tersimpan</a></li>
+              <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+              </ul>
+            </div>
 
-  ";
+              ";
           } else {
             echo "
-  <li><a href='login.php'>Login</a></li>
+            <a href='login.php' style='text-decoration: none; color: white;'>
+            <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+            <span style='font-size: 14px; display: inline-block;'>Login</span>
+          </a>
   ";
           }
 

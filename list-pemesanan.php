@@ -41,7 +41,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Profile - Bernady Land Slawu</title>
+  <title>Data Pemesanan - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -64,16 +64,6 @@ if (isset($_POST['hapus'])) {
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
-  <link href="vendor/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
-
   <!-- =======================================================
   * Template Name: Moderna - v4.10.1
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -91,145 +81,55 @@ if (isset($_POST['hapus'])) {
       <div class="logo">
         <!-- <h1 class="text-light"><a href="index.php"><span>Moderna</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index-admin.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
+        <a href="index.php"><img src="img/logo-bernady.png" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">
+      
+                  <ul>
+                  <li><a class="" href="index.php">Beranda</a></li>
+                  <li><a class="active" href="about.php">Tentang</a></li>
+                  <li><a href="services.php">Layanan</a></li>
+                  <li><a href="portfolio.php">Cluster</a></li>
+                  <li><a href="team.php">Tim</a></li>
+                  <li><a href="contact.php">Kontak</a></li>
+                  <?php
 
-<ul>
-
-<?php
-
-if($userLvl == '1'){
-
-  echo "
-
-  <li><a class='active' href='index.php'>Home</a></li>
-  <li><a href='about.php'>About</a></li>
-  <li><a href='services.php'>Layanan</a></li>
-  <li><a href='portfolio.php'>Cluster</a></li>
-  <li><a href='team.php'>Team</a></li>
-  <li><a href='contact.php'>Contact Us</a></li>
-  
-  ";
-
-  
-}elseif($userLvl == '2'){
-
-  
-  echo "
-
-  <li><a class='active' href='index-admin.php'>Home</a></li>
-  <li><a href='about-admin.php'>About</a></li>
-  <li><a href='services-admin.php'>Layanan</a></li>
-  <li><a href='portfolio.php'>Cluster</a></li>
-  <li><a href='team-admin.php'>Team</a></li>
-  <li><a href='contact-admin.php'>Contact Us</a></li>
-  
-  ";
-  
-}elseif($userLvl == '3'){
-
-  
-  echo "
-
-  <li><a class='active' href='index-admin.php'>Home</a></li>
-  <li><a href='about-admin.php'>About</a></li>
-  <li><a href='services-admin.php'>Layanan</a></li>
-  <li><a href='portfolio-admin.php'>Cluster</a></li>
-  <li><a href='team-admin.php'>Team</a></li>
-  <li><a href='contact-admin.php'>Contact Us</a></li>
-  
-  ";
-  
-}elseif($userLvl == '4'){
-
-  
-  echo "
-
-          <li><a href='index.php'>Beranda</a></li>
-          <li><a href='about.php'>Tentang</a></li>
-          <li><a href='services'.php>Layanan</a></li>
-          <li><a class='active' href='portfolio.php'>Cluster</a></li>
-          <li><a href='team.php'>Tim</a></li>
-          <li><a href='contact.php'>Kontak</a></li>
-  
-  ";
-  
-}
-
-?>
+          if($userName = $_SESSION['name']){
+            
+            echo "
+            <div class='dropdown' style='margin-right:50px;><a href='#'> 
+                    <a href='#' style='text-decoration: none; color: white;'>
+                      <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                      <span style='font-size: 14px; display: inline-block;'>$userName</span>
+                    </a>
+                    <ul>
+                <li> <a href='profile-user.php'>Profil</a></li>
+                <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
+                <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
+                <li> <a href='proggres_user.php'>Proggres</a></li>
+                <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
+                <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
+              </ul>
+            </div>
+            ";
 
 
-  <?php
+          }else{
+            echo "
+            <a href='login.php' style='text-decoration: none; color: white;'>
+                                <img src='img/logo_orang.png' alt='Logo Orang' style='width: 20px; height: 20px; margin-right: 5px; display: inline-block;'>
+                                <span style='font-size: 14px; display: inline-block;'>Login</span>
+                              </a>
+            ";
+          }
 
-if($userName = $_SESSION['name']){
-
-if($userLvl == '1'){
-
-echo "
-<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-<ul>
-<li> <a href='profile-user.php'>Profil</a></li>
-<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-</ul>
-</div>
-";
-}elseif($userLvl == '2'){
-
-echo "
-<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-<ul>
-<li> <a href='profile-user.php'>Profil</a></li>
-<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-<li> <a href='proggres.php'>Proggres</a></li>
-<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-</ul>
-</div>
-";
-}
-elseif($userLvl == '3'){
-
-echo "
-<div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-<ul>
-<li> <a href='profile-user.php'>Profil</a></li>
-<li> <a href='list-pemesanan-admin.php'>Pemesanan Rumah</a></li>
-<li> <a href='pembayaran-admin.php'>Pembayaran</a></li>
-<li> <a href='proggres.php'>Proggres</a></li>
-<li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-</ul>
-</div>
-";
-}elseif ($userLvl == '4') {
-  echo "
-  <div class='dropdown' style='margin-right:50px;'><a href='#'> $userName </a>
-    <ul>
-      <li> <a href='profile-user.php'>Profil</a></li>
-      <li> <a href='list-pemesanan.php'>Pemesanan Rumah</a></li>
-      <li> <a href='pembayaran-customer.php'>Pembayaran</a></li>
-      <li> <a href='proggres_user.php'>Proggres</a></li>
-      <li> <a href='daftar-cluster-tersimpan.php'>Cluster Tersimpan</a></li>
-      <li data-bs-toggle='modal' data-bs-target='#modalLogout'> <a href='javascript:void(0)'>Logout</a></li>
-    </ul>
-  </div>
-  ";
-}
-
-
-}else{
-echo "
-<li><a href='login.php'>Login</a></li>
-";
-}
-
-?>
-
+          ?>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
 
     </div>
   </header><!-- End Header -->
@@ -241,7 +141,7 @@ echo "
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Data Pemesanan Rumah</blockquote></h2>
+          <h2><blockquote>Riwayat Pemesanan Rumah</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -249,7 +149,7 @@ echo "
             }
         </style>
           <ol>
-            <li><a href="index-admin.php">Beranda</a></li>
+            <li><a href="index.php">Beranda</a></li>
             <li>Profil</li>
           </ol>
         </div>
@@ -264,7 +164,6 @@ echo "
         <thead>
             <tr>
                 <th>No</th>    
-                <th>ID Pemesanan Rumah</th>
                 <th>Nama Pemesan</th>
                 <th>Alamat</th>
                 <th>No Telp</th>
@@ -272,6 +171,8 @@ echo "
                 <th>Tanggal Pemesanan</th>
                 <th>Jenis Pembayaran</th>
                 <th>Foto KTP</th>
+                <th>Jumlah Cicilan DP</th>
+                <th>Jumlah Cicilan Inhouse</th>
                 <th>Detail Blok</th>
                 <th>No Surat Bangunan</th>
             </tr>
@@ -285,7 +186,6 @@ echo "
         ?>
         <tr class="text-center">
               <td><?php echo $no++?></td>
-              <td><?php echo $row['id_pemesanan_rumah'];?></td>
               <td><?php echo $row['nama_pemesan'];?></td>
               <td><?php echo $row['alamat'];?></td>
               <td><?php echo $row['no_telp_pemesan'];?></td>
@@ -293,13 +193,14 @@ echo "
               <td><?php echo $row['tgl_pemesanan'];?></td>
               <td><?php echo $row['jenis_pembayaran'];?></td>
               <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
+              <td><?php echo $row['jml_cicilan_dp'];?></td>
+              <td><?php echo $row['jml_cicilan_inhouse'];?></td>
               <td><?php echo $row['detail_blok'];?></td>
               <td><?php echo $row['no_surat_bangunan'];?></td>
             </tr>
             <?php
           }
-          ?>
-            
+          ?>            
         </tbody>
     </table>
     </div>
@@ -312,14 +213,7 @@ echo "
     </script>
     <!-- </section>End Contact Section -->
 
-    <!-- ======= Map Section ======= -->
-    <!-- <section class="map mt-2">
-      <div class="container-fluid p-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63192.192514702285!2d113.6420152334!3d-8.15105391793801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6945cc03261bd%3A0xf7d0c1839cf1e71!2sCamelia%20Cluster%20Bernady%20Land%20Slawu!5e0!3m2!1sid!2sid!4v1669767817028!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>End Map Section -->
-
-  <!-- </main>End #main -->
+    
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -408,55 +302,40 @@ echo "
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div class="modal fade" id="modalLogout">
-    <div class="modal-dialog">
-      <div class="modal-content" style="margin-top:100px;">
-          <div class="modal-header">
-            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-          </div>
-          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-          <div class="modal-footer">
-            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-          </div>
-      </div>
-    </div>
+<div class="modal fade" id="modalLogout">
+<div class="modal-dialog">
+<div class="modal-content" style="margin-top:100px;">
+  <div class="modal-header">
+    <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
   </div>
+  <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+  <div class="modal-footer">
+    <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+  </div>
+</div>
+</div>
+</div>
 
-  
-  <!-- Vendor JS Files -->
-  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
-  <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="vendor/aos/aos.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
+<!-- Vendor JS Files -->
+<script src="vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="vendor/aos/aos.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/glightbox/js/glightbox.min.js"></script>
+<script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="vendor/swiper/swiper-bundle.min.js"></script>
+<script src="vendor/waypoints/noframework.waypoints.js"></script>
+<script src="vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-  
-  <script type="text/javascript">
-    function confirmLogout(logout_url){
-      $('#modalLogout').modal('show', {backdrop: 'static'});
-      document.getElementById('logout_link').setAttribute('href', logout_url);
-    }
-  </script>
+<!-- Template Main JS File -->
+<script src="js/main.js"></script>
 
-  <script>
-
-//Hapus Data
-      function confirmModal(link) {
-        let ok = confirm("Apakah anda yakin ingin menghapus data ini?")
-
-        if(ok){
-          window.location = link
-        }
-      }
-  </script> -->
-  
+<script type="text/javascript">
+function confirmLogout(logout_url){
+$('#modalLogout').modal('show', {backdrop: 'static'});
+document.getElementById('logout_link').setAttribute('href', logout_url);
+}
+</script>
 
 </body>
 

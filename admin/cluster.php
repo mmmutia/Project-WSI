@@ -31,6 +31,7 @@ if (!isset($_SESSION['name'])) {
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -202,8 +203,8 @@ if (!isset($_SESSION['name'])) {
                                             <th>Jumlah Unit</th>
                                             <th>Harga</th>
                                             <th>Harga DP</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
+                                            <th>Gambar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -229,11 +230,12 @@ if (!isset($_SESSION['name'])) {
                                                 <td><?php echo $hargaDp ?></td>
                                                 <td><img src="../img/images_cluster/<?php echo $row['foto_cluster']; ?>" height="60px"></td>
                                                 <td>
+                                                <div class="align-items-center">
                                                     <a href="../admin/tambah_spek.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a>
                                                     <a href="../admin/edit_cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
 
                                                     <a href="javascript:del(<?php echo $row['id_cluster']; ?>)" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a>
-                                                </td>
+                                                </div>
                                                 </td>
                                             </tr>
                                         <?php
