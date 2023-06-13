@@ -16,8 +16,11 @@ if (isset($_GET['id_user'])) {
     $id_user = mysqli_real_escape_string($koneksi, $_GET['id_user']);
 
     // Mengambil data dari tabel simpan_cluster berdasarkan id_user
-    $query = "SELECT simpan_cluster.*,nama_cluster, foto_cluster, harga FROM simpan_cluster LEFT JOIN cluster ON cluster.id_cluster = simpan_cluster.id_cluster WHERE id_user = '$id_user'";
-    $result = mysqli_query($koneksi, $query);
+    $query = "SELECT simpan_cluster.*, nama_cluster, foto_cluster, harga FROM simpan_cluster LEFT JOIN cluster ON cluster.id_cluster = simpan_cluster.id_cluster WHERE id_user = ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($statement, 's', $id_user);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
 
     // Menyimpan data simpan_cluster yang didapatkan ke dalam array
     $simpanClusters = array();
