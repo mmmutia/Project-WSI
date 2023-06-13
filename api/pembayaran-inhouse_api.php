@@ -1,81 +1,68 @@
 <?php
-// Koneksi ke database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bernady";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+// Koneksi ke database
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'bernady';
+
+$koneksi = mysqli_connect($host, $username, $password, $database);
+if (mysqli_connect_errno()) {
+    $response = array(
+        'status' => 'error',
+        'message' => 'Gagal terhubung ke MySQL: ' . mysqli_connect_error()
+    );
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit();
 }
 
-// Menangani permintaan POST dari aplikasi Android
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Memeriksa apakah semua data pemesanan ada dalam permintaan
-    if (
-        isset($_POST['id_pembayaran_inhouse']) && isset($_POST['id_pemesanan']) && isset($_POST['tgl']) &&
-        isset($_POST['buktiinhouse']) && isset($_POST['statusinhouse']) && isset($_FILES['gambar']) 
-    ) {
-        // Mendapatkan data pemesanan dari permintaan
-        $id_pembayaran = $_POST['id_pembayaran_inhouse'];
-        $id_pemesanan = $_POST['id_pemesanan'];
-        $tgl = $_POST['tgl'];
-        $buktiinhouse = $_POST['buktiinhouse'];
-        $statusinhouse= $_POST['statusinhouse'];
-        
-        
-        
-        // Mengunggah gambar ke direktori tujuan
-        $uploadDir = 'img/filepemesanan/';
-        // Memeriksa apakah direktori tujuan sudah ada
-        if (!is_dir($uploadDir)) {
-            // Jika belum ada, buat direktori
-            mkdir($uploadDir, 0755, true);
-        }
-        $uploadedFile = $_FILES['gambar']['tmp_name'];
-        $fileName = $_FILES['gambar']['name'];
-        $destination = $uploadDir . $fileName;
-        
-        if (move_uploaded_file($uploadedFile, $destination)) {
-            // Gambar berhasil diunggah, lanjutkan dengan penyimpanan data pemesanan ke database
-            $sql = "INSERT INTO pembayaran_inhouse (id_pembayaran_inhouse, id_pemesanan_rumah, tgl_pembayaran_inhouse, bukti_pembayaran_inhouse, status_inhouse) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssisssssi", $id_pembayaran, $id_pemesanan, $tgl, $buktiinhouse, $statusinhouse, $tgl);
-            $stmt->execute();
-            $stmt->close();
+// Cek apakah ada data yang diterima
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Mendapatkan data dari request
+    $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
+    $tgl = $_POST['tgl_pembayaran_inhouse'];
+    $bukti_pembayaran_dp = $_FILES['bukti_pembayaran_inhouse']['name'];
+    $status_inhouse = $_POST['status_inhouse'];
 
-            // Pemesanan berhasil disimpan ke database
+    // Mendapatkan path tempat upload file
+    $targetDir = 'img/fileinhouse/';
+    $targetFilePath = $targetDir . basename($_FILES['bukti_pembayaran_inhouse']['name']);
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+    // Upload file ke server
+    if (move_uploaded_file($_FILES['bukti_pembayaran_inhouse']['tmp_name'], $targetFilePath)) {
+        // Query untuk menambahkan data pembayaran_dp ke tabel Pembayaran_dp
+        $query = "INSERT INTO Pembayaran_inhouse (id_pemesanan_rumah, tgl_pembayaran_inhouse, bukti_pembayaran_inhouse, status_inhouse) VALUES ('$id_pemesanan_rumah', '$tgl', '$bukti_pembayaran_dp', '$status_inhouse')";
+        if (mysqli_query($koneksi, $query)) {
             $response = array(
                 'status' => 'success',
-                'message' => 'Order placed successfully.'
+                'message' => 'Data pembayaran_dp berhasil ditambahkan'
             );
         } else {
-            // Gagal mengunggah gambar
             $response = array(
                 'status' => 'error',
-                'message' => 'Failed to upload image.'
+                'message' => 'Gagal menambahkan data pembayaran_dp: ' . mysqli_error($koneksi)
             );
         }
     } else {
-        // Data tidak lengkap dalam permintaan
         $response = array(
             'status' => 'error',
-            'message' => 'Incomplete request data.'
+            'message' => 'Gagal upload file bukti_pembayaran_dp'
         );
     }
 } else {
-    // Metode HTTP yang tidak valid
     $response = array(
         'status' => 'error',
-        'message' => 'Invalid request method.'
+        'message' => 'Metode request tidak valid'
     );
 }
 
-// Mengirimkan respons JSON ke aplikasi Android
+// Mengirimkan respons dalam format JSON
 header('Content-Type: application/json');
 echo json_encode($response);
 
-// Menutup koneksi ke database
-$conn->close();
+// Menutup koneksi database
+mysqli_close($koneksi);
 ?>

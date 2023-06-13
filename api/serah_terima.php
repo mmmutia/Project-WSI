@@ -18,33 +18,33 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-if (isset($_GET['id_user'])) {
-    $id_user = mysqli_real_escape_string($koneksi, $_GET['id_user']);
+if (isset($_GET['id_pemesanan_rumah'])) {
+    $id_pemesanan_rumah = mysqli_real_escape_string($koneksi, $_GET['id_pemesanan_rumah']);
 
-    // Mengambil data dari tabel progress berdasarkan id_user
-    $query = "SELECT * FROM proggres WHERE id_user = '$id_user'";
+    // Mengambil data dari tabel serah_terima berdasarkan id_pemesanan_rumah
+    $query = "SELECT * FROM serah_terima WHERE id_pemesanan_rumah = '$id_pemesanan_rumah'";
     $result = mysqli_query($koneksi, $query);
 
-    // Menyimpan data progress yang didapatkan ke dalam array
-    $progressData = array();
+    // Menyimpan data serah_terima yang didapatkan ke dalam array
+    $detailPemesanan = array();
     while ($row = mysqli_fetch_assoc($result)) {
-        $progressData[] = $row;
+        $detailPemesanan[] = $row;
     }
 
-    // Mengembalikan data progress dalam format JSON
+    // Mengembalikan data serah_terima dalam format JSON
     $response = array(
         'status' => 'success',
         'message' => 'Data berhasil ditemukan',
-        'data' => $progressData
+        'data' => $detailPemesanan
     );
 
     header('Content-Type: application/json');
     echo json_encode($response);
 } else {
-    // Jika id_user tidak ada dalam data yang diterima
+    // Jika id_pemesanan_rumah tidak ada dalam data yang diterima
     $response = array(
         'status' => 'error',
-        'message' => 'Parameter id_user tidak valid'
+        'message' => 'Parameter id_pemesanan_rumah tidak valid'
     );
 
     header('Content-Type: application/json');

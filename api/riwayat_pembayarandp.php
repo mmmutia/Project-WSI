@@ -18,33 +18,27 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-if (isset($_GET['id_user'])) {
-    $id_user = mysqli_real_escape_string($koneksi, $_GET['id_user']);
+if (isset($_GET['id_pembayaran_dp'])) {
+    $id_pembayaran_dp = $_GET['id_pembayaran_dp'];
 
-    // Mengambil data dari tabel progress berdasarkan id_user
-    $query = "SELECT * FROM proggres WHERE id_user = '$id_user'";
+    // Query untuk mengambil data pembayaran_dp berdasarkan id_pembayaran_dp
+    $query = "SELECT * FROM pembayaran_dp WHERE id_pembayaran_dp = '$id_pembayaran_dp'";
     $result = mysqli_query($koneksi, $query);
 
-    // Menyimpan data progress yang didapatkan ke dalam array
-    $progressData = array();
+    // Menyimpan data pembayaran_dp yang didapatkan ke dalam array
+    $pembayaranDp = array();
     while ($row = mysqli_fetch_assoc($result)) {
-        $progressData[] = $row;
+        $pembayaranDp[] = $row;
     }
 
-    // Mengembalikan data progress dalam format JSON
-    $response = array(
-        'status' => 'success',
-        'message' => 'Data berhasil ditemukan',
-        'data' => $progressData
-    );
-
+    // Mengembalikan data pembayaran_dp dalam format JSON
     header('Content-Type: application/json');
-    echo json_encode($response);
+    echo json_encode($pembayaranDp);
 } else {
-    // Jika id_user tidak ada dalam data yang diterima
+    // Jika id_pembayaran_dp tidak ada dalam data yang diterima
     $response = array(
         'status' => 'error',
-        'message' => 'Parameter id_user tidak valid'
+        'message' => 'Parameter id_pembayaran_dp tidak valid'
     );
 
     header('Content-Type: application/json');
