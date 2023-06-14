@@ -166,7 +166,7 @@ if( isset($_POST['pesan']) ){
                                 </select>
                         </div>
                         <div class="form-group">
-                                <select class="form-control" name="txt_cicilaninhouse">
+                                <select class="form-control" name="txt_cicilan_inhouse">
                                     <option> PIlih Jumlah Cicilan InHouse </option>
                                     <option>Pilih Ini Jika Metode Pembayaran KPR</option>
                                     <option>1</option>
