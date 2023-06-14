@@ -2,13 +2,31 @@
 require('../koneksi.php');
 session_start();
 error_reporting(0);
-
 $userName = $_SESSION['name'];
-$userLvl = $_SESSION['level'];
+$id_pemesanan_rumah = $_SESSION['id_pemesanan_rumah'];
+$SesLvl = $_SESSION['level'];
 
+$query    = mysqli_query($koneksi, "SELECT * FROM pembayaran_inhouse JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah=pembayaran_inhouse.id_pemesanan_rumah WHERE pembayaran_inhouse.id_pemesanan_rumah='$id_pemesanan_rumah'");
+$result   = mysqli_fetch_array($query);
 
+if (isset($_POST['konfirmasi'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query = "UPDATE pembayaran_inhouse SET status_inhouse = 'Lunas' WHERE id_pemesanan_rumah='$id'";
+    $result = mysqli_query($koneksi, $query);
+
+    header("location:../admin/riwayat-pembayaran-inhouseadmin.php");
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Berhasil Konfirmasi")';
+    echo '</script>';
+}
+if (isset($_POST['hapus'])) {
+    $id = $_POST['id_pemesanan_rumah'];
+    $query1 = mysqli_query($koneksi, "DELETE FROM pembayaran_inhouse WHERE id_pemesanan_rumah='$id'") or die(mysqli_error($koneksi));
+    header("location:../admin/riwayat-pembayaran-inhouseadmin.php");
+    // $result = mysqli_query($koneksi, $query1); 
+}
 if (!isset($_SESSION['name'])) {
-    header('Location: ../index.php');
+    header('Location: ../index-keuangan.php');
 }
 ?>
 
@@ -23,15 +41,11 @@ if (!isset($_SESSION['name'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Konten - Bernady Land Slawu</title>
-    <!-- Favicons -->
-    <link href="../img/logo-bernady.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <title>Admin Keuangan - Bernady Land Slawu</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -49,11 +63,11 @@ if (!isset($_SESSION['name'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index-keuangan.php">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> -->
-                <div class="sidebar-brand-text mx-3">Admin Konten</div>
+                <div class="sidebar-brand-text mx-3">Admin Keuangan</div>
             </a>
 
             <!-- Divider -->
@@ -61,7 +75,7 @@ if (!isset($_SESSION['name'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index-keuangan.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -76,11 +90,25 @@ if (!isset($_SESSION['name'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="cluster.php">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
-                    </svg>
-                    <span class="ml-3">Data Cluster</span></a>
+                <a class="nav-link" href="list-pemesanan.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                </svg>
+                <span class="ml-3">Data Pemesanan</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pembayaran.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                </svg>
+                <span class="ml-3">Pembayaran</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="progres.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                </svg>
+                <span class="ml-3">Progres</span></a>
             </li>
 
         </ul>
@@ -100,7 +128,17 @@ if (!isset($_SESSION['name'])) {
                         <i class="fa fa-bars"></i>
                     </button>
 
-                  
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -165,8 +203,7 @@ if (!isset($_SESSION['name'])) {
 
                     <!-- Page Heading -->
                     <div class="row">
-                        <h1 class="h3 mb-2 text-gray-800">Data Cluster</h1>
-                        <a href="../admin/tambah_cluster.php"><button type="button" class="btn btn-primary ml-4">Tambah Cluster</button></a>
+                        <h1 class="h3 mb-2 text-gray-800">Data Pembayaran InHouse</h1>
                     </div>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4 mt-4">
@@ -176,61 +213,62 @@ if (!isset($_SESSION['name'])) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Cluster</th>
-                                            <th>Blok</th>
-                                            <th>Jumlah Unit</th>
-                                            <th>Harga</th>
-                                            <th>Harga DP</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
+                                            <th>Nama Pemesan</th>
+                                            <th>Tanggal Pembayaran</th>
+                                            <th>Bukti Pembayaran</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Cluster</th>
-                                            <th>Blok</th>
-                                            <th>Jumlah Unit</th>
-                                            <th>Harga</th>
-                                            <th>Harga DP</th>
-                                            <th>Gambar</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
+
                                     <tbody>
                                         <?php
-                                        include 'koneksi.php';
+                                        $query = "SELECT * from pembayaran_inhouse join pemesanan_rumah on pembayaran_inhouse.id_pemesanan_rumah=pemesanan_rumah.id_pemesanan_rumah";
+                                        $result = mysqli_query($koneksi, $query);
                                         $no = 1;
-                                        $cluster = mysqli_query($koneksi, "SELECT * FROM cluster");
-                                        while ($row = mysqli_fetch_array($cluster)) {
-                                            $id_cluster = $row['id_cluster'];
-                                            $foto_cluster = $row['foto_cluster'];
-                                            $nama_cluster = $row['nama_cluster'];
-                                            $blok = $row['blok'];
-                                            $jumlah_unit = $row['jumlah_unit'];
-                                            $harga = $row['harga'];
-                                            $hargaDp = $row['harga_dp'];
+                                        // if ($SesLvl == 2){
+                                        //   $dis = "";
+                                        // } else if ($SesLvl == 1){
+                                        //   $dis = "disabled";
+                                        // } else if ($SesLvl == 3){
+                                        //   $dis = "disabled";
+                                        // } else ($SesLvl == 4){
+                                        //   $dis = "disabled";
+                                        // } 
                                         ?>
-                                            <tr>
-                                                <td><?php echo $no++ ?></td>
-                                                <td><?php echo $nama_cluster ?></td>
-                                                <td><?php echo $blok ?></td>
-                                                <td><?php echo $jumlah_unit ?></td>
-                                                <td><?php echo $harga ?></td>
-                                                <td><?php echo $hargaDp ?></td>
-                                                <td><img src="../img/images_cluster/<?php echo $row['foto_cluster']; ?>" height="60px"></td>
-                                                <td>
-                                                <div class="align-items-center">
-                                                    <a href="../admin/tambah_spek.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a>
-                                                    <a href="../admin/edit_cluster.php?id=<?php echo $row['id_cluster']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
-
-                                                    <a href="javascript:del(<?php echo $row['id_cluster']; ?>)" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a>
-                                                </div>
-                                                </td>
-                                            </tr>
                                         <?php
-                                        }
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+                                            $nama_pemesan = $row['nama_pemesan'];
+                                            $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
+                                            $bukti_foto = $row['bukti_pembayaran_inhouse'];
+                                            $status = $row['status_inhouse'];
                                         ?>
+                                            <tr class="text-center">
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $nama_pemesan; ?></td>
+                                                <td><?php echo $tgl_pembayaran; ?></td>
+                                                <td><img src="../img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>" height="80px"></td>
+                                                <td><?php echo $status; ?></td>
+                                                <td>
+                                                    <form action="../admin/riwayat-pembayaran-inhouseadmin.php" method="post" role="form" class="php-email-form">
+                                                        <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
+                                                        <?php if ($status == "Lunas") {
+                                                        ?>
+                                                            <button class="btn btn-outline-danger btn-circle" type="submit" name="hapus"><i class="fa fa-trash"></i></button>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <button class="btn btn-outline-primary" type="submit" name="konfirmasi">Konfirmasi</button>
+                                                        <?php
+                                                        } ?>
+                                                    </form>
+                                                </td>
+
+                                            <?php
+                                        }
+                                            ?>
 
                                     </tbody>
                                 </table>
@@ -310,10 +348,11 @@ if (!isset($_SESSION['name'])) {
 
 </body>
 <script language="JavaScript" type="text/javascript">
-function del(id){
-if (confirm("yakin akan menghapus data ini?")){
-window.location.href = '../hapus_cluster.php?id=' + id;
-}}
+    function del(id) {
+        if (confirm("yakin akan menghapus data ini?")) {
+            window.location.href = '../hapus_cluster.php?id=' + id;
+        }
+    }
 </script>
 
 </html>
