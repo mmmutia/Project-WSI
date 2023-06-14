@@ -38,9 +38,6 @@ if ($result->num_rows > 0) {
             'namacluster' => $row['nama_cluster']
             // Tambahkan kolom-kolom data lainnya sesuai kebutuhan Anda
         );
-
-        // Menambahkan item ke dalam response
-        // array_push($response, $item);
     }
 
     // Mengubah response menjadi format JSON

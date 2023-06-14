@@ -17,38 +17,30 @@ if (mysqli_connect_errno()) {
     echo json_encode($response);
     exit();
 }
+$id = $_GET['id_user'];
 
-if (isset($_GET['id_user'])) {
-    $id_user = mysqli_real_escape_string($koneksi, $_GET['id_user']);
+$sql = "SELECT proggres.*, pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan FROM proggres LEFT JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah = proggres.id_pemesanan WHERE pemesanan_rumah.id_user = '$id'";  // Ganti "nama_tabel" dengan nama tabel Anda
+$result = $koneksi->query($sql);
 
-    // Mengambil data dari tabel proggres berdasarkan id_user
-    $query = "SELECT proggres.*, pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan FROM proggres LEFT JOIN pemesanan_rumah ON pemesanan_rumah.id_pemesanan_rumah = proggres.id_pemesanan WHERE pemesanan_rumah.id_user = '$id_user'";
-    $result = mysqli_query($koneksi, $query);
+if ($result->num_rows > 0) {
+    // $response = array();
 
-    // Menyimpan data proggres yang didapatkan ke dalam array
-    $proggresData = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $proggresData[] = $row;
+    // Memproses setiap baris data
+    while ($row = $result->fetch_assoc()) {
+        $item = array(
+            'id_pemesanan' => $row['id_pemesanan'],
+            'status' => $row['status'],
+            'keterangan' => $row['keterangan'],
+            'foto' => $row['foto'],
+            'tanggal' => $row['tanggal'],
+            'nama_pemesan' => $row['nama_pemesan']
+        );
     }
 
-    // Mengembalikan data proggres dalam format JSON
-    $response = array(
-        'status' => 'success',
-        'message' => 'Data berhasil ditemukan',
-        'data' => $proggresData
-    );
-
-    header('Content-Type: application/json');
-    echo json_encode($response);
+    // Mengubah response menjadi format JSON
+    echo json_encode($item);
 } else {
-    // Jika id_user tidak ada dalam data yang diterima
-    $response = array(
-        'status' => 'error',
-        'message' => 'Parameter id_user tidak valid'
-    );
-
-    header('Content-Type: application/json');
-    echo json_encode($response);
+    echo "Data tidak ditemukan.";
 }
 
 // Menutup koneksi database
