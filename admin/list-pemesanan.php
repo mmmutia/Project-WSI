@@ -208,7 +208,7 @@ if (isset($_POST['hapus'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan, pemesanan_rumah.alamat, pemesanan_rumah.no_telp_pemesan, pemesanan_rumah.id_cluster, pemesanan_rumah.tgl_pemesanan, pemesanan_rumah.fotocopy_ktp, pemesanan_rumah.jenis_pembayaran FROM pemesanan_rumah ORDER BY id_pemesanan_rumah ASC";
+                                        $query = "SELECT pemesanan_rumah.id_pemesanan_rumah, pemesanan_rumah.nama_pemesan, pemesanan_rumah.alamat, pemesanan_rumah.no_telp_pemesan, pemesanan_rumah.id_cluster, pemesanan_rumah.tgl_pemesanan, pemesanan_rumah.fotocopy_ktp, pemesanan_rumah.jenis_pembayaran FROM pemesanan_rumah JOIN cluster ON pemesanan_rumah.id_cluster = cluster.id_cluster ORDER BY id_pemesanan_rumah ASC";
                                         $result = mysqli_query($koneksi, $query);
                                         $no = 1;
                                         // if ($SesLvl == 2){
@@ -226,7 +226,7 @@ if (isset($_POST['hapus'])) {
                                             $nama_pemesan = $row['nama_pemesan'];
                                             $alamat = $row['alamat'];
                                             $no_telp_pemesan = $row['no_telp_pemesan'];
-                                            $id_cluster = $row['id_cluster'];
+                                            $id_cluster = $row['id_cluster'] - $row['nama_cluster'];
                                             $tgl_pemesanan = $row['tgl_pemesanan'];
                                             $jenis_pembayaran = $row['jenis_pembayaran'];
                                             $focopy_ktp = $row['fotocopy_ktp'];
@@ -242,7 +242,7 @@ if (isset($_POST['hapus'])) {
                                                 <td><?php echo $jenis_pembayaran; ?></td>
                                                 <td><img src="../img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>" height="80px"></td>
                                                 <td>
-                                                    <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
+                                                    <a href="proses-pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-info btn-circle <?php echo $dis; ?>"><i class="fa fa-plus"></i></a>
                                                     <a onclick="confirmModal('hapus_pemesanan.php?id=<?php echo $row['id_pemesanan_rumah']; ?>')" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a>
                                                     <!-- <a href="list-pemesanan-admin.php?id=<?php echo $row['id_pemesanan_rumah']; ?>" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a> -->
                                                 </td>
