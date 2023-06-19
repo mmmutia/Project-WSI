@@ -158,9 +158,11 @@ if (isset($_POST['hapus'])) {
     </section><!-- End Contact Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div  class="container">
-      <table id="example" class="table table-striped" style="width:100%">
+    <!-- <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500"> -->
+    <div class="card shadow mb-4 mt-4">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>    
@@ -197,6 +199,10 @@ if (isset($_POST['hapus'])) {
               <td><?php echo $row['jml_cicilan_inhouse'];?></td>
               <td><?php echo $row['detail_blok'];?></td>
               <td><?php echo $row['no_surat_bangunan'];?></td>
+              </div>
+                </div>
+
+              </div>
             </tr>
             <?php
           }
@@ -304,20 +310,21 @@ if (isset($_POST['hapus'])) {
 
 <div class="modal fade" id="modalLogout">
 <div class="modal-dialog">
-<div class="modal-content" style="margin-top:100px;">
-  <div class="modal-header">
-    <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+  <div class="modal-content" style="margin-top:100px;">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
+      </div>
+      <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+      <div class="modal-footer">
+        <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+        <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+      </div>
   </div>
-  <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-  <div class="modal-footer">
-    <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-  </div>
-</div>
 </div>
 </div>
 
 <!-- Vendor JS Files -->
+<!-- <script src="js/jquery-3.6.3.min.js"></script> -->
 <script src="vendor/purecounter/purecounter_vanilla.js"></script>
 <script src="vendor/aos/aos.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -332,8 +339,8 @@ if (isset($_POST['hapus'])) {
 
 <script type="text/javascript">
 function confirmLogout(logout_url){
-$('#modalLogout').modal('show', {backdrop: 'static'});
-document.getElementById('logout_link').setAttribute('href', logout_url);
+  $('#modalLogout').modal('show', {backdrop: 'static'});
+  document.getElementById('logout_link').setAttribute('href', logout_url);
 }
 </script>
 
