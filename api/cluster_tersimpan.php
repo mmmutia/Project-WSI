@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
 
     // Memproses setiap baris data
     while ($row = $result->fetch_assoc()) {
-        $item = array(
+        $response["data"][] = array(
             'id_simpan' => $row['id_simpan'],
             'id_cluster' => $row['id_cluster'],
             'fotocluster' => $row['foto_cluster'],
@@ -30,9 +30,8 @@ if ($result->num_rows > 0) {
             'namacluster' => $row['nama_cluster']
         );
     }
-
     // Mengubah response menjadi format JSON
-    echo json_encode($item);
+    echo json_encode($response);
 } else {
     echo "Data tidak ditemukan.";
 }
