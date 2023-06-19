@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
 
     // Memproses setiap baris data
     while ($row = $result->fetch_assoc()) {
-        $item = array(
+        $item ["data"][]= array(
             'id_pemesanan' => $row['id_pemesanan'],
             'status' => $row['status'],
             'keterangan' => $row['keterangan'],
