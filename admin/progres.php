@@ -242,11 +242,11 @@ $userName = $_SESSION['name']; ?>
                               </div>
                               <div></div>
                               <div></div>
-                              <form class="yayyay" action="proggres.php?id=<?= $item['id'] ?>" method="post">
+                              <form class="yayyay" action="progres.php?id=<?= $item['id'] ?>" method="post">
                                 <div class="align-middle text-center">
-                                  <button class="btn btn-success btn-sm ms-auto" type="submit" name="delete">Delete</button>
+                                  <button class="btn btn-danger btn-sm ms-auto" type="submit" name="delete">Delete</button>
                                   <!-- <a class="btn btn-success btn-sm ms-auto" href="users.view.php?id=<?= $row['id'] ?>">Delete</a> -->
-                                  <a href="proggres.php" class="btn btn-danger btn-sm ms-auto">Close</a>
+                                  <a href="progres.php" class="btn btn-success btn-sm ms-auto">Close</a>
                                   <!-- <button class="btn btn-success btn-sm ms-auto" name="submit" data-close-delete>Close</button> -->
                                   <!-- <button class="btn btn-danger btn-sm ms-auto" href="hapus_user.php?id=<?php echo $row['id']; ?>" data-close-delete>Close</button> -->
                               </form>

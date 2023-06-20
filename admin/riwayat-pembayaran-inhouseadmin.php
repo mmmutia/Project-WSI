@@ -42,7 +42,10 @@ if (!isset($_SESSION['name'])) {
     <meta name="author" content="">
 
     <title>Admin Keuangan - Bernady Land Slawu</title>
-
+    <!-- Favicons -->
+    <link href="../img/logo-bernady.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -239,6 +242,7 @@ if (!isset($_SESSION['name'])) {
                                         ?>
                                         <?php
                                         while ($row = mysqli_fetch_array($result)) {
+                                            $id_pembayaran_inhouse = $row['id_pembayaran_inhouse'];
                                             $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
                                             $nama_pemesan = $row['nama_pemesan'];
                                             $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
@@ -249,7 +253,11 @@ if (!isset($_SESSION['name'])) {
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $nama_pemesan; ?></td>
                                                 <td><?php echo $tgl_pembayaran; ?></td>
-                                                <td><img src="../img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>" height="80px"></td>
+                                                <td>
+                                                <div class="align-items-center">
+                                                <button data-modal-target="#modal-foto<?php echo $id_pembayaran_inhouse ?>" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"></i></button>
+                                                </div>
+                                                </td>
                                                 <td><?php echo $status; ?></td>
                                                 <td>
                                                     <form action="../admin/riwayat-pembayaran-inhouseadmin.php" method="post" role="form" class="php-email-form">
@@ -275,6 +283,134 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                     </div>
+                    <!-- Pop up Foto -->
+      <div class="modal-foto" id="modal-foto<?= $id_pembayaran_inhouse ?>">
+        <div class="modal-header-foto">
+          <h2 class="foto">Bukti Pembayaran Inhouse</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-foto">
+            <form action="riwayat-pembayaran-inhouseadmin.php" method="post" enctype="multipart/form-data">
+
+            <div class="align-middle text-center">
+           
+            <img src='../img/bukti_inhouse/<?php echo $bukti_foto?>' width='300' height='300' />
+            
+            </div>
+
+              <div class="align-middle text-center"><br>
+                
+                <button class="btn btn-danger btn-md ms-auto" data-close-fot>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-foto {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-foto {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-foto {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.foto {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.foto {
+          text-align: center;
+
+        }
+
+        .modal-header-foto button.close-btn-foto {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-foto button.close-btn-foto:hover {
+          color: #6b46c1;
+        }
+
+        .active-foto {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalFot = document.querySelectorAll("[data-modal-target]");
+        const closeModalFot = document.querySelectorAll(
+          "[data-close-fot]"
+        );
+
+        openModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-foto");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-foto");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-foto");
+        }
+      </script>
+      <!-- end Pop up Foto -->
+
 
                 </div>
                 <!-- /.container-fluid -->

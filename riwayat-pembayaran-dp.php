@@ -135,7 +135,7 @@ if($userName = $_SESSION['name']){
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
+          <h2><blockquote>Riwayat Pembayaran DP</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -150,9 +150,10 @@ if($userName = $_SESSION['name']){
       </div>
     </section><!-- End Contact Section -->
     <!-- ======= Contact Section ======= -->
-    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div  class="container">
-      <table id="example" class="table table-striped" style="width:100%">
+    <div class="card shadow mb-4 mt-4">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>    
@@ -169,24 +170,25 @@ if($userName = $_SESSION['name']){
         $query = "SELECT * from pembayaran_dp join pemesanan_rumah on pembayaran_dp.id_pemesanan_rumah=pemesanan_rumah.id_pemesanan_rumah";
         $result = mysqli_query($koneksi, $query);
         $no=1;
-        // if ($SesLvl == 2){
-        //   $dis = "";
-        // } else if ($SesLvl == 1){
-        //   $dis = "disabled";
-        // } else if ($SesLvl == 3){
-        //   $dis = "disabled";
-        // } else ($SesLvl == 4){
-        //   $dis = "disabled";
-        // } 
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
+          $id_pembayaran_dp = $row['id_pembayaran_dp'];
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
+          $tgl_pembayaran = $row['tgl_pembayaran_dp'];
+          $bukti_foto = $row['bukti_pembayaran_dp'];
+          $status = $row['status_dp'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
           <td><?php echo $row['nama_pemesan'];?></td>
           <td><?php echo $row['tgl_pembayaran_dp'];?></td>
-          <td><img src="./img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?>"  height="80px"></td>
+          <td>
+          <div class="align-items-center">
+          <button data-modal-target="#modal-foto<?php echo $id_pembayaran_dp ?>" class="btn btn-outline-primary btn-circle">Lihat Bukti Pembayaran</i></button>
+          </div>
+          </td>
           <td><?php echo $row['status_dp'];?></td>
           <td>
           
@@ -196,6 +198,137 @@ if($userName = $_SESSION['name']){
             
         </tbody>
     </table>
+    </div>
+     <!-- Pop up Foto -->
+     <div class="modal-foto" id="modal-foto<?= $id_pembayaran_dp ?>">
+        <div class="modal-header-foto">
+          <h2 class="foto">Bukti Pembayaran DP</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-foto">
+            <form action="riwayat-pembayaran-dp.php" method="post" enctype="multipart/form-data">
+
+            <div class="align-middle text-center">
+           
+            <img src='./img/pembayaran_dp/<?php echo $bukti_foto?>' width='300' height='300' />
+            
+            </div>
+
+              <div class="align-middle text-center"><br>
+                
+                <button class="btn btn-danger btn-md ms-auto" data-close-fot>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-foto {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-foto {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-foto {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.foto {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.foto {
+          text-align: center;
+
+        }
+
+        .modal-header-foto button.close-btn-foto {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-foto button.close-btn-foto:hover {
+          color: #6b46c1;
+        }
+
+        .active-foto {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalFot = document.querySelectorAll("[data-modal-target]");
+        const closeModalFot = document.querySelectorAll(
+          "[data-close-fot]"
+        );
+
+        openModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-foto");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-foto");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-foto");
+        }
+      </script>
+      <!-- end Pop up Foto -->
+      </div>
+        <!-- End of Content Wrapper -->
+
     </div>
       <script>
         $(document).ready(function() {

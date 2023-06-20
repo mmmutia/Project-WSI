@@ -172,7 +172,7 @@ if (isset($_POST['hapus'])) {
                 <th>ID Cluster</th>
                 <th>Tanggal Pemesanan</th>
                 <th>Jenis Pembayaran</th>
-                <th>Foto KTP</th>
+                <th>KTP</th>
                 <th>Jumlah Cicilan DP</th>
                 <th>Jumlah Cicilan Inhouse</th>
                 <th>Detail Blok</th>
@@ -185,7 +185,18 @@ if (isset($_POST['hapus'])) {
         $result = mysqli_query($koneksi,$query2);
         $no=1;   
         while($row = mysqli_fetch_array($result)){
-        ?>
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
+          $no_telp = $row['no_telp_pemesan'];
+          $id_cluster = $row['id_cluster'];
+          $tgl_pemesanan = $row['tgl_pemesanan'];
+          $jenis_pembayaran = $row['jenis_pembayaran'];
+          $foto_ktp = $row['fotocopy_ktp'];
+          $cicilandp = $row['jml_cicilan_dp'];
+          $cicilaninhouse = $row['jml_cicilan_inhouse'];
+          $detail_blok = $row['detail_blok'];
+          $no_surat = $row['no_surat_bangunan'];
+          ?>
         <tr class="text-center">
               <td><?php echo $no++?></td>
               <td><?php echo $row['nama_pemesan'];?></td>
@@ -194,7 +205,11 @@ if (isset($_POST['hapus'])) {
               <td><?php echo $row['id_cluster'];?></td>
               <td><?php echo $row['tgl_pemesanan'];?></td>
               <td><?php echo $row['jenis_pembayaran'];?></td>
-              <td><img src="img/filepemesanan/<?php echo $row['fotocopy_ktp']; ?>"  height="80px"></td>
+              <td>
+                <div class="align-items-center">
+                <button data-modal-target="#modal-foto<?php echo $id_pemesanan_rumah ?>" class="btn btn-outline-primary btn-circle">Lihat KTP</i></button>
+                </div>
+                </td>
               <td><?php echo $row['jml_cicilan_dp'];?></td>
               <td><?php echo $row['jml_cicilan_inhouse'];?></td>
               <td><?php echo $row['detail_blok'];?></td>
@@ -209,6 +224,139 @@ if (isset($_POST['hapus'])) {
           ?>            
         </tbody>
     </table>
+    </div>
+     <!-- Pop up Foto -->
+     <div class="modal-foto" id="modal-foto<?= $id_pemesanan_rumah ?>">
+        <div class="modal-header-foto">
+          <h2 class="foto">Bukti KTP</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-foto">
+            <form action="list-pemesanan.php" method="post" enctype="multipart/form-data">
+
+            <div class="align-middle text-center">
+           
+            <img src='./img/filepemesanan/<?php echo $foto_ktp?>' width='300' height='300' />
+            
+            </div>
+
+              <div class="align-middle text-center"><br>
+                
+                <button class="btn btn-danger btn-md ms-auto" data-close-fot>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-foto {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-foto {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-foto {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.foto {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.foto {
+          text-align: center;
+
+        }
+
+        .modal-header-foto button.close-btn-foto {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-foto button.close-btn-foto:hover {
+          color: #6b46c1;
+        }
+
+        .active-foto {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalFot = document.querySelectorAll("[data-modal-target]");
+        const closeModalFot = document.querySelectorAll(
+          "[data-close-fot]"
+        );
+
+        openModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-foto");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-foto");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-foto");
+        }
+      </script>
+      <!-- end Pop up Foto -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
       <script>
         $(document).ready(function() {

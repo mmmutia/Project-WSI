@@ -35,7 +35,7 @@ if (isset($_POST['hapus'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Riwayat Pembayaran InHouse - Bernady Land Slawu</title>
+  <title>Riwayat Pembayaran Inhouse - Bernady Land Slawu</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -124,18 +124,16 @@ if($userName = $_SESSION['name']){
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-
     </div>
   </header><!-- End Header -->
-
   <main id="main">
 
-    <!-- ======= Contact Section ======= -->
-    <section class="breadcrumbs">
+<!-- ======= Contact Section ======= -->
+<section class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><blockquote>Riwayat Pembayaran</blockquote></h2>
+          <h2><blockquote>Riwayat Pembayaran Inhouse</blockquote></h2>
           <style>
             blockquote {
               font-family: 'Times New Roman', Times, serif;
@@ -144,15 +142,17 @@ if($userName = $_SESSION['name']){
         </style>
           <ol>
             <li><a href="pembayaran-customer.php">Pembayaran</a></li>
-            <li>Pembayaran Inhouse</li>
+            <li>Riwayat Pembayaran Inhouse</li>
           </ol>
         </div>
+
       </div>
     </section><!-- End Contact Section -->
     <!-- ======= Contact Section ======= -->
-    <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-      <div  class="container">
-      <table id="example" class="table table-striped" style="width:100%">
+    <div class="card shadow mb-4 mt-4">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>    
@@ -160,7 +160,6 @@ if($userName = $_SESSION['name']){
                 <th>Tanggal Pembayaran</th>
                 <th>Bukti Pembayaran</th>
                 <th>Status</th>
-                
             </tr>
         </thead>
 
@@ -181,14 +180,23 @@ if($userName = $_SESSION['name']){
         ?>
         <?php
         while($row = mysqli_fetch_array($result)){
+          $id_pembayaran_inhouse = $row['id_pembayaran_inhouse'];
+          $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
+          $nama_pemesan = $row['nama_pemesan'];
+          $tgl_pembayaran = $row['tgl_pembayaran_inhouse'];
+          $bukti_foto = $row['bukti_pembayaran_inhouse'];
+          $status = $row['status_inhouse'];
           ?>
         <tr class="text-center">
           <td><?php echo $no++?></td>
           <td><?php echo $row['nama_pemesan'];?></td>
           <td><?php echo $row['tgl_pembayaran_inhouse'];?></td>
-          <td><img src="./img/bukti_inhouse/<?php echo $row['bukti_pembayaran_inhouse']; ?>"  height="80px"></td>
-          <td><?php echo $row['status_inhouse'];?></td>
           <td>
+          <div class="align-items-center">
+          <button data-modal-target="#modal-foto<?php echo $id_pembayaran_inhouse ?>" class="btn btn-outline-primary btn-circle">Lihat Bukti Pembayaran</i></button>
+          </div>
+          </td>
+          <td><?php echo $row['status_inhouse'];?></td>
           
             <?php
           }
@@ -197,6 +205,137 @@ if($userName = $_SESSION['name']){
         </tbody>
     </table>
     </div>
+     <!-- Pop up Foto -->
+     <div class="modal-foto" id="modal-foto<?= $id_pembayaran_inhouse ?>">
+        <div class="modal-header-foto">
+          <h2 class="foto">Bukti Pembayaran Inhouse</h2>
+          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
+
+          <div class="modal-body-foto">
+            <form action="riwayat-pembayaran-inhouse.php" method="post" enctype="multipart/form-data">
+
+            <div class="align-middle text-center">
+           
+            <img src='./img/bukti_inhouse/<?php echo $bukti_foto?>' width='300' height='300' />
+            
+            </div>
+
+              <div class="align-middle text-center"><br>
+                
+                <button class="btn btn-danger btn-md ms-auto" data-close-fot>Close</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <style>
+        .modal-foto {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgb(0, 0, 0, 0.6);
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+
+          z-index: 10000;
+        }
+
+        .modal-body-foto {
+          padding: 10px;
+          bottom: 10px;
+        }
+
+        .modal-header-foto {
+          background: white;
+          width: 560px;
+          max-width: 90%;
+          padding: 20px;
+          border-radius: 4px;
+          position: relative;
+
+        }
+
+        .btn-open {
+          background: black;
+          padding: 10px 40px;
+          color: white;
+          border-radius: 5px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        p.foto {
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        h2.foto {
+          text-align: center;
+
+        }
+
+        .modal-header-foto button.close-btn-foto {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          font-size: 32px;
+          background: none;
+          outline: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .modal-header-foto button.close-btn-foto:hover {
+          color: #6b46c1;
+        }
+
+        .active-foto {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      </style>
+      <script>
+        const openModalFot = document.querySelectorAll("[data-modal-target]");
+        const closeModalFot = document.querySelectorAll(
+          "[data-close-fot]"
+        );
+
+        openModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = document.querySelector(button.dataset.modalTarget);
+            openModal(modal);
+          });
+        });
+
+        closeModalFot.forEach((button) => {
+          button.addEventListener("click", () => {
+            const modal = button.closest(".modal-foto");
+            closeModal(modal);
+          });
+        });
+
+        function openModal(modal) {
+          if (modal == null) return;
+          modal.classList.add("active-foto");
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return;
+          modal.classList.remove("active-foto");
+        }
+      </script>
+      <!-- end Pop up Foto -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
       <script>
         $(document).ready(function() {
             $('#example').DataTable({
@@ -211,129 +350,124 @@ if($userName = $_SESSION['name']){
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <h4>Our Newsletter</h4>
-            <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
-          </div>
-          <div class="col-lg-6">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
+<div class="footer-newsletter">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h4>Pesan Kami</h4>
+        <p>The Heart of Jember| Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
+      </div>
+      <div class="col-lg-6">
+        <form action="" method="post">
+          <input type="email" name="email"><input type="submit" value="Subscribe">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Link</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Beranda</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">Tentang</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Layanan</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Layanan</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-contact">
+        <h4>Kontak</h4>
+        <p>
+          Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
+          68126<br>
+          Indonesia <br><br>
+          <strong>Phone:</strong><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a><br>
+          <strong>Email:</strong> bernadylandslawu@gmail.com<br>
+        </p>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-info">
+        <h3>Tentang Bernady Land Slawu</h3>
+        <p>The Heart of Jember</p>
+        <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
+        <div class="social-links mt-3">
+          <a href="https://wa.me/6281231230899" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+          <a href="https://m.facebook.com/people/Bernady-Land-Slawu/100067127194394/" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://instagram.com/bernadylandslawu?igshid=YTY2NzY3YTc=" class="instagram"><i class="bx bxl-instagram"></i></a>
         </div>
       </div>
+
     </div>
+  </div>
+</div>
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span>Bernady Land Slawu</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    <!-- All the links in the footer should remain intact. -->
+    <!-- You can delete the links only if you purchased the pro version. -->
+    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
+    Designed by <a href="https://bootstrapmade.com/">The Heart Of Jember</a>
+  </div>
+</div>
+</footer><!-- End Footer -->
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index-admin.php">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about-admin.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Properti Baru</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pemesanan-admin.php">Pesan Rumah</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="portfolio-admin.php">Cluster Perumahan</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services-admin.php">Fasilitas</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              Jl. Koptu Berlian, Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur <br>
-              68126<br>
-              Indonesia <br><br>
-              <strong>Phone:</strong><a href="https://wa.me/+6281231230899">+62 812 3123 0899</a><br>
-              <strong>Email:</strong> bernadylandslawu@gmail.com<br>
-            </p>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About Bernady Land Slawu</h3>
-            <p>The Heart of Jember</p>
-            <p>Perumahan Bernady Land Slawu mempunyai visi untuk memberikan fasilitas sebanyak - banyaknya kepada seluruh masyarakat Indonesia yang belum mempunyai rumah.</p>
-            <div class="social-links mt-3">
-              <a href="https://wa.me/6281231230899" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-              <a href="https://m.facebook.com/people/Bernady-Land-Slawu/100067127194394/" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://instagram.com/bernadylandslawu?igshid=YTY2NzY3YTc=" class="instagram"><i class="bx bxl-instagram"></i></a>
-            </div>
-          </div>
-
-        </div>
+<div class="modal fade" id="modalLogout">
+<div class="modal-dialog">
+  <div class="modal-content" style="margin-top:100px;">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Bernady Land Slawu</span></strong>. All Rights Reserved
+      <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
+      <div class="modal-footer">
+        <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
+        <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
-        Designed by <a href="https://bootstrapmade.com/">The Heart Of Jember</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
+  </div>
+</div>
+</div>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Vendor JS Files -->
+<!-- <script src="js/jquery-3.6.3.min.js"></script> -->
+<script src="vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="vendor/aos/aos.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/glightbox/js/glightbox.min.js"></script>
+<script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="vendor/swiper/swiper-bundle.min.js"></script>
+<script src="vendor/waypoints/noframework.waypoints.js"></script>
+<script src="vendor/php-email-form/validate.js"></script>
 
-  <div class="modal fade" id="modalLogout">
-    <div class="modal-dialog">
-      <div class="modal-content" style="margin-top:100px;">
-          <div class="modal-header">
-            <h4 class="modal-title" style="text-align:center;">Apakah Yakin Ingin Logout</h4>
-          </div>
-          <div class="modal-body">Pilih "Logout" dibawah jika anda yakin ingin logout.</div>
-          <div class="modal-footer">
-            <a href="logout.php" class="btn btn-danger btn-sm" id="logout_link">Logout</a>
-            <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Cancel</button>
-          </div>
-      </div>
-    </div>
-  </div>  
+<!-- Template Main JS File -->
+<script src="js/main.js"></script>
 
-  <!-- Vendor JS Files -->
-  <!-- <script src="js/jquery-3.6.3.min.js"></script> -->
-  <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="vendor/aos/aos.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="js/main.js"></script>
-  
-  <script type="text/javascript">
-    function confirmLogout(logout_url){
-      $('#modalLogout').modal('show', {backdrop: 'static'});
-      document.getElementById('logout_link').setAttribute('href', logout_url);
-    }
-  </script>
-  
+<script type="text/javascript">
+function confirmLogout(logout_url){
+  $('#modalLogout').modal('show', {backdrop: 'static'});
+  document.getElementById('logout_link').setAttribute('href', logout_url);
+}
+</script>
 
 </body>
 
 </html>
-
-

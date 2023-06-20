@@ -242,6 +242,7 @@ if (!isset($_SESSION['name'])) {
                                         ?>
                                         <?php
                                         while ($row = mysqli_fetch_array($result)) {
+                                            $id_pembayaran_dp = $row['id_pembayaran_dp'];
                                             $id_pemesanan_rumah = $row['id_pemesanan_rumah'];
                                             $nama_pemesan = $row['nama_pemesan'];
                                             $tgl_pembayaran = $row['tgl_pembayaran_dp'];
@@ -252,16 +253,43 @@ if (!isset($_SESSION['name'])) {
                                                 <td><?php echo $no++ ?></td>
                                                 <td><?php echo $nama_pemesan; ?></td>
                                                 <td><?php echo $tgl_pembayaran; ?></td>
-                                                <!-- <td><img src="../img/pembayaran_dp/<?php echo $row['bukti_pembayaran_dp']; ?> " height="80px"></td> -->
+                                                
                                                 <td>
-                                                    <div class="align-items-center">
-                                                    <button data-modal-target="#modal-foto<?php echo $item['id_pembayaran_dp'] ?>" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"></i></button>
-                                                    </div>
+                                                <div class="align-items-center">
+                                                <button data-modal-target="#modal-foto<?php echo $id_pembayaran_dp ?>" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"></i></button>
+                                                </div>
                                                 </td>
-                                                                                    <!-- Pop up Foto -->
-      <div class="modal-foto" id="modal-foto<?= $item['id_pembayaran_dp'] ?>">
+                                                <td><?php echo $status; ?></td>
+                                                <td>
+                                                    <form action="../admin/riwayat-pembayaran-dpadmin.php" method="post" role="form" class="php-email-form">
+                                                        <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
+                                                        <?php if ($status == "Lunas") {
+                                                        ?>
+                                                            <button class="btn btn-danger btn-circle" type="submit" name="hapus"><i class="fa fa-trash"></i></button>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <button class="btn btn-outline-success" type="submit" name="konfirmasi"><i class="fa fa-check"></i> Konfirmasi</button>
+                                                        <?php
+                                                        } ?>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                            
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                             <!-- Pop up Foto -->
+      <div class="modal-foto" id="modal-foto<?= $id_pembayaran_dp ?>">
         <div class="modal-header-foto">
-          <h2 class="foto">Foto Progress</h2>
+          <h2 class="foto">Bukti Pembayaran DP</h2>
           <!-- <button data-close-add class="close-btn-add">&times;</button> -->
 
           <div class="modal-body-foto">
@@ -269,7 +297,7 @@ if (!isset($_SESSION['name'])) {
 
             <div class="align-middle text-center">
            
-            <img src='../img/pembayaran_dp/<?php echo $item['bukti_pembayaran_dp']?>' width='300' height='300' />
+            <img src='../img/pembayaran_dp/<?php echo $bukti_foto?>' width='300' height='300' />
             
             </div>
 
@@ -385,40 +413,10 @@ if (!isset($_SESSION['name'])) {
         }
       </script>
       <!-- end Pop up Foto -->
-                                                <td><?php echo $status; ?></td>
-                                                <td>
-                                                    <form action="../admin/riwayat-pembayaran-dpadmin.php" method="post" role="form" class="php-email-form">
-                                                        <input type="text" value="<?php echo $id_pemesanan_rumah; ?>" name="id_pemesanan_rumah" hidden>
-                                                        <?php if ($status == "Lunas") {
-                                                        ?>
-                                                            <button class="btn btn-danger btn-circle" type="submit" name="hapus"><i class="fa fa-trash"></i></button>
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <button class="btn btn-outline-success" type="submit" name="konfirmasi"><i class="fa fa-check"></i> Konfirmasi</button>
-                                                        <?php
-                                                        } ?>
-                                                    </form>
-                                                </td>
-
-                                            </tr>
-                                            
-                                        <?php
-                                        }
-                                        ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
                                     </div>
 
                 <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
