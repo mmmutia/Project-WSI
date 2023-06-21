@@ -1,68 +1,44 @@
 <?php
-
 // Koneksi ke database
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'bernady';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bernady";
 
-$koneksi = mysqli_connect($host, $username, $password, $database);
-if (mysqli_connect_errno()) {
-    $response = array(
-        'status' => 'error',
-        'message' => 'Gagal terhubung ke MySQL: ' . mysqli_connect_error()
-    );
-
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit();
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Koneksi database gagal: " . $conn->connect_error);
 }
 
-// Cek apakah ada data yang diterima
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Mendapatkan data dari request
-    $id_pemesanan_rumah = $_POST['id_pemesanan_rumah'];
-    $tgl = $_POST['tgl_pembayaran_inhouse'];
-    $bukti_pembayaran_dp = $_FILES['bukti_pembayaran_inhouse']['name'];
-    $status_inhouse = $_POST['status_inhouse'];
+// Mendapatkan data dari request POST
+$idPemesananRumah = $_POST['id_pemesanan_rumah'];
+$tglPembayaranInhouse = $_POST['tgl_pembayaran_inhouse'];
 
-    // Mendapatkan path tempat upload file
-    $targetDir = 'img/fileinhouse/';
-    $targetFilePath = $targetDir . basename($_FILES['bukti_pembayaran_inhouse']['name']);
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+// Meng-handle file gambar yang di-upload
+$buktiPembayaranInhouse = $_FILES['bukti_pembayaran_inhouse'];
 
-    // Upload file ke server
-    if (move_uploaded_file($_FILES['bukti_pembayaran_inhouse']['tmp_name'], $targetFilePath)) {
-        // Query untuk menambahkan data pembayaran_dp ke tabel Pembayaran_dp
-        $query = "INSERT INTO Pembayaran_inhouse (id_pemesanan_rumah, tgl_pembayaran_inhouse, bukti_pembayaran_inhouse, status_inhouse) VALUES ('$id_pemesanan_rumah', '$tgl', '$bukti_pembayaran_dp', '$status_inhouse')";
-        if (mysqli_query($koneksi, $query)) {
-            $response = array(
-                'status' => 'success',
-                'message' => 'Data pembayaran_dp berhasil ditambahkan'
-            );
-        } else {
-            $response = array(
-                'status' => 'error',
-                'message' => 'Gagal menambahkan data pembayaran_dp: ' . mysqli_error($koneksi)
-            );
-        }
+$targetDir = "img/fileinhouse/"; // Ganti dengan direktori upload yang sesuai di server Anda
+$targetFile = $targetDir . basename($buktiPembayaranInhouse["name"]);
+
+// Memindahkan file gambar ke direktori tujuan
+if (move_uploaded_file($buktiPembayaranInhouse["tmp_name"], $targetFile)) {
+    // File berhasil di-upload
+
+    // Menyimpan data ke dalam tabel pembayaran_dp
+    $sql = "INSERT INTO pembayaran_inhouse (id_pembayaran_inhouse, id_pemesanan_rumah, tgl_pembayaran_inhouse, bukti_pembayaran_inhouse)
+            VALUES (null, '$idPemesananRumah', '$tglPembayaranInhouse', '$targetFile')";
+
+    if ($conn->query($sql) === TRUE) {
+        // Data berhasil disimpan
+        echo "Data berhasil disimpan";
     } else {
-        $response = array(
-            'status' => 'error',
-            'message' => 'Gagal upload file bukti_pembayaran_dp'
-        );
+        // Gagal menyimpan data
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 } else {
-    $response = array(
-        'status' => 'error',
-        'message' => 'Metode request tidak valid'
-    );
+    // Gagal meng-upload file
+    echo "Error uploading file";
 }
 
-// Mengirimkan respons dalam format JSON
-header('Content-Type: application/json');
-echo json_encode($response);
-
-// Menutup koneksi database
-mysqli_close($koneksi);
+$conn->close();
 ?>
