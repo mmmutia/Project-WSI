@@ -144,7 +144,12 @@ if($userName = $_SESSION['name']){
           </div>
           <div class="card-body">
             <h5 class="card-title">Pembayaran DP Rumah</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">Silahkan Lakukan Pembayaran ke</p>
+            <p class="card-text">BNI : 123 000 124 2</p>
+            <p class="card-text">BRI : 020 555 151 0</p>
+            <p class="card-text">BCA : 911 060 333 5</p>
+            <p class="card-text">Mandiri : 661 000 611 112 3</p>
+            <p class="card-text">Rekening Atas Nama BernadyLandSlawu</p>
             <button data-modal-target="#modal-add" class="btn btn-outline-secondary" name="add-pembayaran-dp">Bayar Sekarang</button>
             <a href="riwayat-pembayaran-dp.php" class="btn btn-outline-secondary" name="add-pembayaran-dp">Riwayat Pembayaran</a>
           </div>
@@ -160,7 +165,12 @@ if($userName = $_SESSION['name']){
           </div>
           <div class="card-body">
             <h5 class="card-title">Pembayaran InHouse</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">Silahkan Lakukan Pembayaran ke</p>
+            <p class="card-text">BNI : 123 000 124 2</p>
+            <p class="card-text">BRI : 020 555 151 0</p>
+            <p class="card-text">BCA : 911 060 333 5</p>
+            <p class="card-text">Mandiri : 661 000 611 112 3</p>
+            <p class="card-text">Rekening Atas Nama BernadyLandSlawu</p>
             <button data-modal-target="#modal-add-inhouse" class="btn btn-outline-secondary" name="add-pembayaran-inhouse">Bayar Sekarang</button>
             <a href="riwayat-pembayaran-inhouse.php" class="btn btn-outline-secondary" name="add-pembayaran-inhouse">Riwayat Pembayaran</a>
           </div>
