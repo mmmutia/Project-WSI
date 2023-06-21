@@ -17,7 +17,7 @@ $tglPembayaranDp = $_POST['tgl_pembayaran_dp'];
 // Meng-handle file gambar yang di-upload
 $buktiPembayaranDp = $_FILES['bukti_pembayaran_dp'];
 
-$targetDir = "img/filedp/"; // Ganti dengan direktori upload yang sesuai di server Anda
+$targetDir = "/img/pembayaran_dp/"; // Ganti dengan direktori upload yang sesuai di server Anda
 $targetFile = $targetDir . basename($buktiPembayaranDp["name"]);
 
 // Memindahkan file gambar ke direktori tujuan

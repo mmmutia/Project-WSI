@@ -17,7 +17,7 @@ $tglPembayaranInhouse = $_POST['tgl_pembayaran_inhouse'];
 // Meng-handle file gambar yang di-upload
 $buktiPembayaranInhouse = $_FILES['bukti_pembayaran_inhouse'];
 
-$targetDir = "img/fileinhouse/"; // Ganti dengan direktori upload yang sesuai di server Anda
+$targetDir = "/img/bukti_inhouse/"; // Ganti dengan direktori upload yang sesuai di server Anda
 $targetFile = $targetDir . basename($buktiPembayaranInhouse["name"]);
 
 // Memindahkan file gambar ke direktori tujuan

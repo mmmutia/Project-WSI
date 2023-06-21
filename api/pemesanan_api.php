@@ -30,21 +30,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $_POST['iduser'];
         
         // Mengunggah gambar ke direktori tujuan
-        $uploadDir = 'img/filepemesanan/';
+        $uploadDir = '../img/filepemesanan/';
         // Memeriksa apakah direktori tujuan sudah ada
         if (!is_dir($uploadDir)) {
             // Jika belum ada, buat direktori
             mkdir($uploadDir, 0755, true);
         }
         $uploadedFile = $_FILES['gambar']['tmp_name'];
-        $fileName = $_FILES['gambar']['name'];
+        $fileName = explode(".", $_FILES['gambar']['name'])[0];
+        $fileName = $fileName."-".date('ymdHis').".jpg";
         $destination = $uploadDir . $fileName;
         
         if (move_uploaded_file($uploadedFile, $destination)) {
             // Gambar berhasil diunggah, lanjutkan dengan penyimpanan data pemesanan ke database
             $sql = "INSERT INTO pemesanan_rumah (nama_pemesan, alamat, no_telp_pemesan, id_cluster, tgl_pemesanan, fotocopy_ktp, jenis_pembayaran, jml_cicilan_dp, jml_cicilan_inhouse, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssisssssi", $nama, $alamat, $telp, $cluster, $tgl, $destination, $pembayaran, $cicilandp, $cicilaninhouse, $user);
+            $stmt->bind_param("sssisssssi", $nama, $alamat, $telp, $cluster, $tgl, $fileName, $pembayaran, $cicilandp, $cicilaninhouse, $user);
             $stmt->execute();
             $stmt->close();
 
