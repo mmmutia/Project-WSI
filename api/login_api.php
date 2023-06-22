@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Melakukan sanitasi terhadap variabel yang digunakan dalam kueri
     $email = mysqli_real_escape_string($koneksi, $email);
 
-    $sql = "SELECT * FROM user_detail WHERE user_email='$email' AND user_password='$password' ";
+    $sql = "SELECT * FROM user_detail WHERE user_email='$email' ";
 
     $response = mysqli_query($koneksi, $sql);
 
