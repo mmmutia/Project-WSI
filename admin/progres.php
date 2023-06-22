@@ -2,7 +2,15 @@
 require('../koneksi.php');
 session_start();
 error_reporting(0);
-$userName = $_SESSION['name']; ?>
+$userName = $_SESSION['name']; 
+$id_progres = $_SESSION['id'];
+
+if (isset($_POST['hapus'])) {
+
+  $hapus = mysqli_query($koneksi, "DELETE FROM proggres
+    WHERE id = '$id_progres[id]'");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,9 +176,9 @@ $userName = $_SESSION['name']; ?>
         <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="row">
-                  <h1 class="h3 mb-2 text-gray-800">Data Pemesanan Rumah</h1>
+                  <h1 class="h3 mb-2 text-gray-800">Data Progres Perumahan</h1>
+                  <a href="../admin/tambah_progres.php"><button type="button" class="btn btn-primary ml-4">Tambah Progres</button></a>
                 </div>
-                <a href='#'><button data-modal-target="#modal-add" type="button" class="btn btn-primary ml-4">Tambah Progres</button></a>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4 mt-4">
                   <div class="card-body">
@@ -214,8 +222,8 @@ $userName = $_SESSION['name']; ?>
                               </td>
                               <td>
                                 <div class="align-items-center">
-                                <button data-modal-target="#modal-edit<?php echo $item['id']?>" class="btn btn-warning btn-circle"><i class="fa fa-pen"></i></button>
-                                <button data-modal-target="#modal-delete<?php echo $item['id']?>" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></button>
+                                <a href="edit_progres.php?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-circle <?php echo $dis; ?>"><i class="fa fa-pen"></i></a>
+                                <a href="hapus_progres.php?id=<?php echo $item['id']; ?>" class="btn btn-danger btn-circle <?php echo $dis; ?>"><i class="fa fa-trash"></i></a>
 
                               </div>
               </td>
@@ -224,330 +232,6 @@ $userName = $_SESSION['name']; ?>
                 </div>
 
               </div>
-
-          <!-- Pop up Delete -->
-
-          <div class="modal-delete" id="modal-delete<?= $item['id'] ?>">
-                          <div class="modal-header-delete">
-                            <h2 class="delete">Warning</h2>
-                            <!-- <button data-close-delete class="close-btn-delete">&times;</button> -->
-
-                            <div class="modal-body-delete">
-                              <div class="row">
-
-                                <p class="delete">
-                                  Yakin ingin menghapus data <?php echo $item['nama_pemesan'] ?> ?
-                                </p>
-
-                              </div>
-                              <div></div>
-                              <div></div>
-                              <form class="yayyay" action="progres.php?id=<?= $item['id'] ?>" method="post">
-                                <div class="align-middle text-center">
-                                  <button class="btn btn-danger btn-sm ms-auto" type="submit" name="delete">Delete</button>
-                                  <!-- <a class="btn btn-success btn-sm ms-auto" href="users.view.php?id=<?= $row['id'] ?>">Delete</a> -->
-                                  <a href="progres.php" class="btn btn-success btn-sm ms-auto">Close</a>
-                                  <!-- <button class="btn btn-success btn-sm ms-auto" name="submit" data-close-delete>Close</button> -->
-                                  <!-- <button class="btn btn-danger btn-sm ms-auto" href="hapus_user.php?id=<?php echo $row['id']; ?>" data-close-delete>Close</button> -->
-                              </form>
-                            </div>
-
-
-                          </div>
-                        </div>
-                </div>
-
-
-
-                <style>
-                  .modal-delete {
-                    position: fixed;
-                    left: 0;
-                    top: 0;
-                    background: rgb(0, 0, 0, 0.6);
-                    height: 100%;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    opacity: 0;
-                    pointer-events: none;
-
-                    z-index: 10000;
-
-                  }
-
-                  .modal-body-delete {
-                    padding: 10px;
-                    bottom: 10px;
-                  }
-
-                  .modal-header-delete {
-                    background: white;
-                    width: 560px;
-                    max-width: 90%;
-                    padding: 20px;
-                    border-radius: 4x;
-                    position: relative;
-
-                  }
-
-                  .btn-open {
-                    background: black;
-                    padding: 10px 40px;
-                    color: white;
-                    border-radius: 5px;
-                    font-size: 15px;
-                    cursor: pointer;
-                  }
-
-                  p.delete {
-                    line-height: 1.6;
-                    margin-bottom: 20px;
-                    text-align: center;
-                  }
-
-                  h2.delete {
-                    text-align: center;
-
-                  }
-
-                  .modal-header-delete button.close-btn-delete {
-                    position: absolute;
-                    right: 10px;
-                    top: 10px;
-                    font-size: 32px;
-                    background: none;
-                    outline: none;
-                    border: none;
-                    cursor: pointer;
-                  }
-
-                  .modal-header-delete button.close-btn-delete:hover {
-                    color: #6b46c1;
-                  }
-
-                  .active-delete {
-                    opacity: 1;
-                    pointer-events: auto;
-                  }
-                </style>
-                <script>
-                  const openModalDelete = document.querySelectorAll("[data-modal-target]");
-                  const closeModalDelete = document.querySelectorAll(
-                    "[data-close-delete]"
-                  );
-
-                  openModalDelete.forEach((button) => {
-                    button.addEventListener("click", () => {
-                      const modal = document.querySelector(button.dataset.modalTarget);
-                      openModal(modal);
-                    });
-                  });
-
-                  closeModalDelete.forEach((button) => {
-                    button.addEventListener("click", () => {
-                      const modal = button.closest(".modal-delete");
-                      closeModal(modal);
-                    });
-                  });
-
-                  function openModal(modal) {
-                    if (modal == null) return;
-                    modal.classList.add("active-delete");
-                  }
-
-                  function closeModal(modal) {
-                    if (modal == null) return;
-                    modal.classList.remove("active-delete");
-                  }
-                </script>
-                <!-- end Pop up Delete -->
-
-
-              <!-- Pop up Edit -->
-      <div class="modal-edit" id="modal-edit<?= $item['id'] ?>">
-        <div class="modal-header-edit">
-          <h2 class="edit">Edit Form</h2>
-          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
-
-          <div class="modal-body-edit">
-            <form action="progres.php?id=<?= $item['id'] ?>" method="post" enctype="multipart/form-data">
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Id User</label>
-
-
-                <select class="form-control" name="id_user_edit" required>
-                <option value='<?php echo $item['id_user'];?>'> <?php echo $item['nama_pemesan'];?></option>
-                  <?php
-                 
-                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
-                  }
-                  ?>
-
-
-                </select>
-
-              </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Id Pemesanan</label>
-
-
-                <select class="form-control" name="id_pemesanan_edit" required>
-                <option value='<?php echo $item['id_pemesanan'];?>'><?php echo $item['id_pemesanan'];?> - <?php echo $item['nama_pemesan'];?></option>
-                  <?php
-                 
-                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
-                  }
-                  ?>
-
-
-                </select>
-
-              </div>
-
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Status</label>
-
-
-                <select class="form-control" name="status_edit" required>
-                <option value="<?php echo $item['status'];?>"><?php echo $item['status'];?></option>
-                <option value="Selesai">Selesai</option>
-                <option value="Pengerjaan">Pengerjaan</option>
-                
-                </select>
-
-              </div>
-
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Keterangan</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="keterangan_edit" placeholder="Enter Address" maxlength="500" rows="2"><?php echo $item['keterangan'];?></textarea>
-              </div>
-
-              <div class="form-group">
-                <label class="custom-file-label" for="customFileLang">Upload Proggres</label>
-                <!-- <label for="exampleFormControlTextarea1">Foto Progres</label> -->
-                <input type="file" class="form-control" id="foto" name="fotoedit" id="foto">
-
-              </div>
-              <div class="align-middle text-center">
-                <button class="btn btn-success btn-md ms-auto" id="add-user" name="edit-user">Add</button>
-                <button class="btn btn-danger btn-md ms-auto" data-close-edit>Close</button>
-              </div>
-
-
-            </form>
-          </div>
-        </div>
-      </div>
-      <style>
-        .modal-edit {
-          position: fixed;
-          left: 0;
-          top: 0;
-          background: rgb(0, 0, 0, 0.6);
-          height: 100%;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          pointer-events: none;
-          z-index: 1000000;
-        }
-
-        .modal-body-edit {
-          padding: 10px;
-          bottom: 10px;
-        }
-
-        .modal-header-edit {
-          background: white;
-          width: 560px;
-          max-width: 90%;
-          padding: 20px;
-          border-radius: 4px;
-          position: relative;
-
-        }
-
-        .btn-open {
-          background: black;
-          padding: 10px 40px;
-          color: white;
-          border-radius: 5px;
-          font-size: 15px;
-          cursor: pointer;
-        }
-
-        p.edit {
-          line-height: 1.6;
-          margin-bottom: 20px;
-        }
-
-        h2.edit {
-          text-align: center;
-
-        }
-
-        .modal-header-edit button.close-btn-edit {
-          position: absolute;
-          right: 10px;
-          top: 10px;
-          font-size: 32px;
-          background: none;
-          outline: none;
-          border: none;
-          cursor: pointer;
-        }
-
-        .modal-header-edit button.close-btn-edit:hover {
-          color: #6b46c1;
-        }
-
-        .active-edit {
-          opacity: 1;
-          pointer-events: auto;
-        }
-      </style>
-      <script>
-        const openModalEdit = document.querySelectorAll("[data-modal-target]");
-        const closeModalEdit = document.querySelectorAll(
-          "[data-close-edit]"
-        );
-
-        openModalEdit.forEach((button) => {
-          button.addEventListener("click", () => {
-            const modal = document.querySelector(button.dataset.modalTarget);
-            openModal(modal);
-          });
-        });
-
-        closeModalEdit.forEach((button) => {
-          button.addEventListener("click", () => {
-            const modal = button.closest(".modal-edit");
-            closeModal(modal);
-          });
-        });
-
-        function openModal(modal) {
-          if (modal == null) return;
-          modal.classList.add("active-edit");
-        }
-
-        function closeModal(modal) {
-          if (modal == null) return;
-          modal.classList.remove("active-edit");
-        }
-      </script>
-      <!-- end Pop up Edit -->
-
 
              <!-- Pop up Foto -->
       <div class="modal-foto" id="modal-foto<?= $item['id'] ?>">
@@ -804,8 +488,7 @@ $userName = $_SESSION['name']; ?>
         }
       </script>
       <!-- end Pop up keterangan -->
-
-
+      
 
             <?php
           }
@@ -817,193 +500,7 @@ $userName = $_SESSION['name']; ?>
     </section><!-- End Contact Section -->
 
 
-      <!-- Pop up Add -->
-      <div class="modal-add" id="modal-add">
-        <div class="modal-header-add">
-          <h2 class="add">Add Form</h2>
-          <!-- <button data-close-add class="close-btn-add">&times;</button> -->
-
-          <div class="modal-body-add">
-            <form action="progres.php" method="post" enctype="multipart/form-data">
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Id User</label>
-
-
-                <select class="form-control" name="id_user" required>
-                <option value='#'> Pilih Id user</option>
-                  <?php
-                  $query = mysqli_query($koneksi, "select * from user_detail where level = '4'");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_user]>$row[id_user] - $row[user_fullname]</option>";
-                  }
-                  ?>
-
-
-                </select>
-
-              </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Id Pemesanan</label>
-
-
-                <select class="form-control" name="id_pemesanan" required>
-                <option value='#'> Pilih Id</option>
-                  <?php
-                 
-                  $query = mysqli_query($koneksi, "select * from pemesanan_rumah");
-                  while ($row = mysqli_fetch_array($query)) {
-                    echo "<option value=$row[id_pemesanan_rumah]> $row[id_pemesanan_rumah] - $row[nama_pemesan]</option>";
-                  }
-                  ?>
-
-
-                </select>
-
-              </div>
-
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Kategori</label>
-
-
-                <select class="form-control" name="status" required>
-                <option value="#">Pilih Status</option>
-                <option value="Selesai">Selesai</option>
-                <option value="Pengerjaan">Pengerjaan</option>
-                
-                </select>
-
-              </div>
-
-             
-
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Keterangan</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="keterangan" placeholder="Enter Keterangan" maxlength="500" rows="2"></textarea>
-              </div>
-
-
-              <div class="form-group">
-                <label class="custom-file-label" for="customFileLang">Upload Proggres</label>
-                <input type="file" class="form-control" id="foto" name="foto_proggres" id="foto" required>
-
-              </div>
-
-
-              <div class="align-middle text-center">
-                <button class="btn btn-success btn-sm ms-auto" name="add-proggres">Add</button>
-                <button class="btn btn-danger btn-sm ms-auto" data-close-add>Close</button>
-              </div>
-
-
-            </form>
-          </div>
-        </div>
-      </div>
-      <style>
-        .modal-add {
-          position: fixed;
-          left: 0;
-          top: 0;
-          background: rgb(0, 0, 0, 0.6);
-          height: 100%;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          pointer-events: none;
-
-          z-index: 10000;
-        }
-
-        .modal-body-add {
-          padding: 10px;
-          bottom: 10px;
-        }
-
-        .modal-header-add {
-          background: white;
-          width: 560px;
-          max-width: 90%;
-          padding: 20px;
-          border-radius: 4px;
-          position: relative;
-
-        }
-
-        .btn-open {
-          background: black;
-          padding: 10px 40px;
-          color: white;
-          border-radius: 5px;
-          font-size: 15px;
-          cursor: pointer;
-        }
-
-        p.add {
-          line-height: 1.6;
-          margin-bottom: 20px;
-        }
-
-        h2.add {
-          text-align: center;
-
-        }
-
-        .modal-header-add button.close-btn-add {
-          position: absolute;
-          right: 10px;
-          top: 10px;
-          font-size: 32px;
-          background: none;
-          outline: none;
-          border: none;
-          cursor: pointer;
-        }
-
-        .modal-header-add button.close-btn-add:hover {
-          color: #6b46c1;
-        }
-
-        .active-add {
-          opacity: 1;
-          pointer-events: auto;
-        }
-      </style>
-      <script>
-        const openModalAdd = document.querySelectorAll("[data-modal-target]");
-        const closeModalAdd = document.querySelectorAll(
-          "[data-close-add]"
-        );
-
-        openModalAdd.forEach((button) => {
-          button.addEventListener("click", () => {
-            const modal = document.querySelector(button.dataset.modalTarget);
-            openModal(modal);
-          });
-        });
-
-        closeModalAdd.forEach((button) => {
-          button.addEventListener("click", () => {
-            const modal = button.closest(".modal-add");
-            closeModal(modal);
-          });
-        });
-
-        function openModal(modal) {
-          if (modal == null) return;
-          modal.classList.add("active-add");
-        }
-
-        function closeModal(modal) {
-          if (modal == null) return;
-          modal.classList.remove("active-add");
-        }
-      </script>
-      <!-- end Pop up Add -->
-
+     
         </div>
         <!-- End of Main Content -->
 
@@ -1073,11 +570,11 @@ $userName = $_SESSION['name']; ?>
 
 </body>
 <script language="JavaScript" type="text/javascript">
-  function del(id) {
-    if (confirm("yakin akan menghapus data ini?")) {
-      window.location.href = '../hapus_cluster.php?id=' + id;
+    function del(id) {
+        if (confirm("yakin akan menghapus data ini?")) {
+            window.location.href = '../admin/progres.php?id=' + id;
+        }
     }
-  }
 </script>
 
 </html>
